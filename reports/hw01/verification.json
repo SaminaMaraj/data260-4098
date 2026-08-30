@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-08-30T05:55:50.014824+00:00",
+  "overall_status": "PASS",
+  "checks": [
+    {
+      "name": "required_files",
+      "passed": true,
+      "details": "All required files exist."
+    },
+    {
+      "name": "python_version",
+      "passed": true,
+      "details": "Active Python version: 3.12"
+    },
+    {
+      "name": "html_form",
+      "passed": true,
+      "details": "Required form fields and script link found."
+    },
+    {
+      "name": "model_adapter_usage",
+      "passed": true,
+      "details": "Agent pipeline and CLI use src/model_client.py."
+    },
+    {
+      "name": "nondeterminism_runs",
+      "passed": true,
+      "details": "Total=40, temp_0.7=20, temp_0.0=20"
+    },
+    {
+      "name": "token_accounting",
+      "passed": true,
+      "details": "Turns=5, input_total=1327, output_total=2977, stats_after=[3, 5]"
+    }
+  ]
+}

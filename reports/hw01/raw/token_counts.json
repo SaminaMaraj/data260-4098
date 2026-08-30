@@ -1,0 +1,70 @@
+{
+  "turns": [
+    {
+      "turn": 1,
+      "input_tokens": 112,
+      "output_tokens": 935,
+      "total_tokens": 1047,
+      "cumulative_input_tokens": 112,
+      "cumulative_output_tokens": 935,
+      "history_length": 588,
+      "bullet_only": true
+    },
+    {
+      "turn": 2,
+      "input_tokens": 142,
+      "output_tokens": 497,
+      "total_tokens": 639,
+      "cumulative_input_tokens": 254,
+      "cumulative_output_tokens": 1432,
+      "history_length": 985,
+      "bullet_only": true
+    },
+    {
+      "turn": 3,
+      "input_tokens": 231,
+      "output_tokens": 357,
+      "total_tokens": 588,
+      "cumulative_input_tokens": 485,
+      "cumulative_output_tokens": 1789,
+      "history_length": 1463,
+      "bullet_only": true
+    },
+    {
+      "turn": 4,
+      "input_tokens": 339,
+      "output_tokens": 740,
+      "total_tokens": 1079,
+      "cumulative_input_tokens": 824,
+      "cumulative_output_tokens": 2529,
+      "history_length": 2184,
+      "bullet_only": true
+    },
+    {
+      "turn": 5,
+      "input_tokens": 503,
+      "output_tokens": 448,
+      "total_tokens": 951,
+      "cumulative_input_tokens": 1327,
+      "cumulative_output_tokens": 2977,
+      "history_length": 2698,
+      "bullet_only": true
+    }
+  ],
+  "stats_snapshots": [
+    {
+      "after_turn": 3,
+      "turn_count": 3,
+      "cumulative_input_tokens": 485,
+      "cumulative_output_tokens": 1789,
+      "history_length": 1463
+    },
+    {
+      "after_turn": 5,
+      "turn_count": 5,
+      "cumulative_input_tokens": 1327,
+      "cumulative_output_tokens": 2977,
+      "history_length": 2698
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+[
+  {
+    "temperature": 0.7,
+    "run": 1,
+    "tags": [
+      "vta route delay",
+      "santa clara station delay",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 101578,
+    "timestamp_utc": "2026-08-29T06:06:21.034353+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 2,
+    "tags": [
+      "bus delay",
+      "vta route",
+      "santa clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 90073,
+    "timestamp_utc": "2026-08-29T06:07:51.110213+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 3,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 149857,
+    "timestamp_utc": "2026-08-29T06:10:20.969921+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 4,
+    "tags": [
+      "vta route delay",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 67432,
+    "timestamp_utc": "2026-08-29T06:11:28.405117+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 5,
+    "tags": [
+      "bus delay",
+      "santa clara station",
+      "vta route"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 189051,
+    "timestamp_utc": "2026-08-29T06:14:37.460798+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 6,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters.",
+    "latency_ms": 91745,
+    "timestamp_utc": "2026-08-29T06:16:09.208983+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 7,
+    "tags": [
+      "vta route delay",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 63371,
+    "timestamp_utc": "2026-08-29T06:17:12.584576+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 8,
+    "tags": [
+      "clara station",
+      "santa clara",
+      "santa clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters.",
+    "latency_ms": 98472,
+    "timestamp_utc": "2026-08-29T06:18:51.060862+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 9,
+    "tags": [
+      "vta route delay",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 130774,
+    "timestamp_utc": "2026-08-29T06:21:01.835442+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 10,
+    "tags": [
+      "bus delay",
+      "vta route",
+      "santa clara station"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 131106,
+    "timestamp_utc": "2026-08-29T06:23:12.941528+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 11,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay caused 30-minute disruption at Santa Clara Station during afternoon commute.",
+    "latency_ms": 84833,
+    "timestamp_utc": "2026-08-29T06:24:37.777598+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 12,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 65860,
+    "timestamp_utc": "2026-08-29T06:25:43.642059+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 13,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by arriving 30 minutes late.",
+    "latency_ms": 58486,
+    "timestamp_utc": "2026-08-29T06:26:42.132356+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 14,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 76331,
+    "timestamp_utc": "2026-08-29T06:27:58.466290+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 15,
+    "tags": [
+      "vta route delay",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay disrupted afternoon commuters at Santa Clara Station by arriving 30 minutes late.",
+    "latency_ms": 109624,
+    "timestamp_utc": "2026-08-29T06:29:48.094235+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 16,
+    "tags": [
+      "vta route",
+      "santa clara commute",
+      "bus delay"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 123409,
+    "timestamp_utc": "2026-08-29T06:31:51.504044+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 17,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "A 30-minute delay on VTA Route 22 at Santa Clara Station disrupted afternoon commuters.",
+    "latency_ms": 101576,
+    "timestamp_utc": "2026-08-29T06:33:33.080816+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 18,
+    "tags": [
+      "vta route delay",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 131885,
+    "timestamp_utc": "2026-08-29T06:35:44.968448+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 19,
+    "tags": [
+      "vta route delay",
+      "santa clara commute",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by arriving 30 minutes late.",
+    "latency_ms": 62386,
+    "timestamp_utc": "2026-08-29T06:36:47.357951+00:00"
+  },
+  {
+    "temperature": 0.7,
+    "run": 20,
+    "tags": [
+      "vta route",
+      "santa clara station",
+      "clara station"
+    ],
+    "summary": "VTA Route 22 bus faced a 30-minute delay at Santa Clara Station, disrupting afternoon commuters.",
+    "latency_ms": 49077,
+    "timestamp_utc": "2026-08-29T06:37:36.439129+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 1,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 100718,
+    "timestamp_utc": "2026-08-29T06:39:17.163823+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 2,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95605,
+    "timestamp_utc": "2026-08-29T06:40:52.771636+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 3,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95853,
+    "timestamp_utc": "2026-08-29T06:42:28.628990+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 4,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95865,
+    "timestamp_utc": "2026-08-29T06:44:04.497320+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 5,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 96269,
+    "timestamp_utc": "2026-08-29T06:45:40.767421+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 6,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95910,
+    "timestamp_utc": "2026-08-29T06:47:16.677998+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 7,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95901,
+    "timestamp_utc": "2026-08-29T06:48:52.579753+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 8,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95808,
+    "timestamp_utc": "2026-08-29T06:50:28.388897+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 9,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95615,
+    "timestamp_utc": "2026-08-29T06:52:04.004316+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 10,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95476,
+    "timestamp_utc": "2026-08-29T06:53:39.480723+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 11,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95570,
+    "timestamp_utc": "2026-08-29T06:55:15.051887+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 12,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95660,
+    "timestamp_utc": "2026-08-29T06:56:50.712675+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 13,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95501,
+    "timestamp_utc": "2026-08-29T06:58:26.214774+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 14,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95604,
+    "timestamp_utc": "2026-08-29T07:00:01.819180+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 15,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95567,
+    "timestamp_utc": "2026-08-29T07:01:37.387030+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 16,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95475,
+    "timestamp_utc": "2026-08-29T07:03:12.862735+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 17,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95660,
+    "timestamp_utc": "2026-08-29T07:04:48.523619+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 18,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95678,
+    "timestamp_utc": "2026-08-29T07:06:24.202678+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 19,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95544,
+    "timestamp_utc": "2026-08-29T07:07:59.747336+00:00"
+  },
+  {
+    "temperature": 0.0,
+    "run": 20,
+    "tags": [
+      "vta route",
+      "clara station",
+      "santa clara"
+    ],
+    "summary": "VTA Route 22 bus delay at Santa Clara Station disrupted afternoon commuters by 30 minutes.",
+    "latency_ms": 95557,
+    "timestamp_utc": "2026-08-29T07:09:35.305441+00:00"
+  }
+]

@@ -1,0 +1,91 @@
+DATA 260 HW1 RUN LOG
+Model: qwen3:8b
+Python: 3.12.10
+Fixed input: reports/hw01/cases/nondeterminism_input.json
+Command: caffeinate -i python run_nondeterminism.py
+Experiment started (UTC): 2026-08-29T06:06:21.034353+00:00
+Experiment completed (UTC): 2026-08-29T07:09:35.305441+00:00
+Per-run timestamps, tags, and latencies: reports/hw01/raw/nondeterminism_runs.json
+
+PART 3 CONSOLE OUTPUT
+Starting temperature=0.7, run=1/20
+Completed temperature=0.7, run=1/20, latency=101578 ms
+Starting temperature=0.7, run=2/20
+Completed temperature=0.7, run=2/20, latency=90073 ms
+Starting temperature=0.7, run=3/20
+Completed temperature=0.7, run=3/20, latency=149857 ms
+Starting temperature=0.7, run=4/20
+Completed temperature=0.7, run=4/20, latency=67432 ms
+Starting temperature=0.7, run=5/20
+Completed temperature=0.7, run=5/20, latency=189051 ms
+Starting temperature=0.7, run=6/20
+Completed temperature=0.7, run=6/20, latency=91745 ms
+Starting temperature=0.7, run=7/20
+Completed temperature=0.7, run=7/20, latency=63371 ms
+Starting temperature=0.7, run=8/20
+Completed temperature=0.7, run=8/20, latency=98472 ms
+Starting temperature=0.7, run=9/20
+Completed temperature=0.7, run=9/20, latency=130774 ms
+Starting temperature=0.7, run=10/20
+Completed temperature=0.7, run=10/20, latency=131106 ms
+Starting temperature=0.7, run=11/20
+Completed temperature=0.7, run=11/20, latency=84833 ms
+Starting temperature=0.7, run=12/20
+Completed temperature=0.7, run=12/20, latency=65860 ms
+Starting temperature=0.7, run=13/20
+Completed temperature=0.7, run=13/20, latency=58486 ms
+Starting temperature=0.7, run=14/20
+Completed temperature=0.7, run=14/20, latency=76331 ms
+Starting temperature=0.7, run=15/20
+Completed temperature=0.7, run=15/20, latency=109624 ms
+Starting temperature=0.7, run=16/20
+Completed temperature=0.7, run=16/20, latency=123409 ms
+Starting temperature=0.7, run=17/20
+Completed temperature=0.7, run=17/20, latency=101576 ms
+Starting temperature=0.7, run=18/20
+Completed temperature=0.7, run=18/20, latency=131885 ms
+Starting temperature=0.7, run=19/20
+Completed temperature=0.7, run=19/20, latency=62386 ms
+Starting temperature=0.7, run=20/20
+Completed temperature=0.7, run=20/20, latency=49077 ms
+Starting temperature=0.0, run=1/20
+Completed temperature=0.0, run=1/20, latency=100718 ms
+Starting temperature=0.0, run=2/20
+Completed temperature=0.0, run=2/20, latency=95605 ms
+Starting temperature=0.0, run=3/20
+Completed temperature=0.0, run=3/20, latency=95853 ms
+Starting temperature=0.0, run=4/20
+Completed temperature=0.0, run=4/20, latency=95865 ms
+Starting temperature=0.0, run=5/20
+Completed temperature=0.0, run=5/20, latency=96269 ms
+Starting temperature=0.0, run=6/20
+Completed temperature=0.0, run=6/20, latency=95910 ms
+Starting temperature=0.0, run=7/20
+Completed temperature=0.0, run=7/20, latency=95901 ms
+Starting temperature=0.0, run=8/20
+Completed temperature=0.0, run=8/20, latency=95808 ms
+Starting temperature=0.0, run=9/20
+Completed temperature=0.0, run=9/20, latency=95615 ms
+Starting temperature=0.0, run=10/20
+Completed temperature=0.0, run=10/20, latency=95476 ms
+Starting temperature=0.0, run=11/20
+Completed temperature=0.0, run=11/20, latency=95570 ms
+Starting temperature=0.0, run=12/20
+Completed temperature=0.0, run=12/20, latency=95660 ms
+Starting temperature=0.0, run=13/20
+Completed temperature=0.0, run=13/20, latency=95501 ms
+Starting temperature=0.0, run=14/20
+Completed temperature=0.0, run=14/20, latency=95604 ms
+Starting temperature=0.0, run=15/20
+Completed temperature=0.0, run=15/20, latency=95567 ms
+Starting temperature=0.0, run=16/20
+Completed temperature=0.0, run=16/20, latency=95475 ms
+Starting temperature=0.0, run=17/20
+Completed temperature=0.0, run=17/20, latency=95660 ms
+Starting temperature=0.0, run=18/20
+Completed temperature=0.0, run=18/20, latency=95678 ms
+Starting temperature=0.0, run=19/20
+Completed temperature=0.0, run=19/20, latency=95544 ms
+Starting temperature=0.0, run=20/20
+Completed temperature=0.0, run=20/20, latency=95557 ms
+All 40 runs are saved in /Users/samina/Documents/data260-4098/reports/hw01/raw/nondeterminism_runs.json

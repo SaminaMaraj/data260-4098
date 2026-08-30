@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW1-Kazi Samina Maraj Mumu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Municipal Transit Incident Report</h1>
+    <form id="incidentForm" novalidate>
+        <label for="incidentTitle">Incident Title</label>
+        <input type="text" id="incidentTitle" name="incidentTitle" placeholder="Enter a short incident title" required
+            autofocus>
+        <label for="routeLine">Route or Transit Line</label>
+        <input type="text" id="routeLine" name="routeLine" placeholder="Enter the affected route or transit line"
+            required>
+
+        <label for="submitterEmail">Submitter Email</label>
+        <input type="email" id="submitterEmail" name="submitterEmail" placeholder="Enter your email address" required>
+        <label for="description">Incident Description</label>
+        <textarea id="description" name="description" placeholder="Describe the transit incident in detail"
+            required></textarea>
+        <label for="category">Incident Category</label>
+        <select id="category" name="category" required>
+            <option value="" disabled selected>Choose a category</option>
+            <option value="delay">Delay</option>
+            <option value="collision">Collision</option>
+            <option value="service-suspension">Service Suspension</option>
+            <option value="infrastructure-issue">Infrastructure Issue</option>
+        </select>
+        <label>
+            <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
+            I agree to the terms and conditions.
+        </label>
+        <button type="submit">Submit Transit Incident</button>
+
+
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
