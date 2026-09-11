@@ -1,0 +1,53 @@
+{
+  "homework": 2,
+  "generated_at_utc": "2026-09-11T21:29:10.664640+00:00",
+  "sid4": 4098,
+  "port_base": 8498,
+  "seed": 4098,
+  "verify_seed": 264098,
+  "tested_commit": "a1ff6ffef54a424676f913c4fef5fd9606dd7794",
+  "model_configuration": {
+    "model": "qwen3:8b",
+    "experiment_temperature": 0.7,
+    "graph_smoke_temperature": 0.0,
+    "graph_smoke_ceiling": 2
+  },
+  "overall_status": "PASS",
+  "checks": [
+    {
+      "name": "required_files",
+      "passed": true,
+      "details": "All required implementation and experiment files exist."
+    },
+    {
+      "name": "python_version",
+      "passed": true,
+      "details": "Active Python version: 3.12.10"
+    },
+    {
+      "name": "fastapi_port",
+      "passed": true,
+      "details": "{\"port\": 8498, \"record_count\": 2, \"status\": \"ok\"}"
+    },
+    {
+      "name": "experiment_counts",
+      "passed": true,
+      "details": "{\"adversarial_runs\": 5, \"ceiling_10_runs\": 20, \"ceiling_2_runs\": 20, \"schema_runs\": 30}"
+    },
+    {
+      "name": "saved_schema_outputs",
+      "passed": true,
+      "details": "{\"invalid_runs\": 0, \"maximum_summary_words\": 25, \"required_tags_per_run\": 3, \"validated_runs\": 30}"
+    },
+    {
+      "name": "model_adapter_usage",
+      "passed": true,
+      "details": "{\"adapter_import_found\": true}"
+    },
+    {
+      "name": "langgraph_smoke",
+      "passed": true,
+      "details": "{\"status\": \"completed\", \"summary_word_count\": 14, \"tag_count\": 3, \"turn_count\": 2}"
+    }
+  ]
+}
