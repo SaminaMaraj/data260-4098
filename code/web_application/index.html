@@ -4,42 +4,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW1-Kazi Samina Maraj Mumu</title>
-    <link rel="stylesheet" href="style.css">
+    <title>HW2 - Municipal Transit Incidents</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-    <h1>Municipal Transit Incident Report</h1>
-    <form id="incidentForm" novalidate>
-        <label for="incidentTitle">Incident Title</label>
-        <input type="text" id="incidentTitle" name="incidentTitle" placeholder="Enter a short incident title" required
-            autofocus>
-        <label for="routeLine">Route or Transit Line</label>
-        <input type="text" id="routeLine" name="routeLine" placeholder="Enter the affected route or transit line"
-            required>
+    <header class="page-header">
+        <h1>Municipal Transit Incident Report</h1>
+        <p>View, search, add, update, and delete transit incident records.</p>
+    </header>
 
-        <label for="submitterEmail">Submitter Email</label>
-        <input type="email" id="submitterEmail" name="submitterEmail" placeholder="Enter your email address" required>
-        <label for="description">Incident Description</label>
-        <textarea id="description" name="description" placeholder="Describe the transit incident in detail"
-            required></textarea>
-        <label for="category">Incident Category</label>
-        <select id="category" name="category" required>
-            <option value="" disabled selected>Choose a category</option>
-            <option value="delay">Delay</option>
-            <option value="collision">Collision</option>
-            <option value="service-suspension">Service Suspension</option>
-            <option value="infrastructure-issue">Infrastructure Issue</option>
-        </select>
-        <label>
-            <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
-            I agree to the terms and conditions.
-        </label>
-        <button type="submit">Submit Transit Incident</button>
+    <main>
+        <section class="panel" aria-labelledby="recordsHeading">
+            <div class="section-heading">
+                <h2 id="recordsHeading">Incident Records</h2>
+                <span id="recordCount" class="record-count">0 records</span>
+            </div>
 
+            <form id="searchForm" class="search-form" role="search">
+                <label for="searchQuery">Search by incident title or transit route</label>
 
-    </form>
-    <script src="script.js"></script>
+                <div class="button-row">
+                    <input
+                        type="search"
+                        id="searchQuery"
+                        name="q"
+                        placeholder="Example: Route 22 or bus delay"
+                    >
+                    <button type="submit">Search</button>
+                    <button type="button" id="clearSearch" class="secondary-button">
+                        Clear
+                    </button>
+                </div>
+            </form>
+
+            <div id="loadingState" class="state loading-state" role="status">
+                Loading incident records...
+            </div>
+
+            <div id="emptyState" class="state empty-state" hidden>
+                No matching transit incidents were found.
+            </div>
+
+            <div id="errorState" class="state error-state" role="alert" hidden>
+                <strong>Unable to load incidents.</strong>
+                <span id="errorMessage">Please try again.</span>
+            </div>
+
+            <div id="incidentList" class="incident-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="addHeading">
+            <h2 id="addHeading">Add a Transit Incident</h2>
+
+            <form
+                id="incidentForm"
+                action="/incidents"
+                method="post"
+                novalidate
+            >
+                <label for="incidentTitle">Incident Title</label>
+                <input
+                    type="text"
+                    id="incidentTitle"
+                    name="incidentTitle"
+                    placeholder="Enter a short incident title"
+                    minlength="3"
+                    maxlength="100"
+                    required
+                    autofocus
+                >
+
+                <label for="routeLine">Route or Transit Line</label>
+                <input
+                    type="text"
+                    id="routeLine"
+                    name="routeLine"
+                    placeholder="Enter the affected route or transit line"
+                    minlength="2"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="submitterEmail">Submitter Email</label>
+                <input
+                    type="email"
+                    id="submitterEmail"
+                    name="submitterEmail"
+                    placeholder="Enter your email address"
+                    maxlength="150"
+                    required
+                >
+
+                <label for="description">Incident Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Describe the transit incident in more than 25 characters"
+                    minlength="26"
+                    maxlength="1000"
+                    required
+                ></textarea>
+
+                <label for="category">Incident Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Choose a category</option>
+                    <option value="delay">Delay</option>
+                    <option value="collision">Collision</option>
+                    <option value="service-suspension">Service Suspension</option>
+                    <option value="infrastructure-issue">Infrastructure Issue</option>
+                </select>
+
+                <label class="checkbox-label">
+                    <input
+                        type="checkbox"
+                        id="termsAccepted"
+                        name="termsAccepted"
+                        required
+                    >
+                    I agree to the terms and conditions.
+                </label>
+
+                <button type="submit">Add Transit Incident</button>
+            </form>
+        </section>
+
+        <div class="management-grid">
+            <section class="panel" aria-labelledby="updateHeading">
+                <h2 id="updateHeading">Update Incident ID 1</h2>
+
+                <form
+                    id="updateForm"
+                    action="/incidents/1/update"
+                    method="post"
+                >
+                    <label for="updatedTitle">New Incident Title</label>
+                    <input
+                        type="text"
+                        id="updatedTitle"
+                        name="incidentTitle"
+                        value="Updated Bus Delay Report"
+                        minlength="3"
+                        maxlength="100"
+                        required
+                    >
+
+                    <label for="updatedRoute">New Route or Transit Line</label>
+                    <input
+                        type="text"
+                        id="updatedRoute"
+                        name="routeLine"
+                        value="VTA Route 22 Express"
+                        minlength="2"
+                        maxlength="100"
+                        required
+                    >
+
+                    <button type="submit">Update ID 1</button>
+                </form>
+            </section>
+
+            <section class="panel danger-panel" aria-labelledby="deleteHeading">
+                <h2 id="deleteHeading">Delete Highest ID</h2>
+
+                <p>
+                    This action deletes the incident record with the highest
+                    current ID.
+                </p>
+
+                <form
+                    id="deleteForm"
+                    action="/incidents/delete-highest"
+                    method="post"
+                >
+                    <button type="submit" class="danger-button">
+                        Delete Highest-ID Record
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
 </body>
 
 </html>
