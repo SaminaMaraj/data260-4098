@@ -1,0 +1,156 @@
+[2026-09-11T17:57:03.307474+00:00] HW2 experiment runner started phase=schema, model=qwen3:8b, temperature=0.7
+[2026-09-11T17:57:03.307804+00:00] Starting experiment=schema_validation, ceiling=10, run=1/30
+[2026-09-11T17:57:43.657530+00:00] Completed experiment=schema_validation, ceiling=10, run=1/30, status=completed, turns=1, latency=40347 ms
+[2026-09-11T17:57:43.657679+00:00] Starting experiment=schema_validation, ceiling=10, run=2/30
+[2026-09-11T17:58:14.287447+00:00] Completed experiment=schema_validation, ceiling=10, run=2/30, status=completed, turns=1, latency=30628 ms
+[2026-09-11T17:58:14.289211+00:00] Starting experiment=schema_validation, ceiling=10, run=3/30
+[2026-09-11T17:59:06.096924+00:00] Completed experiment=schema_validation, ceiling=10, run=3/30, status=completed, turns=1, latency=51807 ms
+[2026-09-11T17:59:06.097074+00:00] Starting experiment=schema_validation, ceiling=10, run=4/30
+[2026-09-11T18:00:02.711334+00:00] Completed experiment=schema_validation, ceiling=10, run=4/30, status=completed, turns=1, latency=56613 ms
+[2026-09-11T18:00:02.713091+00:00] Starting experiment=schema_validation, ceiling=10, run=5/30
+[2026-09-11T18:00:52.980775+00:00] Completed experiment=schema_validation, ceiling=10, run=5/30, status=completed, turns=1, latency=50266 ms
+[2026-09-11T18:00:52.982893+00:00] Starting experiment=schema_validation, ceiling=10, run=6/30
+[2026-09-11T18:01:34.474270+00:00] Completed experiment=schema_validation, ceiling=10, run=6/30, status=completed, turns=1, latency=41489 ms
+[2026-09-11T18:01:34.476039+00:00] Starting experiment=schema_validation, ceiling=10, run=7/30
+[2026-09-11T18:02:07.962284+00:00] Completed experiment=schema_validation, ceiling=10, run=7/30, status=completed, turns=1, latency=33484 ms
+[2026-09-11T18:02:07.964384+00:00] Starting experiment=schema_validation, ceiling=10, run=8/30
+[2026-09-11T18:02:49.039185+00:00] Completed experiment=schema_validation, ceiling=10, run=8/30, status=completed, turns=1, latency=41073 ms
+[2026-09-11T18:02:49.039677+00:00] Starting experiment=schema_validation, ceiling=10, run=9/30
+[2026-09-11T18:03:34.840408+00:00] Completed experiment=schema_validation, ceiling=10, run=9/30, status=completed, turns=1, latency=45799 ms
+[2026-09-11T18:03:34.842192+00:00] Starting experiment=schema_validation, ceiling=10, run=10/30
+[2026-09-11T18:04:05.859963+00:00] Completed experiment=schema_validation, ceiling=10, run=10/30, status=completed, turns=1, latency=31016 ms
+[2026-09-11T18:04:05.861759+00:00] Starting experiment=schema_validation, ceiling=10, run=11/30
+[2026-09-11T18:05:08.760174+00:00] Completed experiment=schema_validation, ceiling=10, run=11/30, status=completed, turns=1, latency=62896 ms
+[2026-09-11T18:05:08.760561+00:00] Starting experiment=schema_validation, ceiling=10, run=12/30
+[2026-09-11T18:05:42.801392+00:00] Completed experiment=schema_validation, ceiling=10, run=12/30, status=completed, turns=1, latency=34039 ms
+[2026-09-11T18:05:42.803495+00:00] Starting experiment=schema_validation, ceiling=10, run=13/30
+[2026-09-11T18:06:18.335643+00:00] Completed experiment=schema_validation, ceiling=10, run=13/30, status=completed, turns=1, latency=35531 ms
+[2026-09-11T18:06:18.335900+00:00] Starting experiment=schema_validation, ceiling=10, run=14/30
+[2026-09-11T18:06:56.829085+00:00] Completed experiment=schema_validation, ceiling=10, run=14/30, status=completed, turns=1, latency=38491 ms
+[2026-09-11T18:06:56.830920+00:00] Starting experiment=schema_validation, ceiling=10, run=15/30
+[2026-09-11T18:07:25.776413+00:00] Completed experiment=schema_validation, ceiling=10, run=15/30, status=completed, turns=1, latency=28943 ms
+[2026-09-11T18:07:25.778529+00:00] Starting experiment=schema_validation, ceiling=10, run=16/30
+[2026-09-11T18:07:56.536932+00:00] Completed experiment=schema_validation, ceiling=10, run=16/30, status=completed, turns=1, latency=30756 ms
+[2026-09-11T18:07:56.538719+00:00] Starting experiment=schema_validation, ceiling=10, run=17/30
+[2026-09-11T18:08:32.346553+00:00] Completed experiment=schema_validation, ceiling=10, run=17/30, status=completed, turns=1, latency=35805 ms
+[2026-09-11T18:08:32.346990+00:00] Starting experiment=schema_validation, ceiling=10, run=18/30
+[2026-09-11T18:09:06.959744+00:00] Completed experiment=schema_validation, ceiling=10, run=18/30, status=completed, turns=1, latency=34610 ms
+[2026-09-11T18:09:06.961534+00:00] Starting experiment=schema_validation, ceiling=10, run=19/30
+[2026-09-11T18:09:48.462370+00:00] Completed experiment=schema_validation, ceiling=10, run=19/30, status=completed, turns=1, latency=41499 ms
+[2026-09-11T18:09:48.464192+00:00] Starting experiment=schema_validation, ceiling=10, run=20/30
+[2026-09-11T18:10:30.039615+00:00] Completed experiment=schema_validation, ceiling=10, run=20/30, status=completed, turns=1, latency=41573 ms
+[2026-09-11T18:10:30.044503+00:00] Starting experiment=schema_validation, ceiling=10, run=21/30
+[2026-09-11T18:11:07.811136+00:00] Completed experiment=schema_validation, ceiling=10, run=21/30, status=completed, turns=1, latency=37764 ms
+[2026-09-11T18:11:07.813321+00:00] Starting experiment=schema_validation, ceiling=10, run=22/30
+[2026-09-11T18:11:38.046467+00:00] Completed experiment=schema_validation, ceiling=10, run=22/30, status=completed, turns=1, latency=30232 ms
+[2026-09-11T18:11:38.046641+00:00] Starting experiment=schema_validation, ceiling=10, run=23/30
+[2026-09-11T18:12:21.460546+00:00] Completed experiment=schema_validation, ceiling=10, run=23/30, status=completed, turns=1, latency=43411 ms
+[2026-09-11T18:12:21.462720+00:00] Starting experiment=schema_validation, ceiling=10, run=24/30
+[2026-09-11T18:13:02.249147+00:00] Completed experiment=schema_validation, ceiling=10, run=24/30, status=completed, turns=1, latency=40784 ms
+[2026-09-11T18:13:02.250917+00:00] Starting experiment=schema_validation, ceiling=10, run=25/30
+[2026-09-11T18:13:32.360468+00:00] Completed experiment=schema_validation, ceiling=10, run=25/30, status=completed, turns=1, latency=30107 ms
+[2026-09-11T18:13:32.362574+00:00] Starting experiment=schema_validation, ceiling=10, run=26/30
+[2026-09-11T18:14:05.633588+00:00] Completed experiment=schema_validation, ceiling=10, run=26/30, status=completed, turns=1, latency=33266 ms
+[2026-09-11T18:14:05.634902+00:00] Starting experiment=schema_validation, ceiling=10, run=27/30
+[2026-09-11T18:15:05.371845+00:00] Completed experiment=schema_validation, ceiling=10, run=27/30, status=completed, turns=1, latency=59732 ms
+[2026-09-11T18:15:05.372921+00:00] Starting experiment=schema_validation, ceiling=10, run=28/30
+[2026-09-11T18:15:39.235272+00:00] Completed experiment=schema_validation, ceiling=10, run=28/30, status=completed, turns=1, latency=33857 ms
+[2026-09-11T18:15:39.236674+00:00] Starting experiment=schema_validation, ceiling=10, run=29/30
+[2026-09-11T18:16:20.579299+00:00] Completed experiment=schema_validation, ceiling=10, run=29/30, status=completed, turns=1, latency=41338 ms
+[2026-09-11T18:16:20.580468+00:00] Starting experiment=schema_validation, ceiling=10, run=30/30
+[2026-09-11T18:17:09.428514+00:00] Completed experiment=schema_validation, ceiling=10, run=30/30, status=completed, turns=1, latency=48845 ms
+[2026-09-11T18:17:09.430299+00:00] HW2 experiment runner finished phase=schema
+[2026-09-11T18:24:07.460283+00:00] HW2 experiment runner started phase=ceilings, model=qwen3:8b, temperature=0.7
+[2026-09-11T18:24:07.460810+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=1/20
+[2026-09-11T18:24:48.188290+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=1/20, status=completed, turns=1, latency=40727 ms
+[2026-09-11T18:24:48.188413+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=2/20
+[2026-09-11T18:25:28.554421+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=2/20, status=completed, turns=1, latency=40364 ms
+[2026-09-11T18:25:28.554609+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=3/20
+[2026-09-11T18:25:58.643584+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=3/20, status=completed, turns=1, latency=30088 ms
+[2026-09-11T18:25:58.643758+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=4/20
+[2026-09-11T18:26:32.847675+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=4/20, status=completed, turns=1, latency=34202 ms
+[2026-09-11T18:26:32.847849+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=5/20
+[2026-09-11T18:27:20.710938+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=5/20, status=completed, turns=1, latency=47861 ms
+[2026-09-11T18:27:20.711120+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=6/20
+[2026-09-11T18:27:54.824284+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=6/20, status=completed, turns=1, latency=34111 ms
+[2026-09-11T18:27:54.824442+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=7/20
+[2026-09-11T18:28:40.457853+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=7/20, status=completed, turns=1, latency=45632 ms
+[2026-09-11T18:28:40.458035+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=8/20
+[2026-09-11T18:29:11.385227+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=8/20, status=completed, turns=1, latency=30925 ms
+[2026-09-11T18:29:11.385407+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=9/20
+[2026-09-11T18:29:49.947560+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=9/20, status=completed, turns=1, latency=38561 ms
+[2026-09-11T18:29:49.947709+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=10/20
+[2026-09-11T18:30:34.453100+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=10/20, status=completed, turns=1, latency=44503 ms
+[2026-09-11T18:30:34.453281+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=11/20
+[2026-09-11T18:31:05.052707+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=11/20, status=completed, turns=1, latency=30598 ms
+[2026-09-11T18:31:05.052879+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=12/20
+[2026-09-11T18:31:35.008170+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=12/20, status=completed, turns=1, latency=29953 ms
+[2026-09-11T18:31:35.008351+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=13/20
+[2026-09-11T18:32:10.289434+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=13/20, status=completed, turns=1, latency=35279 ms
+[2026-09-11T18:32:10.289618+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=14/20
+[2026-09-11T18:32:56.190154+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=14/20, status=completed, turns=1, latency=45898 ms
+[2026-09-11T18:32:56.190331+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=15/20
+[2026-09-11T18:33:25.749781+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=15/20, status=completed, turns=1, latency=29557 ms
+[2026-09-11T18:33:25.749943+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=16/20
+[2026-09-11T18:34:15.268654+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=16/20, status=completed, turns=1, latency=49516 ms
+[2026-09-11T18:34:15.268839+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=17/20
+[2026-09-11T18:34:49.785904+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=17/20, status=completed, turns=1, latency=34516 ms
+[2026-09-11T18:34:49.785958+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=18/20
+[2026-09-11T18:35:43.091389+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=18/20, status=completed, turns=1, latency=53303 ms
+[2026-09-11T18:35:43.091562+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=19/20
+[2026-09-11T18:36:15.469313+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=19/20, status=completed, turns=1, latency=32375 ms
+[2026-09-11T18:36:15.469470+00:00] Starting experiment=ceiling_comparison, ceiling=2, run=20/20
+[2026-09-11T18:36:51.086083+00:00] Completed experiment=ceiling_comparison, ceiling=2, run=20/20, status=completed, turns=1, latency=35614 ms
+[2026-09-11T18:36:51.086770+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=1/20
+[2026-09-11T18:37:35.843829+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=1/20, status=completed, turns=1, latency=44754 ms
+[2026-09-11T18:37:35.844092+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=2/20
+[2026-09-11T18:38:20.914817+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=2/20, status=completed, turns=1, latency=45069 ms
+[2026-09-11T18:38:20.914993+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=3/20
+[2026-09-11T18:40:12.813247+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=3/20, status=completed, turns=2, latency=111896 ms
+[2026-09-11T18:40:12.815281+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=4/20
+[2026-09-11T18:40:55.929207+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=4/20, status=completed, turns=1, latency=43111 ms
+[2026-09-11T18:40:55.931083+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=5/20
+[2026-09-11T18:41:47.347536+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=5/20, status=completed, turns=1, latency=51413 ms
+[2026-09-11T18:41:47.349820+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=6/20
+[2026-09-11T18:42:33.210036+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=6/20, status=completed, turns=1, latency=45857 ms
+[2026-09-11T18:42:33.210464+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=7/20
+[2026-09-11T18:43:20.563058+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=7/20, status=completed, turns=1, latency=47345 ms
+[2026-09-11T18:43:20.564875+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=8/20
+[2026-09-11T18:43:57.069222+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=8/20, status=completed, turns=1, latency=36496 ms
+[2026-09-11T18:43:57.071060+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=9/20
+[2026-09-11T18:44:29.746314+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=9/20, status=completed, turns=1, latency=32671 ms
+[2026-09-11T18:44:29.748139+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=10/20
+[2026-09-11T18:45:19.302502+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=10/20, status=completed, turns=1, latency=49544 ms
+[2026-09-11T18:45:19.303008+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=11/20
+[2026-09-11T18:46:00.347685+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=11/20, status=completed, turns=1, latency=41041 ms
+[2026-09-11T18:46:00.349554+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=12/20
+[2026-09-11T18:46:35.059876+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=12/20, status=completed, turns=1, latency=34705 ms
+[2026-09-11T18:46:35.060124+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=13/20
+[2026-09-11T18:47:10.697962+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=13/20, status=completed, turns=1, latency=35633 ms
+[2026-09-11T18:47:10.698445+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=14/20
+[2026-09-11T18:47:46.104943+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=14/20, status=completed, turns=1, latency=35402 ms
+[2026-09-11T18:47:46.105625+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=15/20
+[2026-09-11T18:48:18.377989+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=15/20, status=completed, turns=1, latency=32266 ms
+[2026-09-11T18:48:18.378717+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=16/20
+[2026-09-11T18:48:54.006981+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=16/20, status=completed, turns=1, latency=35623 ms
+[2026-09-11T18:48:54.008673+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=17/20
+[2026-09-11T18:49:31.223303+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=17/20, status=completed, turns=1, latency=37207 ms
+[2026-09-11T18:49:31.223812+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=18/20
+[2026-09-11T18:50:10.895934+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=18/20, status=completed, turns=1, latency=39668 ms
+[2026-09-11T18:50:10.896203+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=19/20
+[2026-09-11T18:50:48.659772+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=19/20, status=completed, turns=1, latency=37757 ms
+[2026-09-11T18:50:48.660046+00:00] Starting experiment=ceiling_comparison, ceiling=10, run=20/20
+[2026-09-11T18:51:22.910740+00:00] Completed experiment=ceiling_comparison, ceiling=10, run=20/20, status=completed, turns=1, latency=34245 ms
+[2026-09-11T18:51:22.915891+00:00] HW2 experiment runner finished phase=ceilings
+[2026-09-11T19:00:56.447862+00:00] HW2 experiment runner started phase=adversarial, model=qwen3:8b, temperature=0.7
+[2026-09-11T19:00:56.448519+00:00] Starting experiment=adversarial, ceiling=2, run=1/5
+[2026-09-11T19:02:03.445408+00:00] Completed experiment=adversarial, ceiling=2, run=1/5, status=abandoned_at_ceiling, turns=2, latency=66996 ms
+[2026-09-11T19:02:03.445563+00:00] Starting experiment=adversarial, ceiling=2, run=2/5
+[2026-09-11T19:02:49.090900+00:00] Completed experiment=adversarial, ceiling=2, run=2/5, status=abandoned_at_ceiling, turns=2, latency=45643 ms
+[2026-09-11T19:02:49.091083+00:00] Starting experiment=adversarial, ceiling=2, run=3/5
+[2026-09-11T19:03:22.412351+00:00] Completed experiment=adversarial, ceiling=2, run=3/5, status=abandoned_at_ceiling, turns=2, latency=33320 ms
+[2026-09-11T19:03:22.412495+00:00] Starting experiment=adversarial, ceiling=2, run=4/5
+[2026-09-11T19:04:17.435284+00:00] Completed experiment=adversarial, ceiling=2, run=4/5, status=abandoned_at_ceiling, turns=2, latency=55021 ms
+[2026-09-11T19:04:17.435417+00:00] Starting experiment=adversarial, ceiling=2, run=5/5
+[2026-09-11T19:05:09.646950+00:00] Completed experiment=adversarial, ceiling=2, run=5/5, status=abandoned_at_ceiling, turns=2, latency=52210 ms
+[2026-09-11T19:05:09.650574+00:00] HW2 experiment runner finished phase=adversarial

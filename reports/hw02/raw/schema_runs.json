@@ -1,0 +1,1303 @@
+{
+  "experiment": "schema_validation",
+  "created_at_utc": "2026-09-11T17:57:03.307766+00:00",
+  "runs": [
+    {
+      "experiment": "schema_validation",
+      "run": 1,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T17:57:03.307802+00:00",
+      "completed_at_utc": "2026-09-11T17:57:43.656588+00:00",
+      "latency_ms": 40347,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Public Transit",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 670,
+          "output_tokens": 44
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 452,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 2,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T17:57:43.657674+00:00",
+      "completed_at_utc": "2026-09-11T17:58:14.286234+00:00",
+      "latency_ms": 30628,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22 Delay",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus faced 30-minute delay at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 422,
+          "output_tokens": 54
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 486,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 3,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T17:58:14.289202+00:00",
+      "completed_at_utc": "2026-09-11T17:59:06.096577+00:00",
+      "latency_ms": 51807,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "VTA Route 22",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters during peak hours."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 914,
+          "output_tokens": 53
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 505,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 4,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T17:59:06.097069+00:00",
+      "completed_at_utc": "2026-09-11T18:00:02.709810+00:00",
+      "latency_ms": 56613,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Service Disruption",
+          "Public Transit",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 1036,
+          "output_tokens": 44
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 478,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 5,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:00:02.713086+00:00",
+      "completed_at_utc": "2026-09-11T18:00:52.979081+00:00",
+      "latency_ms": 50266,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 843,
+          "output_tokens": 51
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 513,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 6,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:00:52.982886+00:00",
+      "completed_at_utc": "2026-09-11T18:01:34.472418+00:00",
+      "latency_ms": 41489,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "VTA Route 22",
+          "Bus Delay",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus faced 30-minute delay at Santa Clara Station, disrupting afternoon commuters during peak hours."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 568,
+          "output_tokens": 55
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 590,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 7,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:01:34.476030+00:00",
+      "completed_at_utc": "2026-09-11T18:02:07.960398+00:00",
+      "latency_ms": 33484,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22 Delay",
+          "Santa Clara Station Delay"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, affecting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 554,
+          "output_tokens": 53
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 424,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 8,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:02:07.964349+00:00",
+      "completed_at_utc": "2026-09-11T18:02:49.037243+00:00",
+      "latency_ms": 41073,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Public Transit",
+          "Commute Disruption"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 669,
+          "output_tokens": 47
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 485,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 9,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:02:49.039671+00:00",
+      "completed_at_utc": "2026-09-11T18:03:34.838497+00:00",
+      "latency_ms": 45799,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit",
+          "Bus Delay",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 849,
+          "output_tokens": 46
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 411,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 10,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:03:34.842183+00:00",
+      "completed_at_utc": "2026-09-11T18:04:05.858185+00:00",
+      "latency_ms": 31016,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit",
+          "Commute Disruption",
+          "Bus Service Delay"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 461,
+          "output_tokens": 48
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 457,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 11,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:04:05.861749+00:00",
+      "completed_at_utc": "2026-09-11T18:05:08.758069+00:00",
+      "latency_ms": 62896,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Service Disruption",
+          "Santa Clara Station",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, affecting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 967,
+          "output_tokens": 49
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 695,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 12,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:05:08.760549+00:00",
+      "completed_at_utc": "2026-09-11T18:05:42.799430+00:00",
+      "latency_ms": 34039,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "VTA Delays",
+          "Santa Clara Station",
+          "Passenger Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 494,
+          "output_tokens": 46
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 495,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 13,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:05:42.803487+00:00",
+      "completed_at_utc": "2026-09-11T18:06:18.334470+00:00",
+      "latency_ms": 35531,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22 Delay",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus faced 30-minute delay at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 565,
+          "output_tokens": 53
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 468,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 14,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:06:18.335893+00:00",
+      "completed_at_utc": "2026-09-11T18:06:56.827086+00:00",
+      "latency_ms": 38491,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Public Transit",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 629,
+          "output_tokens": 46
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 467,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 15,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:06:56.830911+00:00",
+      "completed_at_utc": "2026-09-11T18:07:25.774273+00:00",
+      "latency_ms": 28943,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22 Delay",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 455,
+          "output_tokens": 52
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 417,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 16,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:07:25.778524+00:00",
+      "completed_at_utc": "2026-09-11T18:07:56.534588+00:00",
+      "latency_ms": 30756,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Santa Clara Station",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters during peak hours."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 510,
+          "output_tokens": 51
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 408,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 17,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:07:56.538713+00:00",
+      "completed_at_utc": "2026-09-11T18:08:32.344267+00:00",
+      "latency_ms": 35805,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22 Delay",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus faced 30-minute delay at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 561,
+          "output_tokens": 53
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 481,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 18,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:08:32.346979+00:00",
+      "completed_at_utc": "2026-09-11T18:09:06.957481+00:00",
+      "latency_ms": 34610,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Transportation Delays",
+          "Public Transit Disruption",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus arrived 30 minutes late at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 573,
+          "output_tokens": 51
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 433,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 19,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:09:06.961525+00:00",
+      "completed_at_utc": "2026-09-11T18:09:48.460192+00:00",
+      "latency_ms": 41499,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delays",
+          "Bus Route Disruption",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 665,
+          "output_tokens": 50
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 510,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 20,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:09:48.464184+00:00",
+      "completed_at_utc": "2026-09-11T18:10:30.036973+00:00",
+      "latency_ms": 41573,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "Bus Service Disruption",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, affecting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 699,
+          "output_tokens": 47
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 477,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 21,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:10:30.044497+00:00",
+      "completed_at_utc": "2026-09-11T18:11:07.808902+00:00",
+      "latency_ms": 37764,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Santa Clara Station",
+          "Commute Disruption"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 636,
+          "output_tokens": 48
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 448,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 22,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:11:07.813310+00:00",
+      "completed_at_utc": "2026-09-11T18:11:38.045925+00:00",
+      "latency_ms": 30232,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "VTA_Delay",
+          "Route22",
+          "SantaClaraStation"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 477,
+          "output_tokens": 49
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 427,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 23,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:11:38.046636+00:00",
+      "completed_at_utc": "2026-09-11T18:12:21.458115+00:00",
+      "latency_ms": 43411,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Service Disruption",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, affecting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 814,
+          "output_tokens": 47
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 404,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 24,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:12:21.462712+00:00",
+      "completed_at_utc": "2026-09-11T18:13:02.246598+00:00",
+      "latency_ms": 40784,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "Bus Service Disruption",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters during peak hours."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 698,
+          "output_tokens": 52
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 453,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 25,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:13:02.250908+00:00",
+      "completed_at_utc": "2026-09-11T18:13:32.357572+00:00",
+      "latency_ms": 30107,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "VTA Route 22",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 443,
+          "output_tokens": 50
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 456,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 26,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:13:32.362566+00:00",
+      "completed_at_utc": "2026-09-11T18:14:05.628801+00:00",
+      "latency_ms": 33266,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "VTA Route 22",
+          "Santa Clara Station"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 506,
+          "output_tokens": 48
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 482,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 27,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:14:05.634898+00:00",
+      "completed_at_utc": "2026-09-11T18:15:05.367018+00:00",
+      "latency_ms": 59732,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Transit Disruption",
+          "Commute Impact"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters during peak hours."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 1127,
+          "output_tokens": 48
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 476,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 28,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:15:05.372917+00:00",
+      "completed_at_utc": "2026-09-11T18:15:39.229892+00:00",
+      "latency_ms": 33857,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delay",
+          "Bus Service Disruption",
+          "Commuter Impact"
+        ],
+        "summary": "VTA Route 22 bus experienced 30-minute delay at Santa Clara Station, impacting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 542,
+          "output_tokens": 51
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 456,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 29,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:15:39.236666+00:00",
+      "completed_at_utc": "2026-09-11T18:16:20.574297+00:00",
+      "latency_ms": 41338,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Public Transit Delays",
+          "Commuter Impact",
+          "Route 22 Delay"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, affecting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 719,
+          "output_tokens": 49
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 455,
+          "output_tokens": 11
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "experiment": "schema_validation",
+      "run": 30,
+      "max_turns": 10,
+      "started_at_utc": "2026-09-11T18:16:20.580462+00:00",
+      "completed_at_utc": "2026-09-11T18:17:09.425476+00:00",
+      "latency_ms": 48845,
+      "status": "completed",
+      "turn_count": 1,
+      "classification": "valid_first_attempt",
+      "planner_proposal": {
+        "tags": [
+          "Bus Delay",
+          "Public Transit",
+          "Service Disruption"
+        ],
+        "summary": "VTA Route 22 bus delayed 30 minutes at Santa Clara Station, disrupting afternoon commuters."
+      },
+      "reviewer_feedback": {
+        "approved": true,
+        "issues": []
+      },
+      "validation_error": "",
+      "event_log": [
+        {
+          "node": "planner",
+          "valid": true,
+          "input_tokens": 931,
+          "output_tokens": 43
+        },
+        {
+          "node": "reviewer",
+          "approved": true,
+          "input_tokens": 415,
+          "output_tokens": 14
+        },
+        {
+          "node": "supervisor",
+          "turn_count": 1,
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "case_path": "reports/hw02/cases/schema_input.json",
+  "model": "qwen3:8b",
+  "base_url": "http://localhost:11434",
+  "temperature": 0.7,
+  "max_turns": 10,
+  "expected_runs": 30,
+  "updated_at_utc": "2026-09-11T18:17:09.425484+00:00"
+}
