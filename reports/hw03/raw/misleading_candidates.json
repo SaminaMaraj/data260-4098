@@ -1,0 +1,116 @@
+[
+  {
+    "question_id": "q1",
+    "question": "What does the FRA Regulated Mode Major Security Events dataset contain?",
+    "technique": "Semantic",
+    "query_shape": [
+      384
+    ],
+    "query_first_8": [
+      0.02230522781610489,
+      -0.012178832665085793,
+      -0.052078526467084885,
+      0.03417045995593071,
+      0.13168466091156006,
+      0.0413791798055172,
+      0.001650002901442349,
+      0.00035360537003725767
+    ],
+    "doc_vector_shape": [
+      5,
+      384
+    ],
+    "chunk_count": 32,
+    "avg_chunk_length": 5727.375,
+    "retrieval_latency_ms": 5.283790873363614,
+    "top1_cosine": 0.2772023379802704,
+    "mean_at_k_cosine": 0.32480737268924714,
+    "recall_at_k": 1,
+    "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+    "answer_keyword_hit": true,
+    "source_file_hit": true,
+    "rank": 1,
+    "store_score": 0.5556420053131891,
+    "cosine_sim": 0.2772023379802704,
+    "chunk_len": 104,
+    "preview": "\"90134\",\"Peninsula Corridor Joint Powers Board\",\"<REDACTED> was contacted and made suicidal statements .",
+    "source_file": "fra_regulated_mode_major_security_events.csv",
+    "contains_expected_keyword": false
+  },
+  {
+    "question_id": "q2",
+    "question": "At North of Hayward Park Station, MP 19.0, what agency and event type are recorded in the corpus?",
+    "technique": "Sentence-window",
+    "query_shape": [
+      384
+    ],
+    "query_first_8": [
+      0.04088421165943146,
+      -0.07982249557971954,
+      -0.024423493072390556,
+      -0.02587556652724743,
+      0.03808499500155449,
+      0.1301853358745575,
+      0.03736301511526108,
+      -0.05507792532444
+    ],
+    "doc_vector_shape": [
+      5,
+      384
+    ],
+    "chunk_count": 579,
+    "avg_chunk_length": 316.5388601036269,
+    "retrieval_latency_ms": 9.052790934219956,
+    "top1_cosine": 0.31457921862602234,
+    "mean_at_k_cosine": 0.3047060012817383,
+    "recall_at_k": 1,
+    "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+    "answer_keyword_hit": true,
+    "source_file_hit": true,
+    "rank": 1,
+    "store_score": 0.4173299116454396,
+    "cosine_sim": 0.31457921862602234,
+    "chunk_len": 113,
+    "preview": "< REDACTED > left the station prior to being swept by a canine team , and was held at < REDACTED > for a search .",
+    "source_file": "fra_regulated_mode_major_security_events.csv",
+    "contains_expected_keyword": false
+  },
+  {
+    "question_id": "q3",
+    "question": "What kinds of details are recorded for each security event besides the agency and mode?",
+    "technique": "Sentence-window",
+    "query_shape": [
+      384
+    ],
+    "query_first_8": [
+      0.03895125538110733,
+      0.008278447203338146,
+      -0.06900587677955627,
+      -0.024286093190312386,
+      0.047497060149908066,
+      0.08047463744878769,
+      0.07515078783035278,
+      -0.055552877485752106
+    ],
+    "doc_vector_shape": [
+      5,
+      384
+    ],
+    "chunk_count": 579,
+    "avg_chunk_length": 316.5388601036269,
+    "retrieval_latency_ms": 9.075499838218093,
+    "top1_cosine": 0.34523463249206543,
+    "mean_at_k_cosine": 0.47218175530433654,
+    "recall_at_k": 0,
+    "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+    "answer_keyword_hit": false,
+    "source_file_hit": true,
+    "rank": 1,
+    "store_score": 0.49126960619489135,
+    "cosine_sim": 0.34523463249206543,
+    "chunk_len": 47,
+    "preview": "Puyallup police were the investigating agency .",
+    "source_file": "fra_regulated_mode_major_security_events.csv",
+    "contains_expected_keyword": false
+  }
+]

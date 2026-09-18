@@ -8,3 +8,11 @@ python-multipart==0.0.32
 langgraph==1.2.11
 pydantic==2.13.5
 itsdangerous==2.2.0
+llama-index==0.14.12
+llama-index-embeddings-huggingface==0.6.1
+sentence-transformers==5.1.1
+faiss-cpu==1.12.0
+numpy==2.3.3
+pandas==2.3.3
+beautifulsoup4==4.14.2
+PyYAML==6.0.3

@@ -1,0 +1,24 @@
+{
+  "corpus_name": "Municipal transit safety and security incidents",
+  "access_date": "2026-09-17",
+  "total_bytes": 254170,
+  "meets_minimum_200_kb": true,
+  "files": [
+    {
+      "filename": "fra_regulated_mode_major_security_events.csv",
+      "url": "https://data.transportation.gov/resource/65fa-qbkf.csv?$limit=300",
+      "description": "First 300 records from the FTA FRA Regulated Mode Major Security Events dataset, retrieved through the official Socrata API",
+      "access_date": "2026-09-17",
+      "byte_size": 175977,
+      "sha256": "8f439d6d47608840532399969f464bc9d33af85e383edd30e201007aef5cde10"
+    },
+    {
+      "filename": "ntd_safety_security_overview.html",
+      "url": "https://www.transit.dot.gov/ntd/accessing-national-transit-database-ntd-safety-and-security-event-data",
+      "description": "FTA overview of National Transit Database safety and security event data",
+      "access_date": "2026-09-17",
+      "byte_size": 78193,
+      "sha256": "58941704470f42a8b9e507ba62def59f84af4d18dda392668163a94b6b9b8083"
+    }
+  ]
+}

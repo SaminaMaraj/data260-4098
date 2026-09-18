@@ -1,0 +1,38 @@
+DATA 260 HW3 run log
+====================
+
+Repository: data260-4098
+Domain: municipal transit incidents
+SID4: 4098
+Port: 8498
+Prefix: s4098
+Seed: 4098
+
+Authentication
+-------------
+1. Applied the HW3 authentication implementation.
+2. Installed itsdangerous for Starlette sessions.
+3. Ran: python code/verify_hw03.py
+4. Result: PASS.
+5. Captured home.png, login_invalid.png, dashboard.png, and
+   protected_dashboard_redirect.png in raw/.
+
+Corpus and retrieval
+--------------------
+1. Added five fixed questions in questions.yaml before retrieval.
+2. Downloaded and recorded two public FTA source snapshots.
+3. Corpus size: 254,170 bytes; minimum requirement: 204,800 bytes.
+4. Used all-MiniLM-L6-v2 embeddings with 384 dimensions.
+5. Compared Token, Semantic, and Sentence-window chunking.
+6. Retrieved top-5 results for five questions with each technique.
+7. Saved 15 summaries, 75 retrieval rows, and 3 misleading top-1 candidates.
+
+Generated artifacts
+-------------------
+- CORPUS_MANIFEST.json
+- SOURCES.md
+- questions.yaml
+- raw/retrieval_summaries.json
+- raw/retrieval_outputs.jsonl
+- raw/misleading_candidates.json
+- METRICS.md

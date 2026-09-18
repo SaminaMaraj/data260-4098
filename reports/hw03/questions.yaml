@@ -1,0 +1,30 @@
+questions:
+  - id: q1
+    question: "What does the FRA Regulated Mode Major Security Events dataset contain?"
+    expected_answer: "It contains individual security events reported to the National Transit Database for FRA-regulated rail services and specified rail systems."
+    expected_source_file: fra_regulated_mode_major_security_events.csv
+    answer_keywords: [security events, National Transit Database, rail]
+
+  - id: q2
+    question: "At North of Hayward Park Station, MP 19.0, what agency and event type are recorded in the corpus?"
+    expected_answer: "The Peninsula Corridor Joint Powers Board recorded a Suicide event at that location."
+    expected_source_file: fra_regulated_mode_major_security_events.csv
+    answer_keywords: [Peninsula Corridor Joint Powers Board, Suicide, North of Hayward Park Station]
+
+  - id: q3
+    question: "What kinds of details are recorded for each security event besides the agency and mode?"
+    expected_answer: "The event records include details such as incident description, date, time, event type, location, injuries, fatalities, and transit mode information."
+    expected_source_file: fra_regulated_mode_major_security_events.csv
+    answer_keywords: [Incident Description, Incident Date, Event Type, Total Injuries, Total Fatalities]
+
+  - id: q4
+    question: "How often does the FTA update its safety and security data, and how soon after reporting is it released?"
+    expected_answer: "The FTA updates the safety and security data monthly, and the monthly data are released within three months of being reported."
+    expected_source_file: ntd_safety_security_overview.html
+    answer_keywords: [monthly, within three months]
+
+  - id: q5
+    question: "What is the difference between major safety events and non-major safety events in the FTA data products?"
+    expected_answer: "Major events meet the major reporting threshold, while non-major data summarize reportable occurrences that do not meet that threshold."
+    expected_source_file: ntd_safety_security_overview.html
+    answer_keywords: [major, non-major, reporting threshold]

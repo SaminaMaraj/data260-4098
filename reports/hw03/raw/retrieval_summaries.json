@@ -1,0 +1,471 @@
+{
+  "generated_at": "2026-09-18T03:48:48.742749+00:00",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "summaries": [
+    {
+      "question_id": "q1",
+      "question": "What does the FRA Regulated Mode Major Security Events dataset contain?",
+      "technique": "Token",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.02230522781610489,
+        -0.012178832665085793,
+        -0.052078526467084885,
+        0.03417045995593071,
+        0.13168466091156006,
+        0.0413791798055172,
+        0.001650002901442349,
+        0.00035360537003725767
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 334,
+      "avg_chunk_length": 653.3413173652694,
+      "retrieval_latency_ms": 7.358958013355732,
+      "top1_cosine": 0.6263840794563293,
+      "mean_at_k_cosine": 0.4709022879600525,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q1",
+      "question": "What does the FRA Regulated Mode Major Security Events dataset contain?",
+      "technique": "Semantic",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.02230522781610489,
+        -0.012178832665085793,
+        -0.052078526467084885,
+        0.03417045995593071,
+        0.13168466091156006,
+        0.0413791798055172,
+        0.001650002901442349,
+        0.00035360537003725767
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 32,
+      "avg_chunk_length": 5727.375,
+      "retrieval_latency_ms": 5.283790873363614,
+      "top1_cosine": 0.2772023379802704,
+      "mean_at_k_cosine": 0.32480737268924714,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q1",
+      "question": "What does the FRA Regulated Mode Major Security Events dataset contain?",
+      "technique": "Sentence-window",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.02230522781610489,
+        -0.012178832665085793,
+        -0.052078526467084885,
+        0.03417045995593071,
+        0.13168466091156006,
+        0.0413791798055172,
+        0.001650002901442349,
+        0.00035360537003725767
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 579,
+      "avg_chunk_length": 316.5388601036269,
+      "retrieval_latency_ms": 9.268624940887094,
+      "top1_cosine": 0.7429881691932678,
+      "mean_at_k_cosine": 0.2650829378515482,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q2",
+      "question": "At North of Hayward Park Station, MP 19.0, what agency and event type are recorded in the corpus?",
+      "technique": "Token",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.04088421165943146,
+        -0.07982249557971954,
+        -0.024423493072390556,
+        -0.02587556652724743,
+        0.03808499500155449,
+        0.1301853358745575,
+        0.03736301511526108,
+        -0.05507792532444
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 334,
+      "avg_chunk_length": 653.3413173652694,
+      "retrieval_latency_ms": 7.49433389864862,
+      "top1_cosine": 0.5237553715705872,
+      "mean_at_k_cosine": 0.44206481575965884,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q2",
+      "question": "At North of Hayward Park Station, MP 19.0, what agency and event type are recorded in the corpus?",
+      "technique": "Semantic",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.04088421165943146,
+        -0.07982249557971954,
+        -0.024423493072390556,
+        -0.02587556652724743,
+        0.03808499500155449,
+        0.1301853358745575,
+        0.03736301511526108,
+        -0.05507792532444
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 32,
+      "avg_chunk_length": 5727.375,
+      "retrieval_latency_ms": 4.722000099718571,
+      "top1_cosine": 0.4561483860015869,
+      "mean_at_k_cosine": 0.33510006666183473,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q2",
+      "question": "At North of Hayward Park Station, MP 19.0, what agency and event type are recorded in the corpus?",
+      "technique": "Sentence-window",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.04088421165943146,
+        -0.07982249557971954,
+        -0.024423493072390556,
+        -0.02587556652724743,
+        0.03808499500155449,
+        0.1301853358745575,
+        0.03736301511526108,
+        -0.05507792532444
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 579,
+      "avg_chunk_length": 316.5388601036269,
+      "retrieval_latency_ms": 9.052790934219956,
+      "top1_cosine": 0.31457921862602234,
+      "mean_at_k_cosine": 0.3047060012817383,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q3",
+      "question": "What kinds of details are recorded for each security event besides the agency and mode?",
+      "technique": "Token",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.03895125538110733,
+        0.008278447203338146,
+        -0.06900587677955627,
+        -0.024286093190312386,
+        0.047497060149908066,
+        0.08047463744878769,
+        0.07515078783035278,
+        -0.055552877485752106
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 334,
+      "avg_chunk_length": 653.3413173652694,
+      "retrieval_latency_ms": 7.312291068956256,
+      "top1_cosine": 0.5597029328346252,
+      "mean_at_k_cosine": 0.4914477467536926,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q3",
+      "question": "What kinds of details are recorded for each security event besides the agency and mode?",
+      "technique": "Semantic",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.03895125538110733,
+        0.008278447203338146,
+        -0.06900587677955627,
+        -0.024286093190312386,
+        0.047497060149908066,
+        0.08047463744878769,
+        0.07515078783035278,
+        -0.055552877485752106
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 32,
+      "avg_chunk_length": 5727.375,
+      "retrieval_latency_ms": 5.242165876552463,
+      "top1_cosine": 0.527786135673523,
+      "mean_at_k_cosine": 0.33576921820640565,
+      "recall_at_k": 1,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q3",
+      "question": "What kinds of details are recorded for each security event besides the agency and mode?",
+      "technique": "Sentence-window",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.03895125538110733,
+        0.008278447203338146,
+        -0.06900587677955627,
+        -0.024286093190312386,
+        0.047497060149908066,
+        0.08047463744878769,
+        0.07515078783035278,
+        -0.055552877485752106
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 579,
+      "avg_chunk_length": 316.5388601036269,
+      "retrieval_latency_ms": 9.075499838218093,
+      "top1_cosine": 0.34523463249206543,
+      "mean_at_k_cosine": 0.47218175530433654,
+      "recall_at_k": 0,
+      "expected_source_file": "fra_regulated_mode_major_security_events.csv",
+      "answer_keyword_hit": false,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q4",
+      "question": "How often does the FTA update its safety and security data, and how soon after reporting is it released?",
+      "technique": "Token",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        -0.009164778515696526,
+        -0.04324246197938919,
+        -0.09664922952651978,
+        0.1007334515452385,
+        0.0541413314640522,
+        -0.011999668553471565,
+        -0.06605786830186844,
+        0.01760798506438732
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 334,
+      "avg_chunk_length": 653.3413173652694,
+      "retrieval_latency_ms": 7.163666887208819,
+      "top1_cosine": 0.5585102438926697,
+      "mean_at_k_cosine": 0.5108404636383057,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q4",
+      "question": "How often does the FTA update its safety and security data, and how soon after reporting is it released?",
+      "technique": "Semantic",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        -0.009164778515696526,
+        -0.04324246197938919,
+        -0.09664922952651978,
+        0.1007334515452385,
+        0.0541413314640522,
+        -0.011999668553471565,
+        -0.06605786830186844,
+        0.01760798506438732
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 32,
+      "avg_chunk_length": 5727.375,
+      "retrieval_latency_ms": 4.893791163340211,
+      "top1_cosine": 0.630976676940918,
+      "mean_at_k_cosine": 0.3419866651296616,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q4",
+      "question": "How often does the FTA update its safety and security data, and how soon after reporting is it released?",
+      "technique": "Sentence-window",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        -0.009164778515696526,
+        -0.04324246197938919,
+        -0.09664922952651978,
+        0.1007334515452385,
+        0.0541413314640522,
+        -0.011999668553471565,
+        -0.06605786830186844,
+        0.01760798506438732
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 579,
+      "avg_chunk_length": 316.5388601036269,
+      "retrieval_latency_ms": 9.218666004016995,
+      "top1_cosine": 0.7394874691963196,
+      "mean_at_k_cosine": 0.6043214082717896,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q5",
+      "question": "What is the difference between major safety events and non-major safety events in the FTA data products?",
+      "technique": "Token",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.015204822644591331,
+        -0.005486840382218361,
+        -0.05084053799510002,
+        0.0036218645982444286,
+        0.13937346637248993,
+        0.019424919039011,
+        -0.0534050427377224,
+        0.07919524610042572
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 334,
+      "avg_chunk_length": 653.3413173652694,
+      "retrieval_latency_ms": 7.025499828159809,
+      "top1_cosine": 0.7730351090431213,
+      "mean_at_k_cosine": 0.576164960861206,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q5",
+      "question": "What is the difference between major safety events and non-major safety events in the FTA data products?",
+      "technique": "Semantic",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.015204822644591331,
+        -0.005486840382218361,
+        -0.05084053799510002,
+        0.0036218645982444286,
+        0.13937346637248993,
+        0.019424919039011,
+        -0.0534050427377224,
+        0.07919524610042572
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 32,
+      "avg_chunk_length": 5727.375,
+      "retrieval_latency_ms": 5.04141696728766,
+      "top1_cosine": 0.683539867401123,
+      "mean_at_k_cosine": 0.3978154718875885,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    },
+    {
+      "question_id": "q5",
+      "question": "What is the difference between major safety events and non-major safety events in the FTA data products?",
+      "technique": "Sentence-window",
+      "query_shape": [
+        384
+      ],
+      "query_first_8": [
+        0.015204822644591331,
+        -0.005486840382218361,
+        -0.05084053799510002,
+        0.0036218645982444286,
+        0.13937346637248993,
+        0.019424919039011,
+        -0.0534050427377224,
+        0.07919524610042572
+      ],
+      "doc_vector_shape": [
+        5,
+        384
+      ],
+      "chunk_count": 579,
+      "avg_chunk_length": 316.5388601036269,
+      "retrieval_latency_ms": 9.28304111585021,
+      "top1_cosine": 0.6688234806060791,
+      "mean_at_k_cosine": 0.5996707618236542,
+      "recall_at_k": 1,
+      "expected_source_file": "ntd_safety_security_overview.html",
+      "answer_keyword_hit": true,
+      "source_file_hit": true
+    }
+  ]
+}
