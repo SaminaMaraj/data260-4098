@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -6,6 +7,9 @@ from fastapi import FastAPI, Form, HTTPException, Query
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from starlette.middleware.sessions import SessionMiddleware
+
+from src.auth import router as auth_router
 
 
 PORT_BASE = 8498
@@ -13,7 +17,15 @@ PORT_BASE = 8498
 BASE_DIR = Path(__file__).resolve().parents[1]
 WEB_DIR = BASE_DIR / "code" / "web_application"
 
-app = FastAPI(title="Municipal Transit Incident API")
+app = FastAPI(title="Municipal Transit Incident Hub")
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv("SESSION_SECRET", "data260-hw3-local-secret-4098"),
+    https_only=True,
+    same_site="lax",
+    max_age=900,
+)
 
 app.mount(
     "/static",
@@ -68,8 +80,12 @@ def home_redirect(error: str | None = None) -> RedirectResponse:
     return RedirectResponse(url=url, status_code=303)
 
 
-@app.get("/", response_class=FileResponse)
-async def home() -> FileResponse:
+app.include_router(auth_router)
+
+
+@app.get("/incidents", response_class=FileResponse)
+async def incidents_page() -> FileResponse:
+    """Keep the HW1/HW2 incident interface available under its own page."""
     return FileResponse(WEB_DIR / "index.html")
 
 

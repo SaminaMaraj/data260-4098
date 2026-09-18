@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Login | Transit Incident Hub{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Log in</h1>
+                <p class="text-secondary">Access your municipal transit incident dashboard.</p>
+                {% if error %}<div class="alert alert-danger" role="alert">{{ error }}</div>{% endif %}
+                <form method="post" action="/login">
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" id="username" name="username" value="{{ attempted_username|default('') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" id="password" name="password" type="password" required>
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">Log in</button>
+                </form>
+                <div class="alert alert-info mt-3 mb-0 small">Demo account: <code>samina</code> / <code>Transit4098!</code></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

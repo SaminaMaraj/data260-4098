@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-09-18T01:20:11.024390+00:00",
+  "status": "PASS",
+  "commit": "d343d4d13d32f70e75d8e2b371e270352f1595a2",
+  "checks": {
+    "required_files": {
+      "file_count": 5,
+      "missing": []
+    },
+    "authentication": {
+      "public_pages": {
+        "home": 200,
+        "login": 200,
+        "incidents": 200
+      },
+      "protected_before_login": 303,
+      "invalid_login": 401,
+      "successful_login": 303,
+      "dashboard_after_login": 200,
+      "cookie_flags": [
+        "secure",
+        "httponly",
+        "samesite=lax"
+      ],
+      "logout_dashboard": 303,
+      "expired_dashboard": 303
+    }
+  }
+}

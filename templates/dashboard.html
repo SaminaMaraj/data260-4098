@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Transit Incident Hub{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <span class="badge text-bg-success mb-3">Authenticated</span>
+                <h1 class="display-6 fw-bold">Welcome, {{ user.name }}!</h1>
+                <p class="lead text-secondary">This protected dashboard is available only while your session is active.</p>
+                <div class="alert alert-primary">You are signed in as <strong>{{ user.username }}</strong>.</div>
+                <a class="btn btn-primary me-2" href="/incidents">Open incident records</a>
+                <a class="btn btn-outline-primary" href="/logout">Log out securely</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
