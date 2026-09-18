@@ -22,7 +22,9 @@ app = FastAPI(title="Municipal Transit Incident Hub")
 app.add_middleware(
     SessionMiddleware,
     secret_key=os.getenv("SESSION_SECRET", "data260-hw3-local-secret-4098"),
-    https_only=True,
+    # Secure cookies are the default. Set SESSION_HTTPS_ONLY=0 only for
+    # plain-HTTP local browser screenshots during development.
+    https_only=os.getenv("SESSION_HTTPS_ONLY", "1") == "1",
     same_site="lax",
     max_age=900,
 )
