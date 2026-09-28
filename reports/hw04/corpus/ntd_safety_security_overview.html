@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#" class="is-ultimenu is-ultimobile">
+  <head>
+    <meta charset="utf-8" />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVQ72BQ4');
+</script>
+<meta name="description" content="This page describes data collected and released by the National Transit Database (NTD) program regarding safety and security events occurring on public transit systems in the United States." />
+<link rel="canonical" href="https://www.transit.dot.gov/ntd/accessing-national-transit-database-ntd-safety-and-security-event-data" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Accessing National Transit Database (NTD) Safety and Security Event Data" />
+<meta name="twitter:site" content="@USDOT" />
+<meta name="twitter:description" content="This page describes data collected and released by the National Transit Database (NTD) program regarding safety and security events occurring on public transit systems in the United States." />
+<meta name="twitter:creator" content="@USDOT" />
+<meta name="twitter:image" content="https://www.transit.dot.gov/themes/custom/dot_cms/images/seal_dot.png" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="icon" href="/themes/custom/dot_cms/favicon_dot.png" type="image/png" />
+
+    <title>Accessing National Transit Database (NTD) Safety and Security Event Data | FTA</title>
+    <link rel="stylesheet" media="all" href="/sites/fta.dot.gov/files/css/css_xLI-x9Xo7x1ZfNcTzDSzq8vrz8yEJr6Fugu9Swtq7nM.css?delta=0&amp;language=en&amp;theme=fta&amp;include=eJx1kNFuwzAIRX_Ii1-m_Y6FMclQsYmAtNvfL02nrYu0F-R7EEeGqhoeBmupYMaaqxE0tK3XVM-9oY0SXqhxqBUejUZUUbzkp3dCFYHV-dFBNUpNo2D3POsIuJFrp_KW6COExyU321aQ6TvesUGZmaSVRo7Ga7CO_A8v6J7mgJP8ThbRCvLi8bmLlwPpSqM4DC_YRur7KvsgS5BNCIcvdW0gJ9uDnXwP-Ne4gsGyn-zdy2Lc8ilPPzd9Tf7pQT1XcEqbBHcaW0YwiimMYSzyxI_l_TfrPCOMK_jkCEI80pXp5vmo0_6zTegLqbS6wA" />
+<link rel="stylesheet" media="all" href="/sites/fta.dot.gov/files/css/css_sKxirSmH1aPdDcxi_0HddJHj3jpdxB9ZANLCiVMYmgA.css?delta=1&amp;language=en&amp;theme=fta&amp;include=eJx1kNFuwzAIRX_Ii1-m_Y6FMclQsYmAtNvfL02nrYu0F-R7EEeGqhoeBmupYMaaqxE0tK3XVM-9oY0SXqhxqBUejUZUUbzkp3dCFYHV-dFBNUpNo2D3POsIuJFrp_KW6COExyU321aQ6TvesUGZmaSVRo7Ga7CO_A8v6J7mgJP8ThbRCvLi8bmLlwPpSqM4DC_YRur7KvsgS5BNCIcvdW0gJ9uDnXwP-Ne4gsGyn-zdy2Lc8ilPPzd9Tf7pQT1XcEqbBHcaW0YwiimMYSzyxI_l_TfrPCOMK_jkCEI80pXp5vmo0_6zTegLqbS6wA" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" />
+<link rel="stylesheet" media="all" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" />
+<link rel="stylesheet" media="all" href="/sites/fta.dot.gov/files/css/css_CRd96vVtCQKJH7yVdXAoAXc_ssfOuZNHbH0v1piWZFI.css?delta=4&amp;language=en&amp;theme=fta&amp;include=eJx1kNFuwzAIRX_Ii1-m_Y6FMclQsYmAtNvfL02nrYu0F-R7EEeGqhoeBmupYMaaqxE0tK3XVM-9oY0SXqhxqBUejUZUUbzkp3dCFYHV-dFBNUpNo2D3POsIuJFrp_KW6COExyU321aQ6TvesUGZmaSVRo7Ga7CO_A8v6J7mgJP8ThbRCvLi8bmLlwPpSqM4DC_YRur7KvsgS5BNCIcvdW0gJ9uDnXwP-Ne4gsGyn-zdy2Lc8ilPPzd9Tf7pQT1XcEqbBHcaW0YwiimMYSzyxI_l_TfrPCOMK_jkCEI80pXp5vmo0_6zTegLqbS6wA" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&amp;display=swap" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;display=swap" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&amp;display=swap" />
+
+    
+    <!-- DAP Implementation -->
+    <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOT"></script>
+  <script >bazadebezolkohpepadr="943832913"</script><script type="text/javascript" src="https://www.transit.dot.gov/akam/13/3841be21"  defer></script></head>
+  <body class="layout-no-sidebars page-node-203146 path-ntd-accessing-national-transit-database-ntd-safety-and-security-event-data path-node node--type-document">
+  <noscript>Please enable JavaScript to use this site.</noscript>
+    <a href="#main" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVQ72BQ4" height="0" width="0" style="display:none;visibility:hidden;"></iframe>
+</noscript>
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div id="page-wrapper" class="page-wrapper">
+  <div id="page" class="page">
+
+     <section class="usa-banner">
+  <h1 class="sr-only">USA Banner</h1>
+  <div class="usa-banner-inner container">
+    <div class="row">
+      <div class="usa-accordion col" id="accordion">
+        <header class="usa-banner-header" id="headingOne">
+          <div aria-controls="collapseOne" aria-expanded="false" class="collapsed small row" data-target="#collapseOne" data-toggle="collapse" role="complementary">
+            <div class="usa-banner-guidance-gov usa-width-one-full col-sm d-flex">
+              <div class="usa-media_block-icon">
+                <img class="usa-banner-flag" src="/themes/custom/dot_cms/images/assets/us_flag_small.svg" alt="U.S. flag">
+              </div>
+              <div class="usa-media_block-body">
+                <p>An official website of the United States government <button class="usa-accordion-button usa-banner-button"><span class="usa-banner-button-text">Here's how you know</span></button></p>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="usa-banner-content container">
+          <div aria-labelledby="headingOne" class="collapse row" data-parent="#accordion" id="collapseOne">
+            <div class="usa-banner-guidance-gov usa-width-one-half col-sm d-flex">
+              <div class="usa-media_block-icon">
+                <img class="usa-banner-icon" src="/themes/custom/dot_cms/images/assets/icon-dot-gov.svg" alt="Official US Government Icon">
+              </div>
+              <div class="usa-media_block-body">
+                <p><small><strong>Official websites use .gov</strong><br>A <strong>.gov</strong> website belongs to an official government organization in the United States.</small></p>
+              </div>
+            </div>
+            <div class="usa-banner-guidance-ssl usa-width-one-half col-sm d-flex">
+              <div class="usa-media_block-icon">
+                <img class="usa-banner-icon" src="/themes/custom/dot_cms/images/assets/icon-https.svg" alt="Secure Site Icon">
+              </div>
+              <div class="usa-media_block-body">
+                <p><small><strong>Secure .gov websites use HTTPS</strong><br>
+                  A <strong>lock</strong> ( <span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"></path></svg></span> ) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+                </small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+    <div class="row region region-site-notification">
+    
+    <div class="block block--site-notification block--emergency block-views block-views-blocksite-notification-block-notification-emergency w-100 clearfix">
+    
+
+
+  </div>
+  
+          <div class="block block--site-notification block--warning block-views block-views-blocksite-notification-block-notification-warning w-100 clearfix">
+      
+
+
+    </div>
+  
+  </div>
+
+ <style>
+.dot-ribbon {
+	background: #15396c;
+	color: white;
+	height: 1.75rem;
+	display: flex;
+	align-items: center;
+	font-size: .8rem;
+	position: relative;
+	z-index: 100;
+}
+.dot-ribbon svg {
+	width: 17px;
+	opacity: .5;
+	margin-right: 6px;
+}
+.dot-ribbon a:link,
+.dot-ribbon a:hover,
+.dot-ribbon a:visited,
+.dot-ribbon a:active {
+	color: white;
+}
+</style>
+<div class="dot-ribbon">
+	<div class="container">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.82 37.1" role="img" >
+			<title>U.S. Department of Transportation</title>
+			<desc>U.S. Department of Transportation Icon</desc>
+			<defs><style>.cls-1{fill:#FFFFFF !important;}</style></defs><title>United States Department of Transportation</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M4.46,6.35a8.38,8.38,0,0,1,8.15-2.94c2.71.55,4.26,2.77,4.78,5.43a6.31,6.31,0,0,1-2.75,6.79c-3.68,2.1-8,3.74-8.86,8.5A13.42,13.42,0,0,0,8.47,34.4C3.81,31.8,1.13,26.6.25,21.23A18,18,0,0,1,4.46,6.35"/><path class="cls-1" d="M14.41,36.71A8.65,8.65,0,0,1,7.85,30.9a6.51,6.51,0,0,1,2.13-7,5.85,5.85,0,0,1,7.05-1c3.61,2.23,7.17,5.31,11.56,3.64A12.82,12.82,0,0,0,35.81,19C36,24.49,33,29.5,29,33a16.57,16.57,0,0,1-14.55,3.72"/><path class="cls-1" d="M34.73,12.39a9.12,9.12,0,0,1-1.53,8.8c-1.79,2.17-4.42,2.47-6.91,1.63A6.18,6.18,0,0,1,21.92,17c0-4.35.81-9.1-2.8-12.17A12.51,12.51,0,0,0,9.05,2.33c4.47-2.92,10.27-2.89,15.22-1A17.36,17.36,0,0,1,34.73,12.39"/></g></g>
+		</svg>
+		<a href="https://www.transportation.gov">United States Department of Transportation</a>
+</div>
+</div>
+
+ <header id="header" class="header site-header site-masthead bg-primary" role="banner" aria-label="Site header">
+  <div class="container">
+    <div class="row">
+              <nav class="navbar navbar-dark navbar-expand-xl" id="navbar-main">
+                <a href="/" title="Home" rel="home" class="navbar-brand">
+              <img src="/themes/custom/fta/logo_fta.svg" alt="Home" class="img-fluid d-inline-block align-top" />
+            
+    </a>
+    
+
+                  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                      <div class="form-inline navbar-form">
+                <section class="region region-header-form">
+    <div id="block-customftaheadersearch" class="block block-fixed-block-content block-fixed-block-contentcustom-fta-header-search">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="usasearch-search-block-form block block-usasearch block-usasearch-search-form-block" data-drupal-selector="usasearch-search-block-form" id="block-usasearchform">
+   <div class="search__wrapper">
+      <form block="block-usasearchform" action="https://search.usa.gov/search" method="GET" id="usasearch-search-block-form" accept-charset="UTF-8">
+         <fieldset class="js-form-item js-form-type-search form-type-search js-form-item-query form-item-query form-no-label form-group">
+            <label for="query" class="sr-only">Search</label>
+            <input id="query" title="Enter the terms you wish to search for." placeholder="Search" class="usagov-search-autocomplete form-search form-control" autocomplete="off" aria-autocomplete="list" aria-haspopup data-drupal-selector="edit-query" type="search" name="query" value size="60" maxlength="128">
+         </fieldset>
+         <input data-drupal-selector="edit-affiliate" type="hidden" name="affiliate" value="dot-fta" class="form-control">
+         <input data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit btn btn-primary form-control">
+      </form>
+   </div>
+</div></div>
+      
+    </div>
+  </div>
+
+  </section>
+
+            </div>
+                    <div class="collapse navbar-collapse" id="CollapsingNavbar">
+              <section class="region region-primary-menu">
+    <div id="block-ultimenu-main-navigation" class="block block-ultimenu block-ultimenu-blockultimenu-main">
+  
+    
+      <div class="content">
+      <ul id="ultimenu-main" data-ultimenu="main" class="ultimenu ultimenu--offcanvas is-ultihover is-ulticaret--triangle ultimenu--main ultimenu--htb ultimenu--horizontal"><li class="ultimenu__item uitem has-ultimenu"><a href="/about-fta" data-drupal-link-system-path="node/54366" class="ultimenu__link">About<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-about">
+      <nav aria-labelledby="block-main-about1-menu" id="block-main-about1" class="block block-menu navigation menu--main---about-1">
+      
+  <h2  id="block-main-about1-menu">About FTA</h2>
+  
+
+        
+              <ul block="block-main-about1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/about-fta" class="nav-link nav-link--about-fta" data-drupal-link-system-path="node/54366">Overview</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/brief-history-mass-transit" class="nav-link nav-link--about-brief-history-mass-transit" data-drupal-link-system-path="node/48446">History</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/press-releases" class="nav-link nav-link--newsroom-press-releases" data-drupal-link-system-path="newsroom/press-releases">News</a>
+              </li>
+                <li class="nav-item">
+                <a href="/events" class="nav-link nav-link--events" data-drupal-link-system-path="events">Events</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/speeches" class="nav-link nav-link--newsroom-speeches" data-drupal-link-system-path="newsroom/speeches">Speeches</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/testimony" class="nav-link nav-link--newsroom-testimony" data-drupal-link-system-path="newsroom/testimony">Testimony</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/news/fta-video-series" class="nav-link nav-link--about-news-fta-video-series" data-drupal-link-system-path="node/51531">Videos</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/headquarters-offices" class="nav-link nav-link--about-headquarters-offices" data-drupal-link-system-path="node/48536">Offices</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/officials/officials" class="nav-link nav-link--about-officials-officials" data-drupal-link-system-path="node/54371">Key Officials</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/jobs/jobs" class="nav-link nav-link--about-jobs-jobs">Jobs</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/contact/contact-us" class="nav-link nav-link--about-contact-contact-us" data-drupal-link-system-path="node/54386">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-about2-menu" id="block-main-about2" class="block block-menu navigation menu--main---about-2">
+      
+  <h2  id="block-main-about2-menu">Initiatives</h2>
+  
+
+        
+              <ul block="block-main-about2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/transit-moves-america" class="nav-link nav-link--transit-moves-america" data-drupal-link-system-path="node/229751">Transit Moves America Online Data Portal</a>
+              </li>
+                <li class="nav-item">
+                <a href="/coordinating-council-access-and-mobility" class="nav-link nav-link--coordinating-council-access-and-mobility" data-drupal-link-system-path="node/200376">Coordinating Council on Access &amp; Mobility</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/transit-stakeholder-engagement" class="nav-link nav-link--about-transit-stakeholder-engagement" data-drupal-link-system-path="node/186586">Transit Stakeholder Engagement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/procurement/bus-procurement" class="nav-link nav-link--funding-procurement-bus-procurement" data-drupal-link-system-path="node/201176">Bus Procurement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/public-transportation-during-major-events" class="nav-link nav-link--about-public-transportation-during-major-events" data-drupal-link-system-path="node/228621">Public Transportation During Major Events</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/request-information-family-friendly-transit-data-initiative" class="nav-link nav-link--about-request-information-family-friendly-transit-data-initiative" data-drupal-link-system-path="node/229616">RFI: Family Friendly Transit</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li><li class="ultimenu__item uitem has-ultimenu"><a href="/funding/grants/grant-programs" data-drupal-link-system-path="node/54296" class="ultimenu__link">Funding<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-funding">
+      <nav aria-labelledby="block-main-funding1-menu" id="block-main-funding1" class="block block-menu navigation menu--main---funding-1">
+      
+  <h2  id="block-main-funding1-menu">Grants</h2>
+  
+
+        
+              <ul block="block-main-funding1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/funding/grants/grant-programs" class="nav-link nav-link--funding-grants-grant-programs" data-drupal-link-system-path="node/54296">Grant Programs</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grants/applying/applying-fta-funding" class="nav-link nav-link--funding-grants-applying-applying-fta-funding" data-drupal-link-system-path="node/54226">Applying</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grantee-resources/certifications-and-assurances/certifications-assurances" class="nav-link nav-link--funding-grantee-resources-certifications-and-assurances-certifications-assurances" data-drupal-link-system-path="node/40816">Grantee Tools</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grantee-resources/teamtrams/transit-award-management-system-trams" class="nav-link nav-link--funding-grantee-resources-teamtrams-transit-award-management-system-trams" data-drupal-link-system-path="node/229041">Transit Award Management System</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd" class="nav-link nav-link--ntd" data-drupal-link-system-path="node/48066">National Transit Database</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-funding2-menu" id="block-main-funding2" class="block block-menu navigation menu--main---funding-2">
+      
+  <h2  id="block-main-funding2-menu">Resources</h2>
+  
+
+        
+              <ul block="block-main-funding2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/funding/apportionments" class="nav-link nav-link--funding-apportionments" data-drupal-link-system-path="node/54346">Apportionments</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/budget-performance" class="nav-link nav-link--funding-budget-performance" data-drupal-link-system-path="node/54396">Budget &amp; Performance</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/procurement/procurement" class="nav-link nav-link--funding-procurement-procurement" data-drupal-link-system-path="node/54351">Procurement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/funding-finance-resources/funding-finance-resources" class="nav-link nav-link--funding-funding-finance-resources-funding-finance-resources" data-drupal-link-system-path="node/54266">Funding &amp; Finance Resources</a>
+              </li>
+                <li class="nav-item">
+                <a href="/census" class="nav-link nav-link--census" data-drupal-link-system-path="node/166426">2020 Census</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li><li class="ultimenu__item uitem has-ultimenu"><a href="/regulations-and-guidance/regulations-and-guidance" data-drupal-link-system-path="node/54321" class="ultimenu__link">Regulations &amp; Programs<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-regulations-programs">
+      <nav aria-labelledby="block-main-regulations-programs1-menu" id="block-main-regulations-programs1" class="block block-menu navigation menu--main---regulations-programs">
+      
+  <h2  id="block-main-regulations-programs1-menu">Oversight &amp; Policy Areas</h2>
+  
+
+        
+              <ul block="block-main-regulations-programs1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/regulations-and-guidance/regulations-and-guidance" class="nav-link nav-link--regulations-and-guidance-regulations-and-guidance" data-drupal-link-system-path="node/54321">Overview</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/safety/transit-safety-oversight-tso" class="nav-link nav-link--regulations-and-guidance-safety-transit-safety-oversight-tso" data-drupal-link-system-path="node/54331">Safety &amp; Oversight</a>
+              </li>
+                <li class="nav-item">
+                <a href="/civilrights" class="nav-link nav-link--civilrights" data-drupal-link-system-path="node/54246">Civil Rights</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/program-oversight/program-oversight" class="nav-link nav-link--regulations-and-guidance-program-oversight-program-oversight" data-drupal-link-system-path="node/41116">Program Oversight</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/transportation-planning/transportation-planning" class="nav-link nav-link--regulations-and-guidance-transportation-planning-transportation-planning" data-drupal-link-system-path="node/54256">Transportation Planning</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/environmental-programs/environmental-programs" class="nav-link nav-link--regulations-and-guidance-environmental-programs-environmental-programs" data-drupal-link-system-path="node/54261">Environment</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/access/charter-bus-service/charter-bus-service-regulations-0" class="nav-link nav-link--regulations-and-guidance-access-charter-bus-service-charter-bus-service-regulations-0" data-drupal-link-system-path="node/54306">Charter Service</a>
+              </li>
+                <li class="nav-item">
+                <a href="/TAM" class="nav-link nav-link--tam" data-drupal-link-system-path="node/54436">Transit Asset Management</a>
+              </li>
+                <li class="nav-item">
+                <a href="/buyamerica" class="nav-link nav-link--buyamerica" data-drupal-link-system-path="node/54236">Buy America</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/project-management-oversight-pmo" class="nav-link nav-link--regulations-and-guidance-project-management-oversight-pmo" data-drupal-link-system-path="node/52136">Project Management Oversight</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-regulations-programs2-menu" id="block-main-regulations-programs2" class="block block-menu navigation menu--main---regulations-program2">
+      
+  <h2  id="block-main-regulations-programs2-menu">Resources</h2>
+  
+
+        
+              <ul block="block-main-regulations-programs2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/research-innovation" class="nav-link nav-link--research-innovation" data-drupal-link-system-path="node/54241">Research &amp; Innovation</a>
+              </li>
+                <li class="nav-item">
+                <a href="/legislation" class="nav-link nav-link--legislation" data-drupal-link-system-path="node/54391">Legislation</a>
+              </li>
+                <li class="nav-item">
+                <a href="/guidance" class="nav-link nav-link--guidance" data-drupal-link-system-path="node/51886">Guidance Center</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations/federal-register-documents" class="nav-link nav-link--regulations-federal-register-documents" data-drupal-link-system-path="regulations/federal-register-documents">Federal Register Notices &amp; Rulemaking Documents</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-programs/fta-circulars/circulars" class="nav-link nav-link--regulations-and-programs-fta-circulars-circulars" data-drupal-link-system-path="node/48081">FTA Circulars</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/policy-letters/administrator-dear-colleague-letters" class="nav-link nav-link--regulations-and-guidance-policy-letters-administrator-dear-colleague-letters" data-drupal-link-system-path="node/51901">Dear Colleague Letters</a>
+              </li>
+                <li class="nav-item">
+                <a href="/RealEstate" class="nav-link nav-link--realestate" data-drupal-link-system-path="node/52156">Real Estate</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grants/fta-sponsored-technical-assistance-training-and-research-resource-programs" class="nav-link nav-link--funding-grants-fta-sponsored-technical-assistance-training-and-research-resource-programs" data-drupal-link-system-path="node/55921">Technical Assistance</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li></ul><button data-ultimenu-button="#ultimenu-main" class="button button--ultimenu button--ultiburger" aria-label="Menu Main navigation (Desktop)"><span class="bars">Menu Main navigation (Desktop)</span></button>
+    </div>
+  </div>
+<div id="block-ultimenu-mobile-navigation" class="block block-ultimenu block-ultimenu-blockultimenu-main">
+  
+    
+      <div class="content">
+      <ul id="ultimenu-main" data-ultimenu="main" class="ultimenu ultimenu--offcanvas is-ulticaret--triangle ultimenu--main ultimenu--htb ultimenu--horizontal"><li class="ultimenu__item uitem has-ultimenu"><a href="/about-fta" data-drupal-link-system-path="node/54366" class="ultimenu__link">About<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-about">
+      <nav aria-labelledby="block-main-about1-menu" id="block-main-about1" class="block block-menu navigation menu--main---about-1">
+      
+  <h2  id="block-main-about1-menu">About FTA</h2>
+  
+
+        
+              <ul block="block-main-about1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/about-fta" class="nav-link nav-link--about-fta" data-drupal-link-system-path="node/54366">Overview</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/brief-history-mass-transit" class="nav-link nav-link--about-brief-history-mass-transit" data-drupal-link-system-path="node/48446">History</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/press-releases" class="nav-link nav-link--newsroom-press-releases" data-drupal-link-system-path="newsroom/press-releases">News</a>
+              </li>
+                <li class="nav-item">
+                <a href="/events" class="nav-link nav-link--events" data-drupal-link-system-path="events">Events</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/speeches" class="nav-link nav-link--newsroom-speeches" data-drupal-link-system-path="newsroom/speeches">Speeches</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom/testimony" class="nav-link nav-link--newsroom-testimony" data-drupal-link-system-path="newsroom/testimony">Testimony</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/news/fta-video-series" class="nav-link nav-link--about-news-fta-video-series" data-drupal-link-system-path="node/51531">Videos</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/headquarters-offices" class="nav-link nav-link--about-headquarters-offices" data-drupal-link-system-path="node/48536">Offices</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/officials/officials" class="nav-link nav-link--about-officials-officials" data-drupal-link-system-path="node/54371">Key Officials</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/jobs/jobs" class="nav-link nav-link--about-jobs-jobs">Jobs</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/contact/contact-us" class="nav-link nav-link--about-contact-contact-us" data-drupal-link-system-path="node/54386">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-about2-menu" id="block-main-about2" class="block block-menu navigation menu--main---about-2">
+      
+  <h2  id="block-main-about2-menu">Initiatives</h2>
+  
+
+        
+              <ul block="block-main-about2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/transit-moves-america" class="nav-link nav-link--transit-moves-america" data-drupal-link-system-path="node/229751">Transit Moves America Online Data Portal</a>
+              </li>
+                <li class="nav-item">
+                <a href="/coordinating-council-access-and-mobility" class="nav-link nav-link--coordinating-council-access-and-mobility" data-drupal-link-system-path="node/200376">Coordinating Council on Access &amp; Mobility</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/transit-stakeholder-engagement" class="nav-link nav-link--about-transit-stakeholder-engagement" data-drupal-link-system-path="node/186586">Transit Stakeholder Engagement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/procurement/bus-procurement" class="nav-link nav-link--funding-procurement-bus-procurement" data-drupal-link-system-path="node/201176">Bus Procurement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/public-transportation-during-major-events" class="nav-link nav-link--about-public-transportation-during-major-events" data-drupal-link-system-path="node/228621">Public Transportation During Major Events</a>
+              </li>
+                <li class="nav-item">
+                <a href="/about/request-information-family-friendly-transit-data-initiative" class="nav-link nav-link--about-request-information-family-friendly-transit-data-initiative" data-drupal-link-system-path="node/229616">RFI: Family Friendly Transit</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li><li class="ultimenu__item uitem has-ultimenu"><a href="/funding/grants/grant-programs" data-drupal-link-system-path="node/54296" class="ultimenu__link">Funding<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-funding">
+      <nav aria-labelledby="block-main-funding1-menu" id="block-main-funding1" class="block block-menu navigation menu--main---funding-1">
+      
+  <h2  id="block-main-funding1-menu">Grants</h2>
+  
+
+        
+              <ul block="block-main-funding1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/funding/grants/grant-programs" class="nav-link nav-link--funding-grants-grant-programs" data-drupal-link-system-path="node/54296">Grant Programs</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grants/applying/applying-fta-funding" class="nav-link nav-link--funding-grants-applying-applying-fta-funding" data-drupal-link-system-path="node/54226">Applying</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grantee-resources/certifications-and-assurances/certifications-assurances" class="nav-link nav-link--funding-grantee-resources-certifications-and-assurances-certifications-assurances" data-drupal-link-system-path="node/40816">Grantee Tools</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grantee-resources/teamtrams/transit-award-management-system-trams" class="nav-link nav-link--funding-grantee-resources-teamtrams-transit-award-management-system-trams" data-drupal-link-system-path="node/229041">Transit Award Management System</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd" class="nav-link nav-link--ntd" data-drupal-link-system-path="node/48066">National Transit Database</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-funding2-menu" id="block-main-funding2" class="block block-menu navigation menu--main---funding-2">
+      
+  <h2  id="block-main-funding2-menu">Resources</h2>
+  
+
+        
+              <ul block="block-main-funding2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/funding/apportionments" class="nav-link nav-link--funding-apportionments" data-drupal-link-system-path="node/54346">Apportionments</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/budget-performance" class="nav-link nav-link--funding-budget-performance" data-drupal-link-system-path="node/54396">Budget &amp; Performance</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/procurement/procurement" class="nav-link nav-link--funding-procurement-procurement" data-drupal-link-system-path="node/54351">Procurement</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/funding-finance-resources/funding-finance-resources" class="nav-link nav-link--funding-funding-finance-resources-funding-finance-resources" data-drupal-link-system-path="node/54266">Funding &amp; Finance Resources</a>
+              </li>
+                <li class="nav-item">
+                <a href="/census" class="nav-link nav-link--census" data-drupal-link-system-path="node/166426">2020 Census</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li><li class="ultimenu__item uitem has-ultimenu"><a href="/regulations-and-guidance/regulations-and-guidance" data-drupal-link-system-path="node/54321" class="ultimenu__link">Regulations &amp; Programs<span class="ultimenu__caret caret" aria-hidden="true"><i></i></span></a><section class="ultimenu__flyout is-htb d-lg-flex p-0">
+              <section class="ultimenu__region region region--count-2 row region-ultimenu-main-regulations-programs">
+      <nav aria-labelledby="block-main-regulations-programs1-menu" id="block-main-regulations-programs1" class="block block-menu navigation menu--main---regulations-programs">
+      
+  <h2  id="block-main-regulations-programs1-menu">Oversight &amp; Policy Areas</h2>
+  
+
+        
+              <ul block="block-main-regulations-programs1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/regulations-and-guidance/regulations-and-guidance" class="nav-link nav-link--regulations-and-guidance-regulations-and-guidance" data-drupal-link-system-path="node/54321">Overview</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/safety/transit-safety-oversight-tso" class="nav-link nav-link--regulations-and-guidance-safety-transit-safety-oversight-tso" data-drupal-link-system-path="node/54331">Safety &amp; Oversight</a>
+              </li>
+                <li class="nav-item">
+                <a href="/civilrights" class="nav-link nav-link--civilrights" data-drupal-link-system-path="node/54246">Civil Rights</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/program-oversight/program-oversight" class="nav-link nav-link--regulations-and-guidance-program-oversight-program-oversight" data-drupal-link-system-path="node/41116">Program Oversight</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/transportation-planning/transportation-planning" class="nav-link nav-link--regulations-and-guidance-transportation-planning-transportation-planning" data-drupal-link-system-path="node/54256">Transportation Planning</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/environmental-programs/environmental-programs" class="nav-link nav-link--regulations-and-guidance-environmental-programs-environmental-programs" data-drupal-link-system-path="node/54261">Environment</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/access/charter-bus-service/charter-bus-service-regulations-0" class="nav-link nav-link--regulations-and-guidance-access-charter-bus-service-charter-bus-service-regulations-0" data-drupal-link-system-path="node/54306">Charter Service</a>
+              </li>
+                <li class="nav-item">
+                <a href="/TAM" class="nav-link nav-link--tam" data-drupal-link-system-path="node/54436">Transit Asset Management</a>
+              </li>
+                <li class="nav-item">
+                <a href="/buyamerica" class="nav-link nav-link--buyamerica" data-drupal-link-system-path="node/54236">Buy America</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/project-management-oversight-pmo" class="nav-link nav-link--regulations-and-guidance-project-management-oversight-pmo" data-drupal-link-system-path="node/52136">Project Management Oversight</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+  <nav aria-labelledby="block-main-regulations-programs2-menu" id="block-main-regulations-programs2" class="block block-menu navigation menu--main---regulations-program2">
+      
+  <h2  id="block-main-regulations-programs2-menu">Resources</h2>
+  
+
+        
+              <ul block="block-main-regulations-programs2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/research-innovation" class="nav-link nav-link--research-innovation" data-drupal-link-system-path="node/54241">Research &amp; Innovation</a>
+              </li>
+                <li class="nav-item">
+                <a href="/legislation" class="nav-link nav-link--legislation" data-drupal-link-system-path="node/54391">Legislation</a>
+              </li>
+                <li class="nav-item">
+                <a href="/guidance" class="nav-link nav-link--guidance" data-drupal-link-system-path="node/51886">Guidance Center</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations/federal-register-documents" class="nav-link nav-link--regulations-federal-register-documents" data-drupal-link-system-path="regulations/federal-register-documents">Federal Register Notices &amp; Rulemaking Documents</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-programs/fta-circulars/circulars" class="nav-link nav-link--regulations-and-programs-fta-circulars-circulars" data-drupal-link-system-path="node/48081">FTA Circulars</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/policy-letters/administrator-dear-colleague-letters" class="nav-link nav-link--regulations-and-guidance-policy-letters-administrator-dear-colleague-letters" data-drupal-link-system-path="node/51901">Dear Colleague Letters</a>
+              </li>
+                <li class="nav-item">
+                <a href="/RealEstate" class="nav-link nav-link--realestate" data-drupal-link-system-path="node/52156">Real Estate</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding/grants/fta-sponsored-technical-assistance-training-and-research-resource-programs" class="nav-link nav-link--funding-grants-fta-sponsored-technical-assistance-training-and-research-resource-programs" data-drupal-link-system-path="node/55921">Technical Assistance</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          </section></li></ul><button data-ultimenu-button="#ultimenu-main" class="button button--ultimenu button--ultiburger" aria-label="Menu Main navigation (Mobile)"><span class="bars">Menu Main navigation (Mobile)</span></button>
+    </div>
+  </div>
+
+  </section>
+
+          </div>
+                      </nav>
+      </div><!-- row -->
+</div><!-- container -->
+</header>
+
+    <main id="main" class="main" role="main" aria-label="Site main">
+
+              <div class="highlighted">
+          <aside class="container section clearfix" role="complementary">
+              <div data-drupal-messages-fallback class="hidden"></div>
+
+
+          </aside>
+        </div>
+      
+      
+      
+      <div id="main-wrapper" class="layout-main-wrapper clearfix">
+                  <div id="main" class="container">
+
+                            <div id="block-fta-breadcrumbs" class="block block-system block-system-breadcrumb-block">
+  
+    
+      <div class="content">
+      
+
+  <nav role="navigation" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+          <a href="/">Home</a>
+        </li>
+                        <li class="breadcrumb-item">
+          <a href="/ntd">National Transit Database</a>
+        </li>
+              </ol>
+  </nav>
+
+    </div>
+  </div>
+
+
+            
+            <div class="row row-offcanvas row-offcanvas-left clearfix">
+
+                              <!-- Sidebar First Region -->
+                <div class="sidebar col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 order-first">
+                  <aside class="sidebar_first section" role="complementary">
+                    
+  <aside id="dot-region-view-mode--document" class="dot-region-view-mode dot-region-view-mode--document sidebar_first section" role="complementary">
+    <!-- Editorial Category Menu Starts -->
+          <div id="sidenav" class="sidenav">
+        <h1 class="sidenav-header text-white" id="nav-header">In This Section</h1>
+        <nav class="wrapper__sidenav dot_left_nav" role="navigation" aria-labelledby="nav-header">
+          
+            <div class="field field--name-field-editorial-category field--type-entity-reference field--label-hidden field__item">
+
+            <div class="field field--name-field-left-nav-menu field--type-entity-reference field--label-hidden field__item">
+              <ul class="clearfix nav">
+                    <li class="nav-item menu-item--expanded">
+                <a href="/ntd/what-national-transit-database-ntd-program" class="nav-link" data-drupal-link-system-path="node/47926">About the NTD</a>
+                                <ul class="menu">
+                    <li class="nav-item">
+                <a href="/ntd/what-national-transit-database-ntd-program" class="nav-link" data-drupal-link-system-path="node/47926">Overview</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/contact-information-ntd-operations" class="nav-link" data-drupal-link-system-path="node/47921">Contact the NTD</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/how-apply-reporting-id" class="nav-link" data-drupal-link-system-path="node/52116">Apply for a Reporting ID</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded">
+                <a href="/ntd/ntd-data" class="nav-link" data-drupal-link-system-path="ntd/ntd-data">NTD Data</a>
+                                <ul class="menu">
+                    <li class="nav-item">
+                <a href="/ntd/ntd-data" class="nav-link" data-drupal-link-system-path="ntd/ntd-data">NTD Data Reports</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/transit-agency-profiles" class="nav-link" data-drupal-link-system-path="ntd/transit-agency-profiles">Transit Agency Profiles</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/national-transit-summaries-and-trends-ntst" class="nav-link" data-drupal-link-system-path="node/228551">National Transit Summaries &amp; Trends</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/fta-census-map" class="nav-link" data-drupal-link-system-path="node/185481">FTA Census Map</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/monthly-ridership" class="nav-link" data-drupal-link-system-path="node/202441">Monthly Ridership</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/accessing-national-transit-database-ntd-safety-and-security-event-data" class="nav-link is-active" data-drupal-link-system-path="node/203146" aria-current="page">Safety and Security</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded">
+                <a href="/ntd/manuals" class="nav-link" data-drupal-link-system-path="node/48186">Reference Materials</a>
+                                <ul class="menu">
+                    <li class="nav-item">
+                <a href="/ntd/manuals" class="nav-link" data-drupal-link-system-path="node/48186">Manuals</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/knowledge-base-articles" class="nav-link" data-drupal-link-system-path="node/188566">Knowledge Base Articles</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/trainings-and-conferences" class="nav-link" data-drupal-link-system-path="node/45381">Trainings and Conferences</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/ntd-reporting-system-forms" class="nav-link" data-drupal-link-system-path="node/48591">Reporting Forms</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/presentations-and-webinars" class="nav-link" data-drupal-link-system-path="node/52496">Presentations and Webinars</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/federal-register-notices-rules-regulations" class="nav-link" data-drupal-link-system-path="node/52106">Rules and Regulations</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/national-transit-database-ntd-glossary" class="nav-link" data-drupal-link-system-path="node/47931">NTD Glossary</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded">
+                <a href="/ntd/faq-general-ntd-reporting" class="nav-link">Frequently Asked Questions</a>
+                                <ul class="menu">
+                    <li class="nav-item">
+                <a href="/ntd/faq-general-ntd-reporting" class="nav-link">General Reporting</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/ntd-data-products-frequently-asked-questions-0" class="nav-link" data-drupal-link-system-path="node/215186">NTD Data Products</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/recent-ntd-developments-frequently-asked-questions-0" class="nav-link">Upcoming Developments</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item">
+                <a href="/ntd/national-transit-reporting-tool" class="nav-link" data-drupal-link-system-path="node/52101">Reporting Login</a>
+              </li>
+        </ul>
+  
+
+</div>
+      
+</div>
+      
+        </nav>
+      </div>
+      <!-- Editorial Category Menu Ends -->
+   <div id="sidecontent" class="sidecontent">
+     <!-- Related Content Starts -->
+     <div class="wrapper__related_links">
+     
+        
+        
+        
+        
+        
+              </div>
+      <!-- Related Content Ends -->
+      <!-- Contact Info Block Starts -->
+      
+                  <div class="wrapper__contact_info">
+            
+
+  <div data-history-node-id="241" class="node node--type-contact-info node--view-mode-contact-block card mb-5 clearfix">
+    <address class="node__content card-body clearfix">
+          <h2 class="sidebar__title pt-0">
+            <div class="field field--name-field-header field--type-string field--label-hidden field__item">Contact Us</div>
+      </h2>
+          <p>
+                  
+            <div class="field field--name-field-name field--type-string field--label-hidden field__item">National Transit Database</div>
+      
+                          
+            <div class="field field--name-field-title field--type-string field--label-hidden field__item">FTA Office of Budget and Policy</div>
+      
+                          
+            <div class="field field--name-field-division field--type-string field--label-hidden field__item">Office of Strategic Planning And Analysis</div>
+      
+                          
+      <div class="field field--name-field-address field--type-address field--label-hidden field__items">
+              <div class="field__item"><p class="address" translate="no"><span class="address-line1">1200 New Jersey Avenue, SE</span><br>
+<span class="address-line2">Federal Transit Administration</span><br>
+<span class="locality">Washington</span>, <span class="administrative-area">DC</span> <span class="postal-code">20590</span><br>
+<span class="country">United States</span></p></div>
+          </div>
+  
+              </p>
+      <p>
+                  <strong>Email:</strong><br><a href="mailto:NTDhelp@dot.gov">NTDhelp@dot.gov</a><br>
+                          <strong>Phone:</strong> <a href="tel:(877) 561-7466 (IT Support only)" class="tel">(877) 561-7466 (IT Support only)<i class="fas fa-phone" title="(link calls phone number)"></i></a><br>
+                                          <strong>Business Hours:</strong><br>8:00am-7:00pm ET, M-F<br>
+              </p>
+              <p class="mt-2">If you are deaf, hard of hearing, or have a speech disability, please dial 7-1-1 to access telecommunications relay services.</p>
+                      </address>
+  </div>
+
+          </div>
+        
+            <!-- Contact Info Block Ends -->
+    </div>
+  </aside>
+
+
+                  </aside>
+                </div>
+                <!-- Main Content Region -->
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9"  class="main-content col order-last" id="content" role="main">
+                  <section class="section pb-5">
+                    <a id="main-content" tabindex="-1"></a>
+                      <div id="block-fta-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="content">
+      
+
+<article data-history-node-id="203146" class="node node--type-document node--view-mode-full content__core clearfix container">
+  <div class="node__content clearfix">
+
+      
+
+      
+      <h1 class="page__title node__title"><span class="field field--name-title field--type-string field--label-hidden">Accessing National Transit Database (NTD) Safety and Security Event Data</span>
+</h1>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+      
+      
+              <div class="my-4">
+          <div class="WordSection1"><p class="ReportTItle" style="margin-bottom:8px;">This page describes data collected and released by the National Transit Database (NTD) program regarding safety and security events occurring on public transit systems in the United States. For more information about reporting requirements, please consult the most recent <a href="https://www.transit.dot.gov/ntd/manuals">NTD Safety and Security Reporting Manual</a>.</p><h2 class="ReportTItle" style="margin-bottom:8px;"><strong><u>Monthly Data Release</u></strong></h2><p class="ReportTItle" style="margin-bottom:8px;">On a monthly basis, FTA updates six files containing Safety and Security (S&amp;S) data across the&nbsp;<a href="https://www.transit.dot.gov/ntd"><span style="color:#1155cc;">NTD program website</span></a>&nbsp;and <a href="https://data.transportation.gov/">data.transportation.gov, the US DOT Public Data Portal</a>.</p><p class="reporttitle" style="margin-bottom:8px;margin-right:57px;"><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;">Monthly Safety and Security data are released within three months of being reported to the NTD.</span></p><div>
+  
+  
+            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/sites/fta.dot.gov/files/2026-06/Safety%20Data%20Publications%202026_2.jpg" alt="S&amp;S Monthly Publications files where the 3 month lag between the event happening and the report being due is laid out in a Gantt style chart." title="Safety and Security Data Publication Schedule for Calendar Year 2026">
+
+</div>
+      
+</div>
+<p class="reporttitle" style="margin-bottom:8px;margin-right:57px;"><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;">These S&amp;S datasets present or summarize data reported by&nbsp;</span><em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;">urban</span></em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;">&nbsp;public transportation agencies operating more than 30 vehicles in peak service, as follows:</span></p><ol><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="ec8ad6669219b2c8dd184a2391dca0a57"><a style="color:blue;text-decoration:underline;" href="https://www.transit.dot.gov/ntd/data-product/safety-security-time-series-data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Safety &amp; Security Threshold Adjusted Time Series</strong></span><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:7.0pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">:</span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;includes total counts for events, injuries, and fatalities for both Major and Non-Major S&amp;S events. It presents data by&nbsp;</span><em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">calendar</span></em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;</span><em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">year</span></em><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">/transit agency/mode, from 2002-present, and breaks totals down&nbsp;by category such as event type and person type. FTA makes adjustments within this file to preserve historical consistency in data reporting requirements, especially around non-major event reporting thresholds.</span></li><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="e9639e2d41ece02d7fab38d018d574610"><a style="color:blue;text-decoration:underline;" href="https://www.transit.dot.gov/ntd/data-product/safety-security-major-only-time-series-data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Safety &amp; Security Major-Only Time Series</strong></span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;includes total counts for events, injuries, and fatalities for Major S&amp;S events only. It provides the same format as the threshold adjusted time series but includes only events meeting a Major Event reporting threshold from 2002 to present. Major Events involve fatalities or critical injuries requiring medical transport away from the scene.</span></li><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="edd24575a050e2d68b5de2cba311fad86"><a style="color:blue;text-decoration:underline;" href="https://data.transportation.gov/Public-Transit/Major-Safety-Events/9ivb-8ae9/about_data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Major Safety Events</strong></span><span style="background-color:white;color:black;font-family:Arial,sans-serif;font-size:11pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;</span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">contains detailed data from 2014 to present for individual events meeting a major reporting threshold which underlie the&nbsp;Major-Only Time Series. There is one entry per event. Each entry includes the unique date, time, transit agency, mode, and location at which each event occurred, as well as a description of the event.</span></li><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="e6851c5a554fadd47b49e3bd31be9b3ce"><a style="color:blue;text-decoration:underline;" href="https://data.transportation.gov/Public-Transit/Non-Major-Safety-and-Security-Events/urir-txqm/about_data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Non-Major Safety Events</strong></span></a><span style="background-color:white;color:#212529;font-family:Arial,sans-serif;font-size:11pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>&nbsp;</strong></span><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">provides counts of reportable occurrences or safety incidents per month that do not meet a major reporting threshold,&nbsp;and the number of injuries occurring during&nbsp;these events&nbsp;where an individual was immediately transported away from the scene for medical attention. There will be one entry for any transit mode/location with at least one occurrence for the given month from 2008-present.</span></li><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="efe02428c7fe1c9aaf783c6c911b939fb"><a style="color:blue;text-decoration:underline;" href="https://data.transportation.gov/Public-Transit/Monthly-Modal-Time-Series/5ti2-5uiv/data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Monthly Modal Time Series</strong></span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;contains both monthly ridership and S&amp;S&nbsp;public transit time series data, delineated by transit/agency/mode/year/month, from&nbsp;2014 to present.&nbsp;The statistics provided include both Major and Non-Major Events where applicable, making it the only data publication containing both Major and Non-Major transit worker assault data. This is also the only NTD safety data publication in which totals are presented without any transformation for continuity with historical reporting thresholds.</span></li><li style="margin-bottom:8px;margin-right:57px;margin-top:8px;" data-list-item-id="e77c25254e44dd924bc1f7b6d76413792"><a style="color:blue;text-decoration:underline;" href="https://data.transportation.gov/Public-Transit/FRA-Regulated-Mode-Major-Security-Events/65fa-qbkf/about_data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>FRA Regulated Security Events</strong></span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;includes event data reported to the National Transit Database (NTD) for FRA regulated systems reporting to the NTD, which are excluded from other products. These include all Commuter Rail (CR) and Alaska Railroad (AR) modes, as well as specific heavy rail and hybrid rail services.</span></li></ol><h2 style="margin-bottom:8px;margin-right:57px;margin-top:20px;"><span style="background-color:white;color:#72655f;font-family:&quot;Open Sans&quot;,sans-serif;font-size:13pt;font-weight:normal;line-height:17.25pt;"><strong><u>Annual Data Release</u></strong></span></h2><p style="margin-bottom:7px;margin-right:57px;"><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;">On an annual basis, FTA releases the following files:&nbsp;</span></p><ol><li style="margin-right:57px;" data-list-item-id="e1d62a19c93e8e2828c3260e8c31b9f45"><a style="color:blue;text-decoration:underline;" href="https://www.transit.dot.gov/ntd/ntd-data?field_data_categories_target_id%5B2546%5D=2546&amp;field_product_type_target_id=1026&amp;year=all&amp;combine="><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Reduced&nbsp;Reporter Safety Information</strong></span></a><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">&nbsp;contains safety event, injury, and fatality totals reported annually by rural and reduced urban reporters (with less than 30 vehicles operated in maximum service; those agencies not contained in the monthly data releases) for the given report year (appearing in the title of the file).</span></li><li style="margin-right:57px;" data-list-item-id="ecf2a511a6670d515ff04e4c50fb10455"><a style="color:blue;text-decoration:underline;" href="https://data.transportation.gov/Public-Transit/Transit-Agency-Security-Personnel/hswt-qvr8/about_data"><span style="background-color:white;color:#0079c0;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>Transit Agency Security Personnel</strong></span></a><span style="background-color:white;color:#212529;font-family:Arial,sans-serif;font-size:11pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;"><strong>&nbsp;</strong></span><span style="background-color:white;color:#212529;font-family:&quot;Open Sans&quot;,sans-serif;font-size:11.5pt;tab-stops:list .5in;text-autospace:ideograph-numeric ideograph-other;">counts personnel involved in security for transit systems as of the beginning of the calendar year, by mode.</span></li></ol></div>
+        </div>
+      
+              <div class='mb-4 py-4'>Last updated: Wednesday, June 24, 2026</div>
+      
+      
+      <aside class="subcontent section" role="complementary">
+        <!-- This block where the sidecontent is located @media (max-width:800px) -->
+      </aside>
+
+  </div>
+</article>
+
+    </div>
+  </div>
+
+
+                  </section>
+                </div>
+              
+              
+              
+              <!-- Sub Content Region -->
+                          </div>
+          </div>
+              </div>
+
+      
+          </main>
+
+     <footer class="site-footer">
+      <div class="container">
+              <div class="site-footer__top">
+            <section class="region region-footer-left">
+    <div id="block-footer-contact-info" class="block block-fixed-block-content block-fixed-block-contentfooter-contact-info">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>U.S. DEPARTMENT OF TRANSPORTATION</p>
+
+<p><strong>Federal Transit Administration</strong></p>
+
+<p>1200 NEW JERSEY AVENUE, SE</p>
+
+<p>WASHINGTON, DC 20590</p>
+
+<p>202-366-4043</p>
+</div>
+      
+    </div>
+  </div>
+
+  </section>
+
+            <section class="region region-footer-right">
+    <div id="block-fta-footer-social" class="block block-fixed-block-content block-fixed-block-contentfta-footer-social">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a class="subscribe-button" href="https://public.govdelivery.com/accounts/USDOTFTA/subscriber/new">Subscribe to email updates</a></p>
+
+<ul class="footer-social">
+	<li><a href="https://www.facebook.com/FTADOT"><span class="fontawesome-icon-inline"><i aria-label="facebook" class="fa-brands fa-facebook-f"></i></span></a></li>
+	<li><a href="https://twitter.com/FTA_DOT"><span class="fontawesome-icon-inline"><i aria-label="twitter" class="fa-brands fa-x-twitter"></i></span></a></li>
+	<li><a href="https://www.instagram.com/federaltransitadministration"><span class="fontawesome-icon-inline"><i aria-label="instagram" class="fa-brands fa-instagram"></i></span></a></li>
+	<li><a href="https://www.linkedin.com/company/dot-federal-transit-administration"><span class="fontawesome-icon-inline"><i aria-label="linkedin" class="fa-brands fa-linkedin-in"></i></span></a></li>
+	<li><a href="https://www.youtube.com/channel/UC5gSHRnW3K_klgD4On061sg"><span class="fontawesome-icon-inline"><i aria-label="youtube" class="fa-brands fa-youtube"></i></span></a></li>
+</ul>
+</div>
+      
+    </div>
+  </div>
+
+  </section>
+
+        </div>
+                    <div class="site-footer__bottom">
+            <section class="region region-footer-first">
+      <nav aria-labelledby="block-footernav-1-menu" id="block-footernav-1" class="block block-menu navigation menu--footer-nav-1">
+      
+  <h2  id="block-footernav-1-menu">About</h2>
+  
+
+        
+              <ul block="block-footernav-1" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/about-fta" class="nav-link nav-link--about-fta" data-drupal-link-system-path="node/54366">About FTA</a>
+              </li>
+                <li class="nav-item">
+                <a href="/funding" class="nav-link nav-link--funding">Funding</a>
+              </li>
+                <li class="nav-item">
+                <a href="/regulations-and-guidance/regulations-and-guidance" class="nav-link nav-link--regulations-and-guidance-regulations-and-guidance" data-drupal-link-system-path="node/54321">Regulations and Programs</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+            <section class="region region-footer-second">
+      <nav aria-labelledby="block-footernav-2-menu" id="block-footernav-2" class="block block-menu navigation menu--footer-nav-2">
+      
+  <h2  id="block-footernav-2-menu">Resources</h2>
+  
+
+        
+              <ul block="block-footernav-2" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/grants" class="nav-link nav-link--grants" data-drupal-link-system-path="grants">Grant Programs</a>
+              </li>
+                <li class="nav-item">
+                <a href="/ntd" class="nav-link nav-link--ntd" data-drupal-link-system-path="node/48066">National Transit Database</a>
+              </li>
+                <li class="nav-item">
+                <a href="/newsroom" class="nav-link nav-link--newsroom" data-drupal-link-system-path="node/71">Newsroom</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+            <section class="region region-footer-third">
+      <nav aria-labelledby="block-footernav-3-menu" id="block-footernav-3" class="block block-menu navigation menu--footer-nav-3">
+      
+  <h2  id="block-footernav-3-menu">Policies, Rights, Legal</h2>
+  
+
+        
+              <ul block="block-footernav-3" class="clearfix nav">
+                    <li class="nav-item">
+                <a href="https://www.transportation.gov/about" class="nav-link nav-link-https--wwwtransportationgov-about">About DOT</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.transportation.gov/budget/dot-budget-and-performance" class="nav-link nav-link-https--wwwtransportationgov-budget-dot-budget-and-performance">Budget and Performance</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.civilrights.dot.gov/" class="nav-link nav-link-https--wwwcivilrightsdotgov-">Civil Rights</a>
+              </li>
+                <li class="nav-item">
+                <a href="/foia/foia-requests" class="nav-link nav-link--foia-foia-requests" data-drupal-link-system-path="node/51586">FOIA</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.transportation.gov/dot-information-dissemination-quality-guidelines" class="nav-link nav-link-https--wwwtransportationgov-dot-information-dissemination-quality-guidelines">Information Quality</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.civilrights.dot.gov/civil-rights-awareness-enforcement/employment-related/affirmative-employment/no-fear-act" class="nav-link nav-link-https--wwwcivilrightsdotgov-civil-rights-awareness-enforcement-employment-related-affirmative-employment-no-fear-act">No FEAR Act</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.oig.dot.gov/" class="nav-link nav-link-https--wwwoigdotgov-">Office of Inspector General</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.transportation.gov/dot-website-privacy-policy" class="nav-link nav-link-https--wwwtransportationgov-dot-website-privacy-policy">Privacy Policy</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.usa.gov/" class="nav-link nav-link-https--wwwusagov-">USA.gov</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.transportation.gov/vulnerability-disclosure-policy" class="nav-link nav-link-https--wwwtransportationgov-vulnerability-disclosure-policy">Vulnerability Disclosure Policy</a>
+              </li>
+                <li class="nav-item">
+                <a href="/fta-web-policies/web-policies/fta-web-policies" class="nav-link nav-link--fta-web-policies-web-policies-fta-web-policies" data-drupal-link-system-path="node/45236">Web Policies and Notices</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.transportation.gov/web-standards" class="nav-link nav-link-https--wwwtransportationgov-web-standards">Web Standards</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+          
+          
+        </div>
+          </div>
+  </footer>
+
+  </div>
+</div>
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/203146","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"data":{"extlink":{"extTarget":true,"extTargetAppendNewWindowDisplay":true,"extTargetAppendNewWindowLabel":"(opens in a new window)","extTargetNoOverride":false,"extNofollow":false,"extTitleNoOverride":false,"extNoreferrer":false,"extFollowNoOverride":false,"extClass":"ext","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":"(.\\gov)|(.\\mil)|(addthis.com)|(usmma.edu)|(medium.com)|(facebook.com)|(twitter.com)|(flickr.com)|(linkedin.com)|(youtube.com)|(instagram.com)|(medium.com)|(greatlakes-seaway.com)|(afloatjobs.vet)","extInclude":"","extCssExclude":"","extCssInclude":"","extCssExplicit":"","extAlert":false,"extAlertText":"This link will take you to an external web site. We are not responsible for their content.","extHideIcons":false,"mailtoClass":"mailto","telClass":"","mailtoLabel":"(link sends email)","telLabel":"(link is a phone number)","extUseFontAwesome":false,"extIconPlacement":"append","extPreventOrphan":false,"extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","extAdditionalLinkClasses":"","extAdditionalMailtoClasses":"","extAdditionalTelClasses":"","extFaTelClasses":"fa fa-phone","allowedDomains":[],"extExcludeNoreferrer":""}},"collapsiblock":{"active_pages":false,"slide_speed":200,"cookie_lifetime":null,"switcher_enabled":null,"switcher_class":null},"user":{"uid":0,"permissionsHash":"6e95c6dbfa89731054c46325542da092f5f7671a2f1b8a0b35107da77129b894"}}</script>
+<script src="/sites/fta.dot.gov/files/js/js_r10dlKs5tbSEPknX-d__53ssNjTM8e8qfTBB_LQx-hg.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=fta&amp;include=eJxdjFEOwyAMQy9ElyOhFDLE6hIUQGpvX7SuP_uz37McFODa8goNGwU1cXJULtGH24hngG62PGxuOnLZKNqojNevundnStCVsbR-TpTcrpHxD-uwNI8_fPhqGqQ1NeqWUxLzX-kGet6lDHrCBU-hQzQ"></script>
+<script src="/modules/contrib/collapsiblock/theme/dist/collapsiblock.js?tlj1sy" type="module"></script>
+<script src="/sites/fta.dot.gov/files/js/js_G1NkS_ub2Lc_Cb6Cx2qAkW7DGTgbVRVs1uXNxXg27EE.js?scope=footer&amp;delta=2&amp;language=en&amp;theme=fta&amp;include=eJxdjFEOwyAMQy9ElyOhFDLE6hIUQGpvX7SuP_uz37McFODa8goNGwU1cXJULtGH24hngG62PGxuOnLZKNqojNevundnStCVsbR-TpTcrpHxD-uwNI8_fPhqGqQ1NeqWUxLzX-kGet6lDHrCBU-hQzQ"></script>
+<script src="/modules/contrib/purge_ajax_processor/js/trigger_purge.js?tlj1sy" defer async></script>
+<script src="/sites/fta.dot.gov/files/js/js_6nR5sfaT5OpLudYfjOSnt_WJLNcEDyhaCu8zbKeMqBM.js?scope=footer&amp;delta=4&amp;language=en&amp;theme=fta&amp;include=eJxdjFEOwyAMQy9ElyOhFDLE6hIUQGpvX7SuP_uz37McFODa8goNGwU1cXJULtGH24hngG62PGxuOnLZKNqojNevundnStCVsbR-TpTcrpHxD-uwNI8_fPhqGqQ1NeqWUxLzX-kGet6lDHrCBU-hQzQ"></script>
+
+  <noscript><img src="https://www.transit.dot.gov/akam/13/pixel_3841be21?a=dD1lNjJkODkzNzNjNmY3NWMzNGI2NTZmZWJjYzJlNTFiODA1MTI0N2NlJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+</html>

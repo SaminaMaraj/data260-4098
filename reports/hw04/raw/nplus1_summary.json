@@ -1,0 +1,62 @@
+[
+  {
+    "version": "fixed",
+    "page_size": 10,
+    "requests": 30,
+    "rows_per_response": 10,
+    "sql_statements_per_request": 4.0,
+    "p50_ms": 2.742,
+    "p95_ms": 4.234,
+    "p99_ms": 11.572
+  },
+  {
+    "version": "fixed",
+    "page_size": 50,
+    "requests": 30,
+    "rows_per_response": 50,
+    "sql_statements_per_request": 4.0,
+    "p50_ms": 4.059,
+    "p95_ms": 4.135,
+    "p99_ms": 4.198
+  },
+  {
+    "version": "fixed",
+    "page_size": 200,
+    "requests": 30,
+    "rows_per_response": 200,
+    "sql_statements_per_request": 4.0,
+    "p50_ms": 11.463,
+    "p95_ms": 13.144,
+    "p99_ms": 21.862
+  },
+  {
+    "version": "naive",
+    "page_size": 10,
+    "requests": 30,
+    "rows_per_response": 10,
+    "sql_statements_per_request": 13.0,
+    "p50_ms": 5.301,
+    "p95_ms": 7.174,
+    "p99_ms": 9.31
+  },
+  {
+    "version": "naive",
+    "page_size": 50,
+    "requests": 30,
+    "rows_per_response": 50,
+    "sql_statements_per_request": 53.0,
+    "p50_ms": 14.756,
+    "p95_ms": 17.512,
+    "p99_ms": 22.746
+  },
+  {
+    "version": "naive",
+    "page_size": 200,
+    "requests": 30,
+    "rows_per_response": 200,
+    "sql_statements_per_request": 203.0,
+    "p50_ms": 51.222,
+    "p95_ms": 61.845,
+    "p99_ms": 66.399
+  }
+]

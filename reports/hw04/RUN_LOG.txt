@@ -1,0 +1,63 @@
+DATA260 HW4 RUN LOG
+====================
+
+Timestamp:
+Sun Sep 27 20:31:17 PDT 2026
+
+Repository:
+data260-4098
+
+Current commit before HW4 commit:
+d3e9cd3ea4a0f6ac52fddb6d3dbf9b91a14f1a16
+
+Configuration:
+SID4=4098
+PORT_BASE=8498
+PREFIX=s4098
+DATABASE=s4098_rel
+SEED=4098
+MYSQL_CONTAINER=data260-4098-mysql
+
+Backend startup:
+PYTHONPATH=. uvicorn src.api:app --host 127.0.0.1 --port 8498
+
+Observed backend result:
+Uvicorn running on http://127.0.0.1:8498
+
+Health endpoint:
+GET http://localhost:8498/health
+
+Observed health response:
+{"status":"ok","port":8498,"record_count":5000}
+
+Authentication:
+Demo email: samina.hw4@example.com
+Authentication and protected endpoints were tested successfully.
+
+React frontend:
+npm run dev
+
+Observed frontend URL:
+http://localhost:5173
+
+React tests:
+- Login succeeded.
+- Incident list loaded.
+- Create operation succeeded with incident ID 5002.
+- Update operation changed the title to HW4 Frontend Updated.
+- Delete operation removed incident ID 5002.
+
+N+1 benchmark:
+- Total measurements: 180
+- Page sizes: 10, 50, and 200
+- Naive SQL statements per request: 13, 53, and 203
+- Fixed SQL statements per request: 4, 4, and 4
+
+Index evidence:
+- Index: ix_incidents_category
+- Before index: type=ALL, key=NULL, rows=4885
+- After index: type=ref, key=ix_incidents_category, rows=1256
+
+Notes:
+The file reports/hw03/verification.json was intentionally not staged because it
+belongs to the previous homework.

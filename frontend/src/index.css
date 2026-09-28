@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f6fa;
+  color: #1f2937;
+}
+
+header {
+  background: #1464d2;
+  color: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav button {
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+main {
+  width: min(1000px, 92%);
+  margin: 40px auto;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #00000012;
+  margin-bottom: 20px;
+}
+
+.form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.incident-list {
+  display: grid;
+  gap: 18px;
+}
+
+.button {
+  display: inline-block;
+  background: #1464d2;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #64748b;
+}
+
+.danger {
+  background: #c62828;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.checkbox input {
+  width: auto;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.small {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.loading {
+  padding: 40px;
+  text-align: center;
+}

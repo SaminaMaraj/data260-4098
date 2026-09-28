@@ -8,8 +8,22 @@ from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from starlette.middleware.sessions import SessionMiddleware
+from src.hw4_benchmark_api import router as hw4_benchmark_router
+
+
+
 
 from src.auth import router as auth_router
+
+from fastapi import Depends
+from sqlalchemy.orm import Session
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+from src.hw4_database import Base, engine, db_session_basede26
+from src import hw4_models
+from src.hw4_api import router as hw4_router
 
 
 PORT_BASE = 8498
@@ -18,6 +32,18 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 WEB_DIR = BASE_DIR / "code" / "web_application"
 
 app = FastAPI(title="Municipal Transit Incident Hub")
+Base.metadata.create_all(bind=engine)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.add_middleware(
     SessionMiddleware,
@@ -83,6 +109,8 @@ def home_redirect(error: str | None = None) -> RedirectResponse:
 
 
 app.include_router(auth_router)
+app.include_router(hw4_router)
+app.include_router(hw4_benchmark_router)
 
 
 @app.get("/incidents", response_class=FileResponse)
@@ -90,13 +118,20 @@ async def incidents_page() -> FileResponse:
     """Keep the HW1/HW2 incident interface available under its own page."""
     return FileResponse(WEB_DIR / "index.html")
 
+def get_db():
+    db = db_session_basede26()
+    try:
+        yield db
+    finally:
+        db.close()
+
 
 @app.get("/health")
-async def health() -> dict:
+def health(db: Session = Depends(get_db)) -> dict:
     return {
         "status": "ok",
         "port": PORT_BASE,
-        "record_count": len(INCIDENTS),
+        "record_count": db.query(hw4_models.IncidentRecord).count(),
     }
 
 
