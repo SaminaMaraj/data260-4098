@@ -1,0 +1,93 @@
+[2026-10-02T20:40:41Z] START python code/retry_demo.py
+case=success_first_attempt RetryResult(success=True, value='success', error=None, attempts=1, latency_ms=0.014334000297822058)
+case=failure_then_success RetryResult(success=True, value='success after retry', error=None, attempts=2, latency_ms=55.05283300590236)
+case=failure_after_all_retries RetryResult(success=False, value=None, error='demo injected failure', attempts=3, latency_ms=156.66837499884423)
+[2026-10-02T20:40:41Z] END python code/retry_demo.py
+[2026-10-02T20:40:41Z] START python code/run_fault_injection.py
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/run_fault_injection.py", line 18, in <module>
+    import transit_server as transit
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 15, in <module>
+    from mcp.server.fastmcp import FastMCP
+ModuleNotFoundError: No module named 'mcp.server'
+[2026-10-02T20:40:41Z] END python code/run_fault_injection.py
+[2026-10-02T20:41:31Z] START python code/run_fault_injection.py
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 20%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+ERROR hw5.transit: Transit search failed
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 135, in search_incidents
+    rows = _run_db_operation(lambda: db.execute(statement).all())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/code/mcp/transit_server.py", line 76, in _run_db_operation
+    raise RuntimeError(result.error or "database operation failed")
+RuntimeError: seeded injected failure at rate 50%
+timestamp_utc=2026-10-02T20:41:35.416809+00:00
+wrote=/Users/samina/Documents/data260-4098/reports/hw05/raw/fault_injection.csv
+total_calls=150
+rate=0% calls=50 success_rate=1.000 mean_latency_ms=1.216 p99_latency_ms=15.999
+rate=20% calls=50 success_rate=0.980 mean_latency_ms=21.222 p99_latency_ms=165.130
+rate=50% calls=50 success_rate=0.840 mean_latency_ms=59.542 p99_latency_ms=165.596
+[2026-10-02T20:41:35Z] END python code/run_fault_injection.py

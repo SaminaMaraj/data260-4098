@@ -5,18 +5,28 @@ This server exposes exactly three MCP tools. All three return the shared
 """
 
 from __future__ import annotations
-import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
 
 import logging
 import re
 import sys
+from pathlib import Path
 from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 from sqlalchemy import func, or_, select
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
 from envelope import tool_envelope
+from retry_utils import (
+    DEFAULT_TIMEOUT_SECONDS,
+    MAX_DELAY_SECONDS,
+    MAX_RETRIES,
+    BASE_DELAY_SECONDS,
+    SeededFaultInjector,
+    retry_call,
+)
 from src.hw4_database import db_session_basede26
 from src.hw4_models import IncidentRecord, Route
 
@@ -37,6 +47,34 @@ logging.basicConfig(
 logger = logging.getLogger("hw5.transit")
 
 mcp = FastMCP("transit")
+
+_fault_injector: SeededFaultInjector | None = None
+last_retry_attempts = 0
+
+
+def configure_fault_injection(
+    failure_rate: float,
+    seed: int = 264098,
+) -> None:
+    """Configure deterministic failures for the experiment script."""
+    global _fault_injector
+    _fault_injector = SeededFaultInjector(failure_rate, seed)
+
+
+def _run_db_operation(operation):
+    global last_retry_attempts
+    result = retry_call(
+        operation,
+        timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
+        max_retries=MAX_RETRIES,
+        base_delay_seconds=BASE_DELAY_SECONDS,
+        max_delay_seconds=MAX_DELAY_SECONDS,
+        fault_injector=_fault_injector,
+    )
+    last_retry_attempts = result.attempts
+    if not result.success:
+        raise RuntimeError(result.error or "database operation failed")
+    return result.value
 
 
 def _incident_data(record: IncidentRecord, route: Route | None) -> dict[str, Any]:
@@ -94,7 +132,7 @@ def search_incidents(
         if category is not None:
             statement = statement.where(IncidentRecord.category == category)
 
-        rows = db.execute(statement).all()
+        rows = _run_db_operation(lambda: db.execute(statement).all())
         data = [_incident_data(record, route) for record, route in rows]
         return tool_envelope(data=data)
     except Exception as exc:
@@ -112,11 +150,13 @@ def get_incident(incident_code: str) -> dict[str, Any]:
 
     db = db_session_basede26()
     try:
-        row = db.execute(
-            select(IncidentRecord, Route)
-            .join(Route, IncidentRecord.route_id == Route.id)
-            .where(IncidentRecord.incident_code == incident_code.strip())
-        ).first()
+        row = _run_db_operation(
+            lambda: db.execute(
+                select(IncidentRecord, Route)
+                .join(Route, IncidentRecord.route_id == Route.id)
+                .where(IncidentRecord.incident_code == incident_code.strip())
+            ).first()
+        )
         if row is None:
             return _error("incident not found")
         record, route = row
@@ -151,6 +191,7 @@ def incident_count_by_route(min_incidents: int = 0) -> dict[str, Any]:
             .having(func.count(IncidentRecord.id) >= min_incidents)
             .order_by(Route.id)
         )
+        rows = _run_db_operation(lambda: db.execute(statement).all())
         data = [
             {
                 "route_id": route_id,
@@ -158,9 +199,7 @@ def incident_count_by_route(min_incidents: int = 0) -> dict[str, Any]:
                 "route_name": route_name,
                 "incident_count": int(incident_count),
             }
-            for route_id, route_code, route_name, incident_count in db.execute(
-                statement
-            ).all()
+            for route_id, route_code, route_name, incident_count in rows
         ]
         return tool_envelope(data=data)
     except Exception as exc:
