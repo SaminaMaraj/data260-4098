@@ -28,6 +28,7 @@ os.environ["DATABASE_URL"] = "sqlite+pysqlite:///:memory:"
 
 from envelope import tool_envelope
 from execute_tool import configure_tool_registry, execute_tool
+from agent import MockModel, run_agent
 from transit_server import (
     configure_data_source,
     incident_count_by_route,
@@ -197,6 +198,31 @@ def test_unknown_tool():
     }
 
 
+def test_safety_limit_block():
+    result = payload(
+        execute_tool(
+            "search_incidents",
+            {"query": "delay", "limit": 51},
+        )
+    )
+    assert result == {
+        "ok": False,
+        "data": None,
+        "error": "safety policy: search limit cannot exceed 50",
+    }
+
+
+def test_agent_stops_at_max_steps():
+    result = run_agent(
+        "Keep using the route-count tool.",
+        model=MockModel(),
+        max_steps=2,
+    )
+    assert result["stop_reason"] == "max_steps"
+    assert result["steps"] == 2
+    assert result["tool_calls"] == 2
+
+
 def main():
     fake_source = FakeTransitDataSource()
     configure_data_source(fake_source)
@@ -216,6 +242,8 @@ def main():
         test_invalid_incident_code,
         test_invalid_minimum,
         test_unknown_tool,
+        test_safety_limit_block,
+        test_agent_stops_at_max_steps,
     ]
     passed = 0
     for test in tests:

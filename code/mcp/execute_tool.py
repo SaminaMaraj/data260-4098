@@ -74,8 +74,8 @@ def _validate_search(inputs: dict[str, Any]) -> tuple[dict[str, Any] | None, str
     limit = inputs.get("limit", 10)
     if isinstance(limit, bool) or not isinstance(limit, int):
         return None, "limit must be an integer"
-    if not 1 <= limit <= 50:
-        return None, "limit must be between 1 and 50"
+    if limit < 1:
+        return None, "limit must be at least 1"
     return {
         "query": inputs["query"],
         "category": category,
@@ -133,6 +133,15 @@ def execute_tool(name, inputs):
         validated, validation_error = _validated_inputs(name, inputs)
         if validation_error:
             return json.dumps(tool_envelope(error=validation_error))
+
+        # Safety rule: prevent bulk extraction through the single tool entry
+        # point while leaving the domain tool's normal limit of 50 unchanged.
+        if name == "search_incidents" and validated["limit"] > 50:
+            return json.dumps(
+                tool_envelope(
+                    error="safety policy: search limit cannot exceed 50"
+                )
+            )
 
         registry = _injected_registry or _real_registry()
         function = registry.get(name)
