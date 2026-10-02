@@ -1,5 +1,6 @@
 import datetime as dt
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -9,6 +10,7 @@ BASE_URL = "http://127.0.0.1:8498"
 OUTPUT = Path("reports/hw04/verification.json")
 
 checks = []
+DEMO_PASSWORD = os.environ["HW4_DEMO_PASSWORD"]
 
 
 def add_check(name, passed, details):
@@ -43,7 +45,7 @@ try:
         f"{BASE_URL}/api/hw4/auth/login",
         json={
             "email": "samina.hw4@example.com",
-            "password": "Transit4098!",
+            "password": DEMO_PASSWORD,
         },
         timeout=10,
     )

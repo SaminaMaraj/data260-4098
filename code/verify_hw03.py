@@ -1,6 +1,7 @@
 """Objective smoke checks for DATA 260 Homework 3."""
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -19,6 +20,7 @@ from src.api import app
 
 REPORT_DIR = REPO_ROOT / "reports" / "hw03"
 OUTPUT_PATH = REPORT_DIR / "verification.json"
+DEMO_PASSWORD = os.environ["HW4_DEMO_PASSWORD"]
 
 REQUIRED_FILES = [
     REPO_ROOT / "src" / "auth.py",
@@ -55,7 +57,7 @@ def check_authentication() -> dict:
 
     login = client.post(
         "/login",
-        data={"username": "samina", "password": "Transit4098!"},
+        data={"username": "samina", "password": DEMO_PASSWORD},
         follow_redirects=False,
     )
     cookie = login.headers.get("set-cookie", "").lower()
@@ -73,7 +75,7 @@ def check_authentication() -> dict:
         raise AssertionError("Logged-out session still reached the dashboard")
 
     timeout_client = TestClient(app, base_url="https://timeout-testserver")
-    timeout_client.post("/login", data={"username": "samina", "password": "Transit4098!"})
+    timeout_client.post("/login", data={"username": "samina", "password": DEMO_PASSWORD})
     real_time = auth.time.time
     try:
         auth.time.time = lambda: real_time() + auth.IDLE_TIMEOUT_SECONDS + 1

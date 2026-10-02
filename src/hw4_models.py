@@ -57,6 +57,45 @@ class SessionToken(Base):
     )
 
 
+class Route(Base):
+    __tablename__ = "routes"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+    )
+    route_name: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+    )
+    operator: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+    )
+    route_code: Mapped[str] = mapped_column(
+        String(20),
+        unique=True,
+        nullable=False,
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False,
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        nullable=False,
+    )
+
+    incidents: Mapped[list["IncidentRecord"]] = relationship(
+        back_populates="route",
+        passive_deletes=True,
+    )
+
+
 class IncidentRecord(Base):
     __tablename__ = "incidents"
 
@@ -64,6 +103,11 @@ class IncidentRecord(Base):
         Integer,
         primary_key=True,
         autoincrement=True,
+    )
+    incident_code: Mapped[str] = mapped_column(
+        String(20),
+        unique=True,
+        nullable=False,
     )
     incident_title: Mapped[str] = mapped_column(
         String(100),
@@ -86,6 +130,15 @@ class IncidentRecord(Base):
         nullable=False,
         index=True,
     )
+    passengers_affected: Mapped[int] = mapped_column(
+        Integer,
+        default=0,
+        nullable=False,
+    )
+    route_id: Mapped[int] = mapped_column(
+        ForeignKey("routes.id", ondelete="RESTRICT"),
+        nullable=False,
+    )
     terms_accepted: Mapped[bool] = mapped_column(
         Boolean,
         default=True,
@@ -95,6 +148,21 @@ class IncidentRecord(Base):
         DateTime,
         default=datetime.utcnow,
         nullable=False,
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False,
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        nullable=False,
+    )
+
+    route: Mapped["Route"] = relationship(
+        back_populates="incidents",
     )
 
     related_items: Mapped[list["IncidentRelatedData"]] = relationship(

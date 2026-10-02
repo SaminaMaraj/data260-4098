@@ -8,6 +8,8 @@ from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
+from .hw4_security import hash_password, verify_password
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -16,8 +18,14 @@ router = APIRouter()
 
 # Demo credentials are intentionally local to this coursework application.
 USERS = {
-    "samina": {"password": "Transit4098!", "name": "Samina Maraj"},
-    "reviewer": {"password": "Transit260!", "name": "Transit Reviewer"},
+    "samina": {
+        "password_hash": "pbkdf2_sha256$310000$NHmRLqnC-OJXCwhJg2xOyA==$ocw6kqwUYm4M0t0RdWgShI_RzZQHauLe3smikwjOKwA=",
+        "name": "Samina Maraj",
+    },
+    "reviewer": {
+        "password_hash": "pbkdf2_sha256$310000$mGQ9czJCneOclk4HAIZS_Q==$vEckmS7qt5dXp5h9OI7Xwj4P2v2KCEHoCN_4YHS5VLI=",
+        "name": "Transit Reviewer",
+    },
 }
 
 SESSION_USER_KEY = "user"
@@ -71,7 +79,10 @@ async def login_submit(
     password: str = Form(...),
 ) -> HTMLResponse | RedirectResponse:
     account = USERS.get(username.strip().casefold())
-    if account is None or account["password"] != password:
+    if account is None or not verify_password(
+        password,
+        account["password_hash"],
+    ):
         return templates.TemplateResponse(
             request=request,
             name="login.html",

@@ -1,4 +1,5 @@
 import json
+import os
 from collections import defaultdict
 from pathlib import Path
 from time import perf_counter
@@ -14,6 +15,7 @@ OUTPUT_DIR = Path("reports/hw04/raw")
 PAGE_SIZES = [10, 50, 200]
 VERSIONS = ["naive", "fixed"]
 REPETITIONS = 30
+DEMO_PASSWORD = os.environ["HW4_DEMO_PASSWORD"]
 
 
 def percentile(values, percent):
@@ -31,7 +33,7 @@ def main():
         "/api/hw4/auth/login",
         json={
             "email": "samina.hw4@example.com",
-            "password": "Transit4098!",
+            "password": DEMO_PASSWORD,
         },
     )
 

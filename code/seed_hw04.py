@@ -1,4 +1,5 @@
 import argparse
+import os
 import random
 from datetime import datetime, timedelta
 
@@ -8,6 +9,7 @@ from src.hw4_database import Base, db_session_basede26, engine
 from src.hw4_models import (
     IncidentRecord,
     IncidentRelatedData,
+    Route,
     User,
 )
 from src.hw4_security import hash_password
@@ -18,7 +20,7 @@ TARGET_INCIDENTS = 5000
 TARGET_RELATED = 200
 
 DEMO_EMAIL = "samina.hw4@example.com"
-DEMO_PASSWORD = "Transit4098!"
+DEMO_PASSWORD = os.environ.get("HW4_DEMO_PASSWORD", "")
 
 CATEGORIES = [
     "delay",
@@ -42,16 +44,28 @@ RELATED_TYPES = [
 ]
 
 
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reset", action="store_true")
+    args = parser.parse_args()
 
+    if not DEMO_PASSWORD:
+        raise SystemExit(
+            "Set HW4_DEMO_PASSWORD before seeding the database."
+        )
+
+    Base.metadata.create_all(bind=engine)
+    db = db_session_basede26()
+
+    try:
         incident_count = db.scalar(
             select(func.count()).select_from(IncidentRecord)
         )
-
         related_count = db.scalar(
             select(func.count()).select_from(IncidentRelatedData)
         )
 
-        if incident_count or related_count:
+        if (incident_count or related_count) and not args.reset:
             print(
                 f"Database already contains {incident_count} incidents "
                 f"and {related_count} related rows."
@@ -59,10 +73,15 @@ RELATED_TYPES = [
             print("Use --reset only if you want to rebuild the test data.")
             return
 
+        if args.reset:
+            db.query(IncidentRelatedData).delete()
+            db.query(IncidentRecord).delete()
+            db.query(Route).delete()
+            db.commit()
+
         demo_user = db.scalar(
             select(User).where(User.email == DEMO_EMAIL)
         )
-
         if demo_user is None:
             db.add(
                 User(
@@ -73,31 +92,50 @@ RELATED_TYPES = [
             )
             db.commit()
 
+        route_records = [
+            Route(
+                route_name=route_name,
+                operator="VTA",
+                route_code=f"RT-{index:03d}",
+            )
+            for index, route_name in enumerate(ROUTES, start=1)
+        ]
+        db.add_all(route_records)
+        db.flush()
+        route_by_name = {
+            route.route_name: route for route in route_records
+        }
+
         rng = random.Random(SEED)
         incidents = []
         start_time = datetime.utcnow() - timedelta(days=365)
 
         for index in range(TARGET_INCIDENTS):
             category = rng.choice(CATEGORIES)
-            route = rng.choice(ROUTES)
+            route_name = rng.choice(ROUTES)
+            incident_time = start_time + timedelta(minutes=index)
 
             incidents.append(
                 IncidentRecord(
+                    incident_code=f"INC-{index + 1:06d}",
                     incident_title=(
                         f"Transit {category.replace('-', ' ').title()} "
                         f"Incident {index + 1}"
                     ),
-                    route_line=route,
+                    route_line=route_name,
+                    route_id=route_by_name[route_name].id,
                     submitter_email=DEMO_EMAIL,
                     description=(
                         f"This seeded municipal transit incident describes "
-                        f"a {category.replace('-', ' ')} affecting {route}."
+                        f"a {category.replace('-', ' ')} affecting "
+                        f"{route_name}."
                     ),
                     category=category,
+                    passengers_affected=0,
                     terms_accepted=True,
-                    submission_date=start_time + timedelta(
-                        minutes=index
-                    ),
+                    submission_date=incident_time,
+                    created_at=incident_time,
+                    updated_at=incident_time,
                 )
             )
 
@@ -105,10 +143,8 @@ RELATED_TYPES = [
         db.commit()
 
         related_rows = []
-
         for index in range(TARGET_RELATED):
             incident = incidents[(index * 37) % TARGET_INCIDENTS]
-
             related_rows.append(
                 IncidentRelatedData(
                     incident_id=incident.id,
@@ -124,9 +160,9 @@ RELATED_TYPES = [
         db.commit()
 
         print(f"Seed: {SEED}")
+        print(f"Inserted routes: {len(route_records)}")
         print(f"Inserted incidents: {len(incidents)}")
         print(f"Inserted related rows: {len(related_rows)}")
-
     finally:
         db.close()
 
