@@ -37,8 +37,8 @@ SCENARIOS = [
     ),
     (
         "max_steps",
-        "You must call search_incidents repeatedly. Start with query 'delay' and limit 5, and keep requesting another tool call.",
-        1,
+        "Look up INC-000002, then INC-000003, then INC-000004, then INC-000005 one at a time, and summarize all of them at the end.",
+        3,
     ),
 ]
 

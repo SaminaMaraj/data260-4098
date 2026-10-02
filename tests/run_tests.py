@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
@@ -213,11 +214,13 @@ def test_safety_limit_block():
 
 
 def test_agent_stops_at_max_steps():
-    result = run_agent(
-        "Keep using the route-count tool.",
-        model=MockModel(),
-        max_steps=2,
-    )
+    with tempfile.TemporaryDirectory() as temp_dir:
+        result = run_agent(
+            "Keep using the route-count tool.",
+            model=MockModel(),
+            max_steps=2,
+            log_path=Path(temp_dir) / "agent_runs.jsonl",
+        )
     assert result["stop_reason"] == "max_steps"
     assert result["steps"] == 2
     assert result["tool_calls"] == 2

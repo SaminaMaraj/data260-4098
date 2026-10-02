@@ -108,3 +108,44 @@ normal_route_counts | 2 | 1 | completed
 safety_block | 1 | 1 | safety_block
 max_steps | 1 | 1 | max_steps
 [2026-10-02T21:02:58Z] END python code/mcp/run_scenarios.py
+[2026-10-02T21:07:34Z] START python code/mcp/run_scenarios.py
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+scenario | step_count | tool_call_count | stop_reason
+---------|-------------|-----------------|------------
+normal_search | 2 | 1 | completed
+normal_route_counts | 2 | 1 | completed
+safety_block | 1 | 1 | safety_block
+max_steps | 1 | 3 | max_steps
+[2026-10-02T21:08:55Z] END python code/mcp/run_scenarios.py
+[2026-10-02T21:10:24Z] START python code/mcp/run_scenarios.py
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+scenario | step_count | tool_call_count | stop_reason
+---------|-------------|-----------------|------------
+normal_search | 2 | 1 | completed
+normal_route_counts | 2 | 1 | completed
+safety_block | 1 | 1 | safety_block
+max_steps | 1 | 3 | max_steps
+[2026-10-02T21:11:45Z] END python code/mcp/run_scenarios.py
+[2026-10-02T21:13:23Z] START python code/mcp/run_scenarios.py
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+scenario | step_count | tool_call_count | stop_reason
+---------|-------------|-----------------|------------
+normal_search | 2 | 1 | completed
+normal_route_counts | 2 | 1 | completed
+safety_block | 1 | 1 | safety_block
+max_steps | 3 | 3 | max_steps
+[2026-10-02T21:15:30Z] END python code/mcp/run_scenarios.py

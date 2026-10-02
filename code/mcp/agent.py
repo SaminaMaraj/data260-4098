@@ -189,16 +189,17 @@ def _call_parts(tool_call: dict[str, Any]) -> tuple[str | None, dict[str, Any]]:
     return name, arguments if isinstance(arguments, dict) else {}
 
 
-def _write_log(entry: dict[str, Any]) -> None:
-    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with LOG_PATH.open("a", encoding="utf-8") as handle:
+def _write_log(entry: dict[str, Any], log_path: Path) -> None:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with log_path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(entry, separators=(",", ":")) + "\n")
 
 
-def run_agent(user_input, model=None, max_steps=5):
+def run_agent(user_input, model=None, max_steps=5, log_path=None):
     """Run the transit agent and return its final result and stop reason."""
     if max_steps < 1:
         raise ValueError("max_steps must be at least 1")
+    selected_log_path = Path(log_path) if log_path is not None else LOG_PATH
     if model is None:
         selected_model = OllamaModel()
     elif hasattr(model, "chat"):
@@ -224,7 +225,8 @@ def run_agent(user_input, model=None, max_steps=5):
                     "input": None,
                     "result": final,
                     "stop_reason": "completed",
-                }
+                },
+                selected_log_path,
             )
             return {
                 "result": final,
@@ -234,57 +236,63 @@ def run_agent(user_input, model=None, max_steps=5):
                 "run_id": run_id,
             }
 
-        for call in calls:
-            tool, inputs = _call_parts(call)
-            result_text = execute_tool(tool, inputs)
-            result = json.loads(result_text)
-            tool_call_count += 1
-            safety_block = (
-                not result.get("ok")
-                and str(result.get("error", "")).startswith("safety policy:")
-            )
-            _write_log(
+        # Ollama can return several calls in one response. Treat one model
+        # turn as one agent step: execute only the first call and defer the
+        # rest rather than counting parallel calls as separate steps.
+        call = calls[0]
+        tool, inputs = _call_parts(call)
+        result_text = execute_tool(tool, inputs)
+        result = json.loads(result_text)
+        tool_call_count += 1
+        safety_block = (
+            not result.get("ok")
+            and str(result.get("error", "")).startswith("safety policy:")
+        )
+        log_entry = {
+            "run_id": run_id,
+            "step": step,
+            "tool": tool,
+            "input": inputs,
+            "result": result,
+        }
+        if len(calls) > 1:
+            log_entry["ignored_tool_calls"] = [
                 {
-                    "run_id": run_id,
-                    "step": step,
-                    "tool": tool,
-                    "input": inputs,
-                    "result": result,
-                    **({"stop_reason": "safety_block"} if safety_block else {}),
+                    "tool": extra_tool,
+                    "input": extra_inputs,
                 }
-            )
-            if safety_block:
-                return {
-                    "result": result,
-                    "stop_reason": "safety_block",
-                    "steps": step,
-                    "tool_calls": tool_call_count,
-                    "run_id": run_id,
-                }
-            if tool_call_count >= max_steps:
-                _write_log(
-                    {
-                        "run_id": run_id,
-                        "step": step,
-                        "tool": None,
-                        "input": None,
-                        "result": result,
-                        "stop_reason": "max_steps",
-                    }
+                for extra_tool, extra_inputs in (
+                    _call_parts(extra_call) for extra_call in calls[1:]
                 )
-                return {
-                    "result": result,
-                    "stop_reason": "max_steps",
-                    "steps": step,
-                    "tool_calls": tool_call_count,
-                    "run_id": run_id,
-                }
-            messages.append(
-                {
-                    "role": "tool",
-                    "content": result_text,
-                }
-            )
+            ]
+        if safety_block:
+            log_entry["stop_reason"] = "safety_block"
+        elif step == max_steps:
+            log_entry["stop_reason"] = "max_steps"
+        _write_log(log_entry, selected_log_path)
+
+        if safety_block:
+            return {
+                "result": result,
+                "stop_reason": "safety_block",
+                "steps": step,
+                "tool_calls": tool_call_count,
+                "run_id": run_id,
+            }
+        if step == max_steps:
+            return {
+                "result": result,
+                "stop_reason": "max_steps",
+                "steps": step,
+                "tool_calls": tool_call_count,
+                "run_id": run_id,
+            }
+        messages.append(
+            {
+                "role": "tool",
+                "content": result_text,
+            }
+        )
 
     return {
         "result": None,
