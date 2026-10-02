@@ -19,3 +19,5 @@ PyYAML==6.0.3
 SQLAlchemy
 PyMySQL
 email-validator
+httpx
+mcp[cli]<2

@@ -1,0 +1,11 @@
+{
+  "tool": "incident_count_by_route",
+  "input": {
+    "min_incidents": -5
+  },
+  "output": {
+    "ok": false,
+    "data": null,
+    "error": "min_incidents must be greater than or equal to 0"
+  }
+}

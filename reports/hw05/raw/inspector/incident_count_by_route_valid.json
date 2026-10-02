@@ -1,0 +1,42 @@
+{
+  "tool": "incident_count_by_route",
+  "input": {
+    "min_incidents": 0
+  },
+  "output": {
+    "ok": true,
+    "data": [
+      {
+        "route_id": 1,
+        "route_code": "RT-001",
+        "route_name": "VTA Green Line",
+        "incident_count": 948
+      },
+      {
+        "route_id": 2,
+        "route_code": "RT-002",
+        "route_name": "VTA Orange Line",
+        "incident_count": 1003
+      },
+      {
+        "route_id": 3,
+        "route_code": "RT-003",
+        "route_name": "VTA Route 22",
+        "incident_count": 1012
+      },
+      {
+        "route_id": 4,
+        "route_code": "RT-004",
+        "route_name": "VTA Route 522",
+        "incident_count": 1044
+      },
+      {
+        "route_id": 5,
+        "route_code": "RT-005",
+        "route_name": "VTA Route 55",
+        "incident_count": 993
+      }
+    ],
+    "error": null
+  }
+}

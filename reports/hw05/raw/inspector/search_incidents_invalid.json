@@ -1,0 +1,13 @@
+{
+  "tool": "search_incidents",
+  "input": {
+    "query": "delay",
+    "category": "unknown-category",
+    "limit": 10
+  },
+  "output": {
+    "ok": false,
+    "data": null,
+    "error": "unknown category: unknown-category"
+  }
+}

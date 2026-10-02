@@ -1,0 +1,79 @@
+{
+  "tool": "search_incidents",
+  "input": {
+    "query": "delay",
+    "category": "delay",
+    "limit": 5
+  },
+  "output": {
+    "ok": true,
+    "data": [
+      {
+        "id": 3,
+        "incident_code": "INC-000003",
+        "incident_title": "Transit Delay Incident 2",
+        "route_id": 5,
+        "route_line": "VTA Route 55",
+        "route_code": "RT-005",
+        "route_name": "VTA Route 55",
+        "category": "delay",
+        "passengers_affected": 0,
+        "description": "This seeded municipal transit incident describes a delay affecting VTA Route 55.",
+        "submission_date": "2025-09-26T04:17:36"
+      },
+      {
+        "id": 8,
+        "incident_code": "INC-000008",
+        "incident_title": "Transit Delay Incident 7",
+        "route_id": 2,
+        "route_line": "VTA Orange Line",
+        "route_code": "RT-002",
+        "route_name": "VTA Orange Line",
+        "category": "delay",
+        "passengers_affected": 0,
+        "description": "This seeded municipal transit incident describes a delay affecting VTA Orange Line.",
+        "submission_date": "2025-09-26T04:22:36"
+      },
+      {
+        "id": 9,
+        "incident_code": "INC-000009",
+        "incident_title": "Transit Delay Incident 8",
+        "route_id": 5,
+        "route_line": "VTA Route 55",
+        "route_code": "RT-005",
+        "route_name": "VTA Route 55",
+        "category": "delay",
+        "passengers_affected": 0,
+        "description": "This seeded municipal transit incident describes a delay affecting VTA Route 55.",
+        "submission_date": "2025-09-26T04:23:36"
+      },
+      {
+        "id": 14,
+        "incident_code": "INC-000014",
+        "incident_title": "Transit Delay Incident 13",
+        "route_id": 5,
+        "route_line": "VTA Route 55",
+        "route_code": "RT-005",
+        "route_name": "VTA Route 55",
+        "category": "delay",
+        "passengers_affected": 0,
+        "description": "This seeded municipal transit incident describes a delay affecting VTA Route 55.",
+        "submission_date": "2025-09-26T04:28:36"
+      },
+      {
+        "id": 15,
+        "incident_code": "INC-000015",
+        "incident_title": "Transit Delay Incident 14",
+        "route_id": 3,
+        "route_line": "VTA Route 22",
+        "route_code": "RT-003",
+        "route_name": "VTA Route 22",
+        "category": "delay",
+        "passengers_affected": 0,
+        "description": "This seeded municipal transit incident describes a delay affecting VTA Route 22.",
+        "submission_date": "2025-09-26T04:29:36"
+      }
+    ],
+    "error": null
+  }
+}

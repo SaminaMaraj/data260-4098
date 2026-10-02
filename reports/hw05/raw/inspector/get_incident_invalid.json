@@ -1,0 +1,11 @@
+{
+  "tool": "get_incident",
+  "input": {
+    "incident_code": "abc"
+  },
+  "output": {
+    "ok": false,
+    "data": null,
+    "error": "incident_code must match INC-######"
+  }
+}

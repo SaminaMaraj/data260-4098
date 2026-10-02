@@ -1,0 +1,23 @@
+{
+  "tool": "get_incident",
+  "input": {
+    "incident_code": "INC-000002"
+  },
+  "output": {
+    "ok": true,
+    "data": {
+      "id": 2,
+      "incident_code": "INC-000002",
+      "incident_title": "Transit Infrastructure Issue Incident 1",
+      "route_id": 1,
+      "route_line": "VTA Green Line",
+      "route_code": "RT-001",
+      "route_name": "VTA Green Line",
+      "category": "infrastructure-issue",
+      "passengers_affected": 0,
+      "description": "This seeded municipal transit incident describes a infrastructure issue affecting VTA Green Line.",
+      "submission_date": "2025-09-26T04:16:36"
+    },
+    "error": null
+  }
+}
