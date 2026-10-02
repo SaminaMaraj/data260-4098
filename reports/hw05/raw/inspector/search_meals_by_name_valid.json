@@ -1,0 +1,16 @@
+{
+  "tool": "search_meals_by_name",
+  "input": {
+    "query": "Arrabiata",
+    "limit": 5
+  },
+  "output": [
+    {
+      "id": "52771",
+      "name": "Spicy Arrabiata Penne",
+      "area": "Italian",
+      "category": "Vegetarian",
+      "thumb": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg"
+    }
+  ]
+}

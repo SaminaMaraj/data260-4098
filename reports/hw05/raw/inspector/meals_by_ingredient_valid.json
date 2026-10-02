@@ -1,0 +1,69 @@
+{
+  "tool": "meals_by_ingredient",
+  "input": {
+    "ingredient": "chicken",
+    "limit": 12
+  },
+  "output": [
+    {
+      "id": "52940",
+      "name": "Brown Stew Chicken",
+      "thumb": "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"
+    },
+    {
+      "id": "53161",
+      "name": "Chicken & chorizo rice pot",
+      "thumb": "https://www.themealdb.com/images/media/meals/fk80jp1763280767.jpg"
+    },
+    {
+      "id": "52846",
+      "name": "Chicken & mushroom Hotpot",
+      "thumb": "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg"
+    },
+    {
+      "id": "52796",
+      "name": "Chicken Alfredo Primavera",
+      "thumb": "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"
+    },
+    {
+      "id": "52934",
+      "name": "Chicken Basquaise",
+      "thumb": "https://www.themealdb.com/images/media/meals/wruvqv1511880994.jpg"
+    },
+    {
+      "id": "52956",
+      "name": "Chicken Congee",
+      "thumb": "https://www.themealdb.com/images/media/meals/1529446352.jpg"
+    },
+    {
+      "id": "52795",
+      "name": "Chicken Handi",
+      "thumb": "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg"
+    },
+    {
+      "id": "52831",
+      "name": "Chicken Karaage",
+      "thumb": "https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg"
+    },
+    {
+      "id": "53358",
+      "name": "Chicken Mandi",
+      "thumb": "https://www.themealdb.com/images/media/meals/er4d081765186828.jpg"
+    },
+    {
+      "id": "53186",
+      "name": "Chicken with saffron, raisins & pine nuts",
+      "thumb": "https://www.themealdb.com/images/media/meals/4mhr3u1763481087.jpg"
+    },
+    {
+      "id": "53220",
+      "name": "kabse",
+      "thumb": "https://www.themealdb.com/images/media/meals/utqnjv1763598650.jpg"
+    },
+    {
+      "id": "52813",
+      "name": "Kentucky Fried Chicken",
+      "thumb": "https://www.themealdb.com/images/media/meals/40r49m1763197022.jpg"
+    }
+  ]
+}
