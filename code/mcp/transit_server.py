@@ -10,7 +10,7 @@ import logging
 import re
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 from mcp.server.fastmcp import FastMCP
 from sqlalchemy import func, or_, select
@@ -52,6 +52,27 @@ _fault_injector: SeededFaultInjector | None = None
 last_retry_attempts = 0
 
 
+class TransitDataSource(Protocol):
+    """Minimal interface that can replace MySQL during offline tests."""
+
+    def search_incidents(
+        self,
+        query: str,
+        category: str | None,
+        limit: int,
+    ) -> list[tuple[IncidentRecord, Route]]: ...
+
+    def get_incident(
+        self,
+        incident_code: str,
+    ) -> tuple[IncidentRecord, Route] | None: ...
+
+    def incident_count_by_route(self, min_incidents: int) -> list[dict[str, Any]]: ...
+
+
+_data_source: TransitDataSource | None = None
+
+
 def configure_fault_injection(
     failure_rate: float,
     seed: int = 264098,
@@ -59,6 +80,12 @@ def configure_fault_injection(
     """Configure deterministic failures for the experiment script."""
     global _fault_injector
     _fault_injector = SeededFaultInjector(failure_rate, seed)
+
+
+def configure_data_source(data_source: TransitDataSource | None) -> None:
+    """Inject a data source for offline tests; None restores MySQL."""
+    global _data_source
+    _data_source = data_source
 
 
 def _run_db_operation(operation):
@@ -112,34 +139,39 @@ def search_incidents(
     if category is not None and category not in VALID_CATEGORIES:
         return _error(f"unknown category: {category}")
 
-    db = db_session_basede26()
+    db = None if _data_source is not None else db_session_basede26()
     try:
-        pattern = f"%{query}%"
-        statement = (
-            select(IncidentRecord, Route)
-            .join(Route, IncidentRecord.route_id == Route.id)
-            .where(
-                or_(
-                    IncidentRecord.incident_code.like(pattern),
-                    IncidentRecord.incident_title.like(pattern),
-                    IncidentRecord.route_line.like(pattern),
-                    IncidentRecord.description.like(pattern),
-                )
+        if _data_source is not None:
+            rows = _run_db_operation(
+                lambda: _data_source.search_incidents(query, category, limit)
             )
-            .order_by(IncidentRecord.id)
-            .limit(limit)
-        )
-        if category is not None:
-            statement = statement.where(IncidentRecord.category == category)
-
-        rows = _run_db_operation(lambda: db.execute(statement).all())
+        else:
+            pattern = f"%{query}%"
+            statement = (
+                select(IncidentRecord, Route)
+                .join(Route, IncidentRecord.route_id == Route.id)
+                .where(
+                    or_(
+                        IncidentRecord.incident_code.like(pattern),
+                        IncidentRecord.incident_title.like(pattern),
+                        IncidentRecord.route_line.like(pattern),
+                        IncidentRecord.description.like(pattern),
+                    )
+                )
+                .order_by(IncidentRecord.id)
+                .limit(limit)
+            )
+            if category is not None:
+                statement = statement.where(IncidentRecord.category == category)
+            rows = _run_db_operation(lambda: db.execute(statement).all())
         data = [_incident_data(record, route) for record, route in rows]
         return tool_envelope(data=data)
     except Exception as exc:
         logger.exception("Transit search failed")
         return _error(f"database operation failed: {exc}")
     finally:
-        db.close()
+        if db is not None:
+            db.close()
 
 
 @mcp.tool()
@@ -148,15 +180,20 @@ def get_incident(incident_code: str) -> dict[str, Any]:
     if not INCIDENT_CODE_PATTERN.fullmatch(incident_code.strip()):
         return _error("incident_code must match INC-######")
 
-    db = db_session_basede26()
+    db = None if _data_source is not None else db_session_basede26()
     try:
-        row = _run_db_operation(
-            lambda: db.execute(
-                select(IncidentRecord, Route)
-                .join(Route, IncidentRecord.route_id == Route.id)
-                .where(IncidentRecord.incident_code == incident_code.strip())
-            ).first()
-        )
+        if _data_source is not None:
+            row = _run_db_operation(
+                lambda: _data_source.get_incident(incident_code.strip())
+            )
+        else:
+            row = _run_db_operation(
+                lambda: db.execute(
+                    select(IncidentRecord, Route)
+                    .join(Route, IncidentRecord.route_id == Route.id)
+                    .where(IncidentRecord.incident_code == incident_code.strip())
+                ).first()
+            )
         if row is None:
             return _error("incident not found")
         record, route = row
@@ -165,7 +202,8 @@ def get_incident(incident_code: str) -> dict[str, Any]:
         logger.exception("Transit incident lookup failed")
         return _error(f"database operation failed: {exc}")
     finally:
-        db.close()
+        if db is not None:
+            db.close()
 
 
 @mcp.tool()
@@ -174,39 +212,45 @@ def incident_count_by_route(min_incidents: int = 0) -> dict[str, Any]:
     if min_incidents < 0:
         return _error("min_incidents must be greater than or equal to 0")
 
-    db = db_session_basede26()
+    db = None if _data_source is not None else db_session_basede26()
     try:
-        statement = (
-            select(
-                Route.id,
-                Route.route_code,
-                Route.route_name,
-                func.count(IncidentRecord.id).label("incident_count"),
+        if _data_source is not None:
+            data = _run_db_operation(
+                lambda: _data_source.incident_count_by_route(min_incidents)
             )
-            .outerjoin(
-                IncidentRecord,
-                IncidentRecord.route_id == Route.id,
+        else:
+            statement = (
+                select(
+                    Route.id,
+                    Route.route_code,
+                    Route.route_name,
+                    func.count(IncidentRecord.id).label("incident_count"),
+                )
+                .outerjoin(
+                    IncidentRecord,
+                    IncidentRecord.route_id == Route.id,
+                )
+                .group_by(Route.id, Route.route_code, Route.route_name)
+                .having(func.count(IncidentRecord.id) >= min_incidents)
+                .order_by(Route.id)
             )
-            .group_by(Route.id, Route.route_code, Route.route_name)
-            .having(func.count(IncidentRecord.id) >= min_incidents)
-            .order_by(Route.id)
-        )
-        rows = _run_db_operation(lambda: db.execute(statement).all())
-        data = [
-            {
-                "route_id": route_id,
-                "route_code": route_code,
-                "route_name": route_name,
-                "incident_count": int(incident_count),
-            }
-            for route_id, route_code, route_name, incident_count in rows
-        ]
+            rows = _run_db_operation(lambda: db.execute(statement).all())
+            data = [
+                {
+                    "route_id": route_id,
+                    "route_code": route_code,
+                    "route_name": route_name,
+                    "incident_count": int(incident_count),
+                }
+                for route_id, route_code, route_name, incident_count in rows
+            ]
         return tool_envelope(data=data)
     except Exception as exc:
         logger.exception("Transit aggregate failed")
         return _error(f"database operation failed: {exc}")
     finally:
-        db.close()
+        if db is not None:
+            db.close()
 
 
 if __name__ == "__main__":
