@@ -419,7 +419,7 @@ def list_incidents(
     statement = (
         select(IncidentRecord)
         .options(selectinload(IncidentRecord.related_items))
-        .order_by(IncidentRecord.id)
+        .order_by(IncidentRecord.id.desc())
         .offset(skip)
         .limit(limit)
     )
