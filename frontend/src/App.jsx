@@ -331,7 +331,7 @@ function IncidentForm({ user, mode }) {
       incidentTitle: data.incidentTitle,
       routeLine: data.routeLine,
       routeId: Number(data.routeId),
-      submitterEmail: data.submitterEmail,
+      submitterEmail: data.submitterEmail || user.email,
       description: data.description,
       category: data.category,
       passengersAffected: Number(data.passengersAffected),

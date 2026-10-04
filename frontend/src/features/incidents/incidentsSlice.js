@@ -2,7 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../api/axios";
 
 function errorMessage(error, fallback) {
-  return error.response?.data?.detail || fallback;
+  const detail = error.response?.data?.detail;
+  if (Array.isArray(detail)) {
+    return detail.map((d) => `${(d.loc || []).slice(-1)[0]}: ${d.msg}`).join("; ");
+  }
+  return detail || fallback;
 }
 
 export const fetchIncidents = createAsyncThunk(
