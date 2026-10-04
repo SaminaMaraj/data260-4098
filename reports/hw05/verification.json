@@ -1,0 +1,46 @@
+{
+  "homework": 5,
+  "SID4": 4098,
+  "commit_hash": "0e1a22eeab2f75630d426f299d41437ebbb5e5ef",
+  "model": "qwen3:8b",
+  "configuration": {
+    "ollama_base_url": "http://localhost:11434",
+    "api_url": "http://localhost:8498"
+  },
+  "SEED": 4098,
+  "VERIFY_SEED": 264098,
+  "timestamp": "2026-10-02T21:24:05.345143+00:00",
+  "checks": [
+    {
+      "name": "FastAPI health on port 8498",
+      "passed": true,
+      "detail": "HTTP 200; record_count=5000"
+    },
+    {
+      "name": "meals MCP stdio tool call",
+      "passed": true,
+      "detail": "meals_server.py:search_meals_by_name answered"
+    },
+    {
+      "name": "transit MCP stdio tool call",
+      "passed": true,
+      "detail": "transit_server.py:incident_count_by_route answered"
+    },
+    {
+      "name": "offline tests",
+      "passed": true,
+      "detail": "9/9 passed"
+    },
+    {
+      "name": "required HW5 report files",
+      "passed": false,
+      "detail": "AI_USE.md, REFLECTION.md, verification.json, report.pdf, raw/inspector/search_meals_by_name_valid.json, raw/inspector/meals_by_ingredient_valid.json, raw/inspector/meal_details_valid.json, raw/inspector/random_meal_valid.json"
+    },
+    {
+      "name": "git commit hash",
+      "passed": true,
+      "detail": "0e1a22eeab2f75630d426f299d41437ebbb5e5ef"
+    }
+  ],
+  "passed": false
+}
