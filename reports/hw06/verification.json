@@ -5,6 +5,8 @@
   "PREFIX": "s4098",
   "SEED": 4098,
   "VERIFY_SEED": 264098,
+  "DOMAIN_ID": 2,
+  "commit_hash": "51eb0a8b144ea652f7375f769242ebc748854773",
   "model": "qwen3:8b",
   "checks": [
     {
@@ -13,6 +15,10 @@
     },
     {
       "name": "HW6 routes registered",
+      "passed": true
+    },
+    {
+      "name": "POST /api/chat returns a reply",
       "passed": true
     },
     {

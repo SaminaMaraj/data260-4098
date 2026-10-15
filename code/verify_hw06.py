@@ -17,7 +17,12 @@ PORT = 8498
 BASE_URL = f"http://127.0.0.1:{PORT}"
 
 
-def request_json(path: str, method: str = "GET", body: dict | None = None) -> tuple[int, dict | list]:
+def request_json(
+    path: str,
+    method: str = "GET",
+    body: dict | None = None,
+    timeout: float = 5,
+) -> tuple[int, dict | list]:
     data = json.dumps(body).encode() if body is not None else None
     request = Request(
         BASE_URL + path,
@@ -25,13 +30,19 @@ def request_json(path: str, method: str = "GET", body: dict | None = None) -> tu
         method=method,
         headers={"Content-Type": "application/json"},
     )
-    with urlopen(request, timeout=5) as response:
+    with urlopen(request, timeout=timeout) as response:
         raw = response.read().decode()
         return response.status, json.loads(raw) if raw else {}
 
 
 def main() -> int:
     checks: list[dict] = []
+    try:
+        commit_hash = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+        ).strip()
+    except Exception:
+        commit_hash = "unknown"
     process = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "src.api:app", "--host", "127.0.0.1", "--port", str(PORT)],
         cwd=ROOT,
@@ -55,6 +66,22 @@ def main() -> int:
         openapi_status, openapi = request_json("/openapi.json")
         paths = openapi.get("paths", {}) if isinstance(openapi, dict) else {}
         checks.append({"name": "HW6 routes registered", "passed": openapi_status == 200 and "/api/chat" in paths and "/api/mongo/incidents" in paths})
+
+        try:
+            chat_status, chat_result = request_json(
+                "/api/chat",
+                method="POST",
+                timeout=90,
+                body={
+                    "user_id": "verify-hw6",
+                    "session_id": "verify-session",
+                    "message": "Smoke-test reply from the local model.",
+                },
+            )
+            chat_passed = chat_status == 200 and bool(chat_result.get("reply"))
+            checks.append({"name": "POST /api/chat returns a reply", "passed": chat_passed})
+        except Exception as exc:
+            checks.append({"name": "POST /api/chat returns a reply", "passed": False, "detail": str(exc)})
 
         try:
             request_json("/api/mongo/incidents", method="POST", body={"category": "delay"})
@@ -86,6 +113,8 @@ def main() -> int:
         "PREFIX": "s4098",
         "SEED": 4098,
         "VERIFY_SEED": 264098,
+        "DOMAIN_ID": 2,
+        "commit_hash": commit_hash,
         "model": os.environ.get("SMOL_MODEL", "qwen3:8b"),
         "checks": checks,
         "passed": all(check["passed"] for check in checks),

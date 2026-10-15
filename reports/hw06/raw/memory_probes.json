@@ -93,30 +93,30 @@
     "setting": "eviction_keep_12",
     "probe_id": "route",
     "score": 3,
-    "reply": "You mentioned **VTA Route 22** as the central focus of your study."
+    "reply": "You mentioned VTA Route 22 as the key route for your project."
   },
   {
     "setting": "eviction_keep_12",
     "probe_id": "goal",
     "score": 3,
-    "reply": "Your main goal for this assistant is to build a reliable incident assistant that improves passenger experience and reliability by providing timely notifications about delays on VTA Route 22."
+    "reply": "Your main goal for this assistant is to build a reliable incident assistant that improves passenger experience and reliability by providing timely information on delays and service disruptions, particularly on VTA Route 22."
   },
   {
     "setting": "eviction_keep_12",
     "probe_id": "difficulty",
-    "score": 4,
-    "reply": "You mentioned that **episodic memory retrieval** was difficult."
+    "score": 2,
+    "reply": "You did not explicitly state that any specific transit issue or topic was difficult. The focus was on studying how delays (e.g., on VTA Route 22) impact passengers and improving incident management through a reliable incident assistant."
   },
   {
     "setting": "eviction_keep_12",
     "probe_id": "preference",
     "score": 4,
-    "reply": "You mentioned a **preference for concise answers with one practical example**."
+    "reply": "You mentioned a preference for concise answers with one practical example."
   },
   {
     "setting": "eviction_keep_12",
     "probe_id": "fact",
     "score": 3,
-    "reply": "Please remember that your project uses **MongoDB** for data storage."
+    "reply": "Please remember that your project uses MongoDB."
   }
 ]

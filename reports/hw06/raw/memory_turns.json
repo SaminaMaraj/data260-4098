@@ -8,7 +8,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 10,
     "episodic_fact_tokens": 2,
-    "latency_ms": 1764.49
+    "latency_ms": 1775.42
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -19,7 +19,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 59,
     "episodic_fact_tokens": 11,
-    "latency_ms": 1917.03
+    "latency_ms": 1890.45
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -30,7 +30,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 106,
     "episodic_fact_tokens": 23,
-    "latency_ms": 1161.65
+    "latency_ms": 1168.5
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -41,7 +41,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 99,
     "episodic_fact_tokens": 36,
-    "latency_ms": 1882.98
+    "latency_ms": 1894.34
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -52,7 +52,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 104,
     "episodic_fact_tokens": 36,
-    "latency_ms": 8569.5
+    "latency_ms": 8825.29
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -63,7 +63,7 @@
     "long_term_summary_tokens": 119,
     "short_term_window_tokens": 142,
     "episodic_fact_tokens": 42,
-    "latency_ms": 2757.63
+    "latency_ms": 2785.42
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -74,7 +74,7 @@
     "long_term_summary_tokens": 119,
     "short_term_window_tokens": 143,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3439.7
+    "latency_ms": 3427.79
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -85,7 +85,7 @@
     "long_term_summary_tokens": 119,
     "short_term_window_tokens": 143,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3211.08
+    "latency_ms": 3168.52
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -96,7 +96,7 @@
     "long_term_summary_tokens": 119,
     "short_term_window_tokens": 160,
     "episodic_fact_tokens": 38,
-    "latency_ms": 2891.16
+    "latency_ms": 2880.3
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -107,7 +107,7 @@
     "long_term_summary_tokens": 119,
     "short_term_window_tokens": 149,
     "episodic_fact_tokens": 38,
-    "latency_ms": 21769.97
+    "latency_ms": 20582.38
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -118,7 +118,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 115,
     "episodic_fact_tokens": 34,
-    "latency_ms": 3148.65
+    "latency_ms": 3088.51
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -129,7 +129,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 107,
     "episodic_fact_tokens": 37,
-    "latency_ms": 2763.72
+    "latency_ms": 2560.37
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -140,7 +140,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 127,
     "episodic_fact_tokens": 34,
-    "latency_ms": 1559.47
+    "latency_ms": 1530.59
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -151,7 +151,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 104,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2659.52
+    "latency_ms": 2663.56
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -162,7 +162,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 108,
     "episodic_fact_tokens": 39,
-    "latency_ms": 15063.12
+    "latency_ms": 15073.99
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -173,7 +173,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 164,
     "episodic_fact_tokens": 32,
-    "latency_ms": 2404.83
+    "latency_ms": 2459.81
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -184,7 +184,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 154,
     "episodic_fact_tokens": 36,
-    "latency_ms": 4802.34
+    "latency_ms": 4822.01
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -195,7 +195,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 136,
     "episodic_fact_tokens": 38,
-    "latency_ms": 2081.48
+    "latency_ms": 2087.04
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -206,7 +206,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 112,
     "episodic_fact_tokens": 33,
-    "latency_ms": 1476.71
+    "latency_ms": 1476.7
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -217,7 +217,7 @@
     "long_term_summary_tokens": 345,
     "short_term_window_tokens": 71,
     "episodic_fact_tokens": 38,
-    "latency_ms": 20196.18
+    "latency_ms": 20424.25
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -228,7 +228,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 64,
     "episodic_fact_tokens": 33,
-    "latency_ms": 2636.42
+    "latency_ms": 2673.08
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -239,7 +239,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 76,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2712.45
+    "latency_ms": 2730.34
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -250,7 +250,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 120,
     "episodic_fact_tokens": 38,
-    "latency_ms": 1558.31
+    "latency_ms": 1568.12
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -261,7 +261,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 114,
     "episodic_fact_tokens": 38,
-    "latency_ms": 1938.41
+    "latency_ms": 1957.25
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -272,7 +272,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 91,
     "episodic_fact_tokens": 41,
-    "latency_ms": 12675.51
+    "latency_ms": 12802.21
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -283,7 +283,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 120,
     "episodic_fact_tokens": 30,
-    "latency_ms": 2507.17
+    "latency_ms": 2583.21
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -294,7 +294,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 128,
     "episodic_fact_tokens": 36,
-    "latency_ms": 1872.59
+    "latency_ms": 1870.29
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -305,7 +305,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 106,
     "episodic_fact_tokens": 33,
-    "latency_ms": 2147.61
+    "latency_ms": 2146.45
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -316,7 +316,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 98,
     "episodic_fact_tokens": 34,
-    "latency_ms": 2519.05
+    "latency_ms": 2512.05
   },
   {
     "setting": "SHORT_TERM_N=4",
@@ -327,7 +327,7 @@
     "long_term_summary_tokens": 357,
     "short_term_window_tokens": 115,
     "episodic_fact_tokens": 37,
-    "latency_ms": 20571.32
+    "latency_ms": 20916.93
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -338,7 +338,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 10,
     "episodic_fact_tokens": 2,
-    "latency_ms": 1796.63
+    "latency_ms": 1897.34
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -349,7 +349,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 59,
     "episodic_fact_tokens": 11,
-    "latency_ms": 2169.04
+    "latency_ms": 1926.01
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -360,7 +360,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 115,
     "episodic_fact_tokens": 23,
-    "latency_ms": 1903.79
+    "latency_ms": 1478.64
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -371,7 +371,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 162,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2472.79
+    "latency_ms": 1896.13
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -382,7 +382,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 221,
     "episodic_fact_tokens": 36,
-    "latency_ms": 9369.19
+    "latency_ms": 8733.95
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -393,7 +393,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 268,
     "episodic_fact_tokens": 42,
-    "latency_ms": 2683.31
+    "latency_ms": 1681.95
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -404,7 +404,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 309,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2244.49
+    "latency_ms": 1396.87
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -415,7 +415,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 299,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3721.07
+    "latency_ms": 2874.91
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -426,7 +426,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 318,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3080.38
+    "latency_ms": 2211.38
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -437,7 +437,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 337,
     "episodic_fact_tokens": 38,
-    "latency_ms": 25132.14
+    "latency_ms": 21330.91
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -448,7 +448,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 314,
     "episodic_fact_tokens": 34,
-    "latency_ms": 3396.8
+    "latency_ms": 2371.94
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -459,7 +459,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 316,
     "episodic_fact_tokens": 37,
-    "latency_ms": 3472.6
+    "latency_ms": 3459.15
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -470,7 +470,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 340,
     "episodic_fact_tokens": 34,
-    "latency_ms": 2277.39
+    "latency_ms": 2173.46
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -481,7 +481,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 340,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3266.89
+    "latency_ms": 3197.27
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -492,7 +492,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 331,
     "episodic_fact_tokens": 39,
-    "latency_ms": 15296.68
+    "latency_ms": 13289.78
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -503,7 +503,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 325,
     "episodic_fact_tokens": 32,
-    "latency_ms": 2959.55
+    "latency_ms": 2975.06
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -514,7 +514,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 351,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2407.15
+    "latency_ms": 2435.71
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -525,7 +525,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 351,
     "episodic_fact_tokens": 38,
-    "latency_ms": 2909.68
+    "latency_ms": 2922.72
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -536,7 +536,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 335,
     "episodic_fact_tokens": 33,
-    "latency_ms": 2620.06
+    "latency_ms": 2611.0
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -547,7 +547,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 351,
     "episodic_fact_tokens": 38,
-    "latency_ms": 24599.46
+    "latency_ms": 24032.94
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -558,7 +558,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 325,
     "episodic_fact_tokens": 33,
-    "latency_ms": 3305.95
+    "latency_ms": 3028.64
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -569,7 +569,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 315,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3167.41
+    "latency_ms": 3158.38
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -580,7 +580,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 327,
     "episodic_fact_tokens": 38,
-    "latency_ms": 2268.73
+    "latency_ms": 2128.19
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -591,7 +591,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 318,
     "episodic_fact_tokens": 38,
-    "latency_ms": 1538.39
+    "latency_ms": 1512.28
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -602,7 +602,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 288,
     "episodic_fact_tokens": 41,
-    "latency_ms": 14268.14
+    "latency_ms": 13391.75
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -613,7 +613,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 289,
     "episodic_fact_tokens": 30,
-    "latency_ms": 2638.3
+    "latency_ms": 2647.95
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -624,7 +624,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 307,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2097.81
+    "latency_ms": 2029.14
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -635,7 +635,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 302,
     "episodic_fact_tokens": 33,
-    "latency_ms": 1956.17
+    "latency_ms": 1952.97
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -646,7 +646,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 267,
     "episodic_fact_tokens": 34,
-    "latency_ms": 1888.97
+    "latency_ms": 1889.83
   },
   {
     "setting": "SHORT_TERM_N=12",
@@ -657,7 +657,7 @@
     "long_term_summary_tokens": 416,
     "short_term_window_tokens": 271,
     "episodic_fact_tokens": 37,
-    "latency_ms": 24230.26
+    "latency_ms": 24160.83
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -668,7 +668,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 10,
     "episodic_fact_tokens": 2,
-    "latency_ms": 1915.14
+    "latency_ms": 1829.14
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -679,7 +679,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 59,
     "episodic_fact_tokens": 11,
-    "latency_ms": 2058.49
+    "latency_ms": 1925.34
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -690,7 +690,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 115,
     "episodic_fact_tokens": 23,
-    "latency_ms": 1547.91
+    "latency_ms": 1519.7
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -701,7 +701,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 162,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2007.12
+    "latency_ms": 1894.11
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -712,7 +712,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 221,
     "episodic_fact_tokens": 36,
-    "latency_ms": 8920.8
+    "latency_ms": 8353.84
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -723,7 +723,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 268,
     "episodic_fact_tokens": 42,
-    "latency_ms": 1703.99
+    "latency_ms": 1674.65
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -734,7 +734,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 318,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2900.93
+    "latency_ms": 2776.47
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -745,7 +745,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 370,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3779.3
+    "latency_ms": 3754.64
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -756,7 +756,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 448,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3326.82
+    "latency_ms": 3308.12
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -767,7 +767,7 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 514,
     "episodic_fact_tokens": 38,
-    "latency_ms": 24137.69
+    "latency_ms": 24519.84
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -778,7 +778,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 561,
     "episodic_fact_tokens": 34,
-    "latency_ms": 4004.3
+    "latency_ms": 4053.65
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -789,7 +789,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 618,
     "episodic_fact_tokens": 37,
-    "latency_ms": 3492.2
+    "latency_ms": 3544.08
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -800,7 +800,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 678,
     "episodic_fact_tokens": 34,
-    "latency_ms": 3018.96
+    "latency_ms": 3056.11
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -811,7 +811,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 721,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3090.09
+    "latency_ms": 3170.12
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -822,7 +822,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 764,
     "episodic_fact_tokens": 39,
-    "latency_ms": 15392.29
+    "latency_ms": 15610.62
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -833,7 +833,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 795,
     "episodic_fact_tokens": 32,
-    "latency_ms": 3645.32
+    "latency_ms": 3747.55
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -844,7 +844,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 795,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3797.45
+    "latency_ms": 3830.48
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -855,7 +855,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 791,
     "episodic_fact_tokens": 38,
-    "latency_ms": 4214.47
+    "latency_ms": 4241.16
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -866,7 +866,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 808,
     "episodic_fact_tokens": 33,
-    "latency_ms": 3701.54
+    "latency_ms": 3774.81
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -877,7 +877,7 @@
     "long_term_summary_tokens": 427,
     "short_term_window_tokens": 803,
     "episodic_fact_tokens": 38,
-    "latency_ms": 25849.92
+    "latency_ms": 26237.84
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -888,7 +888,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 803,
     "episodic_fact_tokens": 33,
-    "latency_ms": 4868.08
+    "latency_ms": 4927.16
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -899,7 +899,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 810,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3403.51
+    "latency_ms": 3460.54
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -910,7 +910,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 800,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3464.81
+    "latency_ms": 3460.17
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -921,7 +921,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 765,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3215.26
+    "latency_ms": 3212.59
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -932,7 +932,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 741,
     "episodic_fact_tokens": 41,
-    "latency_ms": 14406.85
+    "latency_ms": 14442.43
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -943,7 +943,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 735,
     "episodic_fact_tokens": 30,
-    "latency_ms": 3606.27
+    "latency_ms": 3478.43
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -954,7 +954,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 727,
     "episodic_fact_tokens": 36,
-    "latency_ms": 3583.06
+    "latency_ms": 3602.64
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -965,7 +965,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 719,
     "episodic_fact_tokens": 33,
-    "latency_ms": 4021.89
+    "latency_ms": 3994.3
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -976,7 +976,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 740,
     "episodic_fact_tokens": 34,
-    "latency_ms": 3432.46
+    "latency_ms": 3498.02
   },
   {
     "setting": "SHORT_TERM_N=30",
@@ -987,7 +987,7 @@
     "long_term_summary_tokens": 429,
     "short_term_window_tokens": 752,
     "episodic_fact_tokens": 37,
-    "latency_ms": 26258.38
+    "latency_ms": 26433.94
   },
   {
     "setting": "eviction_keep_12",
@@ -998,7 +998,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 10,
     "episodic_fact_tokens": 2,
-    "latency_ms": 6831.54
+    "latency_ms": 1840.22
   },
   {
     "setting": "eviction_keep_12",
@@ -1009,7 +1009,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 59,
     "episodic_fact_tokens": 11,
-    "latency_ms": 6520.16
+    "latency_ms": 1934.1
   },
   {
     "setting": "eviction_keep_12",
@@ -1020,7 +1020,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 115,
     "episodic_fact_tokens": 23,
-    "latency_ms": 1788.76
+    "latency_ms": 1491.64
   },
   {
     "setting": "eviction_keep_12",
@@ -1031,7 +1031,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 162,
     "episodic_fact_tokens": 36,
-    "latency_ms": 1964.5
+    "latency_ms": 1917.21
   },
   {
     "setting": "eviction_keep_12",
@@ -1042,7 +1042,7 @@
     "long_term_summary_tokens": 6,
     "short_term_window_tokens": 221,
     "episodic_fact_tokens": 36,
-    "latency_ms": 16814.65
+    "latency_ms": 8406.89
   },
   {
     "setting": "eviction_keep_12",
@@ -1053,270 +1053,270 @@
     "long_term_summary_tokens": 140,
     "short_term_window_tokens": 268,
     "episodic_fact_tokens": 42,
-    "latency_ms": 5970.62
+    "latency_ms": 1680.77
   },
   {
     "setting": "eviction_keep_12",
     "turn": 7,
-    "prompt_tokens": 620,
-    "completion_tokens": 45,
+    "prompt_tokens": 611,
+    "completion_tokens": 32,
     "system_primer_tokens": 33,
     "long_term_summary_tokens": 140,
-    "short_term_window_tokens": 318,
+    "short_term_window_tokens": 309,
     "episodic_fact_tokens": 36,
-    "latency_ms": 6971.65
+    "latency_ms": 1391.73
   },
   {
     "setting": "eviction_keep_12",
     "turn": 8,
-    "prompt_tokens": 683,
+    "prompt_tokens": 611,
     "completion_tokens": 68,
     "system_primer_tokens": 33,
     "long_term_summary_tokens": 140,
-    "short_term_window_tokens": 370,
+    "short_term_window_tokens": 299,
     "episodic_fact_tokens": 38,
-    "latency_ms": 10791.87
+    "latency_ms": 2893.47
   },
   {
     "setting": "eviction_keep_12",
     "turn": 9,
-    "prompt_tokens": 758,
-    "completion_tokens": 53,
+    "prompt_tokens": 632,
+    "completion_tokens": 52,
     "system_primer_tokens": 33,
     "long_term_summary_tokens": 140,
-    "short_term_window_tokens": 448,
+    "short_term_window_tokens": 318,
     "episodic_fact_tokens": 38,
-    "latency_ms": 4060.0
+    "latency_ms": 2215.54
   },
   {
     "setting": "eviction_keep_12",
     "turn": 10,
-    "prompt_tokens": 821,
-    "completion_tokens": 36,
+    "prompt_tokens": 643,
+    "completion_tokens": 26,
     "system_primer_tokens": 33,
     "long_term_summary_tokens": 140,
-    "short_term_window_tokens": 514,
+    "short_term_window_tokens": 337,
     "episodic_fact_tokens": 38,
-    "latency_ms": 52375.59
+    "latency_ms": 22550.23
   },
   {
     "setting": "eviction_keep_12",
     "turn": 11,
-    "prompt_tokens": 1188,
-    "completion_tokens": 47,
+    "prompt_tokens": 936,
+    "completion_tokens": 34,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 561,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 314,
     "episodic_fact_tokens": 34,
-    "latency_ms": 7022.66
+    "latency_ms": 2458.8
   },
   {
     "setting": "eviction_keep_12",
     "turn": 12,
-    "prompt_tokens": 1249,
-    "completion_tokens": 51,
+    "prompt_tokens": 934,
+    "completion_tokens": 61,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 618,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 316,
     "episodic_fact_tokens": 37,
-    "latency_ms": 12186.27
+    "latency_ms": 8983.34
   },
   {
     "setting": "eviction_keep_12",
     "turn": 13,
-    "prompt_tokens": 1314,
-    "completion_tokens": 34,
+    "prompt_tokens": 959,
+    "completion_tokens": 29,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 678,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 340,
     "episodic_fact_tokens": 34,
-    "latency_ms": 6755.8
+    "latency_ms": 2200.18
   },
   {
     "setting": "eviction_keep_12",
     "turn": 14,
-    "prompt_tokens": 1372,
-    "completion_tokens": 34,
+    "prompt_tokens": 968,
+    "completion_tokens": 53,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 721,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 340,
     "episodic_fact_tokens": 36,
-    "latency_ms": 5806.41
+    "latency_ms": 3329.2
   },
   {
     "setting": "eviction_keep_12",
     "turn": 15,
-    "prompt_tokens": 1413,
-    "completion_tokens": 32,
+    "prompt_tokens": 949,
+    "completion_tokens": 47,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 764,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 331,
     "episodic_fact_tokens": 39,
-    "latency_ms": 15694.79
+    "latency_ms": 13773.47
   },
   {
     "setting": "eviction_keep_12",
     "turn": 16,
-    "prompt_tokens": 1443,
-    "completion_tokens": 40,
+    "prompt_tokens": 940,
+    "completion_tokens": 48,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 795,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 325,
     "episodic_fact_tokens": 32,
-    "latency_ms": 11535.77
+    "latency_ms": 3073.94
   },
   {
     "setting": "eviction_keep_12",
     "turn": 17,
-    "prompt_tokens": 1443,
-    "completion_tokens": 45,
+    "prompt_tokens": 962,
+    "completion_tokens": 35,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 795,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 351,
     "episodic_fact_tokens": 36,
-    "latency_ms": 15926.75
+    "latency_ms": 2498.48
   },
   {
     "setting": "eviction_keep_12",
     "turn": 18,
-    "prompt_tokens": 1458,
-    "completion_tokens": 54,
+    "prompt_tokens": 976,
+    "completion_tokens": 47,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 791,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 351,
     "episodic_fact_tokens": 38,
-    "latency_ms": 8524.28
+    "latency_ms": 3064.0
   },
   {
     "setting": "eviction_keep_12",
     "turn": 19,
-    "prompt_tokens": 1460,
-    "completion_tokens": 41,
+    "prompt_tokens": 949,
+    "completion_tokens": 40,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 808,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 335,
     "episodic_fact_tokens": 33,
-    "latency_ms": 2091.91
+    "latency_ms": 2808.14
   },
   {
     "setting": "eviction_keep_12",
     "turn": 20,
-    "prompt_tokens": 1456,
-    "completion_tokens": 36,
+    "prompt_tokens": 957,
+    "completion_tokens": 27,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 427,
-    "short_term_window_tokens": 803,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 351,
     "episodic_fact_tokens": 38,
-    "latency_ms": 53105.18
+    "latency_ms": 24515.57
   },
   {
     "setting": "eviction_keep_12",
     "turn": 21,
-    "prompt_tokens": 1449,
-    "completion_tokens": 49,
+    "prompt_tokens": 921,
+    "completion_tokens": 34,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 803,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 325,
     "episodic_fact_tokens": 33,
-    "latency_ms": 10064.89
+    "latency_ms": 2405.31
   },
   {
     "setting": "eviction_keep_12",
     "turn": 22,
-    "prompt_tokens": 1462,
-    "completion_tokens": 34,
+    "prompt_tokens": 911,
+    "completion_tokens": 59,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 810,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 315,
     "episodic_fact_tokens": 36,
-    "latency_ms": 4321.53
+    "latency_ms": 3392.34
   },
   {
     "setting": "eviction_keep_12",
     "turn": 23,
-    "prompt_tokens": 1454,
-    "completion_tokens": 34,
+    "prompt_tokens": 926,
+    "completion_tokens": 29,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 800,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 327,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3156.41
+    "latency_ms": 2234.62
   },
   {
     "setting": "eviction_keep_12",
     "turn": 24,
-    "prompt_tokens": 1438,
-    "completion_tokens": 34,
+    "prompt_tokens": 937,
+    "completion_tokens": 14,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 765,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 318,
     "episodic_fact_tokens": 38,
-    "latency_ms": 3104.21
+    "latency_ms": 1572.5
   },
   {
     "setting": "eviction_keep_12",
     "turn": 25,
-    "prompt_tokens": 1411,
-    "completion_tokens": 32,
+    "prompt_tokens": 896,
+    "completion_tokens": 44,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 741,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 288,
     "episodic_fact_tokens": 41,
-    "latency_ms": 14152.88
+    "latency_ms": 13886.37
   },
   {
     "setting": "eviction_keep_12",
     "turn": 26,
-    "prompt_tokens": 1403,
-    "completion_tokens": 40,
+    "prompt_tokens": 895,
+    "completion_tokens": 44,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 735,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 289,
     "episodic_fact_tokens": 30,
-    "latency_ms": 1754.32
+    "latency_ms": 2583.62
   },
   {
     "setting": "eviction_keep_12",
     "turn": 27,
-    "prompt_tokens": 1395,
-    "completion_tokens": 45,
+    "prompt_tokens": 912,
+    "completion_tokens": 32,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 727,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 307,
     "episodic_fact_tokens": 36,
-    "latency_ms": 2551.25
+    "latency_ms": 2113.12
   },
   {
     "setting": "eviction_keep_12",
     "turn": 28,
-    "prompt_tokens": 1397,
-    "completion_tokens": 54,
+    "prompt_tokens": 919,
+    "completion_tokens": 30,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 719,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 302,
     "episodic_fact_tokens": 33,
-    "latency_ms": 4586.91
+    "latency_ms": 2024.71
   },
   {
     "setting": "eviction_keep_12",
     "turn": 29,
-    "prompt_tokens": 1404,
-    "completion_tokens": 41,
+    "prompt_tokens": 881,
+    "completion_tokens": 29,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 740,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 267,
     "episodic_fact_tokens": 34,
-    "latency_ms": 5894.19
+    "latency_ms": 1881.56
   },
   {
     "setting": "eviction_keep_12",
     "turn": 30,
-    "prompt_tokens": 1410,
-    "completion_tokens": 36,
+    "prompt_tokens": 877,
+    "completion_tokens": 27,
     "system_primer_tokens": 33,
-    "long_term_summary_tokens": 429,
-    "short_term_window_tokens": 752,
+    "long_term_summary_tokens": 416,
+    "short_term_window_tokens": 271,
     "episodic_fact_tokens": 37,
-    "latency_ms": 46491.12
+    "latency_ms": 24170.79
   }
 ]

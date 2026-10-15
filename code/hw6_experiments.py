@@ -11,7 +11,6 @@ import yaml
 
 import src.hw6_memory as memory
 from src.hw6_memory_api import ChatRequest, chat
-from src.mongo_db import get_messages_collection
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "reports" / "hw06" / "raw"
@@ -39,6 +38,7 @@ def score_probe(reply: str, expected: list[str]) -> int:
 
 def run_setting(label: str, n: int, compress: bool = False) -> dict:
     memory.SHORT_TERM_N = n
+    memory.EVICTION_KEEP_N = 12 if compress else None
     user_id = f"hw6_{label}_{int(time.time())}"
     session_id = f"session_{label}"
     turns = []
@@ -57,12 +57,6 @@ def run_setting(label: str, n: int, compress: bool = False) -> dict:
             "episodic_fact_tokens": used.get("episodic_fact_tokens", 0),
             "latency_ms": used.get("latency_ms", round((time.perf_counter() - started) * 1000, 2)),
         })
-
-    if compress:
-        collection = get_messages_collection()
-        documents = list(collection.find({"user_id": user_id, "session_id": session_id}).sort("created_at", -1))
-        for document in documents[12:]:
-            collection.delete_one({"_id": document["_id"]})
 
     probes = yaml.safe_load((ROOT / "memory_probes.yaml").read_text(encoding="utf-8"))["probes"]
     probe_results = []
@@ -84,6 +78,7 @@ def main() -> None:
         run_setting("SHORT_TERM_N=30", 30),
         run_setting("eviction_keep_12", 30, compress=True),
     ]
+    memory.EVICTION_KEEP_N = None
     turns = [row for result in results for row in result["turns"]]
     probes = [row for result in results for row in result["probes"]]
     (RAW / "memory_turns.json").write_text(json.dumps(turns, indent=2), encoding="utf-8")
@@ -110,6 +105,14 @@ def main() -> None:
         row["estimated_cost_10000_conversations"] = round(
             input_tokens / 1_000_000 + output_tokens * 5 / 1_000_000,
             4,
+        )
+    baseline = next(
+        (row["mean_prompt_tokens"] for row in summary if row["setting"] == "SHORT_TERM_N=30"),
+        0,
+    )
+    for row in summary:
+        row["prompt_token_savings_vs_n30"] = round(
+            baseline - row["mean_prompt_tokens"], 2
         )
     best = max(summary, key=lambda row: (row["mean_probe_quality"], -row["mean_prompt_tokens"]))
     worst = min(summary, key=lambda row: (row["mean_probe_quality"], -row["mean_prompt_tokens"]))

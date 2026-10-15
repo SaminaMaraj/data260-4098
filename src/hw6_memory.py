@@ -18,6 +18,11 @@ from .mongo_db import (
 
 
 SHORT_TERM_N = int(os.environ.get("SHORT_TERM_N", "12"))
+# Optional experiment-only cap used by the eviction/compression comparison.
+# When set, older messages remain persisted in MongoDB but are excluded from
+# the prompt window. This makes token savings measurable without destroying
+# the underlying conversation history.
+EVICTION_KEEP_N: int | None = None
 SUMMARIZE_EVERY_USER_MSGS = int(
     os.environ.get("SUMMARIZE_EVERY_USER_MSGS", "5")
 )
@@ -75,11 +80,12 @@ def load_short_term_window(user_id: str, session_id: str | None) -> list[dict]:
         query["session_id"] = None
     else:
         query["session_id"] = session_id
+    window_size = EVICTION_KEEP_N or SHORT_TERM_N
     documents = list(
         get_messages_collection()
         .find(query)
         .sort("created_at", -1)
-        .limit(SHORT_TERM_N)
+        .limit(window_size)
     )
     documents.reverse()
     return documents
