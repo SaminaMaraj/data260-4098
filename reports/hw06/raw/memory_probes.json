@@ -1,0 +1,122 @@
+[
+  {
+    "setting": "SHORT_TERM_N=4",
+    "probe_id": "route",
+    "score": 3,
+    "reply": "You mentioned **VTA Route 22**."
+  },
+  {
+    "setting": "SHORT_TERM_N=4",
+    "probe_id": "goal",
+    "score": 3,
+    "reply": "Your main goal for this assistant is to **build a reliable incident assistant for tracking municipal transit delays**, with a focus on studying the impact of delays (e.g., on VTA Route 22) on commuters and students."
+  },
+  {
+    "setting": "SHORT_TERM_N=4",
+    "probe_id": "difficulty",
+    "score": 2,
+    "reply": "The transit issue or topic you mentioned as difficult is **delays on VTA Route 22**, particularly their impact on commuters and students."
+  },
+  {
+    "setting": "SHORT_TERM_N=4",
+    "probe_id": "preference",
+    "score": 4,
+    "reply": "You mentioned a **preference for concise answers with one practical example**."
+  },
+  {
+    "setting": "SHORT_TERM_N=4",
+    "probe_id": "fact",
+    "score": 3,
+    "reply": "The important fact about your project is that it **uses MongoDB**."
+  },
+  {
+    "setting": "SHORT_TERM_N=12",
+    "probe_id": "route",
+    "score": 3,
+    "reply": "You mentioned VTA Route 22 as the key route for your project."
+  },
+  {
+    "setting": "SHORT_TERM_N=12",
+    "probe_id": "goal",
+    "score": 3,
+    "reply": "Your main goal for this assistant is to build a reliable incident assistant that improves passenger experience and reliability by providing timely information on delays and service disruptions, particularly on VTA Route 22."
+  },
+  {
+    "setting": "SHORT_TERM_N=12",
+    "probe_id": "difficulty",
+    "score": 2,
+    "reply": "You did not explicitly state that any specific transit issue or topic was difficult. The focus was on studying how delays (e.g., on VTA Route 22) impact passengers and improving incident management through a reliable incident assistant."
+  },
+  {
+    "setting": "SHORT_TERM_N=12",
+    "probe_id": "preference",
+    "score": 4,
+    "reply": "You mentioned a preference for concise answers with one practical example."
+  },
+  {
+    "setting": "SHORT_TERM_N=12",
+    "probe_id": "fact",
+    "score": 3,
+    "reply": "Please remember that your project uses MongoDB."
+  },
+  {
+    "setting": "SHORT_TERM_N=30",
+    "probe_id": "route",
+    "score": 3,
+    "reply": "You mentioned **VTA Route 22**."
+  },
+  {
+    "setting": "SHORT_TERM_N=30",
+    "probe_id": "goal",
+    "score": 3,
+    "reply": "Your main goal for this assistant is to **build a reliable incident assistant** to improve passenger experience and reliability."
+  },
+  {
+    "setting": "SHORT_TERM_N=30",
+    "probe_id": "difficulty",
+    "score": 4,
+    "reply": "The transit issue or topic you said was difficult is **episodic memory retrieval**."
+  },
+  {
+    "setting": "SHORT_TERM_N=30",
+    "probe_id": "preference",
+    "score": 4,
+    "reply": "You mentioned **preferring concise answers with one practical example**."
+  },
+  {
+    "setting": "SHORT_TERM_N=30",
+    "probe_id": "fact",
+    "score": 3,
+    "reply": "Please remember that your project uses **MongoDB**."
+  },
+  {
+    "setting": "eviction_keep_12",
+    "probe_id": "route",
+    "score": 3,
+    "reply": "You mentioned **VTA Route 22** as the central focus of your study."
+  },
+  {
+    "setting": "eviction_keep_12",
+    "probe_id": "goal",
+    "score": 3,
+    "reply": "Your main goal for this assistant is to build a reliable incident assistant that improves passenger experience and reliability by providing timely notifications about delays on VTA Route 22."
+  },
+  {
+    "setting": "eviction_keep_12",
+    "probe_id": "difficulty",
+    "score": 4,
+    "reply": "You mentioned that **episodic memory retrieval** was difficult."
+  },
+  {
+    "setting": "eviction_keep_12",
+    "probe_id": "preference",
+    "score": 4,
+    "reply": "You mentioned a **preference for concise answers with one practical example**."
+  },
+  {
+    "setting": "eviction_keep_12",
+    "probe_id": "fact",
+    "score": 3,
+    "reply": "Please remember that your project uses **MongoDB** for data storage."
+  }
+]

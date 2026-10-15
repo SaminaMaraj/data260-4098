@@ -1,0 +1,21 @@
+probes:
+  - id: route
+    question: "Which transit route or line did I mention?"
+    expected_criteria: [route, line, "VTA Route 22"]
+    rubric: "1=no answer; 3=partially correct; 5=correct route with context"
+  - id: goal
+    question: "What is my main goal for this assistant?"
+    expected_criteria: [goal, objective, reliable]
+    rubric: "1=no answer; 3=general goal; 5=specific remembered goal"
+  - id: difficulty
+    question: "What transit issue or topic did I say was difficult?"
+    expected_criteria: [difficult, episodic, retrieval]
+    rubric: "1=no answer; 3=related issue; 5=the exact remembered issue"
+  - id: preference
+    question: "What response preference did I mention?"
+    expected_criteria: [prefer, concise, example]
+    rubric: "1=no answer; 3=general preference; 5=exact preference"
+  - id: fact
+    question: "What important fact about my project should you remember?"
+    expected_criteria: [project, municipal, transit, MongoDB]
+    rubric: "1=no answer; 3=related fact; 5=the specific project fact"

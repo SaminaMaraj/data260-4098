@@ -1,0 +1,31 @@
+{
+  "before_lines": 55,
+  "after_lines": 37,
+  "duplicates_merged": 19,
+  "contradictions": [
+    {
+      "key": "response preference",
+      "old": "- Response preference: concise",
+      "new": "- Response preference: detailed",
+      "resolution": "retained latest"
+    },
+    {
+      "key": "preferred model",
+      "old": "- Preferred model: qwen3:8b",
+      "new": "- Preferred model: qwen3:4b",
+      "resolution": "retained latest"
+    },
+    {
+      "key": "project status",
+      "old": "- Project status: active",
+      "new": "- Project status: paused",
+      "resolution": "retained latest"
+    }
+  ],
+  "incorrectly_resolved": [],
+  "output_path": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.consolidated.md",
+  "original_file": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.original.md",
+  "consolidated_file": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.consolidated.md",
+  "original_line_count_check": 55,
+  "under_40_check": true
+}

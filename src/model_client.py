@@ -28,14 +28,17 @@ def complete(
             os.environ.get("MODEL_TEMPERATURE", "0.0")
         )
 
-    client = Client(host=selected_base_url)
+    timeout = float(os.environ.get("OLLAMA_TIMEOUT", "90"))
+    client = Client(host=selected_base_url, timeout=timeout)
 
     request = {
         "model": selected_model,
         "messages": messages,
         "stream": False,
+        "think": False,
         "options": {
             "temperature": temperature,
+            "num_predict": int(os.environ.get("MODEL_MAX_TOKENS", "256")),
         },
     }
 

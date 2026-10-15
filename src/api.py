@@ -24,6 +24,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.hw4_database import Base, engine, db_session_basede26
 from src import hw4_models
 from src.hw4_api import router as hw4_router
+from src.mongo_api import router as mongo_router
+from src.hw6_memory_api import router as memory_router
 
 
 PORT_BASE = 8498
@@ -111,6 +113,8 @@ def home_redirect(error: str | None = None) -> RedirectResponse:
 app.include_router(auth_router)
 app.include_router(hw4_router)
 app.include_router(hw4_benchmark_router)
+app.include_router(mongo_router)
+app.include_router(memory_router)
 
 
 @app.get("/incidents", response_class=FileResponse)

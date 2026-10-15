@@ -1,0 +1,3 @@
+HW6 run log
+Implementation started: 2026-10-14
+Experiment results will be appended after the local MongoDB/Ollama runs.

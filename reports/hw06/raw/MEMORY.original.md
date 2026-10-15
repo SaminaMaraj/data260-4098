@@ -1,0 +1,55 @@
+- Fact 1: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 3: municipal transit project detail
+- Fact 4: municipal transit project detail
+- Fact 5: municipal transit project detail
+- Fact 6: municipal transit project detail
+- Fact 7: municipal transit project detail
+- Fact 8: municipal transit project detail
+- Fact 9: municipal transit project detail
+- Fact 10: municipal transit project detail
+- Fact 11: municipal transit project detail
+- Fact 12: municipal transit project detail
+- Fact 13: municipal transit project detail
+- Fact 14: municipal transit project detail
+- Fact 15: municipal transit project detail
+- Fact 16: municipal transit project detail
+- Fact 17: municipal transit project detail
+- Fact 18: municipal transit project detail
+- Fact 19: municipal transit project detail
+- Fact 20: municipal transit project detail
+- Fact 21: municipal transit project detail
+- Fact 22: municipal transit project detail
+- Fact 23: municipal transit project detail
+- Fact 24: municipal transit project detail
+- Fact 25: municipal transit project detail
+- Fact 26: municipal transit project detail
+- Fact 27: municipal transit project detail
+- Fact 28: municipal transit project detail
+- Fact 29: municipal transit project detail
+- Fact 30: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Fact 1: municipal transit project detail
+- Response preference: concise
+- Response preference: detailed
+- Preferred model: qwen3:8b
+- Preferred model: qwen3:4b
+- Project status: active
+- Project status: paused
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail
+- Fact 2: municipal transit project detail

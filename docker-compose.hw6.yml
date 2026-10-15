@@ -1,0 +1,12 @@
+services:
+  mongodb-hw6:
+    image: mongo:7
+    container_name: data260-4098-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - data260_4098_mongodb:/data/db
+
+volumes:
+  data260_4098_mongodb:

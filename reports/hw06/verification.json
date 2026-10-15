@@ -1,0 +1,28 @@
+{
+  "homework": 6,
+  "SID4": 4098,
+  "PORT_BASE": 8498,
+  "PREFIX": "s4098",
+  "SEED": 4098,
+  "VERIFY_SEED": 264098,
+  "model": "qwen3:8b",
+  "checks": [
+    {
+      "name": "FastAPI health",
+      "passed": true
+    },
+    {
+      "name": "HW6 routes registered",
+      "passed": true
+    },
+    {
+      "name": "Mongo Pydantic validation rejects missing fields",
+      "passed": true
+    },
+    {
+      "name": "Required HW6 files exist",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

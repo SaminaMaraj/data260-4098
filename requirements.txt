@@ -18,6 +18,7 @@ beautifulsoup4==4.14.2
 PyYAML==6.0.3
 SQLAlchemy
 PyMySQL
+pymongo==4.15.3
 email-validator
 httpx
 mcp[cli]<2

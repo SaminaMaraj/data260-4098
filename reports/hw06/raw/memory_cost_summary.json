@@ -1,0 +1,38 @@
+{
+  "settings": [
+    {
+      "setting": "SHORT_TERM_N=12",
+      "mean_prompt_tokens": 761.2,
+      "mean_completion_tokens": 39.33,
+      "mean_latency_ms": 5837.97,
+      "mean_probe_quality": 3.0,
+      "estimated_cost_10000_conversations": 287.355
+    },
+    {
+      "setting": "SHORT_TERM_N=30",
+      "mean_prompt_tokens": 1087.83,
+      "mean_completion_tokens": 41.8,
+      "mean_latency_ms": 6425.51,
+      "mean_probe_quality": 3.4,
+      "estimated_cost_10000_conversations": 389.049
+    },
+    {
+      "setting": "SHORT_TERM_N=4",
+      "mean_prompt_tokens": 544.1,
+      "mean_completion_tokens": 47.53,
+      "mean_latency_ms": 5222.0,
+      "mean_probe_quality": 3.0,
+      "estimated_cost_10000_conversations": 234.525
+    },
+    {
+      "setting": "eviction_keep_12",
+      "mean_prompt_tokens": 1087.83,
+      "mean_completion_tokens": 41.8,
+      "mean_latency_ms": 11627.23,
+      "mean_probe_quality": 3.4,
+      "estimated_cost_10000_conversations": 389.049
+    }
+  ],
+  "best_setting": "SHORT_TERM_N=30",
+  "worst_setting": "SHORT_TERM_N=12"
+}
