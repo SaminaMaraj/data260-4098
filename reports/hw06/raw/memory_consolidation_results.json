@@ -23,9 +23,9 @@
     }
   ],
   "incorrectly_resolved": [],
-  "output_path": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.consolidated.md",
-  "original_file": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.original.md",
-  "consolidated_file": "/workspace/scratch/400be7a1fef1/work/repo2/reports/hw06/raw/MEMORY.consolidated.md",
+  "output_path": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.consolidated.md",
+  "original_file": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.original.md",
+  "consolidated_file": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.consolidated.md",
   "original_line_count_check": 55,
   "under_40_check": true
 }
