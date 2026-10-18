@@ -6,7 +6,7 @@
   "SEED": 4098,
   "VERIFY_SEED": 264098,
   "DOMAIN_ID": 2,
-  "commit_hash": "28360522ba9d7ec9ddf7e050661f9ffe0fe5040f",
+  "commit_hash": "d756ec5362f0050acc0895719109afb9d57261ff",
   "model": "qwen3:8b",
   "checks": [
     {
