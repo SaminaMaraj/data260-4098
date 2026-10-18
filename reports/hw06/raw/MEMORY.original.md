@@ -1,55 +1,55 @@
-- Fact 1: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 3: municipal transit project detail
-- Fact 4: municipal transit project detail
-- Fact 5: municipal transit project detail
-- Fact 6: municipal transit project detail
-- Fact 7: municipal transit project detail
-- Fact 8: municipal transit project detail
-- Fact 9: municipal transit project detail
-- Fact 10: municipal transit project detail
-- Fact 11: municipal transit project detail
-- Fact 12: municipal transit project detail
-- Fact 13: municipal transit project detail
-- Fact 14: municipal transit project detail
-- Fact 15: municipal transit project detail
-- Fact 16: municipal transit project detail
-- Fact 17: municipal transit project detail
-- Fact 18: municipal transit project detail
-- Fact 19: municipal transit project detail
-- Fact 20: municipal transit project detail
-- Fact 21: municipal transit project detail
-- Fact 22: municipal transit project detail
-- Fact 23: municipal transit project detail
-- Fact 24: municipal transit project detail
-- Fact 25: municipal transit project detail
-- Fact 26: municipal transit project detail
-- Fact 27: municipal transit project detail
-- Fact 28: municipal transit project detail
-- Fact 29: municipal transit project detail
-- Fact 30: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
-- Fact 1: municipal transit project detail
+- Route 22 has frequent afternoon delays
+- Main incident categories include delay and collision
+- Reliable transit analysis is an important project goal
+- The project tracks municipal transit incidents for VTA routes
+- Incidents are stored in the s4098_doc MongoDB database
+- The FastAPI backend runs on port 8498
+- Incident titles are limited to 100 characters
+- Incident status values are open, investigating, and resolved
+- Service-suspension incidents need a clear route line
+- Infrastructure issues include signal and track problems
+- Diridon Station had a signal problem in the sample data
+- The VTA Green Line appears in the sample incident
+- Delays are analyzed by route line and time of day
+- The user studies how delays affect passengers
+- The user prefers one practical example per answer
+- Episodic facts are retrieved by cosine similarity
+- Embeddings use a deterministic SHA-256 hashed vector
+- Session summaries are created every five user messages
+- Lifetime summaries condense recent session summaries
+- The short-term window keeps the latest messages
+- Memory is scoped by user_id and session_id
+- The assistant must not invent incident details
+- Experiments compare short-term window sizes 4, 12, and 30
+- Probe questions are scored on a 1-5 rubric
+- The local model runs through Ollama
+- AGENT.md stores durable project instructions
+- MEMORY.md stores durable facts from conversations
+- Secrets and API keys must never be committed
+- HW1-HW5 behavior must remain compatible
+- Reproducible runs use SID4 4098
 - Response preference: concise
 - Response preference: detailed
 - Preferred model: qwen3:8b
 - Preferred model: qwen3:4b
 - Project status: active
 - Project status: paused
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
-- Fact 2: municipal transit project detail
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Route 22 has frequent afternoon delays
+- Main incident categories include delay and collision
+- Main incident categories include delay and collision
+- Main incident categories include delay and collision
+- Main incident categories include delay and collision
+- Main incident categories include delay and collision
+- Main incident categories include delay and collision
+- Reliable transit analysis is an important project goal
+- Reliable transit analysis is an important project goal
+- Reliable transit analysis is an important project goal
+- Reliable transit analysis is an important project goal
+- Reliable transit analysis is an important project goal
+- Reliable transit analysis is an important project goal

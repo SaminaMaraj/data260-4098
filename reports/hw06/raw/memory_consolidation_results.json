@@ -22,7 +22,22 @@
       "resolution": "retained latest"
     }
   ],
-  "incorrectly_resolved": [],
+  "incorrectly_resolved": [
+    {
+      "key": "preferred model",
+      "old": "- Preferred model: qwen3:8b",
+      "new": "- Preferred model: qwen3:4b",
+      "resolution": "retained latest",
+      "reason": "expected configured value: qwen3:8b"
+    },
+    {
+      "key": "project status",
+      "old": "- Project status: active",
+      "new": "- Project status: paused",
+      "resolution": "retained latest",
+      "reason": "expected configured value: active"
+    }
+  ],
   "output_path": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.consolidated.md",
   "original_file": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.original.md",
   "consolidated_file": "/Users/samina/Documents/data260-4098/reports/hw06/raw/MEMORY.consolidated.md",

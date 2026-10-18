@@ -17,8 +17,41 @@ def main() -> None:
     original_path = RAW / "MEMORY.original.md"
     consolidated_path = RAW / "MEMORY.consolidated.md"
 
-    unique_facts = [f"- Fact {index}: municipal transit project detail" for index in range(1, 31)]
-    duplicate_facts = ["- Fact 1: municipal transit project detail"] * 12
+    # Three realistic facts are repeated: 8 + 7 + 7 copies = 19 duplicate lines.
+    repeated_facts = [
+        ("- Route 22 has frequent afternoon delays", 8),
+        ("- Main incident categories include delay and collision", 7),
+        ("- Reliable transit analysis is an important project goal", 7),
+    ]
+    unique_facts = [
+        "- The project tracks municipal transit incidents for VTA routes",
+        "- Incidents are stored in the s4098_doc MongoDB database",
+        "- The FastAPI backend runs on port 8498",
+        "- Incident titles are limited to 100 characters",
+        "- Incident status values are open, investigating, and resolved",
+        "- Service-suspension incidents need a clear route line",
+        "- Infrastructure issues include signal and track problems",
+        "- Diridon Station had a signal problem in the sample data",
+        "- The VTA Green Line appears in the sample incident",
+        "- Delays are analyzed by route line and time of day",
+        "- The user studies how delays affect passengers",
+        "- The user prefers one practical example per answer",
+        "- Episodic facts are retrieved by cosine similarity",
+        "- Embeddings use a deterministic SHA-256 hashed vector",
+        "- Session summaries are created every five user messages",
+        "- Lifetime summaries condense recent session summaries",
+        "- The short-term window keeps the latest messages",
+        "- Memory is scoped by user_id and session_id",
+        "- The assistant must not invent incident details",
+        "- Experiments compare short-term window sizes 4, 12, and 30",
+        "- Probe questions are scored on a 1-5 rubric",
+        "- The local model runs through Ollama",
+        "- AGENT.md stores durable project instructions",
+        "- MEMORY.md stores durable facts from conversations",
+        "- Secrets and API keys must never be committed",
+        "- HW1-HW5 behavior must remain compatible",
+        "- Reproducible runs use SID4 4098",
+    ]
     contradictory_facts = [
         "- Response preference: concise",
         "- Response preference: detailed",
@@ -27,8 +60,9 @@ def main() -> None:
         "- Project status: active",
         "- Project status: paused",
     ]
-    additional_duplicates = ["- Fact 2: municipal transit project detail"] * 7
-    lines = unique_facts + duplicate_facts + contradictory_facts + additional_duplicates
+    lines = [fact for fact, _ in repeated_facts] + unique_facts + contradictory_facts
+    for fact, copies in repeated_facts:
+        lines += [fact] * (copies - 1)
     assert len(lines) == 55
     original_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

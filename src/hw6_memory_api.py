@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import time
 from datetime import datetime
+from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
@@ -36,6 +37,8 @@ class ChatRequest(BaseModel):
 class MemoryCommandRequest(BaseModel):
     command: str = Field(..., min_length=1, max_length=20)
     recent_messages: list[str] = Field(default_factory=list)
+    memory_file: str | None = None
+    output_file: str | None = None
 
 
 @router.post("/chat")
@@ -77,7 +80,18 @@ def chat(payload: ChatRequest) -> dict:
 
 @router.post("/memory/command")
 def memory_command(payload: MemoryCommandRequest) -> dict:
-    return handle_memory_command(payload.command, payload.recent_messages)
+    root = Path(__file__).resolve().parents[1]
+    memory_path = (root / payload.memory_file).resolve() if payload.memory_file else None
+    output_path = (root / payload.output_file).resolve() if payload.output_file else None
+    for candidate in (memory_path, output_path):
+        if candidate and root not in candidate.parents:
+            raise HTTPException(status_code=400, detail="Memory paths must stay inside the repository.")
+    return handle_memory_command(
+        payload.command,
+        payload.recent_messages,
+        memory_path=memory_path or root / "MEMORY.md",
+        output_path=output_path,
+    )
 
 
 def _iso(document: dict | None) -> dict | None:

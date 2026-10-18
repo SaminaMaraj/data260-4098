@@ -1,3 +1,48 @@
-HW6 run log
+HW6 Run Log
+===========
+
 Implementation started: 2026-10-14
-Experiment results will be appended after the local MongoDB/Ollama runs.
+
+2026-10-17
+Command:
+PYTHONPATH=. python tests/test_file_memory_hw06.py
+
+Result:
+PASS test_timestamp_inside_comment_is_parsed
+PASS test_recent_and_short_memory_does_not_need_consolidation
+PASS test_old_timestamp_needs_consolidation
+PASS test_more_than_40_lines_needs_consolidation
+PASS test_help_explains_every_command
+
+Command:
+PYTHONPATH=. python code/run_memory_consolidation.py
+
+Result:
+before_lines: 55
+after_lines: 37
+duplicates_merged: 19
+contradictions: 3
+incorrectly_resolved: 2
+under_40_check: true
+
+Command:
+POST /api/memory/command with /compact on
+reports/hw06/raw/MEMORY.original.md
+
+Result:
+before_lines: 55
+after_lines: 37
+duplicates_merged: 19
+contradictions: 3
+incorrectly_resolved: 2
+
+Command:
+make verify-hw06
+
+Result:
+FastAPI health: passed
+HW6 routes registered: passed
+POST /api/chat returns a reply: passed
+Mongo Pydantic validation rejects missing fields: passed
+Required HW6 files exist: passed
+Overall: passed
