@@ -1,0 +1,10 @@
+# HW7: Ruff runs on every commit (only on staged Python files).
+#   pip install pre-commit ruff==0.15.6
+#   pre-commit install
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.6
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format

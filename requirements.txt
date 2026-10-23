@@ -22,3 +22,6 @@ pymongo==4.15.3
 email-validator
 httpx
 mcp[cli]<2
+PyJWT==2.10.1
+ruff==0.15.6
+pre-commit

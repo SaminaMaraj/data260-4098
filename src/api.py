@@ -3,30 +3,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
-from fastapi import FastAPI, Form, HTTPException, Query
+from fastapi import Depends, FastAPI, Form, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from starlette.middleware.sessions import SessionMiddleware
-from src.hw4_benchmark_api import router as hw4_benchmark_router
-
-
-
-
-from src.auth import router as auth_router
-
-from fastapi import Depends
 from sqlalchemy.orm import Session
+from starlette.middleware.sessions import SessionMiddleware
 
-
-from fastapi.middleware.cors import CORSMiddleware
-
-from src.hw4_database import Base, engine, db_session_basede26
 from src import hw4_models
+from src.auth import router as auth_router
 from src.hw4_api import router as hw4_router
-from src.mongo_api import router as mongo_router
+from src.hw4_benchmark_api import router as hw4_benchmark_router
+from src.hw4_database import Base, db_session_basede26, engine
 from src.hw6_memory_api import router as memory_router
-
+from src.hw7_auth import router as jwt_auth_router
+from src.hw7_bikeshare_api import router as bikeshare_router
+from src.mongo_api import router as mongo_router
 
 PORT_BASE = 8498
 
@@ -91,7 +84,9 @@ INCIDENTS: list[Incident] = [
         incidentTitle="Light Rail Service Interruption",
         routeLine="VTA Green Line",
         submitterEmail="kazisaminamaraj.mumu@sjsu.edu",
-        description="Light rail service was interrupted because of a track maintenance issue.",
+        description=(
+            "Light rail service was interrupted because of a track maintenance issue."
+        ),
         category="service-suspension",
         termsAccepted=True,
         submissionDate=datetime.now(timezone.utc).isoformat(),
@@ -115,12 +110,15 @@ app.include_router(hw4_router)
 app.include_router(hw4_benchmark_router)
 app.include_router(mongo_router)
 app.include_router(memory_router)
+app.include_router(jwt_auth_router)
+app.include_router(bikeshare_router)
 
 
 @app.get("/incidents", response_class=FileResponse)
 async def incidents_page() -> FileResponse:
     """Keep the HW1/HW2 incident interface available under its own page."""
     return FileResponse(WEB_DIR / "index.html")
+
 
 def get_db():
     db = db_session_basede26()
@@ -230,8 +228,6 @@ async def delete_highest_incident() -> RedirectResponse:
 
     highest_id = max(item.id for item in INCIDENTS)
 
-    INCIDENTS[:] = [
-        item for item in INCIDENTS if item.id != highest_id
-    ]
+    INCIDENTS[:] = [item for item in INCIDENTS if item.id != highest_id]
 
     return home_redirect()

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bay Wheels Membership Agent</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --card: #ffffff; --ink: #1d232b; --muted: #5f6b7a;
+    --line: #dfe3e8; --accent: #1f6feb; --good: #1a7f37; --warn: #9a6700;
+    --bad: #cf222e; --chip: #eef2f7; --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 14px 20px; background: #0f2a4a; color: #fff;
+           display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  header h1 { margin: 0; font-size: 18px; }
+  header span { opacity: .85; font-size: 13px; }
+  main { max-width: 1280px; margin: 0 auto; padding: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+  .card h2 { margin: 0 0 10px; font-size: 15px; }
+  form { display: grid; grid-template-columns: 1fr 1.4fr .7fr auto; gap: 10px; align-items: end; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  input[type=text], input[type=file] { width: 100%; padding: 7px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .opts { grid-column: 1 / -1; display: flex; gap: 18px; font-size: 13px; color: var(--muted); }
+  button { padding: 9px 22px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+  button:disabled { opacity: .55; cursor: wait; }
+  .metrics { display: flex; gap: 10px; flex-wrap: wrap; }
+  .metric { background: var(--chip); border-radius: 8px; padding: 8px 12px; min-width: 140px; }
+  .metric b { display: block; font-size: 18px; }
+  .metric small { color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 14px; }
+  .timeline { max-height: 1100px; overflow: auto; }
+  .step { border-left: 3px solid var(--line); padding: 6px 10px; margin: 0 0 8px; }
+  .step.call { border-color: var(--accent); }
+  .step.obs { border-color: var(--good); background: #fafbfc; }
+  .step.obs.err { border-color: var(--bad); }
+  .step .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+  pre { margin: 4px 0 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.4 var(--mono); }
+  .decision { font-size: 20px; font-weight: 700; padding: 10px 14px; border-radius: 8px; display: inline-block; }
+  .decision.member { background: #dafbe1; color: var(--good); }
+  .decision.payg { background: #ddf4ff; color: #0550ae; }
+  .decision.none { background: #ffebe9; color: var(--bad); }
+  table { border-collapse: collapse; width: 100%; margin: 6px 0 12px; font-size: 13px; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+  th { color: var(--muted); font-weight: 600; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+  .audit-ok { color: var(--good); font-weight: 600; }
+  .audit-bad { color: var(--bad); font-weight: 600; }
+  ul { margin: 4px 0 10px; padding-left: 20px; }
+  @media (max-width: 900px) { form { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Bay Wheels: Monthly Membership vs Pay-Per-Use (LangGraph ReAct agent)</h1>
+  <span>Kazi Samina Maraj Mumu · DATA 260 HW7 · s4098 · port 8498</span>
+</header>
+<main>
+  <section class="card">
+    <form id="run-form">
+      <div><label for="trips">Trip CSV</label><input id="trips" name="trips" type="file" accept=".csv" required></div>
+      <div><label for="url">Pricing page URL</label>
+        <input id="url" name="pricing_url" type="text" value="https://www.lyft.com/bikes/bay-wheels/pricing" required></div>
+      <div><label for="label">Run label</label><input id="label" name="label" type="text" value="scenario_A"></div>
+      <div><button id="run-btn" type="submit">Run</button></div>
+      <div class="opts">
+        <label><input type="checkbox" id="pd" checked> prompt defense (untrusted-data labels)</label>
+        <label><input type="checkbox" id="td" checked> tool defense (read-only SELECT)</label>
+        <span id="status"></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Metrics</h2>
+    <div class="metrics">
+      <div class="metric"><small>Step count (tool calls)</small><b id="m-steps">–</b></div>
+      <div class="metric"><small>Total time</small><b id="m-time">–</b></div>
+      <div class="metric"><small>Stop reason</small><b id="m-stop">–</b></div>
+      <div class="metric"><small>Trip rows loaded</small><b id="m-rows">–</b></div>
+      <div class="metric"><small>Defenses</small><b id="m-def">–</b></div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Tool-call timeline</h2>
+      <div id="timeline" class="timeline muted">Upload a CSV and press Run.</div>
+    </section>
+    <section class="card">
+      <h2>Results</h2>
+      <div id="results" class="muted">No run yet.</div>
+    </section>
+  </div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money = (v) => (v === null || v === undefined || v === "" || isNaN(Number(v))) ? esc(v ?? "–") : "$" + Number(v).toFixed(2);
+
+function shortOutput(out) {
+  if (!out) return "";
+  if (out.success === false) return "error: " + (out.error || "");
+  const d = out.data || {};
+  if (Array.isArray(d.passages)) {
+    return d.passages.map((p) => `[score ${p.score}] ${String(p.text).slice(0, 150)}…`).join("\n")
+      + (d.sha256 ? `\nsha256 ${d.sha256.slice(0, 16)}…` : "");
+  }
+  if (Array.isArray(d.rows)) {
+    const shown = d.rows.slice(0, 4).map((r) => JSON.stringify(r)).join("\n");
+    return `row_count=${d.row_count}\n${shown}${d.rows.length > 4 ? "\n…" : ""}`;
+  }
+  if (d.value !== undefined) return `value=${d.value}${d.units ? " " + d.units : ""}`;
+  return JSON.stringify(out).slice(0, 300);
+}
+
+function renderTimeline(steps) {
+  if (!steps.length) { $("timeline").innerHTML = "<p>No tool calls.</p>"; return; }
+  let n = 0;
+  $("timeline").classList.remove("muted");
+  $("timeline").innerHTML = steps.map((s) => {
+    if (s.type === "tool_call") {
+      n += 1;
+      return `<div class="step call"><div class="tag">#${n} call · ${esc(s.tool)}</div><pre>${esc(s.tool === "csv_sql" ? s.input.sql : JSON.stringify(s.input))}</pre></div>`;
+    }
+    const err = s.output && s.output.success === false;
+    return `<div class="step obs ${err ? "err" : ""}"><div class="tag">observation · ${esc(s.tool)}</div><pre>${esc(shortOutput(s.output))}</pre></div>`;
+  }).join("");
+}
+
+function renderResults(r) {
+  const f = r.final || {};
+  const cls = r.decision === "Buy Monthly Membership" ? "member" : r.decision ? "payg" : "none";
+  const a = r.audit || {};
+  const costRows = [
+    ["Pay-per-use total", f.pay_per_use_total],
+    ["Membership fees (riders × months × price)", f.membership_fees],
+    ["Member residual charges (overage / ebike minutes)", f.member_residual],
+    ["Membership total", f.membership_total],
+  ];
+  const weekly = (r.weekly || []).map((w) =>
+    `<tr><td>${esc(w.week_start)}</td><td class="num">${esc(w.rides)}</td><td class="num">${esc(w.avg_min)}</td><td class="num">${money(w.payg_spend)}</td></tr>`).join("");
+  const cites = (r.citations || []).map((c) =>
+    `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a><br><span class="muted">captured ${esc(c.captured_at)} · sha256 ${esc(c.sha256)}</span></li>`).join("");
+  const quotes = (f.citations || []).map((q) => `<li>“${esc(q)}”</li>`).join("");
+  const assumptions = (f.assumptions || []).map((q) => `<li>${esc(q)}</li>`).join("");
+  const auditLine = a.checked
+    ? `<span class="${a.agent_decision_matches_costs && a.agent_totals_match ? "audit-ok" : "audit-bad"}">
+        Harness recomputation with the agent's prices: pay-per-use ${money(a.pay_per_use_total)}, membership ${money(a.membership_total)}
+        → ${esc(a.decision_from_costs)} (decision ${a.agent_decision_matches_costs ? "matches" : "DOES NOT match"}, totals ${a.agent_totals_match ? "match" : "differ"})</span>`
+    : `<span class="muted">Audit not run: ${esc(a.reason)}</span>`;
+
+  $("results").classList.remove("muted");
+  $("results").innerHTML = `
+    <div class="decision ${cls}">${esc(r.decision || "No decision")}</div>
+    <h3>Justification</h3><p>${esc(f.justification || r.final_text || "")}</p>
+    <h3>Cost comparison</h3>
+    <table><tbody>${costRows.map(([k, v]) => `<tr><th>${k}</th><td class="num">${money(v)}</td></tr>`).join("")}
+      <tr><th>Break-even rides per rider-month</th><td class="num">${esc(f.break_even_rides_per_rider_month ?? "–")}</td></tr>
+      <tr><th>Actual rides per rider-month</th><td class="num">${esc(f.actual_rides_per_rider_month ?? "–")}</td></tr>
+    </tbody></table>
+    <p>${auditLine}</p>
+    <h3>By week</h3>
+    <table><thead><tr><th>Week starting</th><th>Rides</th><th>Avg min</th><th>Pay-per-use spend</th></tr></thead><tbody>${weekly || '<tr><td colspan="4" class="muted">agent did not run the weekly query</td></tr>'}</tbody></table>
+    <h3>Citations</h3><ul>${cites}</ul>${quotes ? `<ul>${quotes}</ul>` : ""}
+    <h3>Assumptions &amp; caveats</h3><ul>${assumptions || "<li class='muted'>none reported</li>"}</ul>`;
+}
+
+$("run-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const file = $("trips").files[0];
+  if (!file) return;
+  const body = new FormData();
+  body.append("trips", file);
+  body.append("pricing_url", $("url").value);
+  body.append("label", $("label").value);
+  body.append("prompt_defense", $("pd").checked ? "true" : "false");
+  body.append("tool_defense", $("td").checked ? "true" : "false");
+  $("run-btn").disabled = true;
+  const t0 = performance.now();
+  const tick = setInterval(() => { $("status").textContent = `running… ${((performance.now() - t0) / 1000).toFixed(0)} s`; }, 500);
+  try {
+    const res = await fetch("/hw7/bikeshare/run", { method: "POST", body });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || res.statusText);
+    renderTimeline(data.timeline || []);
+    renderResults(data);
+    const m = data.metrics || {};
+    $("m-steps").textContent = m.step_count ?? "–";
+    $("m-time").textContent = m.total_time_ms ? (m.total_time_ms / 1000).toFixed(1) + " s" : "–";
+    $("m-stop").textContent = m.stop_reason ?? "–";
+    $("m-rows").textContent = data.trip_stats?.rows_loaded ?? "–";
+    const d = data.defenses || {};
+    $("m-def").textContent = `${d.prompt_defense ? "prompt" : "–"} / ${d.tool_defense ? "tool" : "–"}`;
+    $("status").textContent = `saved reports/hw07/raw/bikeshare/${data.label}/`;
+  } catch (err) {
+    $("status").textContent = "Error: " + err.message;
+  } finally {
+    clearInterval(tick);
+    $("run-btn").disabled = false;
+  }
+});
+</script>
+</body>
+</html>

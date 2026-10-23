@@ -6,3 +6,6 @@ code/agents_demo_backup.py
 .envbackups/
 .env
 backups/
+
+# HW7: downloaded public trip data (large)
+data/

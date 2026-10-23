@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
-from .hw4_api import incident_response, require_user
+from .hw4_api import incident_response
 from .hw4_database import get_db
 from .hw4_models import IncidentRecord, User
-
+from .hw7_auth import any_role
 
 router = APIRouter(
     prefix="/api/hw4/benchmark",
@@ -18,7 +18,7 @@ def naive_incidents(
     page_size: int = Query(10, ge=1, le=200),
     page: int = Query(0, ge=0),
     db: Session = Depends(get_db),
-    user: User = Depends(require_user),
+    user: User = Depends(any_role),
 ):
     del user
 
@@ -33,10 +33,7 @@ def naive_incidents(
         "version": "naive",
         "page": page,
         "page_size": page_size,
-        "records": [
-            incident_response(record)
-            for record in records
-        ],
+        "records": [incident_response(record) for record in records],
     }
 
 
@@ -45,7 +42,7 @@ def fixed_incidents(
     page_size: int = Query(10, ge=1, le=200),
     page: int = Query(0, ge=0),
     db: Session = Depends(get_db),
-    user: User = Depends(require_user),
+    user: User = Depends(any_role),
 ):
     del user
 
@@ -61,8 +58,5 @@ def fixed_incidents(
         "version": "fixed",
         "page": page,
         "page_size": page_size,
-        "records": [
-            incident_response(record)
-            for record in records
-        ],
+        "records": [incident_response(record) for record in records],
     }

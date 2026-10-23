@@ -1,0 +1,20 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["frontend", "reports", "templates", ".venv", "backups"]
+
+[tool.ruff.lint]
+# E/F = pycodestyle + pyflakes errors, I = import sorting
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts/tests must put the repo root on sys.path before importing src.*
+"tests/*" = ["E402"]
+"code/*" = ["E402"]

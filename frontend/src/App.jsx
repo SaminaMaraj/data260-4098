@@ -8,7 +8,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import api from "./api/axios";
+import api, { authApi, setToken } from "./api/axios";
 import {
   createIncident,
   deleteIncident,
@@ -37,15 +37,15 @@ function App() {
   const [checkingSession, setCheckingSession] = useState(true);
 
   useEffect(() => {
-    api
-      .get("/auth/me")
+    authApi
+      .get("/me")
       .then((response) => setUser(response.data))
       .catch(() => setUser(null))
       .finally(() => setCheckingSession(false));
   }, []);
 
-  async function logout() {
-    await api.post("/auth/logout");
+  function logout() {
+    setToken(null);
     setUser(null);
   }
 
@@ -63,7 +63,9 @@ function App() {
             <>
               <Link to="/create">Create Incident</Link>
               <Link to="/update">Update Incident</Link>
-              <span>Signed in as {user.name}</span>
+              <span>
+                Signed in as {user.username} ({user.role})
+              </span>
               <button onClick={logout}>Log out</button>
             </>
           ) : (
@@ -96,7 +98,7 @@ function App() {
 
 function Login({ setUser }) {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -105,8 +107,10 @@ function Login({ setUser }) {
     setError("");
 
     try {
-      const response = await api.post("/auth/login", { email, password });
-      setUser(response.data.user);
+      const response = await authApi.post("/login", { username, password });
+      setToken(response.data.access_token);
+      const me = await authApi.get("/me");
+      setUser(me.data);
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.detail || "Login failed.");
@@ -118,11 +122,11 @@ function Login({ setUser }) {
       <h2>Log in</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={submit}>
-        <label>Email</label>
+        <label>Username</label>
         <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
           required
         />
 
