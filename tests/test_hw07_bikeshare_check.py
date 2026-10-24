@@ -118,6 +118,31 @@ def test_decision_only_failure_gets_decision_feedback():
     assert "Recompute the failed values" not in text
 
 
+def test_every_failed_check_gets_a_formula_hint_not_the_answer():
+    """Seen in a real run: break-even reported as 2.0 (the actual rides)."""
+    conn, _ = load_trips(SCENARIO_B.read_bytes())
+    ref = reference_costs(conn, PRICES)
+    final = {
+        k: ref[k]
+        for k in (
+            "pay_per_use_total",
+            "membership_fees",
+            "member_residual",
+            "membership_total",
+            "actual_rides_per_rider_month",
+        )
+    }
+    final |= {"prices_used": PRICES, "break_even_rides_per_rider_month": 2.0}
+    result = validate(
+        final, ref["weekly"], {"ok": True, "prices": PRICES}, ref, "Pay Per Ride/Minute"
+    )
+    failed = [c for c in result["checks"] if not c["ok"]]
+    assert [c["check"] for c in failed] == ["break_even_rides_per_rider_month"]
+    text = feedback_message(result)
+    assert "MEMBERSHIP / ((pay_per_use_total - member_residual) / rides)" in text
+    assert "12.6" not in text  # the reference value is never given away
+
+
 # --------------------------------------------------------------------------- #
 # bounded validation round with a scripted model
 # --------------------------------------------------------------------------- #

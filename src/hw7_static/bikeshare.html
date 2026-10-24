@@ -161,7 +161,7 @@ function renderResults(r) {
     `<tr><td>${c.ok ? "✓" : "✗"} ${esc(c.check)}</td><td class="num">${esc(c.agent)}</td><td class="num">${esc(c.expected)}</td></tr>`).join("");
   const first = r.first_answer || {};
   const changed = rounds.length > 1
-    ? `<p class="muted">First answer (round 0) failed: ${esc(rounds[0].checks.filter((c) => !c.ok).map((c) => c.check).join(", "))}. First answer: pay-per-use ${money(first.pay_per_use_total)}, membership fees ${money(first.membership_fees)}, membership total ${money(first.membership_total)}, decision ${esc(first.decision)}. The agent recomputed with its tools after one feedback message.</p>`
+    ? `<p class="muted">First answer (round 0) failed: ${esc(rounds[0].checks.filter((c) => !c.ok).map((c) => c.check).join(", "))}. First answer: pay-per-use ${money(first.pay_per_use_total)}, membership fees ${money(first.membership_fees)}, membership total ${money(first.membership_total)}, decision ${esc(first.decision)}. The agent got one feedback message and answered again (round 1).</p>`
     : "";
   const verdict = r.validated
     ? `<span class="audit-ok">Validated: all ${last.checks.length} deterministic checks passed (round ${last.round}).</span>`

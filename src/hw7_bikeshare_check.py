@@ -195,6 +195,7 @@ def validate(
             agent,
             ref_prices["prices"][key],
             agent is not None and abs(agent - ref_prices["prices"][key]) < 1e-6,
+            "read it again from the Single ride / Month pass passages (step 2)",
         )
 
     pay = _num(final.get("pay_per_use_total"))
@@ -209,7 +210,7 @@ def validate(
         _close(pay, ref["pay_per_use_total"], 0.002, 0.5),
         "difference equals rides x UNLOCK: the unlock fee is missing"
         if gap is not None and abs(gap - ref["unlock_fees"]) < 0.5
-        else "",
+        else "step 5: pay_per_use_total = rides * UNLOCK + payg_minute_cost",
     )
     add(
         "membership_fees (passes only)",
@@ -223,6 +224,7 @@ def validate(
         residual,
         ref["member_residual"],
         _close(residual, ref["member_residual"], 0.002, 0.5),
+        "use member_residual from the step 3 query",
     )
     add(
         "membership_total = fees + residual",
@@ -232,10 +234,17 @@ def validate(
         and fees is not None
         and residual is not None
         and _close(total, fees + residual, 0.0, 0.05),
+        "step 5: membership_total = membership_fees + member_residual",
     )
-    for key in ("break_even_rides_per_rider_month", "actual_rides_per_rider_month"):
+    formula = {
+        "break_even_rides_per_rider_month": "step 5: MEMBERSHIP / "
+        "((pay_per_use_total - member_residual) / rides); this is not the "
+        "actual rides per rider-month",
+        "actual_rides_per_rider_month": "step 5: rides / rider_months",
+    }
+    for key, hint in formula.items():
         agent = _num(final.get(key))
-        add(key, agent, ref[key], _close(agent, ref[key], 0.01, 0.05))
+        add(key, agent, ref[key], _close(agent, ref[key], 0.01, 0.05), hint)
 
     # consistency check: the decision must follow from the agent's own totals
     implied = None
@@ -254,6 +263,7 @@ def validate(
         decision,
         ref["decision"],
         decision == ref["decision"],
+        "step 6: compare pay_per_use_total with membership_total",
     )
 
     by_week = {w["week_start"]: w for w in weekly or []}
