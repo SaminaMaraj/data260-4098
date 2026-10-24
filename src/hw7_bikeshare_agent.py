@@ -46,15 +46,8 @@ DEFAULT_PRICING_URL = "https://www.lyft.com/bikes/bay-wheels/pricing"
 MEMBERSHIP = "Buy Monthly Membership"
 PAYG = "Pay Per Ride/Minute"
 MAX_STEPS = 14
-MAX_VALIDATION_RETRIES = 1  # bounded: one correction round
-VALIDATION_STEPS = 10  # tool-call budget for that round
-# formulas from prompt step 5, used only for the logged last-resort correction
-DERIVED_FORMULAS = {
-    "break_even_rides_per_rider_month": (
-        "{membership} / (({pay} - {residual}) / {rides})"
-    ),
-    "actual_rides_per_rider_month": "{rides} / {rider_months}",
-}
+MAX_VALIDATION_RETRIES = 2  # bounded: at most two correction rounds
+VALIDATION_STEPS = 10  # tool-call budget for each correction round
 
 BASE_PROMPT = """You are a cost analyst for the Bay Wheels bike-share system (San \
 Francisco Bay Area). Decide, for the riders in uploaded.csv, whether they should \
@@ -86,12 +79,14 @@ pay_per_use_total = rides * UNLOCK + payg_minute_cost ;
 membership_fees = rider_months * MEMBERSHIP ;
 membership_total = membership_fees + member_residual ;
 break_even_rides_per_rider_month = MEMBERSHIP / ((pay_per_use_total - \
-member_residual) / rides) ;
+member_residual) / rides) (one calculator call, e.g. "29 / ((1000 - 0) / 500)"; \
+it is NOT rides / rider_months) ;
 actual_rides_per_rider_month = rides / rider_months.
 6. Decide by comparing the TWO TOTALS, pay_per_use_total vs membership_total. \
 The monthly price alone is NOT the membership total. If membership_total < \
 pay_per_use_total the decision is "Buy Monthly Membership", otherwise it is \
-"Pay Per Ride/Minute". Reply with ONLY this JSON object (plain numbers, no formulas):
+"Pay Per Ride/Minute". The justification must use exactly the numbers in the JSON. \
+Reply with ONLY this JSON object (plain numbers, no formulas):
 {"decision": "Buy Monthly Membership" or "Pay Per Ride/Minute", "justification": \
 "3-6 sentences with the numbers, quoting the price snippets", "prices_used": \
 {"MEMBERSHIP": n, "UNLOCK": n, "PAYG_CLASSIC": n, "PAYG_EBIKE": n, "INCLUDED": n, \
@@ -382,69 +377,8 @@ def run_bikeshare_agent(
         _, _, final_text = _build_timeline(messages)
         final = _parse_final(final_text) or {}
 
-    # Last resort, bounded and logged: if ONLY derived ratios are still wrong
-    # (every price, total, the decision and the weekly table passed), the
-    # harness recomputes them with the same calculator tool from the agent's
-    # own validated totals. The decision is never changed, and the result is
-    # labelled "passed_after_harness_correction", not a normal success.
-    harness_corrections: list[dict[str, Any]] = []
-    last = rounds[-1]
-    failed = {c["check"] for c in last["checks"] if not c["ok"]}
-    if (
-        self_check
-        and final
-        and failed
-        and failed <= set(DERIVED_FORMULAS)
-        and stop_reason == "final_answer"
-        and reference is not None
-        and _num(final.get("rides")) == reference["rides"]
-        and _num(final.get("rider_months")) == reference["rider_months"]
-    ):
-        corrected = dict(final)
-        for field in sorted(failed):
-            expression = DERIVED_FORMULAS[field].format(
-                membership=_num((final.get("prices_used") or {}).get("MEMBERSHIP")),
-                pay=_num(final.get("pay_per_use_total")),
-                residual=_num(final.get("member_residual")),
-                rides=_num(final.get("rides")),
-                rider_months=_num(final.get("rider_months")),
-            )
-            out = calculator(expression)
-            if not out["success"]:
-                break
-            corrected[field] = round(out["data"]["value"], 2)
-            harness_corrections.append(
-                {
-                    "field": field,
-                    "agent_value": final.get(field),
-                    "corrected_value": corrected[field],
-                    "expression": expression,
-                    "tool": "calculator",
-                }
-            )
-        else:
-            result = validate(
-                corrected,
-                _weekly_from(_build_timeline(messages)[0]),
-                ref_prices,
-                reference,
-                _normalize_decision(corrected.get("decision")),
-            )
-            result["round"] = len(rounds)
-            result["harness_corrections"] = harness_corrections
-            rounds.append(result)
-            validation_marks.append((len(messages), result))
-            if result["passed"]:
-                final = corrected
-
     validated = rounds[-1]["passed"]
-    validation_status = (
-        "failed"
-        if not validated
-        else "passed_after_harness_correction"
-        if harness_corrections
-        else "passed"
-    )
+    validation_status = "passed" if validated else "failed"
     if stop_reason == "final_answer" and final and not validated:
         stop_reason = "validation_failed"
     if stop_reason == "final_answer" and not final:
@@ -468,7 +402,6 @@ def run_bikeshare_agent(
                         "failed": [c["check"] for c in result["checks"] if not c["ok"]],
                         "checks": len(result["checks"]),
                         "reason": result.get("reason"),
-                        "harness_corrections": result.get("harness_corrections", []),
                     },
                 },
             }
@@ -502,7 +435,6 @@ def run_bikeshare_agent(
             "passed": validated,
             "status": validation_status,
             "rounds": rounds,
-            "harness_corrections": harness_corrections,
         },
         "audit": {
             "checked": reference is not None,

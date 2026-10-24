@@ -32,6 +32,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.append(str(REPO_ROOT))
 
 from execute_tool import _validated_inputs, execute_tool
+from token_budget import MIN_OUTPUT, TokenBudget
 
 MAX_ITERATIONS = 8
 MAX_REPAIRS = 2
@@ -112,11 +113,11 @@ TEXT_INSTEAD = "text_when_tool_required"
 LOST_CHAIN = "lost_multi_step_chain"
 
 
-def default_model(messages, tools, temperature=None):
+def default_model(messages, tools, temperature=None, max_tokens=None):
     """The HW1 adapter (Ollama qwen3:8b), imported lazily so tests stay offline."""
     from src.model_client import complete
 
-    return complete(messages, tools, temperature=temperature)
+    return complete(messages, tools, temperature=temperature, max_tokens=max_tokens)
 
 
 def validate_call(
@@ -197,9 +198,16 @@ def run_agent(
     extra_messages: list[dict[str, str]] | None = None,
     tool_budget: int | None = None,
     token_budget: int | None = None,
+    budget: TokenBudget | None = None,
     log: Callable[[str], None] | None = print,
 ) -> dict[str, Any]:
-    """Run one task. Returns answer, stop_reason, trace and counters."""
+    """Run one task. Returns answer, stop_reason, trace and counters.
+
+    budget: a TokenBudget shared with the caller (Reflexion passes one budget
+    for all attempts and reflections). token_budget=N creates a fresh one.
+    """
+    if budget is None and token_budget is not None:
+        budget = TokenBudget(token_budget)
     chat = model or default_model
     say = log or (lambda _line: None)
     run_id = uuid.uuid4().hex[:8]
@@ -235,14 +243,27 @@ def run_agent(
             "repaired_ok": repaired_ok,
             "failures": failures,
             "tokens": tokens,
+            "budget_charged": None if budget is None else budget.charged,
             "latency_ms": latency_ms,
             "trace": trace,
         }
 
     for iteration in range(1, max_iterations + 1):
-        if token_budget is not None and tokens >= token_budget:
-            return finish("budget_exhausted")
-        response = chat(messages, TOOL_SCHEMAS, temperature=temperature)
+        if budget is None:
+            response = chat(messages, TOOL_SCHEMAS, temperature=temperature)
+        else:
+            cap, bound = budget.reserve(messages, TOOL_SCHEMAS)
+            if cap is None:  # not enough allowance for another call
+                say(
+                    f"[{run_id}] budget: remaining {budget.remaining} < input bound "
+                    f"{bound} + {MIN_OUTPUT} -> stop"
+                )
+                return finish("budget_exhausted")
+            response = chat(
+                messages, TOOL_SCHEMAS, temperature=temperature, max_tokens=cap
+            )
+            if not budget.charge(bound, cap, response, "agent"):
+                return finish("budget_exhausted")
         tokens += int(response.get("total_tokens", 0))
         content = _strip_thinking(response.get("content", ""))
         calls = _extract_calls(response)

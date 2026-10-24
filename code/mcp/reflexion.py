@@ -7,7 +7,10 @@ next attempt as clearly-labelled untrusted data.
 
 Bounds
 - at most MAX_RETRIES (2) Reflexion retries
-- hard tool-call budget and token budget shared by all attempts of a run
+- hard tool-call budget and a hard token budget (code/mcp/token_budget.py)
+  shared by all attempts AND all reflection-generation calls of a run; every
+  call is capped to the remaining allowance and a call that cannot fit is not
+  made (stop_reason budget_exhausted)
 - stop_reason is always one of: success, budget_exhausted, human_review
 """
 
@@ -23,10 +26,11 @@ from typing import Any
 
 from agent_loop import default_model, run_agent
 from hw07_tasks import TASKS, ground_truth, verify
+from token_budget import TokenBudget
 
 MAX_RETRIES = 2
 TOOL_BUDGET = 12
-TOKEN_BUDGET = 24000
+TOKEN_BUDGET = 100000  # bounded tokens, see token_budget.py (real tokens are lower)
 REFLECTIONS_PATH = (
     Path(__file__).resolve().parents[2]
     / "reports"
@@ -72,9 +76,12 @@ def _evidence(run: dict[str, Any], result: dict[str, Any]) -> dict[str, Any]:
 
 
 def write_reflection(
-    model, task_id: str, evidence: dict, prompt_key: str = "prompt"
-) -> tuple[dict, int]:
-    """Ask the model for a 2-field reflection; fall back to a template."""
+    model, task_id: str, evidence: dict, prompt_key: str = "prompt", budget=None
+) -> tuple[dict | None, int]:
+    """Ask the model for a 2-field reflection; fall back to a template.
+
+    Returns (None, 0) when the run budget cannot afford the call.
+    """
     prompt = (
         "A tool-using agent failed a task. Write ONE short reflection as JSON "
         '{"failure": "<one sentence: what went wrong>", "strategy": "<one '
@@ -82,7 +89,15 @@ def write_reflection(
         f"Task: {TASKS[task_id][prompt_key]}\n"
         f"Evidence from the failed run: {json.dumps(evidence)[:1500]}"
     )
-    response = model([{"role": "user", "content": prompt}], None, temperature=0.0)
+    messages = [{"role": "user", "content": prompt}]
+    if budget is None:
+        response = model(messages, None, temperature=0.0)
+    else:
+        cap, bound = budget.reserve(messages, None)
+        if cap is None:
+            return None, 0
+        response = model(messages, None, temperature=0.0, max_tokens=cap)
+        budget.charge(bound, cap, response, "reflection")
     tokens = int(response.get("total_tokens", 0))
     raw = re.sub(
         r"<think>.*?</think>", "", response.get("content", ""), flags=re.DOTALL
@@ -159,12 +174,13 @@ def run_reflexion(
     started = time.perf_counter()
     truth = ground_truth(task_id)
     tools_used = tokens_used = 0
+    budget = TokenBudget(token_budget)  # one hard budget for the whole run
     attempts: list[dict[str, Any]] = []
     stop_reason = "human_review"
     result: dict[str, Any] = {}
 
     for attempt in range(max_retries + 1):
-        if tools_used >= tool_budget or tokens_used >= token_budget:
+        if tools_used >= tool_budget:
             stop_reason = "budget_exhausted"
             break
         reflections = load_reflections(user_id, run_id)
@@ -174,7 +190,7 @@ def run_reflexion(
             temperature=temperature,
             extra_messages=_reflection_message(reflections),
             tool_budget=tool_budget - tools_used,
-            token_budget=token_budget - tokens_used,
+            budget=budget,
             log=say,
         )
         tools_used += run["tool_calls"]
@@ -207,8 +223,11 @@ def run_reflexion(
 
         evidence = _evidence(run, result)
         reflection, reflection_tokens = write_reflection(
-            chat, task_id, evidence, prompt_key
+            chat, task_id, evidence, prompt_key, budget
         )
+        if reflection is None:  # no allowance left for the reflection call
+            stop_reason = "budget_exhausted"
+            break
         tokens_used += reflection_tokens
         record = {
             "user_id": user_id,
@@ -237,5 +256,7 @@ def run_reflexion(
         "answer": attempts[-1]["answer"] if attempts else "",
         "tool_calls": tools_used,
         "tokens": tokens_used,
+        "budget": budget.summary(),
+        "budget_calls": budget.calls,
         "latency_ms": round((time.perf_counter() - started) * 1000, 1),
     }

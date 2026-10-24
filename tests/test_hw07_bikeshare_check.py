@@ -242,12 +242,14 @@ def _bounded_validation_round(fix: bool) -> None:
         llm=_scripted_model(fix_on_feedback=fix),
     )
     rounds = result["validation"]["rounds"]
-    assert len(rounds) == 2  # first answer + exactly one correction round
+    # fixed: answer + 1 correction round; not fixed: answer + the maximum of 2
+    assert len(rounds) == (2 if fix else 3)
     assert not rounds[0]["passed"]
     assert approx(result["first_answer"]["pay_per_use_total"], 4260.05)
     assert result["citations"][0]["snapshot_mode"] == "reused_saved_snapshot"
     steps = [s["tool"] for s in result["timeline"]]
-    assert steps.count("validation_check") == 2 and "validation_feedback" in steps
+    assert steps.count("validation_check") == len(rounds)
+    assert steps.count("validation_feedback") == len(rounds) - 1
     if fix:
         assert (
             result["validated"] and result["metrics"]["stop_reason"] == "final_answer"
@@ -267,7 +269,68 @@ def test_validation_round_rejects_uncorrected_answer():
     _bounded_validation_round(fix=False)
 
 
-def test_logged_harness_correction_only_for_derived_ratio():
+def _breakeven_model():
+    """Agent that first writes rides/rider_months as the break-even (the real
+    qwen3:8b mistake) and, after feedback, makes the calculator call that the
+    feedback names and uses its result in the JSON and the justification."""
+    from langchain_core.language_models.chat_models import BaseChatModel
+    from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+    from langchain_core.outputs import ChatGeneration, ChatResult
+
+    good = _scripted_model(fix_on_feedback=False, breakeven_wrong=True)
+
+    class BreakEven(BaseChatModel):
+        @property
+        def _llm_type(self):
+            return "breakeven"
+
+        def bind_tools(self, tools, **kw):
+            return self
+
+        def _generate(self, messages, stop=None, run_manager=None, **kw):
+            fb = [
+                m
+                for m in messages
+                if isinstance(m, HumanMessage)
+                and "Validation check failed" in m.content
+            ]
+            if not fb:  # first answer: correct totals, wrong break-even
+                out = good._generate(messages, stop, run_manager, **kw)
+                msg = out.generations[0].message
+                if msg.tool_calls:
+                    return out
+                answer = json.loads(msg.content)
+                answer["break_even_rides_per_rider_month"] = 2.0
+                answer["justification"] = "The break-even is 2.0 rides per rider-month."
+                return ChatResult(
+                    generations=[ChatGeneration(message=AIMessage(json.dumps(answer)))]
+                )
+            expr = re.search(r'Call calculator with "([^"]+)"', fb[-1].content).group(1)
+            after = messages[messages.index(fb[-1]) :]
+            tool_out = [m for m in after if isinstance(m, ToolMessage)]
+            if not tool_out:
+                call = {"name": "calculator", "args": {"expression": expr}, "id": "c9"}
+                msg = AIMessage(content="", tool_calls=[call])
+                return ChatResult(generations=[ChatGeneration(message=msg)])
+            value = round(json.loads(tool_out[-1].content)["data"]["value"], 2)
+            previous = [
+                m
+                for m in messages
+                if isinstance(m, AIMessage) and not m.tool_calls and m.content
+            ]
+            answer = json.loads(previous[-1].content)
+            answer["break_even_rides_per_rider_month"] = value
+            answer["justification"] = (
+                f"The break-even is {value} rides per rider-month."
+            )
+            return ChatResult(
+                generations=[ChatGeneration(message=AIMessage(json.dumps(answer)))]
+            )
+
+    return BreakEven()
+
+
+def test_agent_fixes_break_even_itself_with_the_calculator_hint():
     from src.hw7_bikeshare_agent import run_bikeshare_agent
 
     result = run_bikeshare_agent(
@@ -275,16 +338,51 @@ def test_logged_harness_correction_only_for_derived_ratio():
         "https://www.lyft.com/bikes/bay-wheels/pricing",
         snapshot_dir=Path(tempfile.mkdtemp(prefix="hw7_bikeshare_")),
         reuse_snapshot=SNAPSHOT / "pricing_snapshot.json",
-        llm=_scripted_model(fix_on_feedback=False, breakeven_wrong=True),
+        llm=_breakeven_model(),
     )
     rounds = result["validation"]["rounds"]
-    assert [r["passed"] for r in rounds] == [False, False, True]  # agent x2, harness
-    fix = result["validation"]["harness_corrections"]
-    assert [f["field"] for f in fix] == ["break_even_rides_per_rider_month"]
-    assert fix[0]["agent_value"] == 2.0 and approx(fix[0]["corrected_value"], 12.6)
-    assert result["validation"]["status"] == "passed_after_harness_correction"
-    assert result["decision"] == "Pay Per Ride/Minute"  # never changed
+    assert [r["passed"] for r in rounds] == [False, True]
+    feedback = next(s["text"] for s in result["timeline"] if s["type"] == "feedback")
+    # built from the agent's own validated values, never the reference result
+    assert 'Call calculator with "29 / ((1196.97 - 0) / 520)"' in feedback
+    assert "12.6" not in feedback
+    calc = [
+        s
+        for s in result["timeline"]
+        if s["type"] == "tool_call" and s["tool"] == "calculator"
+    ]
+    assert calc[-1]["input"]["expression"] == "29 / ((1196.97 - 0) / 520)"
+    assert approx(result["final"]["break_even_rides_per_rider_month"], 12.6)
+    assert "12.6" in result["final"]["justification"]
+    assert result["validation"]["status"] == "passed"
     assert result["first_answer"]["break_even_rides_per_rider_month"] == 2.0
+
+
+def test_stale_number_in_justification_fails_validation():
+    conn, _ = load_trips(SCENARIO_B.read_bytes())
+    ref = reference_costs(conn, PRICES)
+    final = {
+        k: ref[k]
+        for k in (
+            "pay_per_use_total",
+            "membership_fees",
+            "member_residual",
+            "membership_total",
+            "break_even_rides_per_rider_month",
+            "actual_rides_per_rider_month",
+            "rides",
+            "rider_months",
+        )
+    }
+    final |= {
+        "prices_used": PRICES,
+        "justification": "The break-even rides per rider month is about 1100.73.",
+    }
+    result = validate(
+        final, ref["weekly"], {"ok": True, "prices": PRICES}, ref, "Pay Per Ride/Minute"
+    )
+    failed = [c["check"] for c in result["checks"] if not c["ok"]]
+    assert failed == ["justification uses the final numbers"]
 
 
 def main() -> int:

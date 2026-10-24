@@ -112,8 +112,9 @@ class Scripted:
         self.responses = list(responses)
         self.seen = []
 
-    def __call__(self, messages, tools, temperature=None):
+    def __call__(self, messages, tools, temperature=None, max_tokens=None):
         self.seen.append(json.loads(json.dumps(messages, default=str)))
+        self.caps = getattr(self, "caps", []) + [max_tokens]
         return self.responses.pop(0) if self.responses else text("done")
 
 
@@ -255,6 +256,90 @@ def test_reflexion_budget_exhausted():
         )
         assert out["stop_reason"] == "budget_exhausted"
         assert out["tool_calls"] <= 4
+
+
+# --------------------------------------------------------------------------- #
+# hard token budget (code/mcp/token_budget.py)
+# --------------------------------------------------------------------------- #
+def _usage(response, output):
+    return {
+        **response,
+        "input_tokens": 10,
+        "output_tokens": output,
+        "total_tokens": 10 + output,
+    }
+
+
+def test_budget_caps_generation_and_never_exceeds_limit():
+    from token_budget import MIN_OUTPUT, TokenBudget, input_bound
+
+    first = [
+        {"role": "system", "content": agent_loop.SYSTEM_PROMPT},
+        {"role": "user", "content": TASKS["A"]["prompt"]},
+    ]
+    bound = input_bound(first, agent_loop.TOOL_SCHEMAS)
+    budget = TokenBudget(bound + 100, max_output=512)  # room for one small call
+    model = Scripted(_usage(call("search_incidents", {"query": "VTA Route 22"}), 100))
+    run = agent_loop.run_agent(
+        TASKS["A"]["prompt"], model=model, budget=budget, log=None
+    )
+    assert model.caps[0] == 100  # num_predict lowered to the remaining allowance
+    assert run["stop_reason"] == "budget_exhausted"  # second call cannot fit
+    assert len(model.seen) == 1  # ...so it was never made
+    assert budget.charged <= budget.limit and budget.remaining < MIN_OUTPUT + bound
+
+
+def test_budget_stops_before_a_call_that_cannot_fit():
+    from token_budget import TokenBudget
+
+    model = Scripted(call("search_incidents", {"query": "x"}))
+    run = agent_loop.run_agent(
+        TASKS["A"]["prompt"], model=model, budget=TokenBudget(500), log=None
+    )
+    assert run["stop_reason"] == "budget_exhausted" and model.seen == []
+
+
+def test_reflection_call_counts_toward_the_same_budget():
+    def attempt():  # one tool call, then a wrong answer -> verifier fails
+        return Scripted(
+            _usage(call("search_incidents", {"query": "VTA Route 22"}), 40),
+            _usage(text("No delay incidents found."), 40),
+            _usage(text('{"failure": "x", "strategy": "y"}'), 40),
+        )
+
+    with tempfile.TemporaryDirectory() as tmp:
+        reflexion.REFLECTIONS_PATH = Path(tmp) / "r.jsonl"
+        big = reflexion.run_reflexion(
+            "A", model=attempt(), user_id="u1", max_retries=1, log=None
+        )
+        kinds = [c["kind"] for c in big["budget_calls"]]
+        assert kinds[:3] == ["agent", "agent", "reflection"]  # reflection is charged
+        after_attempt0 = big["budget_calls"][1]["charged_total"]
+
+        reflexion.REFLECTIONS_PATH = Path(tmp) / "r2.jsonl"
+        small = reflexion.run_reflexion(  # room for attempt 0, not for the reflection
+            "A",
+            model=attempt(),
+            user_id="u1",
+            token_budget=after_attempt0 + 100,
+            log=None,
+        )
+        assert small["stop_reason"] == "budget_exhausted"
+        assert small["budget"]["charged"] == after_attempt0
+        assert small["budget"]["never_exceeded"]
+        assert not reflexion.REFLECTIONS_PATH.exists()  # reflection never generated
+
+
+def test_budget_flags_a_model_that_ignores_its_cap():
+    from token_budget import TokenBudget
+
+    budget = TokenBudget(100000, max_output=128)
+    model = Scripted(_usage(text("x"), 999))  # broken model: 999 > cap 128
+    run = agent_loop.run_agent(
+        TASKS["A"]["prompt"], model=model, budget=budget, log=None
+    )
+    assert run["stop_reason"] == "budget_exhausted"
+    assert not budget.summary()["never_exceeded"]
 
 
 def main() -> int:

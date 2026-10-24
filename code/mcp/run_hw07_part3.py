@@ -69,6 +69,8 @@ def main() -> int:
                     "retries": 0,
                     "tool_calls": run["tool_calls"],
                     "tokens": run["tokens"],
+                    "budget_charged": "",
+                    "budget_never_exceeded": "",
                     "latency_ms": run["latency_ms"],
                     "verifier_false_rejection": result["false_rejection_candidate"],
                     "run_id": run["run_id"],
@@ -82,6 +84,12 @@ def main() -> int:
             final = out["final"]
             log(f"answer: {out['answer']}")
             log(f"stop_reason={out['stop_reason']} retries={out['retries']}")
+            log(
+                f"budget: charged {out['budget']['charged']} / {TOKEN_BUDGET} bounded "
+                f"tokens over {out['budget']['model_calls']} model calls, Ollama "
+                f"reported {out['budget']['reported_tokens']}, never_exceeded="
+                f"{out['budget']['never_exceeded']}"
+            )
             rows.append(
                 {
                     "loop": "reflexion",
@@ -94,6 +102,8 @@ def main() -> int:
                     "retries": out["retries"],
                     "tool_calls": out["tool_calls"],
                     "tokens": out["tokens"],
+                    "budget_charged": out["budget"]["charged"],
+                    "budget_never_exceeded": out["budget"]["never_exceeded"],
                     "latency_ms": out["latency_ms"],
                     "verifier_false_rejection": any(
                         a["verifier"]["false_rejection_candidate"]
@@ -131,6 +141,12 @@ def main() -> int:
                 for s in sorted({r["stop_reason"] for r in group})
             },
         }
+    refl = [r for r in rows if r["loop"] == "reflexion"]
+    summary["reflexion"]["token_budget_bounded"] = TOKEN_BUDGET
+    summary["reflexion"]["max_budget_charged"] = max(r["budget_charged"] for r in refl)
+    summary["reflexion"]["budget_never_exceeded"] = all(
+        r["budget_never_exceeded"] for r in refl
+    )
     save_json(f"reflexion_summary{suffix}.json", summary)
     log("\n| Metric | Original loop | Reflexion loop |")
     log("|---|---|---|")
@@ -145,6 +161,11 @@ def main() -> int:
     ]
     for label, key in labels:
         log(f"| {label} | {summary['original'][key]} | {summary['reflexion'][key]} |")
+    log(
+        f"hard token budget: max charged {summary['reflexion']['max_budget_charged']}"
+        f" / {TOKEN_BUDGET}, never exceeded="
+        f"{summary['reflexion']['budget_never_exceeded']}"
+    )
     log(
         "NOTE: verifier false rejections are candidates (strict check failed, relaxed "
         "check passed). Open the rows in reflexion_comparison.csv and confirm by hand."

@@ -53,3 +53,17 @@ and points to step 6 with the agent's own two totals.
   break-even in both rounds, so `validation_failed`. Because this is now a
   repeatable model error on a derived ratio, the harness has one last, logged
   step (see `DERIVED_FORMULAS` in src/hw7_bikeshare_agent.py).
+
+## Harness-corrected run, replaced (2026-10-23 evening)
+
+- `scenario_B_harness_corrected/`: the scenario B run shown as "final" in my
+  first revised report. Totals and decision were right, but qwen3:8b reported
+  the break-even as 1100.73 in rounds 0 and 1 (it used `260 * 29 / 520 / 6.85
+  * 520`), so a harness step overwrote it with 12.6 and labelled the run
+  `passed_after_harness_correction`. The written justification still said
+  1100.73. This is not acceptable as a final result, so the harness step was
+  removed. Now the feedback for a wrong derived ratio gives the calculator
+  expression filled with the agent's OWN validated values (never the result),
+  the agent must make that calculator call itself, up to two feedback rounds
+  are allowed, and a new check fails any justification that still states an
+  old number.

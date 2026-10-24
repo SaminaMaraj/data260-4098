@@ -236,15 +236,56 @@ def validate(
         and _close(total, fees + residual, 0.0, 0.05),
         "step 5: membership_total = membership_fees + member_residual",
     )
-    formula = {
-        "break_even_rides_per_rider_month": "step 5: MEMBERSHIP / "
-        "((pay_per_use_total - member_residual) / rides); this is not the "
-        "actual rides per rider-month",
-        "actual_rides_per_rider_month": "step 5: rides / rider_months",
+    # Derived ratios. The hint gives the step 5 formula; when the inputs the
+    # agent itself reported already passed validation, it also gives the
+    # calculator expression filled with THOSE values (never the result), so
+    # the agent recomputes the ratio with its own calculator tool.
+    rides = _num(final.get("rides"))
+    rider_months = _num(final.get("rider_months"))
+    membership = _num(used.get("MEMBERSHIP"))
+    inputs_ok = (
+        rides == ref["rides"]
+        and rider_months == ref["rider_months"]
+        and membership == ref_prices["prices"]["MEMBERSHIP"]
+        and _close(pay, ref["pay_per_use_total"], 0.002, 0.5)
+        and _close(residual, ref["member_residual"], 0.002, 0.5)
+    )
+    hints = {
+        "break_even_rides_per_rider_month": (
+            "step 5: MEMBERSHIP / ((pay_per_use_total - member_residual) / rides); "
+            "this is not the actual rides per rider-month"
+            + (
+                f'. Call calculator with "{membership:g} / (({pay:g} - '
+                f'{residual:g}) / {rides:g})" (your own validated values) and use '
+                "its value"
+                if inputs_ok
+                else ""
+            )
+        ),
+        "actual_rides_per_rider_month": "step 5: rides / rider_months"
+        + (
+            f'. Call calculator with "{rides:g} / {rider_months:g}" and use its value'
+            if inputs_ok
+            else ""
+        ),
     }
-    for key, hint in formula.items():
+    for key, hint in hints.items():
         agent = _num(final.get(key))
         add(key, agent, ref[key], _close(agent, ref[key], 0.01, 0.05), hint)
+
+    # the written justification must use the same final numbers
+    text = str(final.get("justification", ""))
+    stale = _stale_numbers(text, final)
+    add(
+        "justification uses the final numbers",
+        stale or "consistent",
+        "consistent",
+        not stale,
+        "rewrite the justification with the corrected values from your JSON "
+        "(it still mentions " + ", ".join(stale) + ")"
+        if stale
+        else "",
+    )
 
     # consistency check: the decision must follow from the agent's own totals
     implied = None
@@ -285,6 +326,38 @@ def validate(
     return {"passed": all(c["ok"] for c in checks), "checks": checks}
 
 
+_NUMBER = re.compile(r"\$?\s?(\d[\d,]*(?:\.\d+)?)")
+_LABELS = {
+    "break_even_rides_per_rider_month": ("break-even", "break even", "breakeven"),
+    "pay_per_use_total": ("pay-per-use", "pay per use", "pay-per-ride"),
+    "membership_total": ("membership total", "monthly membership is"),
+}
+
+
+def _stale_numbers(text: str, final: dict[str, Any]) -> list[str]:
+    """Numbers written right after a label that do not match the JSON value."""
+    stale = []
+    low = text.casefold()
+    for key, labels in _LABELS.items():
+        value = _num(final.get(key))
+        if value is None:
+            continue
+        for label in labels:
+            start = 0
+            while (i := low.find(label, start)) >= 0:
+                start = i + len(label)
+                window = text[start : start + 60]
+                m = _NUMBER.search(window)
+                if not m or window[: m.start()].count(".") > 0:
+                    continue  # no number in the same sentence
+                if re.match(r"\s*[-+*/(]", window[m.end() :]):
+                    continue  # part of a written formula, not a result
+                got = _num(m.group(1))
+                if got is not None and not _close(got, value, 0.01, 0.05):
+                    stale.append(f"{label} {m.group(1)}")
+    return stale
+
+
 DECISION_CHECKS = {
     "consistency: decision follows own totals",
     "decision matches recomputed costs",
@@ -315,7 +388,8 @@ def feedback_message(result: dict[str, Any]) -> str:
         )
     else:
         lines.append(
-            "Recompute the failed values with csv_sql and calculator, following the "
-            "steps in the instructions, then reply with the corrected JSON object only."
+            "Recompute only the failed values with csv_sql and calculator, following "
+            "the steps in the instructions, make the justification use the corrected "
+            "values, then reply with the corrected JSON object only."
         )
     return "\n".join(lines)

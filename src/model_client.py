@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional
 
 from ollama import Client
 
-
 DEFAULT_MODEL = os.environ.get("SMOL_MODEL", "qwen3:8b")
 DEFAULT_BASE_URL = os.environ.get(
     "OLLAMA_URL",
@@ -19,14 +18,13 @@ def complete(
     base_url: Optional[str] = None,
     temperature: Optional[float] = None,
     response_format: Optional[str] = None,
+    max_tokens: Optional[int] = None,
 ) -> Dict[str, Any]:
     selected_model = model or DEFAULT_MODEL
     selected_base_url = base_url or DEFAULT_BASE_URL
 
     if temperature is None:
-        temperature = float(
-            os.environ.get("MODEL_TEMPERATURE", "0.0")
-        )
+        temperature = float(os.environ.get("MODEL_TEMPERATURE", "0.0"))
 
     timeout = float(os.environ.get("OLLAMA_TIMEOUT", "90"))
     client = Client(host=selected_base_url, timeout=timeout)
@@ -38,7 +36,11 @@ def complete(
         "think": False,
         "options": {
             "temperature": temperature,
-            "num_predict": int(os.environ.get("MODEL_MAX_TOKENS", "256")),
+            # max_tokens (from a token budget) can only lower the default cap
+            "num_predict": min(
+                int(os.environ.get("MODEL_MAX_TOKENS", "256")),
+                int(max_tokens) if max_tokens is not None else 10**9,
+            ),
         },
     }
 
