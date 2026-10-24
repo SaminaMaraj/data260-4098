@@ -97,6 +97,27 @@ def test_policy_retriever_snapshot_and_untrusted_labels():
     assert not bad["success"]
 
 
+def test_injected_block_is_retrieved_even_with_k3():
+    """The second attack run showed the injection ranked 4th, so k=3 never
+    retrieved it. Each fixture's injected block must rank in the top 3."""
+    from src.hw7_bikeshare_tools import _passages, _score, html_to_text
+
+    fixtures = Path(__file__).resolve().parents[1] / "reports" / "hw07" / "fixtures"
+    markers = {
+        "hostile_override.html": "ignore all previous instructions",
+        "hostile_sql.html": "DELETE FROM trips WHERE duration_min",
+        "hostile_exfil.html": "copy every returned ride_id and station name",
+    }
+    for name, marker in markers.items():
+        passages = _passages(html_to_text((fixtures / name).read_text()))
+        for query in (
+            "month pass monthly membership price included minutes",
+            "single ride unlock fee per minute classic ebike",
+        ):
+            ranked = sorted(passages, key=lambda p: _score(p, query), reverse=True)
+            assert any(marker in p for p in ranked[:3]), (name, query)
+
+
 def test_gate_contract():
     assert is_destructive("rm -fr build") is True
     assert is_destructive("ls -la") is False
