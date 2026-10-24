@@ -71,13 +71,15 @@ def _evidence(run: dict[str, Any], result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def write_reflection(model, task_id: str, evidence: dict) -> tuple[dict, int]:
+def write_reflection(
+    model, task_id: str, evidence: dict, prompt_key: str = "prompt"
+) -> tuple[dict, int]:
     """Ask the model for a 2-field reflection; fall back to a template."""
     prompt = (
         "A tool-using agent failed a task. Write ONE short reflection as JSON "
         '{"failure": "<one sentence: what went wrong>", "strategy": "<one '
         'sentence: what to do differently>"}. Do not include hidden reasoning.\n'
-        f"Task: {TASKS[task_id]['prompt']}\n"
+        f"Task: {TASKS[task_id][prompt_key]}\n"
         f"Evidence from the failed run: {json.dumps(evidence)[:1500]}"
     )
     response = model([{"role": "user", "content": prompt}], None, temperature=0.0)
@@ -148,6 +150,7 @@ def run_reflexion(
     tool_budget: int = TOOL_BUDGET,
     token_budget: int = TOKEN_BUDGET,
     temperature: float | None = 0.0,
+    prompt_key: str = "prompt",
     log=print,
 ) -> dict[str, Any]:
     chat = model or default_model
@@ -166,7 +169,7 @@ def run_reflexion(
             break
         reflections = load_reflections(user_id, run_id)
         run = run_agent(
-            TASKS[task_id]["prompt"],
+            TASKS[task_id][prompt_key],
             model=chat,
             temperature=temperature,
             extra_messages=_reflection_message(reflections),
@@ -203,12 +206,15 @@ def run_reflexion(
             break
 
         evidence = _evidence(run, result)
-        reflection, reflection_tokens = write_reflection(chat, task_id, evidence)
+        reflection, reflection_tokens = write_reflection(
+            chat, task_id, evidence, prompt_key
+        )
         tokens_used += reflection_tokens
         record = {
             "user_id": user_id,
             "run_id": run_id,
             "task_id": task_id,
+            "prompt_variant": prompt_key,
             "attempt": attempt,
             "created_at": datetime.now(timezone.utc).isoformat(),
             **reflection,

@@ -1,0 +1,38 @@
+{
+  "seed": 4098,
+  "note": "rider_id is synthetic; all other columns are unmodified public rows",
+  "A_membership": {
+    "source_file": "202509-baywheels-tripdata.csv.zip",
+    "selection_rule": "8 <= duration <= 60 min, any bike type; 600 trips over 15 riders",
+    "matching_trips_in_source": 264449,
+    "rows": 600,
+    "riders_synthetic": 15,
+    "ebike_rides": 472,
+    "classic_rides": 128,
+    "duration_min_mean": 16.2,
+    "duration_min_median": 13.22,
+    "first_start": "2025-09-01 10:34:03.658",
+    "last_start": "2025-09-30 20:45:00.389",
+    "member_casual_counts": {
+      "casual": 168,
+      "member": 432
+    }
+  },
+  "B_payg": {
+    "source_file": "202509-baywheels-tripdata.csv.zip",
+    "selection_rule": "classic_bike, duration <= 12 min; 520 trips over 260 riders",
+    "matching_trips_in_source": 59054,
+    "rows": 520,
+    "riders_synthetic": 260,
+    "ebike_rides": 0,
+    "classic_rides": 520,
+    "duration_min_mean": 6.35,
+    "duration_min_median": 6.42,
+    "first_start": "2025-09-01 10:38:48.055",
+    "last_start": "2025-09-30 21:20:33.839",
+    "member_casual_counts": {
+      "casual": 81,
+      "member": 439
+    }
+  }
+}

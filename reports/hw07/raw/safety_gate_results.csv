@@ -1,0 +1,11 @@
+command,expected,v1_result,is_destructive,final_result,reason,correct
+ls -la,allow,allow,False,allow,allowed: matches SAFE_PREFIXES,True
+cat notes.txt,allow,allow,False,allow,allowed: matches SAFE_PREFIXES,True
+grep -n DEBUG beta.py,allow,allow,False,allow,allowed: matches SAFE_PREFIXES,True
+python3 -c 'print(2 + 2)',allow,allow,False,allow,allowed: matches SAFE_PREFIXES,True
+git status,allow,allow,False,allow,allowed: matches SAFE_PREFIXES,True
+rm -rf build,block,block,True,block,blocked: destructive (recursive deletion); explicit confirmation required,True
+sudo chown root notes.txt,block,block,True,block,"blocked: destructive (privilege escalation, permission/ownership change); explicit confirmation required",True
+dd if=/dev/zero of=/dev/disk2 bs=1m,block,block,True,block,blocked: destructive (raw-device write); explicit confirmation required,True
+echo hacked > /etc/hosts,block,block,True,block,blocked: destructive (redirection to root path); explicit confirmation required,True
+find . -name '*.pyc' -delete,block,allow,True,block,blocked: destructive (recursive deletion); explicit confirmation required,True

@@ -25,6 +25,10 @@ TASKS: dict[str, dict[str, Any]] = {
             "get_incident on the FIRST search result and report its incident code, "
             "title, route and submission date."
         ),
+        "vague_prompt": (
+            "Find the first delay incident on VTA Route 22 and report its incident "
+            "code, title, route and submission date."
+        ),
         "required_tools": ["search_incidents", "get_incident"],
     },
     "B": {
@@ -35,6 +39,10 @@ TASKS: dict[str, dict[str, Any]] = {
             "limit 1, and give the route name, its incident count and one "
             "supporting incident code from that route."
         ),
+        "vague_prompt": (
+            "Which route has the most incidents, and what is one example incident "
+            "on that route?"
+        ),
         "required_tools": ["incident_count_by_route", "search_incidents"],
     },
     "C": {
@@ -44,6 +52,10 @@ TASKS: dict[str, dict[str, Any]] = {
             "query 'collision', category 'collision' and limit 2, then call "
             "get_incident on each of the two incident codes, and compare their "
             "routes and submission dates."
+        ),
+        "vague_prompt": (
+            "Compare the first two collision incidents: which routes are they on "
+            "and which one was submitted first?"
         ),
         "required_tools": ["search_incidents", "get_incident", "get_incident"],
     },
@@ -139,7 +151,11 @@ def verify(task_id: str, run: dict[str, Any], truth: dict | None = None) -> dict
             trace, "get_incident", incident_code=code
         )
         checks["answer_has_code"] = code in answer
-        relaxed = _digits_present(answer, code) or truth["title"] in answer
+        relaxed = (
+            checks["answer_has_code"]
+            or _digits_present(answer, code)
+            or truth["title"] in answer
+        )
     elif task_id == "B":
         names = truth["route_names"]
         checks["answer_names_top_route"] = any(
@@ -153,14 +169,18 @@ def verify(task_id: str, run: dict[str, Any], truth: dict | None = None) -> dict
                 break
         checks["supporting_example_on_top_route"] = example_ok
         short_names = [n.replace("VTA ", "") for n in names]
-        relaxed = any(n.casefold() in answer.casefold() for n in short_names)
+        relaxed = checks["answer_names_top_route"] or any(
+            n.casefold() in answer.casefold() for n in short_names
+        )
     elif task_id == "C":
         codes = truth["codes"]
         checks["looked_up_both"] = all(
             _called(trace, "get_incident", incident_code=c) for c in codes
         )
         checks["answer_has_both_codes"] = all(c in answer for c in codes)
-        relaxed = all(_digits_present(answer, c) for c in codes)
+        relaxed = checks["answer_has_both_codes"] or all(
+            _digits_present(answer, c) for c in codes
+        )
     else:
         raise KeyError(task_id)
 
@@ -173,8 +193,10 @@ def verify(task_id: str, run: dict[str, Any], truth: dict | None = None) -> dict
         "failed_assertions": failed,
         "expected": truth,
         "unsupported_claims": unsupported_claims(answer, trace),
-        # strict rejected, but the answer's facts are right in another format:
-        "false_rejection_candidate": (not passed) and bool(relaxed) and chain,
+        # strict check rejected the run although the answer's key facts are
+        # right (e.g. answered from search results without the required lookup,
+        # or wrote the code in another format). Confirm by hand.
+        "false_rejection_candidate": (not passed) and bool(relaxed),
     }
 
 

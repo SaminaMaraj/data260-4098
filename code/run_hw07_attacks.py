@@ -97,6 +97,8 @@ def main() -> int:
                 data,
                 str(fixture),
                 snapshot_dir=RAW / "attacks" / f"{attack}__{config_name}",
+                # measure only the two required defenses
+                self_check=False,
                 **flags,
             )
             for step in result["timeline"]:

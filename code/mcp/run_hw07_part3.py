@@ -30,9 +30,18 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--temperature", type=float, default=0.7)
+    parser.add_argument(
+        "--prompts",
+        choices=["explicit", "vague"],
+        default="explicit",
+        help="explicit = tools named in the prompt; vague = same task, no tool hints",
+    )
     args = parser.parse_args()
+    key = "prompt" if args.prompts == "explicit" else "vague_prompt"
+    suffix = "" if args.prompts == "explicit" else "_vague"
     header(
-        f"HW7 Part 3 - original vs Reflexion, repeats={args.repeats}, "
+        f"HW7 Part 3 - original vs Reflexion, prompts={args.prompts}, "
+        f"repeats={args.repeats}, "
         f"temperature={args.temperature}, tool_budget={TOOL_BUDGET}, "
         f"token_budget={TOKEN_BUDGET}, max_retries=2"
     )
@@ -41,9 +50,7 @@ def main() -> int:
         for task_id in TASKS:
             truth = ground_truth(task_id)
             log(f"\n=== repeat {repeat} task {task_id} | ORIGINAL loop ===")
-            run = run_agent(
-                TASKS[task_id]["prompt"], temperature=args.temperature, log=log
-            )
+            run = run_agent(TASKS[task_id][key], temperature=args.temperature, log=log)
             result = verify(task_id, run, truth)
             log(f"answer: {run['answer']}")
             log(
@@ -53,6 +60,7 @@ def main() -> int:
             rows.append(
                 {
                     "loop": "original",
+                    "prompts": args.prompts,
                     "repeat": repeat,
                     "task": task_id,
                     "success": result["passed"],
@@ -68,13 +76,16 @@ def main() -> int:
             )
 
             log(f"\n=== repeat {repeat} task {task_id} | REFLEXION loop ===")
-            out = run_reflexion(task_id, temperature=args.temperature, log=log)
+            out = run_reflexion(
+                task_id, temperature=args.temperature, prompt_key=key, log=log
+            )
             final = out["final"]
             log(f"answer: {out['answer']}")
             log(f"stop_reason={out['stop_reason']} retries={out['retries']}")
             rows.append(
                 {
                     "loop": "reflexion",
+                    "prompts": args.prompts,
                     "repeat": repeat,
                     "task": task_id,
                     "success": out["stop_reason"] == "success",
@@ -93,7 +104,7 @@ def main() -> int:
             )
 
     RAW.mkdir(parents=True, exist_ok=True)
-    with (RAW / "reflexion_comparison.csv").open(
+    with (RAW / f"reflexion_comparison{suffix}.csv").open(
         "w", newline="", encoding="utf-8"
     ) as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -120,7 +131,7 @@ def main() -> int:
                 for s in sorted({r["stop_reason"] for r in group})
             },
         }
-    save_json("reflexion_summary.json", summary)
+    save_json(f"reflexion_summary{suffix}.json", summary)
     log("\n| Metric | Original loop | Reflexion loop |")
     log("|---|---|---|")
     labels = [

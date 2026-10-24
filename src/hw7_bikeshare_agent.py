@@ -17,7 +17,12 @@ import time
 from pathlib import Path
 from typing import Any
 
-from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+from langchain_core.messages import (
+    AIMessage,
+    HumanMessage,
+    SystemMessage,
+    ToolMessage,
+)
 from langchain_core.tools import StructuredTool
 from pydantic import BaseModel, Field
 
@@ -64,7 +69,10 @@ ORDER BY week_start
 5. Use calculator for: membership_total = riders * months * MEMBERSHIP + \
 member_residual ; break_even_rides_per_rider_month = MEMBERSHIP / ((payg_total - \
 member_residual) / rides) ; actual_rides_per_rider_month = rides / (riders * months).
-6. The cheaper total wins. Reply with ONLY this JSON object:
+6. Decide by comparing the TWO TOTALS, pay_per_use_total vs membership_total. \
+The monthly price alone is NOT the membership total. If membership_total < \
+pay_per_use_total the decision is "Buy Monthly Membership", otherwise it is \
+"Pay Per Ride/Minute". Reply with ONLY this JSON object:
 {"decision": "Buy Monthly Membership" or "Pay Per Ride/Minute", "justification": \
 "3-6 sentences with the numbers, quoting the price snippets", "prices_used": \
 {"MEMBERSHIP": n, "UNLOCK": n, "PAYG_CLASSIC": n, "PAYG_EBIKE": n, "INCLUDED": n, \
@@ -150,11 +158,27 @@ def _parse_final(text: str) -> dict[str, Any] | None:
     match = re.search(r"\{.*\}", text, re.DOTALL)
     if not match:
         return None
+    raw = match.group(0)
     try:
-        parsed = json.loads(match.group(0))
+        parsed = json.loads(raw)
     except json.JSONDecodeError:
-        return None
+        # qwen sometimes writes a value as arithmetic, e.g. "fees": 15 * 1 * 29.
+        # Evaluate such values with the same whitelist calculator (no eval).
+        def _fix(m: re.Match) -> str:
+            out = calculator(m.group(1))
+            if not out["success"]:
+                return m.group(0)
+            return f": {round(out['data']['value'], 2)}{m.group(2)}"
+
+        repaired = _ARITH_VALUE.sub(_fix, raw)
+        try:
+            parsed = json.loads(repaired)
+        except json.JSONDecodeError:
+            return None
     return parsed if isinstance(parsed, dict) else None
+
+
+_ARITH_VALUE = re.compile(r":\s*([0-9.]+(?:\s*[-+*/]\s*[0-9.()]+)+)\s*([,}\n])")
 
 
 def _normalize_decision(value: Any) -> str | None:
@@ -236,6 +260,7 @@ def run_bikeshare_agent(
     tool_defense: bool = True,
     llm=None,
     max_steps: int = MAX_STEPS,
+    self_check: bool = True,
 ) -> dict[str, Any]:
     from langgraph.errors import GraphRecursionError
     from langgraph.prebuilt import create_react_agent
@@ -249,7 +274,8 @@ def run_bikeshare_agent(
         prompt_defense=prompt_defense,
     )
     prompt = BASE_PROMPT + (PROMPT_DEFENSE_RULES if prompt_defense else "")
-    agent = create_react_agent(llm or default_llm(), make_tools(ctx), prompt=prompt)
+    model = llm or default_llm()
+    agent = create_react_agent(model, make_tools(ctx), prompt=prompt)
     user = (
         f"Pricing page URL: {pricing_url}\nThe trips are loaded as table `trips` "
         f"from uploaded.csv ({trip_stats['rows_loaded']} rows). Recommend monthly "
@@ -292,6 +318,79 @@ def run_bikeshare_agent(
             )
 
     final = _parse_final(final_text) or {}
+    json_retry = False
+    if self_check and final_text and not final:
+        json_retry = True
+        try:
+            reply = model.invoke(
+                [
+                    SystemMessage(content=prompt),
+                    HumanMessage(content=user),
+                    AIMessage(content=final_text),
+                    HumanMessage(
+                        content="Your last reply was not valid JSON (every value "
+                        "must be a plain number or string, no formulas). Reply "
+                        "with the same answer as one valid JSON object only."
+                    ),
+                ]
+            )
+            final = _parse_final(str(reply.content)) or {}
+            if final:
+                final_text = str(reply.content)
+        except Exception:  # keep "no decision" if the re-ask fails
+            final = {}
+        timeline.append(
+            {
+                "type": "observation",
+                "tool": "json_format_check",
+                "output": {"success": bool(final), "data": {"reasked": True}},
+            }
+        )
+
+    # Bounded self-consistency check (one re-ask): if the decision contradicts
+    # the agent's OWN totals, the model is asked once to re-check. The model
+    # still makes the decision; the original answer is kept for the report.
+    recheck: dict[str, Any] = {"ran": False}
+    pay, mem = _num(final.get("pay_per_use_total")), _num(final.get("membership_total"))
+    if self_check and final and pay is not None and mem is not None:
+        implied = MEMBERSHIP if mem < pay else PAYG
+        if _normalize_decision(final.get("decision")) != implied:
+            question = (
+                f"Consistency check: your own totals are pay_per_use_total={pay} and "
+                f"membership_total={mem}, but your decision was "
+                f"'{final.get('decision')}'. Re-check which total is lower and "
+                "reply with the corrected JSON object only."
+            )
+            try:
+                reply = model.invoke(
+                    [
+                        SystemMessage(content=prompt),
+                        HumanMessage(content=user),
+                        AIMessage(content=final_text),
+                        HumanMessage(content=question),
+                    ]
+                )
+                corrected = _parse_final(str(reply.content))
+            except Exception as exc:  # keep the original answer on failure
+                corrected, reply = None, None
+                question += f" (re-check failed: {exc})"
+            recheck = {
+                "ran": True,
+                "original_decision": final.get("decision"),
+                "question": question,
+                "corrected_decision": (corrected or {}).get("decision"),
+            }
+            timeline.append(
+                {
+                    "type": "observation",
+                    "tool": "consistency_check",
+                    "output": {"success": corrected is not None, "data": recheck},
+                }
+            )
+            if corrected:
+                final_text = str(reply.content)
+                final = corrected
+
     weekly: list[dict[str, Any]] = []
     for step in timeline:
         rows = (step.get("output") or {}).get("data", {})
@@ -318,7 +417,10 @@ def run_bikeshare_agent(
             "llm_turns": sum(isinstance(m, AIMessage) for m in messages),
             "total_time_ms": total_ms,
             "stop_reason": stop_reason,
+            "consistency_recheck": recheck["ran"],
+            "json_reask": json_retry,
         },
+        "consistency_check": recheck,
         "trip_stats": trip_stats,
         "sql_log": ctx.sql_log,
         "defenses": {"prompt_defense": prompt_defense, "tool_defense": tool_defense},

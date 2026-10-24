@@ -1,0 +1,22 @@
+{
+  "attempts": 21,
+  "temperature": 0.7,
+  "tool_use_opportunities": 49,
+  "call_well_formed_rate_before_repair": 1.0,
+  "call_well_formed_rate_after_repair": 1.0,
+  "attempt_clean_rate_before_repair": 1.0,
+  "attempt_well_formed_rate_after_repair": 1.0,
+  "task_success_rate": 1.0,
+  "failures_by_type": {
+    "malformed_arguments": 0,
+    "unknown_tool": 0,
+    "text_when_tool_required": 0,
+    "lost_multi_step_chain": 0
+  },
+  "attempts_with_failure_by_type": {
+    "malformed_arguments": 0,
+    "unknown_tool": 0,
+    "text_when_tool_required": 0,
+    "lost_multi_step_chain": 0
+  }
+}
