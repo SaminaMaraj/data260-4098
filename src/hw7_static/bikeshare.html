@@ -31,11 +31,12 @@
   .metric b { display: block; font-size: 18px; }
   .metric small { color: var(--muted); }
   .grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 14px; }
-  .timeline { max-height: 1100px; overflow: auto; }
+  .timeline { }
   .step { border-left: 3px solid var(--line); padding: 6px 10px; margin: 0 0 8px; }
   .step.call { border-color: var(--accent); }
   .step.obs { border-color: var(--good); background: #fafbfc; }
   .step.obs.err { border-color: var(--bad); }
+  .step.fb { border-color: var(--warn); background: #fff8e6; }
   .step .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); }
   pre { margin: 4px 0 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.4 var(--mono); }
   .decision { font-size: 20px; font-weight: 700; padding: 10px 14px; border-radius: 8px; display: inline-block; }
@@ -81,6 +82,7 @@
       <div class="metric"><small>Total time</small><b id="m-time">–</b></div>
       <div class="metric"><small>Stop reason</small><b id="m-stop">–</b></div>
       <div class="metric"><small>Trip rows loaded</small><b id="m-rows">–</b></div>
+      <div class="metric"><small>Validation</small><b id="m-val">–</b></div>
       <div class="metric"><small>Defenses</small><b id="m-def">–</b></div>
     </div>
   </section>
@@ -103,8 +105,9 @@ const money = (v) => (v === null || v === undefined || v === "" || isNaN(Number(
 
 function shortOutput(out) {
   if (!out) return "";
-  if (out.success === false) return "error: " + (out.error || "");
   const d = out.data || {};
+  if (d.round !== undefined) return d.reason ? `round ${d.round}: ${d.reason}` : `round ${d.round}: ${d.checks - d.failed.length}/${d.checks} checks passed` + (d.failed.length ? `\nfailed: ${d.failed.join(", ")}` : "");
+  if (out.success === false) return "error: " + (out.error || "");
   if (Array.isArray(d.passages)) {
     return d.passages.map((p) => `[score ${p.score}] ${String(p.text).slice(0, 150)}…`).join("\n")
       + (d.sha256 ? `\nsha256 ${d.sha256.slice(0, 16)}…` : "");
@@ -114,6 +117,7 @@ function shortOutput(out) {
     return `row_count=${d.row_count}\n${shown}${d.rows.length > 4 ? "\n…" : ""}`;
   }
   if (d.value !== undefined) return `value=${d.value}${d.units ? " " + d.units : ""}`;
+  if (d.round !== undefined) return d.reason ? `round ${d.round}: ${d.reason}` : `round ${d.round}: ${d.checks - d.failed.length}/${d.checks} checks passed` + (d.failed.length ? `\nfailed: ${d.failed.join(", ")}` : "");
   return JSON.stringify(out).slice(0, 300);
 }
 
@@ -126,6 +130,9 @@ function renderTimeline(steps) {
       n += 1;
       return `<div class="step call"><div class="tag">#${n} call · ${esc(s.tool)}</div><pre>${esc(s.tool === "csv_sql" ? s.input.sql : JSON.stringify(s.input))}</pre></div>`;
     }
+    if (s.type === "feedback") {
+      return `<div class="step fb"><div class="tag">validation feedback to the agent</div><pre>${esc(s.text)}</pre></div>`;
+    }
     const err = s.output && s.output.success === false;
     return `<div class="step obs ${err ? "err" : ""}"><div class="tag">observation · ${esc(s.tool)}</div><pre>${esc(shortOutput(s.output))}</pre></div>`;
   }).join("");
@@ -133,36 +140,46 @@ function renderTimeline(steps) {
 
 function renderResults(r) {
   const f = r.final || {};
-  const cls = r.decision === "Buy Monthly Membership" ? "member" : r.decision ? "payg" : "none";
-  const a = r.audit || {};
+  const cls = !r.validated ? "none" : r.decision === "Buy Monthly Membership" ? "member" : "payg";
   const costRows = [
-    ["Pay-per-use total", f.pay_per_use_total],
-    ["Membership fees (riders × months × price)", f.membership_fees],
-    ["Member residual charges (overage / ebike minutes)", f.member_residual],
-    ["Membership total", f.membership_total],
+    ["Unlock fees (rides × unlock fee)", f.unlock_fees],
+    ["Per-minute charges", f.payg_minute_cost],
+    ["<b>Pay-per-use total</b>", f.pay_per_use_total],
+    ["Membership fees (passes only: rider-months × price)", f.membership_fees],
+    ["Member residual charges (ebike minutes + classic overage)", f.member_residual],
+    ["<b>Membership total</b> (fees + residual)", f.membership_total],
   ];
   const weekly = (r.weekly || []).map((w) =>
     `<tr><td>${esc(w.week_start)}</td><td class="num">${esc(w.rides)}</td><td class="num">${esc(w.avg_min)}</td><td class="num">${money(w.payg_spend)}</td></tr>`).join("");
   const cites = (r.citations || []).map((c) =>
-    `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a><br><span class="muted">captured ${esc(c.captured_at)} · sha256 ${esc(c.sha256)}</span></li>`).join("");
+    `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a><br><span class="muted">${c.snapshot_mode === "reused_saved_snapshot" ? "REUSED saved snapshot, originally captured" : "fetched live, captured"} ${esc(c.captured_at)} · sha256 ${esc(c.sha256)}</span></li>`).join("");
   const quotes = (f.citations || []).map((q) => `<li>“${esc(q)}”</li>`).join("");
   const assumptions = (f.assumptions || []).map((q) => `<li>${esc(q)}</li>`).join("");
-  const auditLine = a.checked
-    ? `<span class="${a.agent_decision_matches_costs && a.agent_totals_match ? "audit-ok" : "audit-bad"}">
-        Harness recomputation with the agent's prices: pay-per-use ${money(a.pay_per_use_total)}, membership ${money(a.membership_total)}
-        → ${esc(a.decision_from_costs)} (decision ${a.agent_decision_matches_costs ? "matches" : "DOES NOT match"}, totals ${a.agent_totals_match ? "match" : "differ"})</span>`
-    : `<span class="muted">Audit not run: ${esc(a.reason)}</span>`;
+  const rounds = (r.validation || {}).rounds || [];
+  const last = rounds[rounds.length - 1] || { checks: [] };
+  const checkRows = (last.checks || []).map((c) =>
+    `<tr><td>${c.ok ? "✓" : "✗"} ${esc(c.check)}</td><td class="num">${esc(c.agent)}</td><td class="num">${esc(c.expected)}</td></tr>`).join("");
+  const first = r.first_answer || {};
+  const changed = rounds.length > 1
+    ? `<p class="muted">First answer (round 0) failed: ${esc(rounds[0].checks.filter((c) => !c.ok).map((c) => c.check).join(", "))}. First answer: pay-per-use ${money(first.pay_per_use_total)}, membership fees ${money(first.membership_fees)}, membership total ${money(first.membership_total)}, decision ${esc(first.decision)}. The agent recomputed with its tools after one feedback message.</p>`
+    : "";
+  const verdict = r.validated
+    ? `<span class="audit-ok">Validated: all ${last.checks.length} deterministic checks passed (round ${last.round}).</span>`
+    : `<span class="audit-bad">NOT validated: ${esc(last.reason || (last.checks || []).filter((c) => !c.ok).map((c) => c.check).join(", "))}. Do not use this result.</span>`;
 
   $("results").classList.remove("muted");
   $("results").innerHTML = `
-    <div class="decision ${cls}">${esc(r.decision || "No decision")}</div>
+    <div class="decision ${cls}">${esc(r.decision || "No decision")}${r.validated ? "" : " (not validated)"}</div>
+    <p>${verdict}</p>
     <h3>Justification</h3><p>${esc(f.justification || r.final_text || "")}</p>
-    <h3>Cost comparison</h3>
+    <h3>Cost comparison (agent's numbers)</h3>
     <table><tbody>${costRows.map(([k, v]) => `<tr><th>${k}</th><td class="num">${money(v)}</td></tr>`).join("")}
       <tr><th>Break-even rides per rider-month</th><td class="num">${esc(f.break_even_rides_per_rider_month ?? "–")}</td></tr>
       <tr><th>Actual rides per rider-month</th><td class="num">${esc(f.actual_rides_per_rider_month ?? "–")}</td></tr>
     </tbody></table>
-    <p>${auditLine}</p>
+    <h3>Validation (deterministic recomputation)</h3>
+    <table><thead><tr><th>Check</th><th>Agent</th><th>Expected</th></tr></thead><tbody>${checkRows || '<tr><td colspan="3" class="muted">no checks</td></tr>'}</tbody></table>
+    ${changed}
     <h3>By week</h3>
     <table><thead><tr><th>Week starting</th><th>Rides</th><th>Avg min</th><th>Pay-per-use spend</th></tr></thead><tbody>${weekly || '<tr><td colspan="4" class="muted">agent did not run the weekly query</td></tr>'}</tbody></table>
     <h3>Citations</h3><ul>${cites}</ul>${quotes ? `<ul>${quotes}</ul>` : ""}
@@ -193,6 +210,7 @@ $("run-form").addEventListener("submit", async (event) => {
     $("m-time").textContent = m.total_time_ms ? (m.total_time_ms / 1000).toFixed(1) + " s" : "–";
     $("m-stop").textContent = m.stop_reason ?? "–";
     $("m-rows").textContent = data.trip_stats?.rows_loaded ?? "–";
+    $("m-val").textContent = data.validated ? `passed (${m.validation_rounds} round${m.validation_rounds > 1 ? "s" : ""})` : "FAILED";
     const d = data.defenses || {};
     $("m-def").textContent = `${d.prompt_defense ? "prompt" : "–"} / ${d.tool_defense ? "tool" : "–"}`;
     $("status").textContent = `saved reports/hw07/raw/bikeshare/${data.label}/`;

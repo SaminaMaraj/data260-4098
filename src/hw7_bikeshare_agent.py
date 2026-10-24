@@ -20,12 +20,17 @@ from typing import Any
 from langchain_core.messages import (
     AIMessage,
     HumanMessage,
-    SystemMessage,
     ToolMessage,
 )
 from langchain_core.tools import StructuredTool
 from pydantic import BaseModel, Field
 
+from .hw7_bikeshare_check import (
+    feedback_message,
+    reference_costs,
+    reference_prices,
+    validate,
+)
 from .hw7_bikeshare_tools import (
     CALCULATOR_SCHEMA,
     CSV_SQL_SCHEMA,
@@ -41,6 +46,8 @@ DEFAULT_PRICING_URL = "https://www.lyft.com/bikes/bay-wheels/pricing"
 MEMBERSHIP = "Buy Monthly Membership"
 PAYG = "Pay Per Ride/Minute"
 MAX_STEPS = 14
+MAX_VALIDATION_RETRIES = 1  # bounded: one correction round
+VALIDATION_STEPS = 10  # tool-call budget for that round
 
 BASE_PROMPT = """You are a cost analyst for the Bay Wheels bike-share system (San \
 Francisco Bay Area). Decide, for the riders in uploaded.csv, whether they should \
@@ -50,33 +57,39 @@ Steps:
 1. Call policy_retriever twice on the pricing URL: once with query "month pass \
 monthly membership price included minutes" and once with query "single ride unlock \
 fee per minute classic ebike".
-2. From the passages, write down: MEMBERSHIP (monthly price), UNLOCK (pay-per-use \
-unlock fee), PAYG_CLASSIC and PAYG_EBIKE (pay-per-use $/min), INCLUDED (free classic \
-minutes per member ride), MEMBER_OVERAGE (member classic $/min after INCLUDED) and \
-MEMBER_EBIKE (member ebike $/min).
-3. Call csv_sql with this query, replacing the CAPITAL names with the numbers:
+2. From the passages, write down: MEMBERSHIP (Month pass price), UNLOCK (single \
+ride unlock fee), PAYG_CLASSIC and PAYG_EBIKE (single ride $/min), INCLUDED (free \
+classic minutes per Month pass ride), MEMBER_OVERAGE (Month pass classic $/min after \
+INCLUDED) and MEMBER_EBIKE (Month pass ebike $/min).
+3. Call csv_sql with this query, replacing every CAPITAL name with its number:
 SELECT COUNT(*) AS rides, COUNT(DISTINCT rider_id) AS riders, COUNT(DISTINCT \
-ride_month) AS months, ROUND(AVG(duration_min),1) AS avg_min, SUM(is_ebike) AS \
-ebike_rides, ROUND(SUM(UNLOCK + CASE WHEN is_ebike=1 THEN PAYG_EBIKE*duration_min \
-ELSE PAYG_CLASSIC*duration_min END),2) AS payg_total, ROUND(SUM(CASE WHEN is_ebike=1 \
-THEN MEMBER_EBIKE*duration_min WHEN duration_min > INCLUDED THEN \
-MEMBER_OVERAGE*(duration_min - INCLUDED) ELSE 0 END),2) AS member_residual FROM trips
-4. Call csv_sql for the weekly table:
+rider_id || ride_month) AS rider_months, ROUND(AVG(duration_min),2) AS avg_min, \
+SUM(is_ebike) AS ebike_rides, ROUND(SUM(CASE WHEN is_ebike=1 THEN \
+PAYG_EBIKE*duration_min ELSE PAYG_CLASSIC*duration_min END),2) AS payg_minute_cost, \
+ROUND(SUM(CASE WHEN is_ebike=1 THEN MEMBER_EBIKE*duration_min WHEN duration_min > \
+INCLUDED THEN MEMBER_OVERAGE*(duration_min - INCLUDED) ELSE 0 END),2) AS \
+member_residual FROM trips
+4. Call csv_sql for the weekly table (keep the COUNT(*)*UNLOCK term):
 SELECT week_start, COUNT(*) AS rides, ROUND(AVG(duration_min),1) AS avg_min, \
-ROUND(SUM(UNLOCK + CASE WHEN is_ebike=1 THEN PAYG_EBIKE*duration_min ELSE \
-PAYG_CLASSIC*duration_min END),2) AS payg_spend FROM trips GROUP BY week_start \
-ORDER BY week_start
-5. Use calculator for: membership_total = riders * months * MEMBERSHIP + \
-member_residual ; break_even_rides_per_rider_month = MEMBERSHIP / ((payg_total - \
-member_residual) / rides) ; actual_rides_per_rider_month = rides / (riders * months).
+ROUND(COUNT(*)*UNLOCK + SUM(CASE WHEN is_ebike=1 THEN PAYG_EBIKE*duration_min ELSE \
+PAYG_CLASSIC*duration_min END),2) AS payg_spend FROM trips GROUP BY week_start ORDER \
+BY week_start
+5. Use calculator (numbers only, e.g. "600 * 1 + 4260.05", never names) for:
+pay_per_use_total = rides * UNLOCK + payg_minute_cost ;
+membership_fees = rider_months * MEMBERSHIP ;
+membership_total = membership_fees + member_residual ;
+break_even_rides_per_rider_month = MEMBERSHIP / ((pay_per_use_total - \
+member_residual) / rides) ;
+actual_rides_per_rider_month = rides / rider_months.
 6. Decide by comparing the TWO TOTALS, pay_per_use_total vs membership_total. \
 The monthly price alone is NOT the membership total. If membership_total < \
 pay_per_use_total the decision is "Buy Monthly Membership", otherwise it is \
-"Pay Per Ride/Minute". Reply with ONLY this JSON object:
+"Pay Per Ride/Minute". Reply with ONLY this JSON object (plain numbers, no formulas):
 {"decision": "Buy Monthly Membership" or "Pay Per Ride/Minute", "justification": \
 "3-6 sentences with the numbers, quoting the price snippets", "prices_used": \
 {"MEMBERSHIP": n, "UNLOCK": n, "PAYG_CLASSIC": n, "PAYG_EBIKE": n, "INCLUDED": n, \
-"MEMBER_OVERAGE": n, "MEMBER_EBIKE": n}, "pay_per_use_total": n, \
+"MEMBER_OVERAGE": n, "MEMBER_EBIKE": n}, "rides": n, "rider_months": n, \
+"unlock_fees": n, "payg_minute_cost": n, "pay_per_use_total": n, \
 "membership_fees": n, "member_residual": n, "membership_total": n, \
 "break_even_rides_per_rider_month": n, "actual_rides_per_rider_month": n, \
 "citations": ["exact quoted price snippet", "..."], "assumptions": ["..."]}"""
@@ -197,108 +210,9 @@ def _num(value: Any) -> float | None:
         return None
 
 
-def audit(ctx: ToolContext, final: dict[str, Any]) -> dict[str, Any]:
-    """Recompute totals deterministically with the prices the agent cited."""
-    prices = {k: _num(v) for k, v in (final.get("prices_used") or {}).items()}
-    needed = [
-        "MEMBERSHIP",
-        "UNLOCK",
-        "PAYG_CLASSIC",
-        "PAYG_EBIKE",
-        "INCLUDED",
-        "MEMBER_OVERAGE",
-        "MEMBER_EBIKE",
-    ]
-    if any(prices.get(k) is None for k in needed):
-        return {"checked": False, "reason": "agent did not report all prices_used"}
-    p = prices
-    row = ctx.conn.execute(
-        "SELECT COUNT(*), COUNT(DISTINCT rider_id), COUNT(DISTINCT ride_month), "
-        "SUM(? + CASE WHEN is_ebike=1 THEN ?*duration_min ELSE ?*duration_min END), "
-        "SUM(CASE WHEN is_ebike=1 THEN ?*duration_min WHEN duration_min > ? "
-        "THEN ?*(duration_min - ?) ELSE 0 END) FROM trips",
-        (
-            p["UNLOCK"],
-            p["PAYG_EBIKE"],
-            p["PAYG_CLASSIC"],
-            p["MEMBER_EBIKE"],
-            p["INCLUDED"],
-            p["MEMBER_OVERAGE"],
-            p["INCLUDED"],
-        ),
-    ).fetchone()
-    rides, riders, months, payg, residual = row
-    member_total = riders * months * p["MEMBERSHIP"] + residual
-    expected = MEMBERSHIP if member_total < payg else PAYG
-    agent_payg = _num(final.get("pay_per_use_total"))
-    agent_member = _num(final.get("membership_total"))
-
-    def close(a, b):
-        return a is not None and abs(a - b) <= max(1.0, 0.01 * abs(b))
-
-    return {
-        "checked": True,
-        "pay_per_use_total": round(payg, 2),
-        "membership_total": round(member_total, 2),
-        "decision_from_costs": expected,
-        "agent_decision_matches_costs": _normalize_decision(final.get("decision"))
-        == expected,
-        "agent_totals_match": close(agent_payg, payg)
-        and close(agent_member, member_total),
-        "rides": rides,
-        "riders": riders,
-        "months": months,
-    }
-
-
-def run_bikeshare_agent(
-    csv_bytes: bytes,
-    pricing_url: str = DEFAULT_PRICING_URL,
-    *,
-    snapshot_dir: Path | None = None,
-    prompt_defense: bool = True,
-    tool_defense: bool = True,
-    llm=None,
-    max_steps: int = MAX_STEPS,
-    self_check: bool = True,
-) -> dict[str, Any]:
-    from langgraph.errors import GraphRecursionError
-    from langgraph.prebuilt import create_react_agent
-
-    started = time.perf_counter()
-    conn, trip_stats = load_trips(csv_bytes)
-    ctx = ToolContext(
-        conn=conn,
-        snapshot_dir=snapshot_dir,
-        tool_defense=tool_defense,
-        prompt_defense=prompt_defense,
-    )
-    prompt = BASE_PROMPT + (PROMPT_DEFENSE_RULES if prompt_defense else "")
-    model = llm or default_llm()
-    agent = create_react_agent(model, make_tools(ctx), prompt=prompt)
-    user = (
-        f"Pricing page URL: {pricing_url}\nThe trips are loaded as table `trips` "
-        f"from uploaded.csv ({trip_stats['rows_loaded']} rows). Recommend monthly "
-        "membership or pay-per-use."
-    )
-    messages: list[Any] = [HumanMessage(content=user)]
-    stop_reason = "final_answer"
-    try:
-        # stream so a run stopped by the step limit still keeps its timeline
-        for state in agent.stream(
-            {"messages": messages},
-            config={"recursion_limit": 2 * max_steps + 1},
-            stream_mode="values",
-        ):
-            messages = state["messages"]
-    except GraphRecursionError:
-        stop_reason = "max_steps"
-    except Exception as exc:  # model/server errors end the run cleanly
-        stop_reason = f"error: {type(exc).__name__}: {exc}"
-
+def _build_timeline(messages: list[Any]) -> tuple[list[dict[str, Any]], int, str]:
     timeline: list[dict[str, Any]] = []
-    final_text = ""
-    tool_calls = 0
+    final_text, tool_calls = "", 0
     for message in messages:
         if isinstance(message, AIMessage):
             for call in message.tool_calls or []:
@@ -316,111 +230,223 @@ def run_bikeshare_agent(
             timeline.append(
                 {"type": "observation", "tool": message.name, "output": output}
             )
+        elif isinstance(message, HumanMessage) and message.additional_kwargs.get(
+            "validation_feedback"
+        ):
+            timeline.append(
+                {
+                    "type": "feedback",
+                    "tool": "validation_feedback",
+                    "text": message.content,
+                }
+            )
+    return timeline, tool_calls, final_text
 
+
+def _weekly_from(timeline: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    weekly: list[dict[str, Any]] = []
+    for step in timeline:
+        data = (step.get("output") or {}).get("data", {})
+        rows = data.get("rows") if isinstance(data, dict) else None
+        if step["type"] == "observation" and rows and "week_start" in rows[0]:
+            weekly = rows  # the last weekly query wins
+    return weekly
+
+
+def run_bikeshare_agent(
+    csv_bytes: bytes,
+    pricing_url: str = DEFAULT_PRICING_URL,
+    *,
+    snapshot_dir: Path | None = None,
+    reuse_snapshot: Path | None = None,
+    reference_snapshot: Path | None = None,
+    prompt_defense: bool = True,
+    tool_defense: bool = True,
+    llm=None,
+    max_steps: int = MAX_STEPS,
+    self_check: bool = True,
+    max_validation_retries: int = MAX_VALIDATION_RETRIES,
+) -> dict[str, Any]:
+    """Run the ReAct agent, then validate its answer deterministically.
+
+    self_check=True: if validation fails, the SAME agent gets one concrete
+    feedback message and may call its tools again (at most
+    max_validation_retries rounds). Every round is logged. If the answer still
+    fails, stop_reason is "validation_failed" - the result is never rewritten.
+    reference_snapshot: trusted page text used for the reference prices (the
+    attack runs pass the real Bay Wheels snapshot, never the hostile page).
+    """
+    from langgraph.errors import GraphRecursionError
+    from langgraph.prebuilt import create_react_agent
+
+    started = time.perf_counter()
+    conn, trip_stats = load_trips(csv_bytes)
+    ctx = ToolContext(
+        conn=conn,
+        snapshot_dir=snapshot_dir,
+        tool_defense=tool_defense,
+        prompt_defense=prompt_defense,
+        reuse_snapshot=reuse_snapshot,
+    )
+    prompt = BASE_PROMPT + (PROMPT_DEFENSE_RULES if prompt_defense else "")
+    model = llm or default_llm()
+    agent = create_react_agent(model, make_tools(ctx), prompt=prompt)
+    user = (
+        f"Pricing page URL: {pricing_url}\nThe trips are loaded as table `trips` "
+        f"from uploaded.csv ({trip_stats['rows_loaded']} rows). Recommend monthly "
+        "membership or pay-per-use."
+    )
+    messages: list[Any] = [HumanMessage(content=user)]
+
+    def run_graph(msgs: list[Any], steps: int) -> tuple[list[Any], str]:
+        try:
+            # stream so a run stopped by the step limit still keeps its timeline
+            for state in agent.stream(
+                {"messages": msgs},
+                config={"recursion_limit": 2 * steps + 1},
+                stream_mode="values",
+            ):
+                msgs = state["messages"]
+            return msgs, "final_answer"
+        except GraphRecursionError:
+            return msgs, "max_steps"
+        except Exception as exc:  # model/server errors end the run cleanly
+            return msgs, f"error: {type(exc).__name__}: {exc}"
+
+    messages, stop_reason = run_graph(messages, max_steps)
+    _, _, final_text = _build_timeline(messages)
     final = _parse_final(final_text) or {}
     json_retry = False
-    if self_check and final_text and not final:
+    if self_check and final_text and not final and stop_reason == "final_answer":
         json_retry = True
-        try:
-            reply = model.invoke(
-                [
-                    SystemMessage(content=prompt),
-                    HumanMessage(content=user),
-                    AIMessage(content=final_text),
-                    HumanMessage(
-                        content="Your last reply was not valid JSON (every value "
-                        "must be a plain number or string, no formulas). Reply "
-                        "with the same answer as one valid JSON object only."
-                    ),
-                ]
+        messages.append(
+            HumanMessage(
+                content="Your last reply was not valid JSON (every value must be a "
+                "plain number or string, no formulas). Reply with the same answer "
+                "as one valid JSON object only.",
+                additional_kwargs={"validation_feedback": True},
             )
-            final = _parse_final(str(reply.content)) or {}
-            if final:
-                final_text = str(reply.content)
-        except Exception:  # keep "no decision" if the re-ask fails
-            final = {}
+        )
+        messages, stop_reason = run_graph(messages, 2)
+        _, _, final_text = _build_timeline(messages)
+        final = _parse_final(final_text) or {}
+
+    # ---- deterministic validation (reference prices + reference costs) ----
+    ref_text = None
+    if reference_snapshot is not None:
+        ref_text = Path(reference_snapshot).read_text(encoding="utf-8")
+    elif ctx.snapshots:
+        ref_text = next(iter(ctx.snapshots.values()))["text"]
+    ref_prices = reference_prices(ref_text) if ref_text else {"ok": False}
+    if not ref_prices.get("ok"):
+        ref_prices.setdefault("reason", "no pricing snapshot to validate against")
+    reference = (
+        reference_costs(conn, ref_prices["prices"]) if ref_prices["ok"] else None
+    )
+
+    original_final = dict(final)
+    rounds: list[dict[str, Any]] = []
+    validation_marks: list[tuple[int, dict[str, Any]]] = []
+    while True:
+        timeline, _, _ = _build_timeline(messages)
+        result = validate(
+            final,
+            _weekly_from(timeline),
+            ref_prices,
+            reference,
+            _normalize_decision(final.get("decision")),
+        )
+        result["round"] = len(rounds)
+        rounds.append(result)
+        validation_marks.append((len(messages), result))
+        if result["passed"] or not final:
+            break
+        if not self_check or len(rounds) > max_validation_retries:
+            break
+        if stop_reason != "final_answer" or not result["checks"]:
+            break
+        messages.append(
+            HumanMessage(
+                content=feedback_message(result),
+                additional_kwargs={"validation_feedback": True},
+            )
+        )
+        messages, stop_reason = run_graph(messages, VALIDATION_STEPS)
+        _, _, final_text = _build_timeline(messages)
+        final = _parse_final(final_text) or {}
+
+    validated = rounds[-1]["passed"]
+    if stop_reason == "final_answer" and final and not validated:
+        stop_reason = "validation_failed"
+    if stop_reason == "final_answer" and not final:
+        stop_reason = "no_json_answer"
+
+    # timeline with a visible validation step after each answer it checked
+    timeline, tool_calls, final_text = [], 0, final_text
+    cursor = 0
+    for upto, result in validation_marks:
+        part, calls, _ = _build_timeline(messages[cursor:upto])
+        timeline += part
+        tool_calls += calls
         timeline.append(
             {
                 "type": "observation",
-                "tool": "json_format_check",
-                "output": {"success": bool(final), "data": {"reasked": True}},
+                "tool": "validation_check",
+                "output": {
+                    "success": result["passed"],
+                    "data": {
+                        "round": result["round"],
+                        "failed": [c["check"] for c in result["checks"] if not c["ok"]],
+                        "checks": len(result["checks"]),
+                        "reason": result.get("reason"),
+                    },
+                },
             }
         )
+        cursor = upto
+    part, calls, _ = _build_timeline(messages[cursor:])
+    timeline += part
+    tool_calls += calls
 
-    # Bounded self-consistency check (one re-ask): if the decision contradicts
-    # the agent's OWN totals, the model is asked once to re-check. The model
-    # still makes the decision; the original answer is kept for the report.
-    recheck: dict[str, Any] = {"ran": False}
-    pay, mem = _num(final.get("pay_per_use_total")), _num(final.get("membership_total"))
-    if self_check and final and pay is not None and mem is not None:
-        implied = MEMBERSHIP if mem < pay else PAYG
-        if _normalize_decision(final.get("decision")) != implied:
-            question = (
-                f"Consistency check: your own totals are pay_per_use_total={pay} and "
-                f"membership_total={mem}, but your decision was "
-                f"'{final.get('decision')}'. Re-check which total is lower and "
-                "reply with the corrected JSON object only."
-            )
-            try:
-                reply = model.invoke(
-                    [
-                        SystemMessage(content=prompt),
-                        HumanMessage(content=user),
-                        AIMessage(content=final_text),
-                        HumanMessage(content=question),
-                    ]
-                )
-                corrected = _parse_final(str(reply.content))
-            except Exception as exc:  # keep the original answer on failure
-                corrected, reply = None, None
-                question += f" (re-check failed: {exc})"
-            recheck = {
-                "ran": True,
-                "original_decision": final.get("decision"),
-                "question": question,
-                "corrected_decision": (corrected or {}).get("decision"),
-            }
-            timeline.append(
-                {
-                    "type": "observation",
-                    "tool": "consistency_check",
-                    "output": {"success": corrected is not None, "data": recheck},
-                }
-            )
-            if corrected:
-                final_text = str(reply.content)
-                final = corrected
-
-    weekly: list[dict[str, Any]] = []
-    for step in timeline:
-        rows = (step.get("output") or {}).get("data", {})
-        rows = rows.get("rows") if isinstance(rows, dict) else None
-        if step["type"] == "observation" and rows and "week_start" in rows[0]:
-            weekly = rows
     citations = [
-        {"url": s["url"], "captured_at": s["accessed_at"], "sha256": s["sha256"]}
+        {
+            "url": s["url"],
+            "captured_at": s["accessed_at"],
+            "sha256": s["sha256"],
+            "snapshot_mode": s.get("snapshot_mode", "fetched_live"),
+        }
         for s in ctx.snapshots.values()
     ]
     total_ms = round((time.perf_counter() - started) * 1000, 1)
+    decision = _normalize_decision(final.get("decision"))
     return {
-        "decision": _normalize_decision(final.get("decision")),
+        "decision": decision,
+        "validated": validated,
         "final": final,
+        "first_answer": original_final,
         "final_text": final_text,
-        "weekly": weekly,
+        "weekly": _weekly_from(timeline),
         "citations": citations,
-        "audit": audit(ctx, final)
-        if final
-        else {"checked": False, "reason": "no JSON final answer"},
+        "reference": {"prices": ref_prices, "costs": reference},
+        "validation": {"passed": validated, "rounds": rounds},
+        "audit": {
+            "checked": reference is not None,
+            "decision_from_costs": (reference or {}).get("decision", "n/a"),
+            "pay_per_use_total": (reference or {}).get("pay_per_use_total"),
+            "membership_total": (reference or {}).get("membership_total"),
+            "agent_decision_matches_costs": reference is not None
+            and decision == reference["decision"],
+        },
         "timeline": timeline,
         "metrics": {
             "step_count": tool_calls,
             "llm_turns": sum(isinstance(m, AIMessage) for m in messages),
             "total_time_ms": total_ms,
             "stop_reason": stop_reason,
-            "consistency_recheck": recheck["ran"],
+            "validation_rounds": len(rounds),
+            "validated": validated,
             "json_reask": json_retry,
         },
-        "consistency_check": recheck,
         "trip_stats": trip_stats,
         "sql_log": ctx.sql_log,
         "defenses": {"prompt_defense": prompt_defense, "tool_defense": tool_defense},

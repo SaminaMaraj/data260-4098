@@ -221,6 +221,7 @@ class ToolContext:
     snapshot_dir: Path | None = None
     tool_defense: bool = True
     prompt_defense: bool = True
+    reuse_snapshot: Path | None = None  # saved pricing_snapshot.json to reuse
     snapshots: dict[str, dict[str, Any]] = field(default_factory=dict)
     sql_log: list[dict[str, Any]] = field(default_factory=list)
 
@@ -381,23 +382,50 @@ def _score(passage: str, query: str) -> float:
     return round(2.0 * overlap + 1.5 * prices + 1.0 * per_min + 0.3 * domain, 3)
 
 
+def _load_saved_snapshot(meta_path: Path, url: str) -> dict[str, Any]:
+    """Reuse an earlier capture; its text must still match its saved SHA-256."""
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    text = meta_path.with_suffix(".txt").read_text(encoding="utf-8")
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    if digest != meta["sha256"]:
+        raise ValueError("saved snapshot text does not match its SHA-256")
+    if meta["url"] != url:
+        raise ValueError(f"saved snapshot is for {meta['url']}, not {url}")
+    return {
+        "url": url,
+        "accessed_at": meta["accessed_at"],  # original capture time
+        "sha256": digest,
+        "characters": len(text),
+        "text": text,
+        "snapshot_mode": "reused_saved_snapshot",
+        "reused_from": str(meta_path),
+        "reused_at": _now(),
+    }
+
+
 def snapshot_page(ctx: ToolContext, url: str) -> dict[str, Any]:
     """Fetch once per run; save exact text, URL, access time and SHA-256."""
     if url in ctx.snapshots:
         return ctx.snapshots[url]
-    raw, _ctype = _fetch(url)
-    text = html_to_text(raw) if "<" in raw[:2000] else raw
-    snap = {
-        "url": url,
-        "accessed_at": _now(),
-        "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
-        "characters": len(text),
-        "text": text,
-    }
+    if ctx.reuse_snapshot is not None:
+        snap = _load_saved_snapshot(Path(ctx.reuse_snapshot), url)
+    else:
+        raw, _ctype = _fetch(url)
+        text = html_to_text(raw) if "<" in raw[:2000] else raw
+        snap = {
+            "url": url,
+            "accessed_at": _now(),
+            "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+            "characters": len(text),
+            "text": text,
+            "snapshot_mode": "fetched_live",
+        }
     ctx.snapshots[url] = snap
     if ctx.snapshot_dir is not None:
         ctx.snapshot_dir.mkdir(parents=True, exist_ok=True)
-        (ctx.snapshot_dir / "pricing_snapshot.txt").write_text(text, encoding="utf-8")
+        (ctx.snapshot_dir / "pricing_snapshot.txt").write_text(
+            snap["text"], encoding="utf-8"
+        )
         meta = {k: v for k, v in snap.items() if k != "text"}
         (ctx.snapshot_dir / "pricing_snapshot.json").write_text(
             json.dumps(meta, indent=2), encoding="utf-8"

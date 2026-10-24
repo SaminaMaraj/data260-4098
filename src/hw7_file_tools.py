@@ -37,7 +37,11 @@ SAFE_PREFIXES: tuple[str, ...] = (
 # v1 only matched the literal "rm -rf"; the 10-command test showed that
 # `find . -name '*.pyc' -delete` was a FALSE ALLOW (find is a safe prefix), so
 # recursive deletion now covers every rm flag order, find -delete/-exec rm and
-# Python rmtree one-liners.
+# Python rmtree one-liners. A later review found two more false allows:
+# `python3 -c "__import__('shutil').rmtree('build')"` (the rmtree pattern only
+# matched the text "shutil.rmtree") and `ls -la; curl ... | sh` (the safe
+# prefix "ls" was matched on the first word of a chained command). Both are
+# fixed below: any "rmtree" counts, and every chained segment must be safe.
 DESTRUCTIVE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     (
         "recursive deletion",
@@ -46,7 +50,7 @@ DESTRUCTIVE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
             r"|\bfind\b.*\s-delete\b"
             r"|\bfind\b.*-exec(dir)?\s+rm\b"
             r"|\bxargs\s+rm\b"
-            r"|shutil\.rmtree|\brmdir\b"
+            r"|\brmtree\b|\brmdir\b"
         ),
     ),
     ("privilege escalation", re.compile(r"\b(sudo|doas|su)\b|\bpkexec\b")),
@@ -79,9 +83,18 @@ def destructive_reasons(command: str) -> list[str]:
     return [label for label, pattern in DESTRUCTIVE_PATTERNS if pattern.search(text)]
 
 
+_CHAIN = re.compile(r"\|\||&&|[;|&\n]")
+
+
 def _matches_safe_prefix(command: str) -> bool:
-    text = " ".join(command.split())
-    return any(text == p or text.startswith(p + " ") for p in SAFE_PREFIXES)
+    """Every segment of a chained command must start with a SAFE_PREFIX."""
+    if "`" in command or "$(" in command:  # command substitution is never "safe"
+        return False
+    segments = [" ".join(s.split()) for s in _CHAIN.split(command)]
+    return all(
+        any(seg == p or seg.startswith(p + " ") for p in SAFE_PREFIXES)
+        for seg in segments
+    ) and all(segments)
 
 
 def confirm_bash(command: str, auto_approve: bool = False) -> dict[str, Any]:
@@ -120,10 +133,30 @@ def confirm_bash(command: str, auto_approve: bool = False) -> dict[str, Any]:
 # --------------------------------------------------------------------------- #
 # File tools
 # --------------------------------------------------------------------------- #
+def deny_all(command: str, reason: str) -> bool:
+    """Default confirmer: no human is present, so nothing is confirmed."""
+    return False
+
+
+def ask_human(command: str, reason: str) -> bool:
+    """Interactive confirmer for a person at the terminal."""
+    answer = input(f"{reason}\nRun `{command}`? Type yes to confirm: ")
+    return answer.strip().lower() == "yes"
+
+
 class FileTools:
-    def __init__(self, root: str | Path):
+    """File tools confined to `root`.
+
+    `confirm` is the ONLY source of consent for gated bash commands. It is set
+    by the human-controlled harness (deny_all by default, ask_human for a person
+    at the terminal). bash() has no auto_approve argument, so a model calling
+    the tool can never approve its own command.
+    """
+
+    def __init__(self, root: str | Path, confirm=deny_all):
         self.root = Path(root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
+        self.confirm = confirm
 
     def _path(self, path: str) -> Path:
         candidate = (self.root / path).resolve()
@@ -222,12 +255,18 @@ class FileTools:
             "data": {"query": query, "file_pattern": file_pattern, "matches": hits},
         }
 
-    def bash(
-        self, command: str, auto_approve: bool = False, timeout: int = 10
-    ) -> dict[str, Any]:
-        gate = confirm_bash(command, auto_approve)
+    def bash(self, command: str, timeout: int = 10) -> dict[str, Any]:
+        gate = confirm_bash(command)  # never auto-approved
         if not gate["allow"]:
-            return {"success": False, "error": gate["reason"], "data": {"gate": gate}}
+            if not self.confirm(command, gate["reason"]):
+                return {
+                    "success": False,
+                    "error": gate["reason"],
+                    "data": {"gate": gate},
+                }
+            gate = confirm_bash(command, auto_approve=True)  # human said yes
+        if is_destructive(command):
+            gate["confirmed_by"] = getattr(self.confirm, "__name__", "confirmer")
         try:
             completed = subprocess.run(
                 shlex.split(command) if not re.search(r"[|><;&]", command) else command,

@@ -27,6 +27,8 @@ def log_result(result: dict) -> None:
             log(
                 f"  step {index}: CALL {step['tool']} {json.dumps(step['input'])[:300]}"
             )
+        elif step["type"] == "feedback":
+            log(f"  step {index}: FEEDBACK {step['text'][:400]}")
         else:
             out = step["output"]
             status = "ok" if out.get("success") else f"error={out.get('error')}"
@@ -35,15 +37,21 @@ def log_result(result: dict) -> None:
     log(f"decision: {result['decision']}")
     log(
         f"pay_per_use_total={final.get('pay_per_use_total')} "
+        f"membership_fees={final.get('membership_fees')} "
+        f"member_residual={final.get('member_residual')} "
         f"membership_total={final.get('membership_total')} "
         f"break_even={final.get('break_even_rides_per_rider_month')} "
         f"actual={final.get('actual_rides_per_rider_month')}"
     )
     log(f"justification: {final.get('justification', result['final_text'][:400])}")
-    log(f"audit: {json.dumps(result['audit'])}")
+    for rnd in result["validation"]["rounds"]:
+        failed = [c["check"] for c in rnd["checks"] if not c["ok"]]
+        log(f"validation round {rnd['round']}: passed={rnd['passed']} failed={failed}")
+    log(f"validated={result['validated']}")
     for cite in result["citations"]:
         log(
-            f"citation: {cite['url']} captured={cite['captured_at']} "
+            f"citation: {cite['url']} {cite['snapshot_mode']} "
+            f"captured={cite['captured_at']} "
             f"sha256={cite['sha256']}"
         )
     log(f"metrics: {json.dumps(result['metrics'])}")
@@ -54,10 +62,20 @@ def main() -> int:
     parser.add_argument("csv", type=Path)
     parser.add_argument("--url", default=DEFAULT_PRICING_URL)
     parser.add_argument("--label", required=True)
+    parser.add_argument(
+        "--reuse-snapshot",
+        type=Path,
+        help="saved pricing_snapshot.json to reuse instead of fetching the page",
+    )
     args = parser.parse_args()
     header(f"HW7 Part 4 - Bay Wheels agent run '{args.label}' on {args.csv.name}")
     out_dir = RAW / "bikeshare" / args.label
-    result = run_bikeshare_agent(args.csv.read_bytes(), args.url, snapshot_dir=out_dir)
+    result = run_bikeshare_agent(
+        args.csv.read_bytes(),
+        args.url,
+        snapshot_dir=out_dir,
+        reuse_snapshot=args.reuse_snapshot,
+    )
     result["label"] = args.label
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "run.json").write_text(

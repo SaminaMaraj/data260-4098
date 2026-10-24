@@ -71,6 +71,35 @@ def run_script(*args, timeout=600):
     return completed.returncode == 0, tail
 
 
+CODE_TREES = ("src", "code", "tests", "frontend")
+
+
+def git_state() -> dict:
+    """The exact state that was tested: HEAD, local changes, code tree hashes.
+
+    The tree hashes let anyone confirm later that a report-only commit (e.g.
+    the one that adds the PDF) contains exactly the same code that was tested:
+    git rev-parse <commit>:src must print the same hash.
+    """
+
+    def run(*args):
+        return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+    try:
+        dirty = [
+            line[3:]
+            for line in run("status", "--porcelain").splitlines()
+            if not line[3:].startswith("reports/")
+        ]
+        return {
+            "commit": run("rev-parse", "HEAD"),
+            "uncommitted_code_changes": dirty,
+            "code_tree_hashes": {d: run("rev-parse", f"HEAD:{d}") for d in CODE_TREES},
+        }
+    except Exception as exc:  # noqa: BLE001
+        return {"commit": "unknown", "error": str(exc)}
+
+
 def main() -> int:
     checks: list[dict] = []
 
@@ -78,12 +107,8 @@ def main() -> int:
         checks.append({"name": name, "passed": bool(passed), "detail": detail})
         print(f"{'PASS' if passed else 'FAIL'} {name} {detail}")
 
-    try:
-        commit = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip()
-    except Exception:
-        commit = "unknown"
+    git = git_state()
+    commit = git["commit"]
 
     print("Kazi Samina Maraj Mumu | make verify-hw07")
     server = subprocess.Popen(
@@ -196,9 +221,35 @@ def main() -> int:
             "offline tool tests (csv_sql read-only, calculator, gate)",
             "tests/test_hw07_tools.py",
         ),
+        (
+            "offline Part 4 validator tests (reference prices, costs, bounded round)",
+            "tests/test_hw07_bikeshare_check.py",
+        ),
     ]:
         passed, tail = run_script(script)
         check(name, passed, tail)
+
+    # ---- Part 4 saved final runs: validated, >= 500 rows, expected winner ----
+    for label, winner in [
+        ("scenario_A", "Buy Monthly Membership"),
+        ("scenario_B", "Pay Per Ride/Minute"),
+    ]:
+        path = ROOT / "reports" / "hw07" / "raw" / "bikeshare" / label / "run.json"
+        try:
+            run = json.loads(path.read_text(encoding="utf-8"))
+            ok = (
+                run["validated"]
+                and run["decision"] == winner
+                and run["trip_stats"]["rows_loaded"] >= 500
+            )
+            detail = (
+                f"decision={run['decision']} validated={run['validated']} "
+                f"rows={run['trip_stats']['rows_loaded']} "
+                f"stop={run['metrics']['stop_reason']}"
+            )
+        except (OSError, KeyError, json.JSONDecodeError) as exc:
+            ok, detail = False, f"{type(exc).__name__}: {exc}"
+        check(f"Part 4 saved {label} run validated", ok, detail)
 
     required = [
         "reports/hw07/RUN_LOG.txt",
@@ -207,6 +258,12 @@ def main() -> int:
         "reports/hw07/raw/reliability_attempts.csv",
         "reports/hw07/raw/reflexion_comparison.csv",
         "reports/hw07/raw/attacks.json",
+        "reports/hw07/raw/tool_boundary_test.json",
+        "reports/hw07/raw/bikeshare/scenario_A/run.json",
+        "reports/hw07/raw/bikeshare/scenario_B/run.json",
+        "reports/hw07/raw/bikeshare/scenario_A/pricing_snapshot.txt",
+        "reports/hw07/raw/bikeshare/scenario_B/pricing_snapshot.txt",
+        "reports/hw07/raw/scenarios/scenario_summaries.json",
         "reports/hw07/raw/safety_gate_results.csv",
         "reports/hw07/fixtures/hostile_override.html",
         ".pre-commit-config.yaml",
@@ -226,6 +283,7 @@ def main() -> int:
         "VERIFY_SEED": VERIFY_SEED,
         "DOMAIN_ID": 2,
         "commit_hash": commit,
+        "tested_state": git,
         "model": os.environ.get("SMOL_MODEL", "qwen3:8b"),
         "model_settings": {"temperature": 0.0, "max_iterations": 8, "max_repairs": 2},
         "checks": checks,

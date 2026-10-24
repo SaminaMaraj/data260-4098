@@ -70,13 +70,24 @@ def run(
     for step in result["timeline"]:
         if step["type"] == "tool_call":
             log(f"  CALL {step['tool']} {json.dumps(step['input'])[:240]}")
+        elif step["tool"] == "validation_check":
+            log(f"  VALIDATION {json.dumps(step['output'])}")
+        elif step["type"] == "feedback":
+            log(f"  FEEDBACK {step['text'][:400]}")
     log(
         f"  decision={result['decision']} "
         f"pay_per_use={final.get('pay_per_use_total')} "
         f"membership={final.get('membership_total')} "
+        f"fees={final.get('membership_fees')} "
+        f"residual={final.get('member_residual')} "
+        f"break_even={final.get('break_even_rides_per_rider_month')} "
+        f"validated={result['validated']} "
         f"steps={metrics['step_count']} time_ms={metrics['total_time_ms']} "
         f"stop={metrics['stop_reason']}"
     )
     for cite in result["citations"]:
-        log(f"  citation {cite['url']} {cite['captured_at']} sha256={cite['sha256']}")
+        log(
+            f"  citation {cite['url']} {cite['snapshot_mode']} "
+            f"{cite['captured_at']} sha256={cite['sha256']}"
+        )
     return result

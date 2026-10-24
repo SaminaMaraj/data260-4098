@@ -18,3 +18,4 @@ test-hw07:
 	@$(PYTHON) tests/test_hw07_auth.py
 	@$(PYTHON) tests/test_hw07_agent.py
 	@$(PYTHON) tests/test_hw07_tools.py
+	@$(PYTHON) tests/test_hw07_bikeshare_check.py
