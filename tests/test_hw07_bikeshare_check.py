@@ -13,6 +13,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from src.hw7_bikeshare_check import (  # noqa: E402
+    feedback_message,
     reference_costs,
     reference_prices,
     validate,
@@ -85,6 +86,36 @@ def test_validate_flags_missing_unlock_and_mixed_labels():
     assert "membership_fees (passes only)" in failed  # 1771.88 was the total
     assert "break_even_rides_per_rider_month" in failed  # 5.95 vs 4.94
     assert "weekly table (rides and spend per week)" in failed
+
+
+def test_decision_only_failure_gets_decision_feedback():
+    """Right numbers, wrong decision (seen in a real qwen3:8b run): the feedback
+    must point at the decision, not ask to recompute correct numbers."""
+    conn, _ = load_trips(SCENARIO_A.read_bytes())
+    ref = reference_costs(conn, PRICES)
+    final = {
+        k: ref[k]
+        for k in (
+            "pay_per_use_total",
+            "membership_fees",
+            "member_residual",
+            "membership_total",
+            "break_even_rides_per_rider_month",
+            "actual_rides_per_rider_month",
+        )
+    }
+    final["prices_used"] = PRICES
+    result = validate(
+        final, ref["weekly"], {"ok": True, "prices": PRICES}, ref, "Pay Per Ride/Minute"
+    )
+    failed = {c["check"] for c in result["checks"] if not c["ok"]}
+    assert failed == {
+        "consistency: decision follows own totals",
+        "decision matches recomputed costs",
+    }
+    text = feedback_message(result)
+    assert "do not recompute" in text and "LOWER total" in text
+    assert "Recompute the failed values" not in text
 
 
 # --------------------------------------------------------------------------- #

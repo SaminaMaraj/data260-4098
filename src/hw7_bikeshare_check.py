@@ -246,6 +246,8 @@ def validate(
         decision,
         implied,
         decision == implied,
+        f"your own totals are pay_per_use_total={pay} and membership_total={total}; "
+        "step 6 says the decision must follow the LOWER total",
     )
     add(
         "decision matches recomputed costs",
@@ -273,20 +275,37 @@ def validate(
     return {"passed": all(c["ok"] for c in checks), "checks": checks}
 
 
+DECISION_CHECKS = {
+    "consistency: decision follows own totals",
+    "decision matches recomputed costs",
+}
+
+
 def feedback_message(result: dict[str, Any]) -> str:
-    """Short, concrete correction request for the agent (logged in the timeline)."""
+    """Short, concrete correction request for the agent (logged in the timeline).
+
+    It names the failed fields and gives a hint about the cause, but never the
+    reference value, so the agent still has to fix the answer itself.
+    """
+    failed = [c for c in result["checks"] if not c["ok"]]
     lines = [
         "Validation check failed. A deterministic recomputation from the trips "
         "table and the saved pricing page does not match these fields:"
     ]
-    for c in result["checks"]:
-        if not c["ok"]:
-            line = f"- {c['check']}: you reported {c['agent']}"
-            if c.get("hint"):
-                line += f" ({c['hint']})"
-            lines.append(line)
-    lines.append(
-        "Recompute the failed values with csv_sql and calculator, following the "
-        "steps in the instructions, then reply with the corrected JSON object only."
-    )
+    for c in failed:
+        line = f"- {c['check']}: you reported {c['agent']}"
+        if c.get("hint"):
+            line += f" ({c['hint']})"
+        lines.append(line)
+    if all(c["check"] in DECISION_CHECKS for c in failed):
+        lines.append(
+            "All your numbers passed the checks, so do not recompute them. Only the "
+            "decision is inconsistent: compare your two totals again, apply step 6, "
+            "and reply with the corrected JSON object only."
+        )
+    else:
+        lines.append(
+            "Recompute the failed values with csv_sql and calculator, following the "
+            "steps in the instructions, then reply with the corrected JSON object only."
+        )
     return "\n".join(lines)
