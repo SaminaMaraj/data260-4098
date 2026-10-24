@@ -146,7 +146,7 @@ def test_every_failed_check_gets_a_formula_hint_not_the_answer():
 # --------------------------------------------------------------------------- #
 # bounded validation round with a scripted model
 # --------------------------------------------------------------------------- #
-def _scripted_model(fix_on_feedback: bool):
+def _scripted_model(fix_on_feedback: bool, breakeven_wrong: bool = False):
     from langchain_core.language_models.chat_models import BaseChatModel
     from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
     from langchain_core.outputs import ChatGeneration, ChatResult
@@ -180,7 +180,7 @@ def _scripted_model(fix_on_feedback: bool):
                 isinstance(m, HumanMessage) and "Validation check failed" in m.content
                 for m in messages
             )
-            fixed = feedback and fix_on_feedback
+            fixed = (feedback and fix_on_feedback) or breakeven_wrong
             summary, weekly = sql("COUNT(*)*1 + " if fixed else "")
             phase = [m for m in messages if isinstance(m, ToolMessage)]
             if feedback:  # only count tool calls made after the feedback
@@ -216,7 +216,13 @@ def _scripted_model(fix_on_feedback: bool):
                     29 / ((pay - rows["member_residual"]) / rows["rides"]), 2
                 ),
                 "actual_rides_per_rider_month": rows["rides"] / rows["rider_months"],
+                "rides": rows["rides"],
+                "rider_months": rows["rider_months"],
             }
+            if breakeven_wrong:  # what qwen3:8b did in scenario B, every round
+                answer["break_even_rides_per_rider_month"] = round(
+                    rows["rides"] / rows["rider_months"], 2
+                )
             msg = AIMessage(content=json.dumps(answer))
             return ChatResult(generations=[ChatGeneration(message=msg)])
 
@@ -259,6 +265,26 @@ def test_validation_round_corrects_answer():
 
 def test_validation_round_rejects_uncorrected_answer():
     _bounded_validation_round(fix=False)
+
+
+def test_logged_harness_correction_only_for_derived_ratio():
+    from src.hw7_bikeshare_agent import run_bikeshare_agent
+
+    result = run_bikeshare_agent(
+        SCENARIO_B.read_bytes(),
+        "https://www.lyft.com/bikes/bay-wheels/pricing",
+        snapshot_dir=Path(tempfile.mkdtemp(prefix="hw7_bikeshare_")),
+        reuse_snapshot=SNAPSHOT / "pricing_snapshot.json",
+        llm=_scripted_model(fix_on_feedback=False, breakeven_wrong=True),
+    )
+    rounds = result["validation"]["rounds"]
+    assert [r["passed"] for r in rounds] == [False, False, True]  # agent x2, harness
+    fix = result["validation"]["harness_corrections"]
+    assert [f["field"] for f in fix] == ["break_even_rides_per_rider_month"]
+    assert fix[0]["agent_value"] == 2.0 and approx(fix[0]["corrected_value"], 12.6)
+    assert result["validation"]["status"] == "passed_after_harness_correction"
+    assert result["decision"] == "Pay Per Ride/Minute"  # never changed
+    assert result["first_answer"]["break_even_rides_per_rider_month"] == 2.0
 
 
 def main() -> int:

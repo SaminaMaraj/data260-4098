@@ -48,6 +48,13 @@ PAYG = "Pay Per Ride/Minute"
 MAX_STEPS = 14
 MAX_VALIDATION_RETRIES = 1  # bounded: one correction round
 VALIDATION_STEPS = 10  # tool-call budget for that round
+# formulas from prompt step 5, used only for the logged last-resort correction
+DERIVED_FORMULAS = {
+    "break_even_rides_per_rider_month": (
+        "{membership} / (({pay} - {residual}) / {rides})"
+    ),
+    "actual_rides_per_rider_month": "{rides} / {rider_months}",
+}
 
 BASE_PROMPT = """You are a cost analyst for the Bay Wheels bike-share system (San \
 Francisco Bay Area). Decide, for the riders in uploaded.csv, whether they should \
@@ -375,7 +382,69 @@ def run_bikeshare_agent(
         _, _, final_text = _build_timeline(messages)
         final = _parse_final(final_text) or {}
 
+    # Last resort, bounded and logged: if ONLY derived ratios are still wrong
+    # (every price, total, the decision and the weekly table passed), the
+    # harness recomputes them with the same calculator tool from the agent's
+    # own validated totals. The decision is never changed, and the result is
+    # labelled "passed_after_harness_correction", not a normal success.
+    harness_corrections: list[dict[str, Any]] = []
+    last = rounds[-1]
+    failed = {c["check"] for c in last["checks"] if not c["ok"]}
+    if (
+        self_check
+        and final
+        and failed
+        and failed <= set(DERIVED_FORMULAS)
+        and stop_reason == "final_answer"
+        and reference is not None
+        and _num(final.get("rides")) == reference["rides"]
+        and _num(final.get("rider_months")) == reference["rider_months"]
+    ):
+        corrected = dict(final)
+        for field in sorted(failed):
+            expression = DERIVED_FORMULAS[field].format(
+                membership=_num((final.get("prices_used") or {}).get("MEMBERSHIP")),
+                pay=_num(final.get("pay_per_use_total")),
+                residual=_num(final.get("member_residual")),
+                rides=_num(final.get("rides")),
+                rider_months=_num(final.get("rider_months")),
+            )
+            out = calculator(expression)
+            if not out["success"]:
+                break
+            corrected[field] = round(out["data"]["value"], 2)
+            harness_corrections.append(
+                {
+                    "field": field,
+                    "agent_value": final.get(field),
+                    "corrected_value": corrected[field],
+                    "expression": expression,
+                    "tool": "calculator",
+                }
+            )
+        else:
+            result = validate(
+                corrected,
+                _weekly_from(_build_timeline(messages)[0]),
+                ref_prices,
+                reference,
+                _normalize_decision(corrected.get("decision")),
+            )
+            result["round"] = len(rounds)
+            result["harness_corrections"] = harness_corrections
+            rounds.append(result)
+            validation_marks.append((len(messages), result))
+            if result["passed"]:
+                final = corrected
+
     validated = rounds[-1]["passed"]
+    validation_status = (
+        "failed"
+        if not validated
+        else "passed_after_harness_correction"
+        if harness_corrections
+        else "passed"
+    )
     if stop_reason == "final_answer" and final and not validated:
         stop_reason = "validation_failed"
     if stop_reason == "final_answer" and not final:
@@ -399,6 +468,7 @@ def run_bikeshare_agent(
                         "failed": [c["check"] for c in result["checks"] if not c["ok"]],
                         "checks": len(result["checks"]),
                         "reason": result.get("reason"),
+                        "harness_corrections": result.get("harness_corrections", []),
                     },
                 },
             }
@@ -428,7 +498,12 @@ def run_bikeshare_agent(
         "weekly": _weekly_from(timeline),
         "citations": citations,
         "reference": {"prices": ref_prices, "costs": reference},
-        "validation": {"passed": validated, "rounds": rounds},
+        "validation": {
+            "passed": validated,
+            "status": validation_status,
+            "rounds": rounds,
+            "harness_corrections": harness_corrections,
+        },
         "audit": {
             "checked": reference is not None,
             "decision_from_costs": (reference or {}).get("decision", "n/a"),
@@ -445,6 +520,7 @@ def run_bikeshare_agent(
             "stop_reason": stop_reason,
             "validation_rounds": len(rounds),
             "validated": validated,
+            "validation_status": validation_status,
             "json_reask": json_retry,
         },
         "trip_stats": trip_stats,

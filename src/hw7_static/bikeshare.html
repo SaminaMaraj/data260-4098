@@ -50,6 +50,7 @@
   .muted { color: var(--muted); }
   .audit-ok { color: var(--good); font-weight: 600; }
   .audit-bad { color: var(--bad); font-weight: 600; }
+  .audit-warn { color: var(--warn); font-weight: 600; }
   ul { margin: 4px 0 10px; padding-left: 20px; }
   @media (max-width: 900px) { form { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
 </style>
@@ -65,7 +66,7 @@
       <div><label for="trips">Trip CSV</label><input id="trips" name="trips" type="file" accept=".csv" required></div>
       <div><label for="url">Pricing page URL</label>
         <input id="url" name="pricing_url" type="text" value="https://www.lyft.com/bikes/bay-wheels/pricing" required></div>
-      <div><label for="label">Run label</label><input id="label" name="label" type="text" value="scenario_A"></div>
+      <div><label for="label">Run label</label><input id="label" name="label" type="text" value="" placeholder="set from the CSV name" autocomplete="off" required></div>
       <div><button id="run-btn" type="submit">Run</button></div>
       <div class="opts">
         <label><input type="checkbox" id="pd" checked> prompt defense (untrusted-data labels)</label>
@@ -106,7 +107,7 @@ const money = (v) => (v === null || v === undefined || v === "" || isNaN(Number(
 function shortOutput(out) {
   if (!out) return "";
   const d = out.data || {};
-  if (d.round !== undefined) return d.reason ? `round ${d.round}: ${d.reason}` : `round ${d.round}: ${d.checks - d.failed.length}/${d.checks} checks passed` + (d.failed.length ? `\nfailed: ${d.failed.join(", ")}` : "");
+  if (d.round !== undefined) return (d.harness_corrections && d.harness_corrections.length ? d.harness_corrections.map((x) => `HARNESS CORRECTION (logged): ${x.field} ${x.agent_value} -> ${x.corrected_value} via calculator "${x.expression}"`).join("\n") + "\n" : "") + (d.reason ? `round ${d.round}: ${d.reason}` : `round ${d.round}: ${d.checks - d.failed.length}/${d.checks} checks passed` + (d.failed.length ? `\nfailed: ${d.failed.join(", ")}` : ""));
   if (out.success === false) return "error: " + (out.error || "");
   if (Array.isArray(d.passages)) {
     return d.passages.map((p) => `[score ${p.score}] ${String(p.text).slice(0, 150)}…`).join("\n")
@@ -163,7 +164,11 @@ function renderResults(r) {
   const changed = rounds.length > 1
     ? `<p class="muted">First answer (round 0) failed: ${esc(rounds[0].checks.filter((c) => !c.ok).map((c) => c.check).join(", "))}. First answer: pay-per-use ${money(first.pay_per_use_total)}, membership fees ${money(first.membership_fees)}, membership total ${money(first.membership_total)}, decision ${esc(first.decision)}. The agent got one feedback message and answered again (round 1).</p>`
     : "";
-  const verdict = r.validated
+  const fixes = ((r.validation || {}).harness_corrections || []);
+  const fixText = fixes.map((x) => `${esc(x.field)}: agent ${esc(x.agent_value)} → ${esc(x.corrected_value)} (calculator: ${esc(x.expression)})`).join("; ");
+  const verdict = r.validated && fixes.length
+    ? `<span class="audit-warn">Validated after ${fixes.length} logged harness correction${fixes.length > 1 ? "s" : ""} (round ${last.round}). The agent did not fix this itself: ${fixText}. The decision was not changed.</span>`
+    : r.validated
     ? `<span class="audit-ok">Validated: all ${last.checks.length} deterministic checks passed (round ${last.round}).</span>`
     : `<span class="audit-bad">NOT validated: ${esc(last.reason || (last.checks || []).filter((c) => !c.ok).map((c) => c.check).join(", "))}. Do not use this result.</span>`;
 
@@ -185,6 +190,14 @@ function renderResults(r) {
     <h3>Citations</h3><ul>${cites}</ul>${quotes ? `<ul>${quotes}</ul>` : ""}
     <h3>Assumptions &amp; caveats</h3><ul>${assumptions || "<li class='muted'>none reported</li>"}</ul>`;
 }
+
+// the run label follows the chosen CSV (scenario_A_membership.csv -> scenario_A)
+$("trips").addEventListener("change", () => {
+  const f = $("trips").files[0];
+  if (!f) return;
+  const m = f.name.match(/scenario_[A-Za-z0-9]+/);
+  $("label").value = m ? m[0] : f.name.replace(/\.csv$/i, "");
+});
 
 $("run-form").addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -210,7 +223,9 @@ $("run-form").addEventListener("submit", async (event) => {
     $("m-time").textContent = m.total_time_ms ? (m.total_time_ms / 1000).toFixed(1) + " s" : "–";
     $("m-stop").textContent = m.stop_reason ?? "–";
     $("m-rows").textContent = data.trip_stats?.rows_loaded ?? "–";
-    $("m-val").textContent = data.validated ? `passed (${m.validation_rounds} round${m.validation_rounds > 1 ? "s" : ""})` : "FAILED";
+    $("m-val").textContent = !data.validated ? "FAILED"
+      : m.validation_status === "passed_after_harness_correction" ? "passed after correction"
+      : `passed (${m.validation_rounds} round${m.validation_rounds > 1 ? "s" : ""})`;
     const d = data.defenses || {};
     $("m-def").textContent = `${d.prompt_defense ? "prompt" : "–"} / ${d.tool_defense ? "tool" : "–"}`;
     $("status").textContent = `saved reports/hw07/raw/bikeshare/${data.label}/`;

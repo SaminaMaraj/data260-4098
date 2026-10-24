@@ -42,3 +42,14 @@ and points to step 6 with the agent's own two totals.
   The feedback had no hint for this field, the agent recomputed other values
   and kept 2.0, so the run ended `validation_failed`. Every failed check now
   repeats its formula from the prompt (never the reference value).
+- Fourth scenario A run: round 0 failed only the decision checks, round 1
+  passed 16/16 (`final_answer`, 9 tool calls, 92.6 s). Its run.json was again
+  overwritten by a scenario B run started with the label still "scenario_A"
+  (the page always pre-filled that label). Screenshots and RUN_LOG.txt lines
+  remain. The UI now sets the label from the CSV name, and the API moves an
+  existing run to `history/<label>_replaced_<time>/` instead of overwriting it.
+- `scenario_B_run2_breakeven/`: second scenario B run, with the formula hint.
+  Same mistake: the agent computed `520 / 260` and reported 2.0 as the
+  break-even in both rounds, so `validation_failed`. Because this is now a
+  repeatable model error on a derived ratio, the harness has one last, logged
+  step (see `DERIVED_FORMULAS` in src/hw7_bikeshare_agent.py).

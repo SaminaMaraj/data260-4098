@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
+from datetime import datetime
 from pathlib import Path
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
@@ -52,6 +54,12 @@ def run(
         raise HTTPException(status_code=422, detail="Uploaded CSV is empty")
     safe_label = re.sub(r"[^A-Za-z0-9_\-]", "_", label)[:60] or "run"
     out_dir = RAW_DIR / safe_label
+    if (out_dir / "run.json").exists():  # never overwrite saved evidence
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        kept = RAW_DIR / "history" / f"{safe_label}_replaced_{stamp}"
+        kept.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(out_dir), str(kept))
+        log(f"  previous {safe_label} run moved to {kept.relative_to(REPO_ROOT)}")
     header(f"HW7 Part 4 UI run '{safe_label}' on {trips.filename} ({pricing_url})")
     result = run_bikeshare_agent(
         data,

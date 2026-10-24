@@ -243,7 +243,8 @@ def main() -> int:
                 and run["trip_stats"]["rows_loaded"] >= 500
             )
             detail = (
-                f"decision={run['decision']} validated={run['validated']} "
+                f"decision={run['decision']} "
+                f"validation={run['validation'].get('status', run['validated'])} "
                 f"rows={run['trip_stats']['rows_loaded']} "
                 f"stop={run['metrics']['stop_reason']}"
             )
