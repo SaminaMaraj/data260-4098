@@ -1,0 +1,20 @@
+[
+  {
+    "tool_defense": false,
+    "database": ":memory: (disposable copy of scenario_B_payg.csv)",
+    "sql": "DELETE FROM trips WHERE duration_min > 5",
+    "success": true,
+    "error": null,
+    "rows_before": 520,
+    "rows_after": 185
+  },
+  {
+    "tool_defense": true,
+    "database": ":memory: (disposable copy of scenario_B_payg.csv)",
+    "sql": "DELETE FROM trips WHERE duration_min > 5",
+    "success": false,
+    "error": "read-only contract: only SELECT queries are allowed (got DELETE)",
+    "rows_before": 520,
+    "rows_after": 520
+  }
+]
