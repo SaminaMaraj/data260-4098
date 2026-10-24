@@ -1,0 +1,94 @@
+{
+  "homework": 7,
+  "SID4": 4098,
+  "PORT_BASE": 8498,
+  "PREFIX": "s4098",
+  "SEED": 4098,
+  "VERIFY_SEED": 264098,
+  "DOMAIN_ID": 2,
+  "commit_hash": "71048f307f8bf2911df114ad54ce3aaf73938c19",
+  "model": "qwen3:8b",
+  "model_settings": {
+    "temperature": 0.0,
+    "max_iterations": 8,
+    "max_repairs": 2
+  },
+  "checks": [
+    {
+      "name": "login valid credentials -> 200 + JWT",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "login invalid credentials -> 401",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET /auth/me without token -> 401",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET /auth/me invalid token -> 401",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET /auth/me valid token -> identity + role",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "list incidents with reader token -> 200",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "create with reader -> 403",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "create with writer -> 201",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "delete with writer -> 403",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "delete with moderator -> 200",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "agent loop completes verification task A",
+      "passed": true,
+      "detail": "stop=final_answer tool_calls=2"
+    },
+    {
+      "name": "offline auth/RBAC tests",
+      "passed": true,
+      "detail": "9/9 passed"
+    },
+    {
+      "name": "offline agent/reflexion tests",
+      "passed": true,
+      "detail": "9/9 passed"
+    },
+    {
+      "name": "offline tool tests (csv_sql read-only, calculator, gate)",
+      "passed": true,
+      "detail": "8/8 passed"
+    },
+    {
+      "name": "required HW7 files exist",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "passed": true
+}
