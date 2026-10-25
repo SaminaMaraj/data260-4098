@@ -67,3 +67,14 @@ and points to step 6 with the agent's own two totals.
   the agent must make that calculator call itself, up to two feedback rounds
   are allowed, and a new check fails any justification that still states an
   old number.
+
+## First run with 17 checks: false rejection by my justification check (2026-10-24)
+
+- `scenario_B_justification_check_bug/`: the agent's numbers, decision and
+  justification were all correct ("pay-per-use cost for 520 rides is
+  $1196.97 ... break-even ... 12.598"), but my new justification check read
+  "520" (a ride count) as the pay-per-use total and failed the run
+  (`validation_failed`). This was a verifier false rejection caused by my
+  code. Fix: money labels are only compared with dollar amounts, the window
+  stops at the end of the sentence, and a label passes if any number in it
+  matches. Regression test: `test_consistent_justification_with_counts_is_not_flagged`.

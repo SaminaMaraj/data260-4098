@@ -358,6 +358,27 @@ def test_agent_fixes_break_even_itself_with_the_calculator_hint():
     assert result["first_answer"]["break_even_rides_per_rider_month"] == 2.0
 
 
+def test_consistent_justification_with_counts_is_not_flagged():
+    """Real qwen3:8b answer that my first version of the check wrongly rejected:
+    '520 rides' after 'pay-per-use' is a count, not the total."""
+    from src.hw7_bikeshare_check import _stale_numbers
+
+    text = (
+        "The total pay-per-use cost for 520 rides is $1196.97, while the total "
+        "membership cost is $7540.00. The break-even rides per rider month is "
+        "12.598, which is much higher than the actual rides per rider month of 2.0."
+    )
+    final = {
+        "pay_per_use_total": 1196.97,
+        "membership_total": 7540.0,
+        "break_even_rides_per_rider_month": 12.6,
+    }
+    assert _stale_numbers(text, final) == []
+    assert _stale_numbers(text.replace("12.598", "1100.73"), final) == [
+        "break-even 1100.73"
+    ]
+
+
 def test_stale_number_in_justification_fails_validation():
     conn, _ = load_trips(SCENARIO_B.read_bytes())
     ref = reference_costs(conn, PRICES)

@@ -346,15 +346,21 @@ def _stale_numbers(text: str, final: dict[str, Any]) -> list[str]:
             start = 0
             while (i := low.find(label, start)) >= 0:
                 start = i + len(label)
-                window = text[start : start + 60]
-                m = _NUMBER.search(window)
-                if not m or window[: m.start()].count(".") > 0:
-                    continue  # no number in the same sentence
-                if re.match(r"\s*[-+*/(]", window[m.end() :]):
-                    continue  # part of a written formula, not a result
-                got = _num(m.group(1))
-                if got is not None and not _close(got, value, 0.01, 0.05):
-                    stale.append(f"{label} {m.group(1)}")
+                window = re.split(r"(?<!\d)\.(?!\d)", text[start : start + 80])[0]
+                # money totals are only compared with dollar amounts, so a
+                # count such as "for 520 rides" is not read as a total
+                money = key != "break_even_rides_per_rider_month"
+                found = []
+                for m in _NUMBER.finditer(window):
+                    if money and "$" not in m.group(0):
+                        continue
+                    if re.match(r"\s*[-+*/(]", window[m.end() :]):
+                        continue  # part of a written formula, not a result
+                    got = _num(m.group(1))
+                    if got is not None:
+                        found.append((got, m.group(1)))
+                if found and not any(_close(g, value, 0.01, 0.05) for g, _ in found):
+                    stale.append(f"{label} {found[0][1]}")
     return stale
 
 
