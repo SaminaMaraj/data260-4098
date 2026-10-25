@@ -1,0 +1,28 @@
+{
+  "original": {
+    "runs": 9,
+    "task_success": "9/9",
+    "unsupported_claims": 0,
+    "retry_rate": 0.0,
+    "mean_tool_calls": 2.33,
+    "mean_tokens": 2975.1,
+    "mean_latency_ms": 7769.6,
+    "verifier_false_rejections": 0,
+    "stop_reasons": {
+      "final_answer": 9
+    }
+  },
+  "reflexion": {
+    "runs": 9,
+    "task_success": "9/9",
+    "unsupported_claims": 0,
+    "retry_rate": 0.0,
+    "mean_tool_calls": 2.33,
+    "mean_tokens": 2977.8,
+    "mean_latency_ms": 7552.5,
+    "verifier_false_rejections": 0,
+    "stop_reasons": {
+      "success": 9
+    }
+  }
+}

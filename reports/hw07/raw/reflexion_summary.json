@@ -5,8 +5,8 @@
     "unsupported_claims": 0,
     "retry_rate": 0.0,
     "mean_tool_calls": 2.33,
-    "mean_tokens": 2975.1,
-    "mean_latency_ms": 7769.6,
+    "mean_tokens": 2978.3,
+    "mean_latency_ms": 7855.2,
     "verifier_false_rejections": 0,
     "stop_reasons": {
       "final_answer": 9
@@ -18,11 +18,14 @@
     "unsupported_claims": 0,
     "retry_rate": 0.0,
     "mean_tool_calls": 2.33,
-    "mean_tokens": 2977.8,
-    "mean_latency_ms": 7552.5,
+    "mean_tokens": 2979.6,
+    "mean_latency_ms": 7603.1,
     "verifier_false_rejections": 0,
     "stop_reasons": {
       "success": 9
-    }
+    },
+    "token_budget_bounded": 100000,
+    "max_budget_charged": 18695,
+    "budget_never_exceeded": true
   }
 }

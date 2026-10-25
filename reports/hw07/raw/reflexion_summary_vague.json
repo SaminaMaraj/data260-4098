@@ -1,12 +1,12 @@
 {
   "original": {
     "runs": 9,
-    "task_success": "0/9",
+    "task_success": "1/9",
     "unsupported_claims": 2,
     "retry_rate": 0.0,
-    "mean_tool_calls": 1.56,
-    "mean_tokens": 1813.0,
-    "mean_latency_ms": 5020.4,
+    "mean_tool_calls": 1.67,
+    "mean_tokens": 2200.7,
+    "mean_latency_ms": 5984.3,
     "verifier_false_rejections": 6,
     "stop_reasons": {
       "final_answer": 9
@@ -16,15 +16,17 @@
     "runs": 9,
     "task_success": "3/9",
     "unsupported_claims": 0,
-    "retry_rate": 0.778,
-    "mean_tool_calls": 5.56,
-    "mean_tokens": 8217.3,
-    "mean_latency_ms": 19890.1,
-    "verifier_false_rejections": 6,
+    "retry_rate": 0.889,
+    "mean_tool_calls": 5.89,
+    "mean_tokens": 8033.6,
+    "mean_latency_ms": 20752.7,
+    "verifier_false_rejections": 7,
     "stop_reasons": {
-      "budget_exhausted": 2,
-      "human_review": 4,
+      "human_review": 6,
       "success": 3
-    }
+    },
+    "token_budget_bounded": 100000,
+    "max_budget_charged": 75164,
+    "budget_never_exceeded": true
   }
 }
