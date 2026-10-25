@@ -1,31 +1,13 @@
 # HW7 AI Use Disclosure - Kazi Samina Maraj Mumu
 
-> DRAFT - edit so every sentence matches what you actually did.
-
 **1. What did I use an AI assistant for, and what did I do myself?**
-I used Claude to read my HW5/HW6 reports and repository and to draft the HW7 code:
-the JWT/role module and MySQL migration, the hand-written agent loop with its repair
-path, the deterministic verifiers and Reflexion loop, the Bay Wheels tools, LangGraph
-agent and UI, the hostile fixtures and attack runner, the file tools and safety gate,
-offline tests and `verify_hw07.py`. I ran everything myself on my Mac: the migration
-on my MySQL container, the Postman requests, the pre-commit demonstration, all
-qwen3:8b runs, downloading the Bay Wheels trip data, the attack matrix, and
-`make verify-hw07`. I took the screenshots, checked the numbers in the report against
-`raw/`, and committed, tagged and pushed the work.
+I used Claude to read my HW5/HW6 reports and my repository, to write the first version of the HW7 code (JWT module and migration, agent loop and repair path, verifiers and Reflexion, Bay Wheels tools, agent and UI, attack fixtures and runner, file tools and safety gate, offline tests, verification script), and to draft this report. For the revisions Claude also reviewed my submission against the assignment and wrote the Part 4 validator, the hard token budget, the new attack-trace checks, the gate fixes and the extra tests. I ran everything on my Mac myself: the migration, all Postman requests, the pre-commit demo, all qwen3:8b runs, downloading the Bay Wheels data, the UI runs, the attack runs and `make verify-hw07`. I took all screenshots and did the commits, tag and push.
 
-**2. One AI-produced output that was wrong or unsuitable.**
-The first version of `is_destructive()` only recognised recursive deletion as the
-literal text `rm -rf`. Because `find` is in `SAFE_PREFIXES`, the command
-`find . -name '*.pyc' -delete` was **allowed**, which is a false allow on a recursive
-delete. `rm -fr` and `rm -r -f` were also not recognised as destructive.
+**2. One AI-produced output that was wrong.**
+The first Part 4 agent and my first report were wrong about the money. The prompt made the model put prices into a long SQL template, and the model dropped the `UNLOCK +` term, so every pay-per-use total and weekly spend was too low by rides × $1.00 (scenario A $4,260.05 instead of $4,860.05). The break-even values in my screenshots (5.95 and 22.28) were wrong for the same reason, and the scenario A "membership fees" field held the membership total. The AI-written check only compared the agent with itself and still let the result through as a normal final answer. Also, the first safety gate had three false allows (`find -delete`, rmtree through `__import__`, and a chained command after `ls`). While re-running I found more problems in the AI-written fixes: the first feedback message could not fix a wrong decision, the UI always pre-filled the label scenario_A (so two good runs were overwritten), and the injected blocks in my attack fixtures ranked 4th, so in one attack run the defended cells never saw the attack. In the second review three more AI-made problems came up: the Part 3 token budget was only checked before each call (so the last call could go over it), the AI-written "harness correction" in Part 4 overwrote the agent's break-even and left a justification with the old number, and the new justification check written by the AI falsely rejected a correct scenario B answer because it read "520 rides" as a dollar total.
 
-**3. How the problem was detected.**
-The 10-command safety-gate test compares every command with its expected result. The
-row for `find . -name '*.pyc' -delete` expected *block* but got *allow*. The test run
-still prints the v1 result next to the final result so the false allow stays visible.
+**3. How I detected it.**
+I recomputed both scenarios from the CSV with a separate pandas script and compared every number with the saved run.json. The difference was exactly 600 and 520, the number of rides, which pointed to the unlock fee. The break-even mismatch (22.28 in the screenshot, 12.6 in my text) came from the same total. For the gate, the 10-command test found the first false allow, and testing commands that start with a safe prefix but do something else found the other two. During the re-runs, reading run.json after each failed run showed me three more problems in the AI-written fix itself: the feedback for a wrong decision told the agent to recompute numbers, the feedback had no formula hint for the break-even, and the attack fixtures put the injected text 4th, so with k=3 the defended cells never saw the attack (the full-trace check showed injection_retrieved=false). In the second review I compared the harness-corrected run.json with its justification text (12.6 in the JSON, 1100.73 in the text), read the budget code and saw that a call was only checked before it started, and read the failed check of the first 17-check run, which named "pay-per-use 520" although the text said $1196.97.
 
-**4. What changed, and why it works now.**
-The deny-list now treats `rm` with an `r`/`R` flag in any position or `--recursive`,
-`find … -delete`, `find … -exec rm`, `xargs rm` and Python `shutil.rmtree` as recursive
-deletion. The deny-list is checked *before* `SAFE_PREFIXES`, so a safe prefix can never
-override it. The final run blocks all 5 destructive commands and allows all 5 safe ones.
+**4. What I changed and why it works now.**
+The prompt asks for the unlock fees as a separate term, and a deterministic validator (prices parsed from the saved page, costs from plain SQL) checks 17 values of every answer, including that the justification uses the final numbers. A failed answer gets at most two feedback rounds with a hint for the exact failed field; for a wrong break-even the hint gives the calculator expression with the agent's own validated values, and the agent has to make that call itself. My code never changes the agent's numbers, and anything that still fails ends as `validation_failed`. The independent pandas numbers, the validator, the offline tests and both final runs agree on $4,860.05 / $1,771.88 / 4.94 for A and $1,196.97 / $7,540.00 / 12.60 for B. Part 3 now has a hard token budget that counts input and output of every agent and reflection call and caps generation with num_predict, with four boundary tests; in the reruns it was never exceeded. The justification check compares money labels only with dollar amounts (with a regression test). The injected blocks now rank first (with a test), so all 9 attack cells really saw the attack. The gate checks rmtree in any form and every chained segment, and only a human confirmer can approve a blocked command. The final Part 3 and Part 4 runs were made with this code (the Part 5 and Part 6 runs with the earlier revision, see Part 5), and every failed or replaced run is kept in the history folders.

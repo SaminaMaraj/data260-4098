@@ -78,3 +78,20 @@ and points to step 6 with the agent's own two totals.
   code. Fix: money labels are only compared with dollar amounts, the window
   stops at the end of the sentence, and a label passes if any number in it
   matches. Regression test: `test_consistent_justification_with_counts_is_not_flagged`.
+
+## Replaced 16-check scenario A run (2026-10-23 evening)
+
+- `scenario_A_before_17_checks/`: the scenario A run shown as final in my first
+  revised report. Round 0 failed only the two decision checks, round 1 passed
+  16/16. It was replaced because the validator now has 17 checks (the new
+  "justification uses the final numbers" check) and the final runs had to use
+  the same code.
+
+## Final runs (2026-10-24, commit 7ea9737) in `../scenario_A/` and `../scenario_B/`
+
+- Scenario B: round 0 failed only the break-even (3275.604234, from
+  `7540.0 / (1196.97 / 520)`). The feedback gave the step 5 formula and the
+  calculator expression with the agent's own validated values; the agent then
+  called `29 / ((1196.97 - 0) / 520)` itself (12.598478) and round 1 passed
+  17/17. No value was changed by the harness.
+- Scenario A: 17/17 in round 0, no feedback.

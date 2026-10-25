@@ -6,7 +6,17 @@
   "SEED": 4098,
   "VERIFY_SEED": 264098,
   "DOMAIN_ID": 2,
-  "commit_hash": "71048f307f8bf2911df114ad54ce3aaf73938c19",
+  "commit_hash": "1eaffb71f317b5ac744f18d5ce43ba2e630b2928",
+  "tested_state": {
+    "commit": "1eaffb71f317b5ac744f18d5ce43ba2e630b2928",
+    "uncommitted_code_changes": [],
+    "code_tree_hashes": {
+      "src": "1d86d98c1e773242b8e4154fff4f1bc50daa3c92",
+      "code": "5c926650aa4b77340c779d88f69d1602d3d38330",
+      "tests": "b5b7a71b2d45807c30cfdba333988436205b1461",
+      "frontend": "274f87cfffad153bd5bbf531ba42c474c9f0b87c"
+    }
+  },
   "model": "qwen3:8b",
   "model_settings": {
     "temperature": 0.0,
@@ -77,12 +87,27 @@
     {
       "name": "offline agent/reflexion tests",
       "passed": true,
-      "detail": "9/9 passed"
+      "detail": "13/13 passed"
     },
     {
       "name": "offline tool tests (csv_sql read-only, calculator, gate)",
       "passed": true,
-      "detail": "8/8 passed"
+      "detail": "11/11 passed"
+    },
+    {
+      "name": "offline Part 4 validator tests (reference prices, costs, bounded round)",
+      "passed": true,
+      "detail": "10/10 passed"
+    },
+    {
+      "name": "Part 4 saved scenario_A run validated",
+      "passed": true,
+      "detail": "decision=Buy Monthly Membership validation=passed rows=600 stop=final_answer"
+    },
+    {
+      "name": "Part 4 saved scenario_B run validated",
+      "passed": true,
+      "detail": "decision=Pay Per Ride/Minute validation=passed rows=520 stop=final_answer"
     },
     {
       "name": "required HW7 files exist",
