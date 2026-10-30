@@ -1,0 +1,130 @@
+{
+  "homework": 8,
+  "SID4": 4098,
+  "PORT_BASE": 8498,
+  "PREFIX": "s4098",
+  "SEED": 4098,
+  "VERIFY_SEED": 264098,
+  "DOMAIN_ID": 2,
+  "commit_hash": "d1c53f9b938f14d365e9287de1b0d2cda0dd4ffb",
+  "tested_state": {
+    "commit": "d1c53f9b938f14d365e9287de1b0d2cda0dd4ffb",
+    "uncommitted_code_changes": [],
+    "code_tree_hashes": {
+      "src": "3ab7bb9ed8d5ea2d3735412f14428e1216b2b6e1",
+      "code": "8a2a1799b21a71deb2262b6442f0da2a83fe3fff",
+      "tests": "8fd4a59460af36ed1f06eb2aedc5ce0c8df9ef7a"
+    }
+  },
+  "model": "qwen3:8b via Ollama (Part 2 agents); this smoke test uses the stub LLM",
+  "configuration": {
+    "kafka": "apache/kafka:3.9.2, single KRaft broker, localhost:9092",
+    "topics": {
+      "s4098_entity_requests": 1,
+      "s4098_entity_responses": 1,
+      "s4098_inbox": 1,
+      "s4098_tasks": 2,
+      "s4098_drafts": 1,
+      "s4098_final": 1,
+      "s4098_dead_letter": 1
+    },
+    "agent_max_attempts": 3,
+    "commit": "manual, after successful output"
+  },
+  "checks": [
+    {
+      "name": "FastAPI /health on port 8498 -> 200",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "API CREATE_INCIDENT -> success, UUID incident_id, same correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "API GET_INCIDENT round-trips every field",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET_INCIDENT unknown id -> success false + error + same correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "unknown operation -> success false + error + same correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CREATE_INCIDENT with an empty required field -> success false",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all 7 PREFIX topics exist with the planned partition counts",
+      "passed": true,
+      "detail": "{\"s4098_entity_requests\": 1, \"s4098_tasks\": 2, \"s4098_drafts\": 1, \"s4098_entity_responses\": 1, \"s4098_inbox\": 1, \"s4098_dead_letter\": 1, \"s4098_final\": 1}"
+    },
+    {
+      "name": "s4098_tasks has 2 partitions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "direct Kafka CREATE_INCIDENT -> reply on reply_to with same correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "direct Kafka GET_INCIDENT returns the created incident",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "replayed CREATE_INCIDENT (same correlation_id) creates no second incident",
+      "passed": true,
+      "detail": "requires the worker to run with HW8_IDEMPOTENCY=on"
+    },
+    {
+      "name": "planner, writer and reviewer start and join their groups",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "question -> planner -> writer -> reviewer -> final keeps correlation_id",
+      "passed": true,
+      "detail": "[[\"PLANNER\", \"s4098_inbox\"], [\"WRITER\", \"s4098_tasks\"], [\"REVIEWER\", \"s4098_drafts\"]]"
+    },
+    {
+      "name": "final message is JSON with status and answer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "poison task is retried 3 times, then moved to the dead-letter topic",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "message after the poison message is still processed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "keyed messages: one partition per incident key (20 VERIFY_SEED messages)",
+      "passed": true,
+      "detail": "{\"INC-213214\": [1], \"INC-744662\": [1], \"INC-281869\": [0], \"INC-837981\": [0]}"
+    },
+    {
+      "name": "offline tests (tests/test_hw08.py)",
+      "passed": true,
+      "detail": "7/7 passed"
+    }
+  ],
+  "passed": 18,
+  "total": 18,
+  "all_passed": true,
+  "generated_at": "2026-10-29T21:11:16-0700"
+}
