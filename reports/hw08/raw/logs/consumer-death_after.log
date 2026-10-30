@@ -1,0 +1,24 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py consumer-death --mode after | run 205809 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:58:09.010Z
+2026-10-30T03:58:09.526Z [TEST] consumer death, mode=after: Writer commit=after-success, killed with SIGKILL mid-processing
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_death_after_205809 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:58:10.130Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-after-205809
+    | 2026-10-30T03:58:10.134Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T03:58:10.136Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:58:10.136Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:58:10.258Z [TEST] SEND task to s4098_tasks[1] offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:10.259Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:10.259Z [WRITER:writer-1] PROCESS start correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135 attempt=1
+2026-10-30T03:58:12.860Z [TEST] KILL -9 Writer pid=66445 while it is processing offset=0
+2026-10-30T03:58:13.082Z [TEST] committed offset for s4098_tasks[1] after the kill = 0 (message offset 0; not committed -> will be redelivered)
+2026-10-30T03:58:13.082Z [TEST] RESTART Writer (same consumer group)
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1-restarted group=s4098_writers_death_after_205809 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:58:18.144Z [WRITER:writer-1-restarted] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-after-205809
+    | 2026-10-30T03:58:18.145Z [WRITER:writer-1-restarted] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T03:58:18.146Z [WRITER:writer-1-restarted] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:58:18.146Z [WRITER:writer-1-restarted] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T03:58:18.148Z [WRITER:writer-1-restarted] RECEIVE from s4098_tasks partition=1 offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:18.148Z [WRITER:writer-1-restarted] PROCESS start correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135 attempt=1
+    | 2026-10-30T03:58:21.832Z [WRITER:writer-1-restarted] SEND to s4098_drafts partition=0 offset=4 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:21.833Z [WRITER:writer-1-restarted] COMMIT partition=1 offset=1
+    | 2026-10-30T03:59:48.519Z [WRITER:writer-1-restarted] stopped
+2026-10-30T03:59:48.771Z [TEST] redelivered after restart: True; drafts produced: 1; committed offset after kill=0, at the end=1

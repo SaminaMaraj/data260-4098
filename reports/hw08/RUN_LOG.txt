@@ -1,0 +1,717 @@
+Kazi Samina Maraj Mumu | homework_demo.py (Part 1) | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+
+=== Steps 1-7: CREATE_INCIDENT ===
+2026-10-30T03:19:19.479Z [CLIENT] [CREATE] correlation_id created: e13508d1-ffd5-44b1-b51a-be8065bf3d1f
+2026-10-30T03:19:19.479Z [CLIENT] [CREATE] SEND CREATE_INCIDENT correlation_id=e13508d1-ffd5-44b1-b51a-be8065bf3d1f via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:19:19.479Z [CLIENT] [CREATE] request body={"correlation_id": "e13508d1-ffd5-44b1-b51a-be8065bf3d1f", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+Traceback (most recent call last):
+  File "/Users/samina/Documents/data260-4098/homework_demo.py", line 215, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/samina/Documents/data260-4098/homework_demo.py", line 160, in main
+    create_cid, created = call("[CREATE]", "CREATE_INCIDENT", INCIDENT)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/homework_demo.py", line 78, in call
+    response = post(body)
+               ^^^^^^^^^^
+  File "/Users/samina/Documents/data260-4098/homework_demo.py", line 65, in post
+    with urlopen(request, timeout=30) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+Kazi Samina Maraj Mumu | homework_demo.py (Part 1) | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+
+=== Steps 1-7: CREATE_INCIDENT ===
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] correlation_id created: 514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] SEND CREATE_INCIDENT correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] request body={"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] RESPONSE received by client: {"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "message": "Incident created"}
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] correlation_id preserved: True (514a5c57-a4ab-4a44-af70-64118e41b9df)
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] extracted generated incident_id=8336c99d-d281-4017-8c44-31c42841fe4e (correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df)
+
+=== Steps 8-9: GET_INCIDENT ===
+2026-10-30T03:20:17.147Z [CLIENT] [GET] correlation_id created: 3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.148Z [CLIENT] [GET] SEND GET_INCIDENT correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7 via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:20:17.148Z [CLIENT] [GET] request body={"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "operation": "GET_INCIDENT", "data": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e"}}
+2026-10-30T03:20:17.160Z [CLIENT] [GET] RESPONSE received by client: {"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:20:17+00:00"}}
+2026-10-30T03:20:17.160Z [CLIENT] [GET] correlation_id preserved: True (3cbf6725-7d3c-49bf-833f-ec7981bf56c7)
+
+=== Step 10: retrieved incident ===
+{
+  "incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e",
+  "incidentTitle": "Bus collision at Diridon Station",
+  "routeLine": "VTA Route 22",
+  "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu",
+  "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.",
+  "category": "collision",
+  "termsAccepted": true,
+  "passengersAffected": 18,
+  "submissionDate": "2026-10-30T03:20:17+00:00"
+}
+2026-10-30T03:20:17.160Z [CLIENT] [GET] round trip matches the created incident: True
+2026-10-30T03:20:17.160Z [CLIENT] [DONE] correlation_id preserved for both operations: CREATE=514a5c57-a4ab-4a44-af70-64118e41b9df GET=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+
+=== Full sequence (client + API + worker logs, ordered by time) ===
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] correlation_id created: 514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] SEND CREATE_INCIDENT correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:20:17.128Z [CLIENT] [CREATE] request body={"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:20:17.134Z [API] HTTP POST /incidents/kafka operation=CREATE_INCIDENT correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.142Z [API] SEND to topic=s4098_entity_requests partition=0 offset=0 correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.142Z [API] SEND request={"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:20:17.143Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=0 correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.143Z [WORKER] RECEIVE request={"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:20:17.143Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.143Z [WORKER] PROCESS done success=True correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df (store size=1)
+2026-10-30T03:20:17.145Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=0 correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.145Z [WORKER] REPLY response={"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "message": "Incident created"}
+2026-10-30T03:20:17.146Z [API] RESPONSE received from topic=s4098_entity_responses partition=0 offset=0 correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df (matched)
+2026-10-30T03:20:17.146Z [API] RETURN HTTP response to caller correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] RESPONSE received by client: {"correlation_id": "514a5c57-a4ab-4a44-af70-64118e41b9df", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "message": "Incident created"}
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] correlation_id preserved: True (514a5c57-a4ab-4a44-af70-64118e41b9df)
+2026-10-30T03:20:17.147Z [CLIENT] [CREATE] extracted generated incident_id=8336c99d-d281-4017-8c44-31c42841fe4e (correlation_id=514a5c57-a4ab-4a44-af70-64118e41b9df)
+2026-10-30T03:20:17.147Z [CLIENT] [GET] correlation_id created: 3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.148Z [CLIENT] [GET] SEND GET_INCIDENT correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7 via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:20:17.148Z [CLIENT] [GET] request body={"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "operation": "GET_INCIDENT", "data": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e"}}
+2026-10-30T03:20:17.148Z [API] HTTP POST /incidents/kafka operation=GET_INCIDENT correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.149Z [API] SEND to topic=s4098_entity_requests partition=0 offset=1 correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.149Z [API] SEND request={"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "reply_to": "s4098_entity_responses", "operation": "GET_INCIDENT", "data": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e"}}
+2026-10-30T03:20:17.157Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=1 correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.157Z [WORKER] RECEIVE request={"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "reply_to": "s4098_entity_responses", "operation": "GET_INCIDENT", "data": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e"}}
+2026-10-30T03:20:17.157Z [WORKER] PROCESS operation=GET_INCIDENT correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.157Z [WORKER] PROCESS done success=True correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7 (store size=1)
+2026-10-30T03:20:17.158Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=1 correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.158Z [WORKER] REPLY response={"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:20:17+00:00"}}
+2026-10-30T03:20:17.159Z [API] RESPONSE received from topic=s4098_entity_responses partition=0 offset=1 correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7 (matched)
+2026-10-30T03:20:17.159Z [API] RETURN HTTP response to caller correlation_id=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.160Z [CLIENT] [GET] RESPONSE received by client: {"correlation_id": "3cbf6725-7d3c-49bf-833f-ec7981bf56c7", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "8336c99d-d281-4017-8c44-31c42841fe4e", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:20:17+00:00"}}
+2026-10-30T03:20:17.160Z [CLIENT] [GET] correlation_id preserved: True (3cbf6725-7d3c-49bf-833f-ec7981bf56c7)
+2026-10-30T03:20:17.160Z [CLIENT] [DONE] correlation_id preserved for both operations: CREATE=514a5c57-a4ab-4a44-af70-64118e41b9df GET=3cbf6725-7d3c-49bf-833f-ec7981bf56c7
+2026-10-30T03:20:17.190Z [CLIENT] saved /Users/samina/Documents/data260-4098/reports/hw08/raw/part1_sequence.log and part1_demo.json
+Kazi Samina Maraj Mumu | homework_demo.py (Part 1) | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+
+=== Steps 1-7: CREATE_INCIDENT ===
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] correlation_id created: 18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] SEND CREATE_INCIDENT correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] request body={"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] RESPONSE received by client: {"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "message": "Incident created"}
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] correlation_id preserved: True (18afa51f-be37-4fe7-bfb6-7cf0c78b39dc)
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] extracted generated incident_id=2ebed720-7589-4b04-a1d1-977edbf1eafc (correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc)
+
+=== Steps 8-9: GET_INCIDENT ===
+2026-10-30T03:30:17.160Z [CLIENT] [GET] correlation_id created: a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.160Z [CLIENT] [GET] SEND GET_INCIDENT correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1 via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:30:17.160Z [CLIENT] [GET] request body={"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "operation": "GET_INCIDENT", "data": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc"}}
+2026-10-30T03:30:17.164Z [CLIENT] [GET] RESPONSE received by client: {"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:30:17+00:00"}}
+2026-10-30T03:30:17.164Z [CLIENT] [GET] correlation_id preserved: True (a0ce6fd3-cde6-4c58-9f24-ceefad788bc1)
+
+=== Step 10: retrieved incident ===
+{
+  "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc",
+  "incidentTitle": "Bus collision at Diridon Station",
+  "routeLine": "VTA Route 22",
+  "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu",
+  "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.",
+  "category": "collision",
+  "termsAccepted": true,
+  "passengersAffected": 18,
+  "submissionDate": "2026-10-30T03:30:17+00:00"
+}
+2026-10-30T03:30:17.164Z [CLIENT] [GET] round trip matches the created incident: True
+2026-10-30T03:30:17.164Z [CLIENT] [DONE] correlation_id preserved for both operations: CREATE=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc GET=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+
+=== Full sequence (client + API + worker logs, ordered by time) ===
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] correlation_id created: 18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] SEND CREATE_INCIDENT correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:30:17.141Z [CLIENT] [CREATE] request body={"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:30:17.150Z [API] HTTP POST /incidents/kafka operation=CREATE_INCIDENT correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.154Z [API] SEND to topic=s4098_entity_requests partition=0 offset=2 correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.154Z [API] SEND request={"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:30:17.155Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=2 correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.155Z [WORKER] RECEIVE request={"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18}}
+2026-10-30T03:30:17.156Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.156Z [WORKER] PROCESS done success=True correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc (store size=2)
+2026-10-30T03:30:17.157Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=2 correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.158Z [WORKER] REPLY response={"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "message": "Incident created"}
+2026-10-30T03:30:17.158Z [API] RESPONSE received from topic=s4098_entity_responses partition=0 offset=2 correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc (matched)
+2026-10-30T03:30:17.158Z [API] RETURN HTTP response to caller correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] RESPONSE received by client: {"correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "message": "Incident created"}
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] correlation_id preserved: True (18afa51f-be37-4fe7-bfb6-7cf0c78b39dc)
+2026-10-30T03:30:17.160Z [CLIENT] [CREATE] extracted generated incident_id=2ebed720-7589-4b04-a1d1-977edbf1eafc (correlation_id=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc)
+2026-10-30T03:30:17.160Z [CLIENT] [GET] correlation_id created: a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.160Z [CLIENT] [GET] SEND GET_INCIDENT correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1 via http://127.0.0.1:8498/incidents/kafka -> Kafka topic s4098_entity_requests (reply_to=s4098_entity_responses)
+2026-10-30T03:30:17.160Z [CLIENT] [GET] request body={"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "operation": "GET_INCIDENT", "data": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc"}}
+2026-10-30T03:30:17.161Z [API] HTTP POST /incidents/kafka operation=GET_INCIDENT correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.162Z [API] SEND to topic=s4098_entity_requests partition=0 offset=3 correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.162Z [API] SEND request={"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "reply_to": "s4098_entity_responses", "operation": "GET_INCIDENT", "data": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc"}}
+2026-10-30T03:30:17.162Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=3 correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.162Z [WORKER] RECEIVE request={"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "reply_to": "s4098_entity_responses", "operation": "GET_INCIDENT", "data": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc"}}
+2026-10-30T03:30:17.162Z [WORKER] PROCESS operation=GET_INCIDENT correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.162Z [WORKER] PROCESS done success=True correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1 (store size=2)
+2026-10-30T03:30:17.163Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=3 correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.163Z [WORKER] REPLY response={"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:30:17+00:00"}}
+2026-10-30T03:30:17.163Z [API] RESPONSE received from topic=s4098_entity_responses partition=0 offset=3 correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1 (matched)
+2026-10-30T03:30:17.163Z [API] RETURN HTTP response to caller correlation_id=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.164Z [CLIENT] [GET] RESPONSE received by client: {"correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1", "success": true, "operation": "GET_INCIDENT", "incident": {"incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc", "incidentTitle": "Bus collision at Diridon Station", "routeLine": "VTA Route 22", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.", "category": "collision", "termsAccepted": true, "passengersAffected": 18, "submissionDate": "2026-10-30T03:30:17+00:00"}}
+2026-10-30T03:30:17.164Z [CLIENT] [GET] correlation_id preserved: True (a0ce6fd3-cde6-4c58-9f24-ceefad788bc1)
+2026-10-30T03:30:17.164Z [CLIENT] [DONE] correlation_id preserved for both operations: CREATE=18afa51f-be37-4fe7-bfb6-7cf0c78b39dc GET=a0ce6fd3-cde6-4c58-9f24-ceefad788bc1
+2026-10-30T03:30:17.195Z [CLIENT] saved /Users/samina/Documents/data260-4098/reports/hw08/raw/part1_sequence.log and part1_demo.json
+Kazi Samina Maraj Mumu | send_question.py (Part 2) | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+2026-10-30T03:42:13.882Z [SENDER] SEND to s4098_inbox partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:13.882Z [SENDER] SEND message={"correlation_id": "d2ca2b39-cde9-4288-beb2-46fff1594052", "question": "A light-rail train lost power and stopped between two stations during the evening rush. What should the transit agency do in the first 30 minutes?", "sent_at": "2026-10-30T03:42:13.877Z", "sender": "send_question.py"}
+2026-10-30T03:42:13.882Z [SENDER] waiting on s4098_final for correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052 (timeout 600s)
+2026-10-30T03:42:26.170Z [SENDER] RECEIVE from s4098_final partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+
+=== Message journey (from the trace each agent appended) ===
+2026-10-30T03:42:13.877Z [SENDER] -> s4098_inbox correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:13.883Z [PLANNER:planner-1] <- s4098_inbox[0] offset=0 ... sent 2026-10-30T03:42:19.131Z
+2026-10-30T03:42:19.136Z [WRITER:writer-1] <- s4098_tasks[0] offset=0 ... sent 2026-10-30T03:42:24.120Z
+2026-10-30T03:42:24.131Z [REVIEWER:reviewer-1] <- s4098_drafts[0] offset=0 ... sent 2026-10-30T03:42:26.161Z
+2026-10-30T03:42:26.171Z [SENDER] <- s4098_final status=approved
+correlation_id preserved through every stage: True
+
+=== Final JSON on s4098_final ===
+{
+  "status": "approved",
+  "answer": "The transit agency should immediately activate the emergency response protocol for light-rail incidents to ensure a coordinated and efficient response. They must notify passengers via onboard announcements and real-time updates through mobile apps or digital displays to keep them informed and reduce panic. Simultaneously, dispatch maintenance and safety teams to the location to assess the power issue and begin repairs. This ensures passenger safety, minimizes delays, and restores service as quickly as possible. Communication is key to managing the situation and maintaining public trust during the incident.",
+  "review": "The draft effectively addresses the immediate actions a transit agency should take during a light-rail power loss incident.",
+  "question": "A light-rail train lost power and stopped between two stations during the evening rush. What should the transit agency do in the first 30 minutes?",
+  "correlation_id": "d2ca2b39-cde9-4288-beb2-46fff1594052"
+}
+2026-10-30T03:42:26.173Z [SENDER] saved /Users/samina/Documents/data260-4098/reports/hw08/raw/part2_final.json
+
+===== Part 3 duplicate --mode before (run 205006) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate --mode before | run 205006 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:50:06.288Z
+2026-10-30T03:50:06.802Z [TEST] duplicate delivery, mode=before: replay CREATE_INCIDENT to the worker
+2026-10-30T03:50:06.825Z [TEST] SEND original to s4098_entity_requests offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (identical bytes)
+2026-10-30T03:50:12.859Z [TEST] RESPONSE to original: {"success": true, "incident_id": "fb2be043-7660-4bd3-8934-e3d9ef2c777c", "message": "Incident created", "error": null}
+2026-10-30T03:50:12.862Z [TEST] SEND replay to s4098_entity_requests offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (identical bytes)
+2026-10-30T03:50:18.890Z [TEST] RESPONSE to replay: {"success": true, "incident_id": "418ef4a7-b93b-4433-ab62-e7e50032d2ed", "message": "Incident created", "error": null}
+2026-10-30T03:50:26.940Z [TEST] worker log lines for this correlation_id:
+    | 2026-10-30T03:50:06.825Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.825Z [WORKER] RECEIVE request={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:50:06.825Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.825Z [WORKER] PROCESS done success=True correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (store size=1)
+    | 2026-10-30T03:50:06.827Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.827Z [WORKER] REPLY response={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "fb2be043-7660-4bd3-8934-e3d9ef2c777c", "message": "Incident created"}
+    | 2026-10-30T03:50:12.861Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.862Z [WORKER] RECEIVE request={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:50:12.862Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.862Z [WORKER] PROCESS done success=True correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (store size=2)
+    | 2026-10-30T03:50:12.863Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.863Z [WORKER] REPLY response={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "418ef4a7-b93b-4433-ab62-e7e50032d2ed", "message": "Incident created"}
+2026-10-30T03:50:26.978Z [TEST] 2 incident(s) created by 2 deliveries of one correlation_id -> extra side effect
+
+===== Part 3 duplicate --mode after (run 205211) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate --mode after | run 205211 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:52:11.292Z
+2026-10-30T03:52:11.806Z [TEST] duplicate delivery, mode=after: replay CREATE_INCIDENT to the worker
+2026-10-30T03:52:11.816Z [TEST] SEND original to s4098_entity_requests offset=8 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc (identical bytes)
+2026-10-30T03:52:17.849Z [TEST] RESPONSE to original: {"success": true, "incident_id": "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec", "message": "Incident created", "error": null}
+2026-10-30T03:52:17.850Z [TEST] SEND replay to s4098_entity_requests offset=9 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc (identical bytes)
+2026-10-30T03:52:23.881Z [TEST] RESPONSE to replay: {"success": true, "incident_id": "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec", "message": "Incident created", "error": null}
+2026-10-30T03:52:27.916Z [TEST] worker log lines for this correlation_id:
+    | 2026-10-30T03:52:11.813Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=8 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:11.813Z [WORKER] RECEIVE request={"correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:52:11.813Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:11.813Z [WORKER] PROCESS done success=True correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc (store size=1)
+    | 2026-10-30T03:52:11.813Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=8 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:11.813Z [WORKER] REPLY response={"correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec", "message": "Incident created"}
+    | 2026-10-30T03:52:17.848Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=9 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:17.848Z [WORKER] RECEIVE request={"correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:52:17.848Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:17.848Z [WORKER] DUPLICATE correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc already processed -> returning the cached response, no new incident created (store size=1)
+    | 2026-10-30T03:52:17.848Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=9 correlation_id=d6dc1b0b-10a5-411f-96f4-3df3c98313cc
+    | 2026-10-30T03:52:17.848Z [WORKER] REPLY response={"correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec", "message": "Incident created"}
+2026-10-30T03:52:27.950Z [TEST] 1 incident(s) created by 2 deliveries of one correlation_id -> no extra side effect
+
+===== Part 3 duplicate-agent --mode before (run 205308) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate-agent --mode before | run 205308 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:53:08.184Z
+2026-10-30T03:53:08.699Z [TEST] duplicate delivery to the Writer, mode=before
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-dup group=s4098_writers_dup_before_205308 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:53:09.313Z [WRITER:writer-dup] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=off llm=stub experiment=dup-agent-before-205308
+    | 2026-10-30T03:53:09.317Z [WRITER:writer-dup] assigned s4098_tasks[0] start offset=1
+    | 2026-10-30T03:53:09.319Z [WRITER:writer-dup] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:53:09.319Z [WRITER:writer-dup] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:53:09.427Z [TEST] SEND original task to s4098_tasks[0] offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.428Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.428Z [WRITER:writer-dup] PROCESS start correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7 attempt=1
+2026-10-30T03:53:09.429Z [TEST] SEND replay task to s4098_tasks[0] offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.732Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.734Z [WRITER:writer-dup] COMMIT partition=0 offset=2
+    | 2026-10-30T03:53:10.034Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:10.034Z [WRITER:writer-dup] PROCESS start correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7 attempt=1
+    | 2026-10-30T03:53:10.337Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:10.337Z [WRITER:writer-dup] COMMIT partition=0 offset=3
+    | 2026-10-30T03:53:14.853Z [WRITER:writer-dup] stopped
+2026-10-30T03:53:15.080Z [TEST] 2 draft(s) produced for 2 deliveries of one correlation_id
+
+===== Part 3 duplicate-agent --mode after (run 205344) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate-agent --mode after | run 205344 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:53:44.459Z
+2026-10-30T03:53:44.977Z [TEST] duplicate delivery to the Writer, mode=after
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-dup group=s4098_writers_dup_after_205344 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:53:45.584Z [WRITER:writer-dup] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=dup-agent-after-205344
+    | 2026-10-30T03:53:45.586Z [WRITER:writer-dup] assigned s4098_tasks[0] start offset=3
+    | 2026-10-30T03:53:45.587Z [WRITER:writer-dup] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:53:45.587Z [WRITER:writer-dup] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:53:45.600Z [TEST] SEND original task to s4098_tasks[0] offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.601Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.601Z [WRITER:writer-dup] PROCESS start correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b attempt=1
+2026-10-30T03:53:45.601Z [TEST] SEND replay task to s4098_tasks[0] offset=4 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.905Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.907Z [WRITER:writer-dup] COMMIT partition=0 offset=4
+    | 2026-10-30T03:53:46.205Z [WRITER:writer-dup] DUPLICATE partition=0 offset=4 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b already done -> skipped, no output
+    | 2026-10-30T03:53:46.206Z [WRITER:writer-dup] COMMIT partition=0 offset=5
+    | 2026-10-30T03:53:51.219Z [WRITER:writer-dup] stopped
+2026-10-30T03:53:51.439Z [TEST] 1 draft(s) produced for 2 deliveries of one correlation_id
+
+===== Part 3 consumer-death --mode before (run 205419) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py consumer-death --mode before | run 205419 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:54:19.974Z
+2026-10-30T03:54:20.491Z [TEST] consumer death, mode=before: Writer commit=auto, killed with SIGKILL mid-processing
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_death_before_205419 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:54:21.102Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=auto poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-before-205419
+    | 2026-10-30T03:54:21.105Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=5
+    | 2026-10-30T03:54:21.106Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:54:21.106Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:54:21.220Z [TEST] SEND task to s4098_tasks[0] offset=5 correlation_id=dffd50a7-00af-4d83-b398-3319885dee3b
+    | 2026-10-30T03:54:21.220Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=5 correlation_id=dffd50a7-00af-4d83-b398-3319885dee3b
+    | 2026-10-30T03:54:21.220Z [WRITER:writer-1] PROCESS start correlation_id=dffd50a7-00af-4d83-b398-3319885dee3b attempt=1
+2026-10-30T03:54:23.822Z [TEST] KILL -9 Writer pid=66288 while it is processing offset=5
+2026-10-30T03:54:24.058Z [TEST] committed offset for s4098_tasks[0] after the kill = 6 (message offset 5; already committed -> will NOT be redelivered)
+2026-10-30T03:54:24.058Z [TEST] RESTART Writer (same consumer group)
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1-restarted group=s4098_writers_death_before_205419 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:54:29.614Z [WRITER:writer-1-restarted] ready: s4098_tasks -> s4098_drafts | commit=auto poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-before-205419
+    | 2026-10-30T03:54:29.615Z [WRITER:writer-1-restarted] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T03:54:29.616Z [WRITER:writer-1-restarted] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:54:29.616Z [WRITER:writer-1-restarted] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T03:55:59.790Z [WRITER:writer-1-restarted] stopped
+2026-10-30T03:56:00.019Z [TEST] redelivered after restart: False; drafts produced: 0; committed offset after kill=6, at the end=6
+
+===== Part 3 consumer-death --mode after (run 205809) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py consumer-death --mode after | run 205809 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:58:09.010Z
+2026-10-30T03:58:09.526Z [TEST] consumer death, mode=after: Writer commit=after-success, killed with SIGKILL mid-processing
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_death_after_205809 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:58:10.130Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-after-205809
+    | 2026-10-30T03:58:10.134Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T03:58:10.136Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:58:10.136Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:58:10.258Z [TEST] SEND task to s4098_tasks[1] offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:10.259Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:10.259Z [WRITER:writer-1] PROCESS start correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135 attempt=1
+2026-10-30T03:58:12.860Z [TEST] KILL -9 Writer pid=66445 while it is processing offset=0
+2026-10-30T03:58:13.082Z [TEST] committed offset for s4098_tasks[1] after the kill = 0 (message offset 0; not committed -> will be redelivered)
+2026-10-30T03:58:13.082Z [TEST] RESTART Writer (same consumer group)
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1-restarted group=s4098_writers_death_after_205809 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:58:18.144Z [WRITER:writer-1-restarted] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=death-after-205809
+    | 2026-10-30T03:58:18.145Z [WRITER:writer-1-restarted] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T03:58:18.146Z [WRITER:writer-1-restarted] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:58:18.146Z [WRITER:writer-1-restarted] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T03:58:18.148Z [WRITER:writer-1-restarted] RECEIVE from s4098_tasks partition=1 offset=0 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:18.148Z [WRITER:writer-1-restarted] PROCESS start correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135 attempt=1
+    | 2026-10-30T03:58:21.832Z [WRITER:writer-1-restarted] SEND to s4098_drafts partition=0 offset=4 correlation_id=bb7d2285-a906-4543-90cc-90b3c0080135
+    | 2026-10-30T03:58:21.833Z [WRITER:writer-1-restarted] COMMIT partition=1 offset=1
+    | 2026-10-30T03:59:48.519Z [WRITER:writer-1-restarted] stopped
+2026-10-30T03:59:48.771Z [TEST] redelivered after restart: True; drafts produced: 1; committed offset after kill=0, at the end=1
+
+===== Part 3 poison --mode before (run 210133) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py poison --mode before | run 210133 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:01:33.648Z
+2026-10-30T04:01:34.166Z [TEST] poison message, mode=before: Writer poison-policy=block
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_poison_before_210133 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:01:34.796Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=block max-attempts=3 idempotency=on llm=stub experiment=poison-before-210133
+    | 2026-10-30T04:01:34.801Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:01:34.804Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=1
+    | 2026-10-30T04:01:34.804Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T04:01:34.892Z [TEST] SEND poison task to s4098_tasks[1] offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d plan='<<corrupted plan>>'
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=1
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=1 error=PoisonMessage: task has no valid 'plan' object
+2026-10-30T04:01:34.893Z [TEST] SEND good task to s4098_tasks[1] offset=2 correlation_id=d4008263-6747-4fa3-877f-2e958e7dcee8
+    | 2026-10-30T04:01:35.894Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=2
+    | 2026-10-30T04:01:35.894Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=2 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:36.895Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=3
+    | 2026-10-30T04:01:36.895Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=3 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:37.897Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=4
+    | 2026-10-30T04:01:37.897Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=4 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:38.898Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=5
+    | 2026-10-30T04:01:38.898Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=5 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:39.899Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=6
+    | 2026-10-30T04:01:39.899Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=6 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:40.900Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=7
+    | 2026-10-30T04:01:40.900Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=7 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:41.901Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=8
+    | 2026-10-30T04:01:41.901Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=8 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:42.902Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=9
+    | 2026-10-30T04:01:42.902Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=9 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:43.904Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=10
+    | 2026-10-30T04:01:43.904Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=10 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:44.904Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=11
+    | 2026-10-30T04:01:44.904Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=11 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:45.905Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=12
+    | 2026-10-30T04:01:45.905Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=12 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:46.906Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=13
+    | 2026-10-30T04:01:46.906Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=13 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:47.907Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=14
+    | 2026-10-30T04:01:47.907Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=14 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:48.909Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=15
+    | 2026-10-30T04:01:48.909Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=15 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:49.910Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=16
+    | 2026-10-30T04:01:49.910Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=16 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:50.911Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=17
+    | 2026-10-30T04:01:50.911Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=17 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:51.912Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=18
+    | 2026-10-30T04:01:51.912Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=18 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:52.914Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=19
+    | 2026-10-30T04:01:52.914Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=19 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:53.915Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=20
+    | 2026-10-30T04:01:53.915Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=20 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:54.916Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=21
+    | 2026-10-30T04:01:54.916Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=21 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:55.917Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=22
+    | 2026-10-30T04:01:55.917Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=22 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:56.918Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=23
+    | 2026-10-30T04:01:56.918Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=23 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:57.919Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=24
+    | 2026-10-30T04:01:57.919Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=24 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:58.920Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=25
+    | 2026-10-30T04:01:58.921Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=25 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:59.922Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=26
+    | 2026-10-30T04:01:59.922Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=26 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:02:00.923Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=27
+    | 2026-10-30T04:02:00.923Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=27 error=PoisonMessage: task has no valid 'plan' object
+2026-10-30T04:02:01.172Z [TEST] poison attempts in 15s window: 17; dead-lettered: False; later good message processed: False
+
+===== Part 3 poison --mode after (run 210335) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py poison --mode after | run 210335 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:03:35.040Z
+2026-10-30T04:03:35.555Z [TEST] poison message, mode=after: Writer poison-policy=dlq
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_poison_after_210335 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:03:36.170Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=poison-after-210335
+    | 2026-10-30T04:03:36.174Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:03:36.175Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=3
+    | 2026-10-30T04:03:36.175Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T04:03:36.287Z [TEST] SEND poison task to s4098_tasks[1] offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 plan='<<corrupted plan>>'
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=1
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=1 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] RETRY in 0.5s (1/3)
+2026-10-30T04:03:36.288Z [TEST] SEND good task to s4098_tasks[1] offset=4 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=2
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=2 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] RETRY in 1.0s (2/3)
+    | 2026-10-30T04:03:37.790Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=3
+    | 2026-10-30T04:03:37.790Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=3 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:37.795Z [WRITER:writer-1] DEAD-LETTER s4098_dead_letter partition=0 offset=0 after 3 attempts (source offset=3) -> moving on
+    | 2026-10-30T04:03:37.797Z [WRITER:writer-1] COMMIT partition=1 offset=4
+    | 2026-10-30T04:03:37.897Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=4 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:37.897Z [WRITER:writer-1] PROCESS start correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc attempt=1
+    | 2026-10-30T04:03:38.101Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=5 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:38.102Z [WRITER:writer-1] COMMIT partition=1 offset=5
+    | 2026-10-30T04:03:52.638Z [WRITER:writer-1] stopped
+2026-10-30T04:03:52.862Z [TEST] poison attempts in 15s window: 3; dead-lettered: True; later good message processed: True
+
+===== Part 3 ordering --mode before (run 210504) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py ordering --mode before | run 210504 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:05:04.647Z
+2026-10-30T04:05:05.164Z [TEST] ordering, mode=before: 20 messages (VERIFY_SEED=264098) -> s4098_tasks (2 partitions), 2 Writers in group s4098_writers_order_before_210504, key=none
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_order_before_210504 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-2 group=s4098_writers_order_before_210504 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:05:05.788Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-before-210504
+    | 2026-10-30T04:05:05.788Z [WRITER:writer-2] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-before-210504
+    | 2026-10-30T04:05:05.791Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=5
+    | 2026-10-30T04:05:05.791Z [WRITER:writer-2] ASSIGNMENT partitions=[1]
+    | 2026-10-30T04:05:05.792Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:05:05.792Z [WRITER:writer-1] ASSIGNMENT partitions=[0]
+2026-10-30T04:05:05.976Z [TEST] group settled: writer-1 owns [0], writer-2 owns [1]
+2026-10-30T04:05:06.994Z [TEST] SEND #01 INC-213214 seq=1 key=none -> partition=0 offset=6
+    | 2026-10-30T04:05:06.995Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=6 correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b
+    | 2026-10-30T04:05:06.995Z [WRITER:writer-1] PROCESS start correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b attempt=1
+2026-10-30T04:05:06.996Z [TEST] SEND #02 INC-744662 seq=1 key=none -> partition=1 offset=5
+    | 2026-10-30T04:05:06.997Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=5 correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c
+    | 2026-10-30T04:05:06.997Z [WRITER:writer-2] PROCESS start correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c attempt=1
+2026-10-30T04:05:06.997Z [TEST] SEND #03 INC-281869 seq=1 key=none -> partition=1 offset=6
+2026-10-30T04:05:06.998Z [TEST] SEND #04 INC-213214 seq=2 key=none -> partition=0 offset=7
+2026-10-30T04:05:06.999Z [TEST] SEND #05 INC-213214 seq=3 key=none -> partition=1 offset=7
+2026-10-30T04:05:07.001Z [TEST] SEND #06 INC-213214 seq=4 key=none -> partition=0 offset=8
+2026-10-30T04:05:07.002Z [TEST] SEND #07 INC-281869 seq=2 key=none -> partition=0 offset=9
+2026-10-30T04:05:07.003Z [TEST] SEND #08 INC-213214 seq=5 key=none -> partition=1 offset=8
+2026-10-30T04:05:07.008Z [TEST] SEND #09 INC-281869 seq=3 key=none -> partition=0 offset=10
+2026-10-30T04:05:07.009Z [TEST] SEND #10 INC-281869 seq=4 key=none -> partition=1 offset=9
+2026-10-30T04:05:07.010Z [TEST] SEND #11 INC-744662 seq=2 key=none -> partition=1 offset=10
+2026-10-30T04:05:07.011Z [TEST] SEND #12 INC-281869 seq=5 key=none -> partition=1 offset=11
+2026-10-30T04:05:07.012Z [TEST] SEND #13 INC-744662 seq=3 key=none -> partition=1 offset=12
+2026-10-30T04:05:07.012Z [TEST] SEND #14 INC-744662 seq=4 key=none -> partition=0 offset=11
+2026-10-30T04:05:07.017Z [TEST] SEND #15 INC-837981 seq=1 key=none -> partition=1 offset=13
+2026-10-30T04:05:07.018Z [TEST] SEND #16 INC-744662 seq=5 key=none -> partition=1 offset=14
+2026-10-30T04:05:07.019Z [TEST] SEND #17 INC-837981 seq=2 key=none -> partition=1 offset=15
+2026-10-30T04:05:07.020Z [TEST] SEND #18 INC-837981 seq=3 key=none -> partition=1 offset=16
+2026-10-30T04:05:07.021Z [TEST] SEND #19 INC-837981 seq=4 key=none -> partition=0 offset=12
+2026-10-30T04:05:07.022Z [TEST] SEND #20 INC-837981 seq=5 key=none -> partition=1 offset=17
+    | 2026-10-30T04:05:07.342Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=6 correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b
+    | 2026-10-30T04:05:07.344Z [WRITER:writer-1] COMMIT partition=0 offset=7
+    | 2026-10-30T04:05:07.346Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=7 correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa
+    | 2026-10-30T04:05:07.346Z [WRITER:writer-1] PROCESS start correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa attempt=1
+    | 2026-10-30T04:05:07.533Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=7 correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c
+    | 2026-10-30T04:05:07.536Z [WRITER:writer-2] COMMIT partition=1 offset=6
+    | 2026-10-30T04:05:07.537Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=6 correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60
+    | 2026-10-30T04:05:07.537Z [WRITER:writer-2] PROCESS start correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60 attempt=1
+    | 2026-10-30T04:05:07.639Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=8 correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] COMMIT partition=0 offset=8
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=8 correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] PROCESS start correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0 attempt=1
+    | 2026-10-30T04:05:07.720Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=9 correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] COMMIT partition=1 offset=7
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=7 correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] PROCESS start correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83 attempt=1
+    | 2026-10-30T04:05:07.980Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=10 correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0
+    | 2026-10-30T04:05:07.981Z [WRITER:writer-1] COMMIT partition=0 offset=9
+    | 2026-10-30T04:05:07.982Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=9 correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5
+    | 2026-10-30T04:05:07.982Z [WRITER:writer-1] PROCESS start correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5 attempt=1
+    | 2026-10-30T04:05:08.235Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=11 correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] COMMIT partition=1 offset=8
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=8 correlation_id=83e4d82f-71df-468b-af27-4601a56252d3
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] PROCESS start correlation_id=83e4d82f-71df-468b-af27-4601a56252d3 attempt=1
+    | 2026-10-30T04:05:08.318Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=12 correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] COMMIT partition=0 offset=10
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=10 correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] PROCESS start correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b attempt=1
+    | 2026-10-30T04:05:08.395Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=13 correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] COMMIT partition=0 offset=11
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=11 correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] PROCESS start correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c attempt=1
+    | 2026-10-30T04:05:08.654Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=14 correlation_id=83e4d82f-71df-468b-af27-4601a56252d3
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] COMMIT partition=1 offset=9
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=9 correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] PROCESS start correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6 attempt=1
+    | 2026-10-30T04:05:08.727Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=15 correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] COMMIT partition=0 offset=12
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=12 correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] PROCESS start correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e attempt=1
+    | 2026-10-30T04:05:08.760Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=16 correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] COMMIT partition=1 offset=10
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=10 correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] PROCESS start correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78 attempt=1
+    | 2026-10-30T04:05:09.266Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=17 correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e
+    | 2026-10-30T04:05:09.270Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=18 correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78
+    | 2026-10-30T04:05:09.270Z [WRITER:writer-1] COMMIT partition=0 offset=13
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] COMMIT partition=1 offset=11
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=11 correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] PROCESS start correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d attempt=1
+    | 2026-10-30T04:05:09.362Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=19 correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] COMMIT partition=1 offset=12
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=12 correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] PROCESS start correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb attempt=1
+    | 2026-10-30T04:05:09.428Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=20 correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] COMMIT partition=1 offset=13
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=13 correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] PROCESS start correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad attempt=1
+    | 2026-10-30T04:05:10.056Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=21 correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] COMMIT partition=1 offset=14
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=14 correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] PROCESS start correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441 attempt=1
+    | 2026-10-30T04:05:10.164Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=22 correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] COMMIT partition=1 offset=15
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=15 correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] PROCESS start correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8 attempt=1
+    | 2026-10-30T04:05:10.751Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=23 correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8
+    | 2026-10-30T04:05:10.753Z [WRITER:writer-2] COMMIT partition=1 offset=16
+    | 2026-10-30T04:05:10.754Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=16 correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8
+    | 2026-10-30T04:05:10.754Z [WRITER:writer-2] PROCESS start correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8 attempt=1
+    | 2026-10-30T04:05:11.272Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=24 correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] COMMIT partition=1 offset=17
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=17 correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] PROCESS start correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914 attempt=1
+    | 2026-10-30T04:05:11.493Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=25 correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914
+    | 2026-10-30T04:05:11.495Z [WRITER:writer-2] COMMIT partition=1 offset=18
+    | 2026-10-30T04:05:11.779Z [WRITER:writer-1] stopped
+    | Heartbeat failed for group s4098_writers_order_before_210504 because it is rebalancing
+    | 2026-10-30T04:05:11.799Z [WRITER:writer-2] partitions revoked: [1]
+    | 2026-10-30T04:05:11.804Z [WRITER:writer-2] assigned s4098_tasks[0] start offset=13
+    | 2026-10-30T04:05:11.805Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=18
+    | 2026-10-30T04:05:11.805Z [WRITER:writer-2] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T04:05:12.500Z [WRITER:writer-2] stopped
+
+2026-10-30T04:05:12.719Z [TEST] processing order (by finish time):
+2026-10-30T04:05:12.719Z [TEST]   INC-213214: processed seq order [1, 2, 4, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   INC-281869: processed seq order [1, 2, 3, 4, 5] partitions=[0, 1] -> IN ORDER
+2026-10-30T04:05:12.719Z [TEST]   INC-744662: processed seq order [1, 4, 2, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   INC-837981: processed seq order [4, 1, 2, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   #01 writer-1 p0 o6 INC-213214 seq=1 (reported) finished=2026-10-30T04:05:07.342Z
+2026-10-30T04:05:12.719Z [TEST]   #02 writer-2 p1 o5 INC-744662 seq=1 (reported) finished=2026-10-30T04:05:07.533Z
+2026-10-30T04:05:12.719Z [TEST]   #03 writer-1 p0 o7 INC-213214 seq=2 (crew_dispatched) finished=2026-10-30T04:05:07.639Z
+2026-10-30T04:05:12.719Z [TEST]   #04 writer-2 p1 o6 INC-281869 seq=1 (reported) finished=2026-10-30T04:05:07.720Z
+2026-10-30T04:05:12.719Z [TEST]   #05 writer-1 p0 o8 INC-213214 seq=4 (service_restored) finished=2026-10-30T04:05:07.980Z
+2026-10-30T04:05:12.719Z [TEST]   #06 writer-2 p1 o7 INC-213214 seq=3 (crew_on_scene) finished=2026-10-30T04:05:08.235Z
+2026-10-30T04:05:12.719Z [TEST]   #07 writer-1 p0 o9 INC-281869 seq=2 (crew_dispatched) finished=2026-10-30T04:05:08.318Z
+2026-10-30T04:05:12.719Z [TEST]   #08 writer-1 p0 o10 INC-281869 seq=3 (crew_on_scene) finished=2026-10-30T04:05:08.395Z
+2026-10-30T04:05:12.719Z [TEST]   #09 writer-2 p1 o8 INC-213214 seq=5 (closed) finished=2026-10-30T04:05:08.654Z
+2026-10-30T04:05:12.719Z [TEST]   #10 writer-1 p0 o11 INC-744662 seq=4 (service_restored) finished=2026-10-30T04:05:08.727Z
+2026-10-30T04:05:12.719Z [TEST]   #11 writer-2 p1 o9 INC-281869 seq=4 (service_restored) finished=2026-10-30T04:05:08.760Z
+2026-10-30T04:05:12.719Z [TEST]   #12 writer-1 p0 o12 INC-837981 seq=4 (service_restored) finished=2026-10-30T04:05:09.267Z
+2026-10-30T04:05:12.719Z [TEST]   #13 writer-2 p1 o10 INC-744662 seq=2 (crew_dispatched) finished=2026-10-30T04:05:09.270Z
+2026-10-30T04:05:12.719Z [TEST]   #14 writer-2 p1 o11 INC-281869 seq=5 (closed) finished=2026-10-30T04:05:09.362Z
+2026-10-30T04:05:12.719Z [TEST]   #15 writer-2 p1 o12 INC-744662 seq=3 (crew_on_scene) finished=2026-10-30T04:05:09.428Z
+2026-10-30T04:05:12.719Z [TEST]   #16 writer-2 p1 o13 INC-837981 seq=1 (reported) finished=2026-10-30T04:05:10.056Z
+2026-10-30T04:05:12.719Z [TEST]   #17 writer-2 p1 o14 INC-744662 seq=5 (closed) finished=2026-10-30T04:05:10.164Z
+2026-10-30T04:05:12.719Z [TEST]   #18 writer-2 p1 o15 INC-837981 seq=2 (crew_dispatched) finished=2026-10-30T04:05:10.751Z
+2026-10-30T04:05:12.719Z [TEST]   #19 writer-2 p1 o16 INC-837981 seq=3 (crew_on_scene) finished=2026-10-30T04:05:11.272Z
+2026-10-30T04:05:12.719Z [TEST]   #20 writer-2 p1 o17 INC-837981 seq=5 (closed) finished=2026-10-30T04:05:11.493Z
+2026-10-30T04:05:12.720Z [TEST] 20/20 processed; 4/4 incidents spread over both partitions; 3 ordering inversions; saved reports/hw08/raw/ordering_before_nokey.csv
+
+===== Part 3 ordering --mode after (run 210752) =====
+Kazi Samina Maraj Mumu | run_failure_tests.py ordering --mode after | run 210752 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:07:52.735Z
+2026-10-30T04:07:53.255Z [TEST] ordering, mode=after: 20 messages (VERIFY_SEED=264098) -> s4098_tasks (2 partitions), 2 Writers in group s4098_writers_order_after_210752, key=incident_id
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_order_after_210752 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-2 group=s4098_writers_order_after_210752 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:07:53.882Z [WRITER:writer-2] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-after-210752
+    | 2026-10-30T04:07:53.882Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-after-210752
+    | 2026-10-30T04:07:53.886Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=13
+    | 2026-10-30T04:07:53.886Z [WRITER:writer-1] ASSIGNMENT partitions=[0]
+    | 2026-10-30T04:07:53.886Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=18
+    | 2026-10-30T04:07:53.886Z [WRITER:writer-2] ASSIGNMENT partitions=[1]
+2026-10-30T04:07:54.067Z [TEST] group settled: writer-1 owns [0], writer-2 owns [1]
+2026-10-30T04:07:55.084Z [TEST] SEND #01 INC-213214 seq=1 key=incident_id -> partition=1 offset=18
+    | 2026-10-30T04:07:55.085Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=18 correlation_id=9d6d7084-3b8f-4962-a348-7704ba4b6a6d
+    | 2026-10-30T04:07:55.085Z [WRITER:writer-2] PROCESS start correlation_id=9d6d7084-3b8f-4962-a348-7704ba4b6a6d attempt=1
+2026-10-30T04:07:55.086Z [TEST] SEND #02 INC-744662 seq=1 key=incident_id -> partition=1 offset=19
+2026-10-30T04:07:55.087Z [TEST] SEND #03 INC-281869 seq=1 key=incident_id -> partition=0 offset=13
+    | 2026-10-30T04:07:55.087Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=13 correlation_id=838cc53a-0b04-459a-9363-e782eb4fa5be
+    | 2026-10-30T04:07:55.087Z [WRITER:writer-1] PROCESS start correlation_id=838cc53a-0b04-459a-9363-e782eb4fa5be attempt=1
+2026-10-30T04:07:55.088Z [TEST] SEND #04 INC-213214 seq=2 key=incident_id -> partition=1 offset=20
+2026-10-30T04:07:55.089Z [TEST] SEND #05 INC-213214 seq=3 key=incident_id -> partition=1 offset=21
+2026-10-30T04:07:55.090Z [TEST] SEND #06 INC-213214 seq=4 key=incident_id -> partition=1 offset=22
+2026-10-30T04:07:55.090Z [TEST] SEND #07 INC-281869 seq=2 key=incident_id -> partition=0 offset=14
+2026-10-30T04:07:55.091Z [TEST] SEND #08 INC-213214 seq=5 key=incident_id -> partition=1 offset=23
+2026-10-30T04:07:55.092Z [TEST] SEND #09 INC-281869 seq=3 key=incident_id -> partition=0 offset=15
+2026-10-30T04:07:55.093Z [TEST] SEND #10 INC-281869 seq=4 key=incident_id -> partition=0 offset=16
+2026-10-30T04:07:55.094Z [TEST] SEND #11 INC-744662 seq=2 key=incident_id -> partition=1 offset=24
+2026-10-30T04:07:55.095Z [TEST] SEND #12 INC-281869 seq=5 key=incident_id -> partition=0 offset=17
+2026-10-30T04:07:55.096Z [TEST] SEND #13 INC-744662 seq=3 key=incident_id -> partition=1 offset=25
+2026-10-30T04:07:55.097Z [TEST] SEND #14 INC-744662 seq=4 key=incident_id -> partition=1 offset=26
+2026-10-30T04:07:55.098Z [TEST] SEND #15 INC-837981 seq=1 key=incident_id -> partition=0 offset=18
+2026-10-30T04:07:55.099Z [TEST] SEND #16 INC-744662 seq=5 key=incident_id -> partition=1 offset=27
+2026-10-30T04:07:55.100Z [TEST] SEND #17 INC-837981 seq=2 key=incident_id -> partition=0 offset=19
+2026-10-30T04:07:55.101Z [TEST] SEND #18 INC-837981 seq=3 key=incident_id -> partition=0 offset=20
+2026-10-30T04:07:55.102Z [TEST] SEND #19 INC-837981 seq=4 key=incident_id -> partition=0 offset=21
+2026-10-30T04:07:55.103Z [TEST] SEND #20 INC-837981 seq=5 key=incident_id -> partition=0 offset=22
+    | 2026-10-30T04:07:55.272Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=26 correlation_id=838cc53a-0b04-459a-9363-e782eb4fa5be
+    | 2026-10-30T04:07:55.274Z [WRITER:writer-1] COMMIT partition=0 offset=14
+    | 2026-10-30T04:07:55.276Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=14 correlation_id=c18591cb-91e0-4966-b6bd-71e8462b9cb8
+    | 2026-10-30T04:07:55.276Z [WRITER:writer-1] PROCESS start correlation_id=c18591cb-91e0-4966-b6bd-71e8462b9cb8 attempt=1
+    | 2026-10-30T04:07:55.433Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=27 correlation_id=9d6d7084-3b8f-4962-a348-7704ba4b6a6d
+    | 2026-10-30T04:07:55.435Z [WRITER:writer-2] COMMIT partition=1 offset=19
+    | 2026-10-30T04:07:55.437Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=19 correlation_id=53881d54-558a-490c-ac68-1ed1803dd942
+    | 2026-10-30T04:07:55.437Z [WRITER:writer-2] PROCESS start correlation_id=53881d54-558a-490c-ac68-1ed1803dd942 attempt=1
+    | 2026-10-30T04:07:55.611Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=28 correlation_id=c18591cb-91e0-4966-b6bd-71e8462b9cb8
+    | 2026-10-30T04:07:55.613Z [WRITER:writer-1] COMMIT partition=0 offset=15
+    | 2026-10-30T04:07:55.613Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=15 correlation_id=c4bc4787-ff5d-4891-945a-69407dabe8fc
+    | 2026-10-30T04:07:55.613Z [WRITER:writer-1] PROCESS start correlation_id=c4bc4787-ff5d-4891-945a-69407dabe8fc attempt=1
+    | 2026-10-30T04:07:55.687Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=29 correlation_id=c4bc4787-ff5d-4891-945a-69407dabe8fc
+    | 2026-10-30T04:07:55.689Z [WRITER:writer-1] COMMIT partition=0 offset=16
+    | 2026-10-30T04:07:55.689Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=16 correlation_id=bda1eda5-d4b7-4998-9456-230a3e0c627a
+    | 2026-10-30T04:07:55.689Z [WRITER:writer-1] PROCESS start correlation_id=bda1eda5-d4b7-4998-9456-230a3e0c627a attempt=1
+    | 2026-10-30T04:07:55.793Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=30 correlation_id=bda1eda5-d4b7-4998-9456-230a3e0c627a
+    | 2026-10-30T04:07:55.794Z [WRITER:writer-1] COMMIT partition=0 offset=17
+    | 2026-10-30T04:07:55.794Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=17 correlation_id=2e1b50a1-44a7-4276-a8bf-b4397da14ade
+    | 2026-10-30T04:07:55.794Z [WRITER:writer-1] PROCESS start correlation_id=2e1b50a1-44a7-4276-a8bf-b4397da14ade attempt=1
+    | 2026-10-30T04:07:55.884Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=31 correlation_id=2e1b50a1-44a7-4276-a8bf-b4397da14ade
+    | 2026-10-30T04:07:55.885Z [WRITER:writer-1] COMMIT partition=0 offset=18
+    | 2026-10-30T04:07:55.885Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=18 correlation_id=0ef7b399-6163-44f9-929d-8be30259b63c
+    | 2026-10-30T04:07:55.885Z [WRITER:writer-1] PROCESS start correlation_id=0ef7b399-6163-44f9-929d-8be30259b63c attempt=1
+    | 2026-10-30T04:07:55.972Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=32 correlation_id=53881d54-558a-490c-ac68-1ed1803dd942
+    | 2026-10-30T04:07:55.973Z [WRITER:writer-2] COMMIT partition=1 offset=20
+    | 2026-10-30T04:07:55.974Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=20 correlation_id=1d59ef45-322d-4b58-8fd9-3e6bc806f8c8
+    | 2026-10-30T04:07:55.974Z [WRITER:writer-2] PROCESS start correlation_id=1d59ef45-322d-4b58-8fd9-3e6bc806f8c8 attempt=1
+    | 2026-10-30T04:07:56.266Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=33 correlation_id=1d59ef45-322d-4b58-8fd9-3e6bc806f8c8
+    | 2026-10-30T04:07:56.267Z [WRITER:writer-2] COMMIT partition=1 offset=21
+    | 2026-10-30T04:07:56.267Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=21 correlation_id=ce362143-a4ae-4947-ab41-7444a308eeb7
+    | 2026-10-30T04:07:56.267Z [WRITER:writer-2] PROCESS start correlation_id=ce362143-a4ae-4947-ab41-7444a308eeb7 attempt=1
+    | 2026-10-30T04:07:56.511Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=34 correlation_id=0ef7b399-6163-44f9-929d-8be30259b63c
+    | 2026-10-30T04:07:56.513Z [WRITER:writer-1] COMMIT partition=0 offset=19
+    | 2026-10-30T04:07:56.513Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=19 correlation_id=8d83b222-2242-4479-9d23-656715451d86
+    | 2026-10-30T04:07:56.513Z [WRITER:writer-1] PROCESS start correlation_id=8d83b222-2242-4479-9d23-656715451d86 attempt=1
+    | 2026-10-30T04:07:56.781Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=35 correlation_id=ce362143-a4ae-4947-ab41-7444a308eeb7
+    | 2026-10-30T04:07:56.783Z [WRITER:writer-2] COMMIT partition=1 offset=22
+    | 2026-10-30T04:07:56.783Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=22 correlation_id=2a8cf48a-7749-4a51-be2e-5567ba8e8a34
+    | 2026-10-30T04:07:56.783Z [WRITER:writer-2] PROCESS start correlation_id=2a8cf48a-7749-4a51-be2e-5567ba8e8a34 attempt=1
+    | 2026-10-30T04:07:57.096Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=36 correlation_id=8d83b222-2242-4479-9d23-656715451d86
+    | 2026-10-30T04:07:57.098Z [WRITER:writer-1] COMMIT partition=0 offset=20
+    | 2026-10-30T04:07:57.098Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=20 correlation_id=1013efaa-231b-4902-a7a5-f96fd25fd104
+    | 2026-10-30T04:07:57.098Z [WRITER:writer-1] PROCESS start correlation_id=1013efaa-231b-4902-a7a5-f96fd25fd104 attempt=1
+    | 2026-10-30T04:07:57.123Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=37 correlation_id=2a8cf48a-7749-4a51-be2e-5567ba8e8a34
+    | 2026-10-30T04:07:57.125Z [WRITER:writer-2] COMMIT partition=1 offset=23
+    | 2026-10-30T04:07:57.125Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=23 correlation_id=d3b638c6-17ba-4230-8c35-3e85e3aa0cd2
+    | 2026-10-30T04:07:57.125Z [WRITER:writer-2] PROCESS start correlation_id=d3b638c6-17ba-4230-8c35-3e85e3aa0cd2 attempt=1
+    | 2026-10-30T04:07:57.542Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=38 correlation_id=d3b638c6-17ba-4230-8c35-3e85e3aa0cd2
+    | 2026-10-30T04:07:57.544Z [WRITER:writer-2] COMMIT partition=1 offset=24
+    | 2026-10-30T04:07:57.545Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=24 correlation_id=8d9c29b7-466a-43e5-b9e0-1ef5ed6ca309
+    | 2026-10-30T04:07:57.545Z [WRITER:writer-2] PROCESS start correlation_id=8d9c29b7-466a-43e5-b9e0-1ef5ed6ca309 attempt=1
+    | 2026-10-30T04:07:57.617Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=39 correlation_id=1013efaa-231b-4902-a7a5-f96fd25fd104
+    | 2026-10-30T04:07:57.620Z [WRITER:writer-1] COMMIT partition=0 offset=21
+    | 2026-10-30T04:07:57.620Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=21 correlation_id=2a1a7abc-87e8-4720-aef5-45591f9b0902
+    | 2026-10-30T04:07:57.620Z [WRITER:writer-1] PROCESS start correlation_id=2a1a7abc-87e8-4720-aef5-45591f9b0902 attempt=1
+    | 2026-10-30T04:07:58.054Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=40 correlation_id=8d9c29b7-466a-43e5-b9e0-1ef5ed6ca309
+    | 2026-10-30T04:07:58.056Z [WRITER:writer-2] COMMIT partition=1 offset=25
+    | 2026-10-30T04:07:58.056Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=25 correlation_id=d4cede35-96a7-4b7d-bf22-8b3603451d63
+    | 2026-10-30T04:07:58.056Z [WRITER:writer-2] PROCESS start correlation_id=d4cede35-96a7-4b7d-bf22-8b3603451d63 attempt=1
+    | 2026-10-30T04:07:58.119Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=41 correlation_id=d4cede35-96a7-4b7d-bf22-8b3603451d63
+    | 2026-10-30T04:07:58.121Z [WRITER:writer-2] COMMIT partition=1 offset=26
+    | 2026-10-30T04:07:58.121Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=26 correlation_id=68a0a591-2736-4e90-b128-bbf853bab08e
+    | 2026-10-30T04:07:58.121Z [WRITER:writer-2] PROCESS start correlation_id=68a0a591-2736-4e90-b128-bbf853bab08e attempt=1
+    | 2026-10-30T04:07:58.157Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=42 correlation_id=2a1a7abc-87e8-4720-aef5-45591f9b0902
+    | 2026-10-30T04:07:58.159Z [WRITER:writer-1] COMMIT partition=0 offset=22
+    | 2026-10-30T04:07:58.159Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=22 correlation_id=b6997270-a60b-4c7e-805b-d36672451deb
+    | 2026-10-30T04:07:58.159Z [WRITER:writer-1] PROCESS start correlation_id=b6997270-a60b-4c7e-805b-d36672451deb attempt=1
+    | 2026-10-30T04:07:58.370Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=43 correlation_id=b6997270-a60b-4c7e-805b-d36672451deb
+    | 2026-10-30T04:07:58.372Z [WRITER:writer-1] COMMIT partition=0 offset=23
+    | 2026-10-30T04:07:58.449Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=44 correlation_id=68a0a591-2736-4e90-b128-bbf853bab08e
+    | 2026-10-30T04:07:58.451Z [WRITER:writer-2] COMMIT partition=1 offset=27
+    | 2026-10-30T04:07:58.451Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=27 correlation_id=02acb91b-4fbe-4a74-9fd0-2a545c3030c0
+    | 2026-10-30T04:07:58.451Z [WRITER:writer-2] PROCESS start correlation_id=02acb91b-4fbe-4a74-9fd0-2a545c3030c0 attempt=1
+    | 2026-10-30T04:07:58.557Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=45 correlation_id=02acb91b-4fbe-4a74-9fd0-2a545c3030c0
+    | 2026-10-30T04:07:58.559Z [WRITER:writer-2] COMMIT partition=1 offset=28
+    | 2026-10-30T04:07:58.875Z [WRITER:writer-1] stopped
+    | Heartbeat failed for group s4098_writers_order_after_210752 because it is rebalancing
+    | 2026-10-30T04:07:58.890Z [WRITER:writer-2] partitions revoked: [1]
+    | 2026-10-30T04:07:58.894Z [WRITER:writer-2] assigned s4098_tasks[0] start offset=23
+    | 2026-10-30T04:07:58.895Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=28
+    | 2026-10-30T04:07:58.895Z [WRITER:writer-2] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T04:07:59.565Z [WRITER:writer-2] stopped
+
+2026-10-30T04:07:59.781Z [TEST] processing order (by finish time):
+2026-10-30T04:07:59.781Z [TEST]   INC-213214: processed seq order [1, 2, 3, 4, 5] partitions=[1] -> IN ORDER
+2026-10-30T04:07:59.781Z [TEST]   INC-281869: processed seq order [1, 2, 3, 4, 5] partitions=[0] -> IN ORDER
+2026-10-30T04:07:59.781Z [TEST]   INC-744662: processed seq order [1, 2, 3, 4, 5] partitions=[1] -> IN ORDER
+2026-10-30T04:07:59.781Z [TEST]   INC-837981: processed seq order [1, 2, 3, 4, 5] partitions=[0] -> IN ORDER
+2026-10-30T04:07:59.781Z [TEST]   #01 writer-1 p0 o13 INC-281869 seq=1 (reported) finished=2026-10-30T04:07:55.272Z
+2026-10-30T04:07:59.781Z [TEST]   #02 writer-2 p1 o18 INC-213214 seq=1 (reported) finished=2026-10-30T04:07:55.433Z
+2026-10-30T04:07:59.781Z [TEST]   #03 writer-1 p0 o14 INC-281869 seq=2 (crew_dispatched) finished=2026-10-30T04:07:55.611Z
+2026-10-30T04:07:59.781Z [TEST]   #04 writer-1 p0 o15 INC-281869 seq=3 (crew_on_scene) finished=2026-10-30T04:07:55.687Z
+2026-10-30T04:07:59.781Z [TEST]   #05 writer-1 p0 o16 INC-281869 seq=4 (service_restored) finished=2026-10-30T04:07:55.793Z
+2026-10-30T04:07:59.781Z [TEST]   #06 writer-1 p0 o17 INC-281869 seq=5 (closed) finished=2026-10-30T04:07:55.884Z
+2026-10-30T04:07:59.781Z [TEST]   #07 writer-2 p1 o19 INC-744662 seq=1 (reported) finished=2026-10-30T04:07:55.972Z
+2026-10-30T04:07:59.781Z [TEST]   #08 writer-2 p1 o20 INC-213214 seq=2 (crew_dispatched) finished=2026-10-30T04:07:56.266Z
+2026-10-30T04:07:59.781Z [TEST]   #09 writer-1 p0 o18 INC-837981 seq=1 (reported) finished=2026-10-30T04:07:56.511Z
+2026-10-30T04:07:59.781Z [TEST]   #10 writer-2 p1 o21 INC-213214 seq=3 (crew_on_scene) finished=2026-10-30T04:07:56.781Z
+2026-10-30T04:07:59.781Z [TEST]   #11 writer-1 p0 o19 INC-837981 seq=2 (crew_dispatched) finished=2026-10-30T04:07:57.096Z
+2026-10-30T04:07:59.781Z [TEST]   #12 writer-2 p1 o22 INC-213214 seq=4 (service_restored) finished=2026-10-30T04:07:57.123Z
+2026-10-30T04:07:59.781Z [TEST]   #13 writer-2 p1 o23 INC-213214 seq=5 (closed) finished=2026-10-30T04:07:57.542Z
+2026-10-30T04:07:59.781Z [TEST]   #14 writer-1 p0 o20 INC-837981 seq=3 (crew_on_scene) finished=2026-10-30T04:07:57.617Z
+2026-10-30T04:07:59.781Z [TEST]   #15 writer-2 p1 o24 INC-744662 seq=2 (crew_dispatched) finished=2026-10-30T04:07:58.054Z
+2026-10-30T04:07:59.781Z [TEST]   #16 writer-2 p1 o25 INC-744662 seq=3 (crew_on_scene) finished=2026-10-30T04:07:58.119Z
+2026-10-30T04:07:59.781Z [TEST]   #17 writer-1 p0 o21 INC-837981 seq=4 (service_restored) finished=2026-10-30T04:07:58.157Z
+2026-10-30T04:07:59.781Z [TEST]   #18 writer-1 p0 o22 INC-837981 seq=5 (closed) finished=2026-10-30T04:07:58.370Z
+2026-10-30T04:07:59.781Z [TEST]   #19 writer-2 p1 o26 INC-744662 seq=4 (service_restored) finished=2026-10-30T04:07:58.449Z
+2026-10-30T04:07:59.781Z [TEST]   #20 writer-2 p1 o27 INC-744662 seq=5 (closed) finished=2026-10-30T04:07:58.557Z
+2026-10-30T04:07:59.782Z [TEST] 20/20 processed; 0/4 incidents spread over both partitions; 0 ordering inversions; saved reports/hw08/raw/ordering_after_keyed.csv

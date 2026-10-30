@@ -1,0 +1,41 @@
+{
+  "create": {
+    "correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc",
+    "request": {
+      "incidentTitle": "Bus collision at Diridon Station",
+      "routeLine": "VTA Route 22",
+      "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu",
+      "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.",
+      "category": "collision",
+      "termsAccepted": true,
+      "passengersAffected": 18
+    },
+    "response": {
+      "correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc",
+      "success": true,
+      "operation": "CREATE_INCIDENT",
+      "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc",
+      "message": "Incident created"
+    }
+  },
+  "get": {
+    "correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1",
+    "response": {
+      "correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1",
+      "success": true,
+      "operation": "GET_INCIDENT",
+      "incident": {
+        "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc",
+        "incidentTitle": "Bus collision at Diridon Station",
+        "routeLine": "VTA Route 22",
+        "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu",
+        "description": "A Route 22 bus hit a parked car while leaving Diridon Station; no injuries, the bus was taken out of service.",
+        "category": "collision",
+        "termsAccepted": true,
+        "passengersAffected": 18,
+        "submissionDate": "2026-10-30T03:30:17+00:00"
+      }
+    }
+  },
+  "round_trip_ok": true
+}

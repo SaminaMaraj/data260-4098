@@ -1,0 +1,14 @@
+{
+  "correlation_id": "bb7d2285-a906-4543-90cc-90b3c0080135",
+  "message_offset": 0,
+  "partition": 1,
+  "commit_mode": "after-success",
+  "committed_after_kill": 0,
+  "committed_at_end": 1,
+  "redelivered": true,
+  "drafts_produced": 1,
+  "message_lost": false,
+  "summary": "redelivered after restart: True; drafts produced: 1; committed offset after kill=0, at the end=1",
+  "run_id": "205809",
+  "finished_at": "2026-10-30T03:59:48.771Z"
+}

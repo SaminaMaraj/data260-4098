@@ -1,0 +1,145 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py ordering --mode before | run 210504 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:05:04.647Z
+2026-10-30T04:05:05.164Z [TEST] ordering, mode=before: 20 messages (VERIFY_SEED=264098) -> s4098_tasks (2 partitions), 2 Writers in group s4098_writers_order_before_210504, key=none
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_order_before_210504 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-2 group=s4098_writers_order_before_210504 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:05:05.788Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-before-210504
+    | 2026-10-30T04:05:05.788Z [WRITER:writer-2] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=order-before-210504
+    | 2026-10-30T04:05:05.791Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=5
+    | 2026-10-30T04:05:05.791Z [WRITER:writer-2] ASSIGNMENT partitions=[1]
+    | 2026-10-30T04:05:05.792Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:05:05.792Z [WRITER:writer-1] ASSIGNMENT partitions=[0]
+2026-10-30T04:05:05.976Z [TEST] group settled: writer-1 owns [0], writer-2 owns [1]
+2026-10-30T04:05:06.994Z [TEST] SEND #01 INC-213214 seq=1 key=none -> partition=0 offset=6
+    | 2026-10-30T04:05:06.995Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=6 correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b
+    | 2026-10-30T04:05:06.995Z [WRITER:writer-1] PROCESS start correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b attempt=1
+2026-10-30T04:05:06.996Z [TEST] SEND #02 INC-744662 seq=1 key=none -> partition=1 offset=5
+    | 2026-10-30T04:05:06.997Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=5 correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c
+    | 2026-10-30T04:05:06.997Z [WRITER:writer-2] PROCESS start correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c attempt=1
+2026-10-30T04:05:06.997Z [TEST] SEND #03 INC-281869 seq=1 key=none -> partition=1 offset=6
+2026-10-30T04:05:06.998Z [TEST] SEND #04 INC-213214 seq=2 key=none -> partition=0 offset=7
+2026-10-30T04:05:06.999Z [TEST] SEND #05 INC-213214 seq=3 key=none -> partition=1 offset=7
+2026-10-30T04:05:07.001Z [TEST] SEND #06 INC-213214 seq=4 key=none -> partition=0 offset=8
+2026-10-30T04:05:07.002Z [TEST] SEND #07 INC-281869 seq=2 key=none -> partition=0 offset=9
+2026-10-30T04:05:07.003Z [TEST] SEND #08 INC-213214 seq=5 key=none -> partition=1 offset=8
+2026-10-30T04:05:07.008Z [TEST] SEND #09 INC-281869 seq=3 key=none -> partition=0 offset=10
+2026-10-30T04:05:07.009Z [TEST] SEND #10 INC-281869 seq=4 key=none -> partition=1 offset=9
+2026-10-30T04:05:07.010Z [TEST] SEND #11 INC-744662 seq=2 key=none -> partition=1 offset=10
+2026-10-30T04:05:07.011Z [TEST] SEND #12 INC-281869 seq=5 key=none -> partition=1 offset=11
+2026-10-30T04:05:07.012Z [TEST] SEND #13 INC-744662 seq=3 key=none -> partition=1 offset=12
+2026-10-30T04:05:07.012Z [TEST] SEND #14 INC-744662 seq=4 key=none -> partition=0 offset=11
+2026-10-30T04:05:07.017Z [TEST] SEND #15 INC-837981 seq=1 key=none -> partition=1 offset=13
+2026-10-30T04:05:07.018Z [TEST] SEND #16 INC-744662 seq=5 key=none -> partition=1 offset=14
+2026-10-30T04:05:07.019Z [TEST] SEND #17 INC-837981 seq=2 key=none -> partition=1 offset=15
+2026-10-30T04:05:07.020Z [TEST] SEND #18 INC-837981 seq=3 key=none -> partition=1 offset=16
+2026-10-30T04:05:07.021Z [TEST] SEND #19 INC-837981 seq=4 key=none -> partition=0 offset=12
+2026-10-30T04:05:07.022Z [TEST] SEND #20 INC-837981 seq=5 key=none -> partition=1 offset=17
+    | 2026-10-30T04:05:07.342Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=6 correlation_id=577e136b-7d62-4582-b532-5f36ea4f1f4b
+    | 2026-10-30T04:05:07.344Z [WRITER:writer-1] COMMIT partition=0 offset=7
+    | 2026-10-30T04:05:07.346Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=7 correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa
+    | 2026-10-30T04:05:07.346Z [WRITER:writer-1] PROCESS start correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa attempt=1
+    | 2026-10-30T04:05:07.533Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=7 correlation_id=755f76b8-d2cb-4175-a06f-7ed35d33452c
+    | 2026-10-30T04:05:07.536Z [WRITER:writer-2] COMMIT partition=1 offset=6
+    | 2026-10-30T04:05:07.537Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=6 correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60
+    | 2026-10-30T04:05:07.537Z [WRITER:writer-2] PROCESS start correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60 attempt=1
+    | 2026-10-30T04:05:07.639Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=8 correlation_id=862cf3bc-db57-46c3-9371-37074eaa89fa
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] COMMIT partition=0 offset=8
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=8 correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0
+    | 2026-10-30T04:05:07.641Z [WRITER:writer-1] PROCESS start correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0 attempt=1
+    | 2026-10-30T04:05:07.720Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=9 correlation_id=ec2d8dc7-a866-4f93-8e67-ab6843126f60
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] COMMIT partition=1 offset=7
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=7 correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83
+    | 2026-10-30T04:05:07.721Z [WRITER:writer-2] PROCESS start correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83 attempt=1
+    | 2026-10-30T04:05:07.980Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=10 correlation_id=b84256d8-4b31-43a6-bf94-5303e688f4e0
+    | 2026-10-30T04:05:07.981Z [WRITER:writer-1] COMMIT partition=0 offset=9
+    | 2026-10-30T04:05:07.982Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=9 correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5
+    | 2026-10-30T04:05:07.982Z [WRITER:writer-1] PROCESS start correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5 attempt=1
+    | 2026-10-30T04:05:08.235Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=11 correlation_id=355638f4-7f7d-40a8-abfb-20e2b8434c83
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] COMMIT partition=1 offset=8
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=8 correlation_id=83e4d82f-71df-468b-af27-4601a56252d3
+    | 2026-10-30T04:05:08.237Z [WRITER:writer-2] PROCESS start correlation_id=83e4d82f-71df-468b-af27-4601a56252d3 attempt=1
+    | 2026-10-30T04:05:08.318Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=12 correlation_id=51484b76-7c7e-492d-9473-c53331fda9a5
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] COMMIT partition=0 offset=10
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=10 correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b
+    | 2026-10-30T04:05:08.320Z [WRITER:writer-1] PROCESS start correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b attempt=1
+    | 2026-10-30T04:05:08.395Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=13 correlation_id=632b7e12-308f-4184-94b1-93f5e7cf673b
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] COMMIT partition=0 offset=11
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=11 correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c
+    | 2026-10-30T04:05:08.397Z [WRITER:writer-1] PROCESS start correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c attempt=1
+    | 2026-10-30T04:05:08.654Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=14 correlation_id=83e4d82f-71df-468b-af27-4601a56252d3
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] COMMIT partition=1 offset=9
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=9 correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6
+    | 2026-10-30T04:05:08.656Z [WRITER:writer-2] PROCESS start correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6 attempt=1
+    | 2026-10-30T04:05:08.727Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=15 correlation_id=ff78631f-cc57-4760-83c6-0685ce04ae0c
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] COMMIT partition=0 offset=12
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=12 correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e
+    | 2026-10-30T04:05:08.729Z [WRITER:writer-1] PROCESS start correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e attempt=1
+    | 2026-10-30T04:05:08.760Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=16 correlation_id=3ce3f517-d09e-45b3-a005-5a3e3f6a61b6
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] COMMIT partition=1 offset=10
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=10 correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78
+    | 2026-10-30T04:05:08.762Z [WRITER:writer-2] PROCESS start correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78 attempt=1
+    | 2026-10-30T04:05:09.266Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=17 correlation_id=f36ebff4-c030-4276-9ec6-54f3c782185e
+    | 2026-10-30T04:05:09.270Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=18 correlation_id=228d7065-b78e-4ccd-832c-71fbae3ece78
+    | 2026-10-30T04:05:09.270Z [WRITER:writer-1] COMMIT partition=0 offset=13
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] COMMIT partition=1 offset=11
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=11 correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d
+    | 2026-10-30T04:05:09.272Z [WRITER:writer-2] PROCESS start correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d attempt=1
+    | 2026-10-30T04:05:09.362Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=19 correlation_id=f4e1a406-cdef-4418-9c9f-cfb73e92d91d
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] COMMIT partition=1 offset=12
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=12 correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb
+    | 2026-10-30T04:05:09.364Z [WRITER:writer-2] PROCESS start correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb attempt=1
+    | 2026-10-30T04:05:09.428Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=20 correlation_id=95526ae5-7506-4c80-a039-1d2b53822aeb
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] COMMIT partition=1 offset=13
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=13 correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad
+    | 2026-10-30T04:05:09.430Z [WRITER:writer-2] PROCESS start correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad attempt=1
+    | 2026-10-30T04:05:10.056Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=21 correlation_id=d0183dd5-59aa-45b6-b5e9-5790dbd9f3ad
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] COMMIT partition=1 offset=14
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=14 correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441
+    | 2026-10-30T04:05:10.057Z [WRITER:writer-2] PROCESS start correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441 attempt=1
+    | 2026-10-30T04:05:10.164Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=22 correlation_id=170d6dfc-c27c-4aaf-80c1-e8def81e8441
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] COMMIT partition=1 offset=15
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=15 correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8
+    | 2026-10-30T04:05:10.166Z [WRITER:writer-2] PROCESS start correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8 attempt=1
+    | 2026-10-30T04:05:10.751Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=23 correlation_id=d976d1f2-33a2-468b-9d81-74dc1abcbfb8
+    | 2026-10-30T04:05:10.753Z [WRITER:writer-2] COMMIT partition=1 offset=16
+    | 2026-10-30T04:05:10.754Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=16 correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8
+    | 2026-10-30T04:05:10.754Z [WRITER:writer-2] PROCESS start correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8 attempt=1
+    | 2026-10-30T04:05:11.272Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=24 correlation_id=555992bd-b2b0-45d5-907f-7c9ddd10d4b8
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] COMMIT partition=1 offset=17
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] RECEIVE from s4098_tasks partition=1 offset=17 correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914
+    | 2026-10-30T04:05:11.282Z [WRITER:writer-2] PROCESS start correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914 attempt=1
+    | 2026-10-30T04:05:11.493Z [WRITER:writer-2] SEND to s4098_drafts partition=0 offset=25 correlation_id=a7a7ca4c-4171-4791-9896-018b1cde2914
+    | 2026-10-30T04:05:11.495Z [WRITER:writer-2] COMMIT partition=1 offset=18
+    | 2026-10-30T04:05:11.779Z [WRITER:writer-1] stopped
+    | Heartbeat failed for group s4098_writers_order_before_210504 because it is rebalancing
+    | 2026-10-30T04:05:11.799Z [WRITER:writer-2] partitions revoked: [1]
+    | 2026-10-30T04:05:11.804Z [WRITER:writer-2] assigned s4098_tasks[0] start offset=13
+    | 2026-10-30T04:05:11.805Z [WRITER:writer-2] assigned s4098_tasks[1] start offset=18
+    | 2026-10-30T04:05:11.805Z [WRITER:writer-2] ASSIGNMENT partitions=[0, 1]
+    | 2026-10-30T04:05:12.500Z [WRITER:writer-2] stopped
+
+2026-10-30T04:05:12.719Z [TEST] processing order (by finish time):
+2026-10-30T04:05:12.719Z [TEST]   INC-213214: processed seq order [1, 2, 4, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   INC-281869: processed seq order [1, 2, 3, 4, 5] partitions=[0, 1] -> IN ORDER
+2026-10-30T04:05:12.719Z [TEST]   INC-744662: processed seq order [1, 4, 2, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   INC-837981: processed seq order [4, 1, 2, 3, 5] partitions=[0, 1] -> OUT OF ORDER (1 inversions)
+2026-10-30T04:05:12.719Z [TEST]   #01 writer-1 p0 o6 INC-213214 seq=1 (reported) finished=2026-10-30T04:05:07.342Z
+2026-10-30T04:05:12.719Z [TEST]   #02 writer-2 p1 o5 INC-744662 seq=1 (reported) finished=2026-10-30T04:05:07.533Z
+2026-10-30T04:05:12.719Z [TEST]   #03 writer-1 p0 o7 INC-213214 seq=2 (crew_dispatched) finished=2026-10-30T04:05:07.639Z
+2026-10-30T04:05:12.719Z [TEST]   #04 writer-2 p1 o6 INC-281869 seq=1 (reported) finished=2026-10-30T04:05:07.720Z
+2026-10-30T04:05:12.719Z [TEST]   #05 writer-1 p0 o8 INC-213214 seq=4 (service_restored) finished=2026-10-30T04:05:07.980Z
+2026-10-30T04:05:12.719Z [TEST]   #06 writer-2 p1 o7 INC-213214 seq=3 (crew_on_scene) finished=2026-10-30T04:05:08.235Z
+2026-10-30T04:05:12.719Z [TEST]   #07 writer-1 p0 o9 INC-281869 seq=2 (crew_dispatched) finished=2026-10-30T04:05:08.318Z
+2026-10-30T04:05:12.719Z [TEST]   #08 writer-1 p0 o10 INC-281869 seq=3 (crew_on_scene) finished=2026-10-30T04:05:08.395Z
+2026-10-30T04:05:12.719Z [TEST]   #09 writer-2 p1 o8 INC-213214 seq=5 (closed) finished=2026-10-30T04:05:08.654Z
+2026-10-30T04:05:12.719Z [TEST]   #10 writer-1 p0 o11 INC-744662 seq=4 (service_restored) finished=2026-10-30T04:05:08.727Z
+2026-10-30T04:05:12.719Z [TEST]   #11 writer-2 p1 o9 INC-281869 seq=4 (service_restored) finished=2026-10-30T04:05:08.760Z
+2026-10-30T04:05:12.719Z [TEST]   #12 writer-1 p0 o12 INC-837981 seq=4 (service_restored) finished=2026-10-30T04:05:09.267Z
+2026-10-30T04:05:12.719Z [TEST]   #13 writer-2 p1 o10 INC-744662 seq=2 (crew_dispatched) finished=2026-10-30T04:05:09.270Z
+2026-10-30T04:05:12.719Z [TEST]   #14 writer-2 p1 o11 INC-281869 seq=5 (closed) finished=2026-10-30T04:05:09.362Z
+2026-10-30T04:05:12.719Z [TEST]   #15 writer-2 p1 o12 INC-744662 seq=3 (crew_on_scene) finished=2026-10-30T04:05:09.428Z
+2026-10-30T04:05:12.719Z [TEST]   #16 writer-2 p1 o13 INC-837981 seq=1 (reported) finished=2026-10-30T04:05:10.056Z
+2026-10-30T04:05:12.719Z [TEST]   #17 writer-2 p1 o14 INC-744662 seq=5 (closed) finished=2026-10-30T04:05:10.164Z
+2026-10-30T04:05:12.719Z [TEST]   #18 writer-2 p1 o15 INC-837981 seq=2 (crew_dispatched) finished=2026-10-30T04:05:10.751Z
+2026-10-30T04:05:12.719Z [TEST]   #19 writer-2 p1 o16 INC-837981 seq=3 (crew_on_scene) finished=2026-10-30T04:05:11.272Z
+2026-10-30T04:05:12.719Z [TEST]   #20 writer-2 p1 o17 INC-837981 seq=5 (closed) finished=2026-10-30T04:05:11.493Z
+2026-10-30T04:05:12.720Z [TEST] 20/20 processed; 4/4 incidents spread over both partitions; 3 ordering inversions; saved reports/hw08/raw/ordering_before_nokey.csv

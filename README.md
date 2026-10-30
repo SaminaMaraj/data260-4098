@@ -256,6 +256,20 @@ python code/verify_hw02.py
 
 The output is saved in `reports/hw02/verification.json`.
 
+## Homework 8 - Kafka
+
+Step-by-step commands and screenshots: `HW8_RUN_GUIDE.md`.
+
+- `docker-compose.hw8.yml` - Kafka (KRaft), Part 1 worker and FastAPI wrapper (port 8498)
+- `src/hw8_kafka/` - config/topics, incident logic, worker, API wrapper, agent runtime
+  (commit-after-success, idempotency, retries + dead-letter), agent logic
+- `homework_demo.py` - Part 1 CREATE_INCIDENT -> GET_INCIDENT demo with merged logs
+- `code/hw8/` - Planner, Writer, Reviewer, `send_question.py`, `create_topics.sh`,
+  Part 3 runner `run_failure_tests.py`, `build_metrics.py`
+- `code/verify_hw08.py` (`make verify-hw08`), `tests/test_hw08.py` (`make test-hw08`)
+- Topics: `s4098_entity_requests`, `s4098_entity_responses`, `s4098_inbox`,
+  `s4098_tasks` (2 partitions), `s4098_drafts`, `s4098_final`, `s4098_dead_letter`
+
 ## Reports
 
 See `reports/hw01/` and `reports/hw02/` for reports, run logs, raw experiment

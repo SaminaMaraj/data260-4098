@@ -1,0 +1,17 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate-agent --mode after | run 205344 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:53:44.459Z
+2026-10-30T03:53:44.977Z [TEST] duplicate delivery to the Writer, mode=after
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-dup group=s4098_writers_dup_after_205344 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:53:45.584Z [WRITER:writer-dup] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=dup-agent-after-205344
+    | 2026-10-30T03:53:45.586Z [WRITER:writer-dup] assigned s4098_tasks[0] start offset=3
+    | 2026-10-30T03:53:45.587Z [WRITER:writer-dup] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:53:45.587Z [WRITER:writer-dup] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:53:45.600Z [TEST] SEND original task to s4098_tasks[0] offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.601Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.601Z [WRITER:writer-dup] PROCESS start correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b attempt=1
+2026-10-30T03:53:45.601Z [TEST] SEND replay task to s4098_tasks[0] offset=4 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.905Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=3 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b
+    | 2026-10-30T03:53:45.907Z [WRITER:writer-dup] COMMIT partition=0 offset=4
+    | 2026-10-30T03:53:46.205Z [WRITER:writer-dup] DUPLICATE partition=0 offset=4 correlation_id=44dc9a03-4d85-4a55-ab45-9dc273f8da0b already done -> skipped, no output
+    | 2026-10-30T03:53:46.206Z [WRITER:writer-dup] COMMIT partition=0 offset=5
+    | 2026-10-30T03:53:51.219Z [WRITER:writer-dup] stopped
+2026-10-30T03:53:51.439Z [TEST] 1 draft(s) produced for 2 deliveries of one correlation_id

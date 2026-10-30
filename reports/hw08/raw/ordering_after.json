@@ -1,0 +1,31 @@
+{
+  "verify_seed": 264098,
+  "keyed": true,
+  "processed": 20,
+  "incidents_split_across_partitions": 0,
+  "inversions_total": 0,
+  "inversions_per_incident": {
+    "INC-213214": 0,
+    "INC-281869": 0,
+    "INC-744662": 0,
+    "INC-837981": 0
+  },
+  "partitions_per_incident": {
+    "INC-213214": [
+      1
+    ],
+    "INC-281869": [
+      0
+    ],
+    "INC-744662": [
+      1
+    ],
+    "INC-837981": [
+      0
+    ]
+  },
+  "csv": "reports/hw08/raw/ordering_after_keyed.csv",
+  "summary": "20/20 processed; 0/4 incidents spread over both partitions; 0 ordering inversions",
+  "run_id": "210752",
+  "finished_at": "2026-10-30T04:07:59.782Z"
+}

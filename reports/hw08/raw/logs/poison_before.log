@@ -1,0 +1,65 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py poison --mode before | run 210133 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:01:33.648Z
+2026-10-30T04:01:34.166Z [TEST] poison message, mode=before: Writer poison-policy=block
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_poison_before_210133 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:01:34.796Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=block max-attempts=3 idempotency=on llm=stub experiment=poison-before-210133
+    | 2026-10-30T04:01:34.801Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:01:34.804Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=1
+    | 2026-10-30T04:01:34.804Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T04:01:34.892Z [TEST] SEND poison task to s4098_tasks[1] offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d plan='<<corrupted plan>>'
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=1
+    | 2026-10-30T04:01:34.893Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=1 error=PoisonMessage: task has no valid 'plan' object
+2026-10-30T04:01:34.893Z [TEST] SEND good task to s4098_tasks[1] offset=2 correlation_id=d4008263-6747-4fa3-877f-2e958e7dcee8
+    | 2026-10-30T04:01:35.894Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=2
+    | 2026-10-30T04:01:35.894Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=2 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:36.895Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=3
+    | 2026-10-30T04:01:36.895Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=3 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:37.897Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=4
+    | 2026-10-30T04:01:37.897Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=4 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:38.898Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=5
+    | 2026-10-30T04:01:38.898Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=5 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:39.899Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=6
+    | 2026-10-30T04:01:39.899Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=6 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:40.900Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=7
+    | 2026-10-30T04:01:40.900Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=7 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:41.901Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=8
+    | 2026-10-30T04:01:41.901Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=8 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:42.902Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=9
+    | 2026-10-30T04:01:42.902Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=9 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:43.904Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=10
+    | 2026-10-30T04:01:43.904Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=10 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:44.904Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=11
+    | 2026-10-30T04:01:44.904Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=11 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:45.905Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=12
+    | 2026-10-30T04:01:45.905Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=12 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:46.906Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=13
+    | 2026-10-30T04:01:46.906Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=13 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:47.907Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=14
+    | 2026-10-30T04:01:47.907Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=14 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:48.909Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=15
+    | 2026-10-30T04:01:48.909Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=15 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:49.910Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=16
+    | 2026-10-30T04:01:49.910Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=16 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:50.911Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=17
+    | 2026-10-30T04:01:50.911Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=17 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:51.912Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=18
+    | 2026-10-30T04:01:51.912Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=18 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:52.914Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=19
+    | 2026-10-30T04:01:52.914Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=19 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:53.915Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=20
+    | 2026-10-30T04:01:53.915Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=20 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:54.916Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=21
+    | 2026-10-30T04:01:54.916Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=21 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:55.917Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=22
+    | 2026-10-30T04:01:55.917Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=22 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:56.918Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=23
+    | 2026-10-30T04:01:56.918Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=23 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:57.919Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=24
+    | 2026-10-30T04:01:57.919Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=24 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:58.920Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=25
+    | 2026-10-30T04:01:58.921Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=25 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:01:59.922Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=26
+    | 2026-10-30T04:01:59.922Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=26 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:02:00.923Z [WRITER:writer-1] PROCESS start correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=27
+    | 2026-10-30T04:02:00.923Z [WRITER:writer-1] FAIL partition=1 offset=1 correlation_id=fcd4ae4a-35a0-449c-b8d7-f998ce82451d attempt=27 error=PoisonMessage: task has no valid 'plan' object
+2026-10-30T04:02:01.172Z [TEST] poison attempts in 15s window: 17; dead-lettered: False; later good message processed: False

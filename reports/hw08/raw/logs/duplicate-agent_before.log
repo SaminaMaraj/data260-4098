@@ -1,0 +1,19 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate-agent --mode before | run 205308 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:53:08.184Z
+2026-10-30T03:53:08.699Z [TEST] duplicate delivery to the Writer, mode=before
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-dup group=s4098_writers_dup_before_205308 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T03:53:09.313Z [WRITER:writer-dup] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=off llm=stub experiment=dup-agent-before-205308
+    | 2026-10-30T03:53:09.317Z [WRITER:writer-dup] assigned s4098_tasks[0] start offset=1
+    | 2026-10-30T03:53:09.319Z [WRITER:writer-dup] assigned s4098_tasks[1] start offset=0
+    | 2026-10-30T03:53:09.319Z [WRITER:writer-dup] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:53:09.427Z [TEST] SEND original task to s4098_tasks[0] offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.428Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.428Z [WRITER:writer-dup] PROCESS start correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7 attempt=1
+2026-10-30T03:53:09.429Z [TEST] SEND replay task to s4098_tasks[0] offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.732Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=1 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:09.734Z [WRITER:writer-dup] COMMIT partition=0 offset=2
+    | 2026-10-30T03:53:10.034Z [WRITER:writer-dup] RECEIVE from s4098_tasks partition=0 offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:10.034Z [WRITER:writer-dup] PROCESS start correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7 attempt=1
+    | 2026-10-30T03:53:10.337Z [WRITER:writer-dup] SEND to s4098_drafts partition=0 offset=2 correlation_id=f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7
+    | 2026-10-30T03:53:10.337Z [WRITER:writer-dup] COMMIT partition=0 offset=3
+    | 2026-10-30T03:53:14.853Z [WRITER:writer-dup] stopped
+2026-10-30T03:53:15.080Z [TEST] 2 draft(s) produced for 2 deliveries of one correlation_id

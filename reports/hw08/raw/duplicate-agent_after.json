@@ -1,0 +1,9 @@
+{
+  "correlation_id": "44dc9a03-4d85-4a55-ab45-9dc273f8da0b",
+  "drafts_produced": 1,
+  "duplicate_skipped_logged": true,
+  "extra_side_effect": false,
+  "summary": "1 draft(s) produced for 2 deliveries of one correlation_id",
+  "run_id": "205344",
+  "finished_at": "2026-10-30T03:53:51.439Z"
+}

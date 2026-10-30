@@ -1,0 +1,9 @@
+Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+2026-10-30T03:41:03.297Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=None
+2026-10-30T03:41:03.302Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=0
+2026-10-30T03:41:03.303Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=0
+2026-10-30T03:41:03.303Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T03:42:19.136Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:19.136Z [WRITER:writer-1] PROCESS start correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052 attempt=1
+2026-10-30T03:42:24.129Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:24.133Z [WRITER:writer-1] COMMIT partition=0 offset=1

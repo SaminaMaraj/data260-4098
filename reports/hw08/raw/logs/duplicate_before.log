@@ -1,0 +1,20 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py duplicate --mode before | run 205006 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T03:50:06.288Z
+2026-10-30T03:50:06.802Z [TEST] duplicate delivery, mode=before: replay CREATE_INCIDENT to the worker
+2026-10-30T03:50:06.825Z [TEST] SEND original to s4098_entity_requests offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (identical bytes)
+2026-10-30T03:50:12.859Z [TEST] RESPONSE to original: {"success": true, "incident_id": "fb2be043-7660-4bd3-8934-e3d9ef2c777c", "message": "Incident created", "error": null}
+2026-10-30T03:50:12.862Z [TEST] SEND replay to s4098_entity_requests offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (identical bytes)
+2026-10-30T03:50:18.890Z [TEST] RESPONSE to replay: {"success": true, "incident_id": "418ef4a7-b93b-4433-ab62-e7e50032d2ed", "message": "Incident created", "error": null}
+2026-10-30T03:50:26.940Z [TEST] worker log lines for this correlation_id:
+    | 2026-10-30T03:50:06.825Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.825Z [WORKER] RECEIVE request={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:50:06.825Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.825Z [WORKER] PROCESS done success=True correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (store size=1)
+    | 2026-10-30T03:50:06.827Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=4 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:06.827Z [WORKER] REPLY response={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "fb2be043-7660-4bd3-8934-e3d9ef2c777c", "message": "Incident created"}
+    | 2026-10-30T03:50:12.861Z [WORKER] RECEIVE topic=s4098_entity_requests partition=0 offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.862Z [WORKER] RECEIVE request={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "reply_to": "s4098_entity_responses", "operation": "CREATE_INCIDENT", "data": {"incidentTitle": "Duplicate delivery test", "routeLine": "VTA Route 66", "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu", "description": "Replayed CREATE_INCIDENT used to test idempotency in HW8.", "category": "delay", "termsAccepted": true}}
+    | 2026-10-30T03:50:12.862Z [WORKER] PROCESS operation=CREATE_INCIDENT correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.862Z [WORKER] PROCESS done success=True correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8 (store size=2)
+    | 2026-10-30T03:50:12.863Z [WORKER] REPLY sent to topic=s4098_entity_responses partition=0 offset=5 correlation_id=ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8
+    | 2026-10-30T03:50:12.863Z [WORKER] REPLY response={"correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8", "success": true, "operation": "CREATE_INCIDENT", "incident_id": "418ef4a7-b93b-4433-ab62-e7e50032d2ed", "message": "Incident created"}
+2026-10-30T03:50:26.978Z [TEST] 2 incident(s) created by 2 deliveries of one correlation_id -> extra side effect

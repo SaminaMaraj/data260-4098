@@ -1,0 +1,16 @@
+{
+  "correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8",
+  "responses": 2,
+  "incident_ids_returned": [
+    "418ef4a7-b93b-4433-ab62-e7e50032d2ed",
+    "fb2be043-7660-4bd3-8934-e3d9ef2c777c"
+  ],
+  "incidents_existing": [
+    "418ef4a7-b93b-4433-ab62-e7e50032d2ed",
+    "fb2be043-7660-4bd3-8934-e3d9ef2c777c"
+  ],
+  "extra_side_effect": true,
+  "summary": "2 incident(s) created by 2 deliveries of one correlation_id -> extra side effect",
+  "run_id": "205006",
+  "finished_at": "2026-10-30T03:50:26.978Z"
+}

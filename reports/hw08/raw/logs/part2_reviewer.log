@@ -1,0 +1,8 @@
+Kazi Samina Maraj Mumu | REVIEWER agent instance=reviewer-1 group=s4098_reviewers | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+2026-10-30T03:41:41.535Z [REVIEWER:reviewer-1] ready: s4098_drafts -> s4098_final | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=ollama experiment=None
+2026-10-30T03:41:41.538Z [REVIEWER:reviewer-1] assigned s4098_drafts[0] start offset=0
+2026-10-30T03:41:41.538Z [REVIEWER:reviewer-1] ASSIGNMENT partitions=[0]
+2026-10-30T03:42:24.130Z [REVIEWER:reviewer-1] RECEIVE from s4098_drafts partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:24.131Z [REVIEWER:reviewer-1] PROCESS start correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052 attempt=1
+2026-10-30T03:42:26.169Z [REVIEWER:reviewer-1] SEND to s4098_final partition=0 offset=0 correlation_id=d2ca2b39-cde9-4288-beb2-46fff1594052
+2026-10-30T03:42:26.173Z [REVIEWER:reviewer-1] COMMIT partition=0 offset=1

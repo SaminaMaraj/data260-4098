@@ -1,0 +1,14 @@
+{
+  "correlation_id": "dffd50a7-00af-4d83-b398-3319885dee3b",
+  "message_offset": 5,
+  "partition": 0,
+  "commit_mode": "auto",
+  "committed_after_kill": 6,
+  "committed_at_end": 6,
+  "redelivered": false,
+  "drafts_produced": 0,
+  "message_lost": true,
+  "summary": "redelivered after restart: False; drafts produced: 0; committed offset after kill=6, at the end=6",
+  "run_id": "205419",
+  "finished_at": "2026-10-30T03:56:00.020Z"
+}

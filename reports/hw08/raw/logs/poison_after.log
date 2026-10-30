@@ -1,0 +1,26 @@
+Kazi Samina Maraj Mumu | run_failure_tests.py poison --mode after | run 210335 | PREFIX=s4098 VERIFY_SEED=264098 | 2026-10-30T04:03:35.040Z
+2026-10-30T04:03:35.555Z [TEST] poison message, mode=after: Writer poison-policy=dlq
+    | Kazi Samina Maraj Mumu | WRITER agent instance=writer-1 group=s4098_writers_poison_after_210335 | PREFIX=s4098 PORT_BASE=8498 KAFKA=localhost:9092
+    | 2026-10-30T04:03:36.170Z [WRITER:writer-1] ready: s4098_tasks -> s4098_drafts | commit=after-success poison-policy=dlq max-attempts=3 idempotency=on llm=stub experiment=poison-after-210335
+    | 2026-10-30T04:03:36.174Z [WRITER:writer-1] assigned s4098_tasks[0] start offset=6
+    | 2026-10-30T04:03:36.175Z [WRITER:writer-1] assigned s4098_tasks[1] start offset=3
+    | 2026-10-30T04:03:36.175Z [WRITER:writer-1] ASSIGNMENT partitions=[0, 1]
+2026-10-30T04:03:36.287Z [TEST] SEND poison task to s4098_tasks[1] offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 plan='<<corrupted plan>>'
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=1
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=1 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:36.287Z [WRITER:writer-1] RETRY in 0.5s (1/3)
+2026-10-30T04:03:36.288Z [TEST] SEND good task to s4098_tasks[1] offset=4 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=2
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=2 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:36.789Z [WRITER:writer-1] RETRY in 1.0s (2/3)
+    | 2026-10-30T04:03:37.790Z [WRITER:writer-1] PROCESS start correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=3
+    | 2026-10-30T04:03:37.790Z [WRITER:writer-1] FAIL partition=1 offset=3 correlation_id=bf8a9700-16ad-4d71-ab53-2a78abdc6452 attempt=3 error=PoisonMessage: task has no valid 'plan' object
+    | 2026-10-30T04:03:37.795Z [WRITER:writer-1] DEAD-LETTER s4098_dead_letter partition=0 offset=0 after 3 attempts (source offset=3) -> moving on
+    | 2026-10-30T04:03:37.797Z [WRITER:writer-1] COMMIT partition=1 offset=4
+    | 2026-10-30T04:03:37.897Z [WRITER:writer-1] RECEIVE from s4098_tasks partition=1 offset=4 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:37.897Z [WRITER:writer-1] PROCESS start correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc attempt=1
+    | 2026-10-30T04:03:38.101Z [WRITER:writer-1] SEND to s4098_drafts partition=0 offset=5 correlation_id=de2470f0-0a05-4063-9ff2-d7e265de44bc
+    | 2026-10-30T04:03:38.102Z [WRITER:writer-1] COMMIT partition=1 offset=5
+    | 2026-10-30T04:03:52.638Z [WRITER:writer-1] stopped
+2026-10-30T04:03:52.862Z [TEST] poison attempts in 15s window: 3; dead-lettered: True; later good message processed: True

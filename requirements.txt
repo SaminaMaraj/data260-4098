@@ -25,3 +25,4 @@ mcp[cli]<2
 PyJWT==2.10.1
 ruff==0.15.6
 pre-commit
+aiokafka==0.12.0

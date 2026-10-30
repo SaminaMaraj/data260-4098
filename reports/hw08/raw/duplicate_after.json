@@ -1,0 +1,14 @@
+{
+  "correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc",
+  "responses": 2,
+  "incident_ids_returned": [
+    "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec"
+  ],
+  "incidents_existing": [
+    "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec"
+  ],
+  "extra_side_effect": false,
+  "summary": "1 incident(s) created by 2 deliveries of one correlation_id -> no extra side effect",
+  "run_id": "205211",
+  "finished_at": "2026-10-30T03:52:27.951Z"
+}

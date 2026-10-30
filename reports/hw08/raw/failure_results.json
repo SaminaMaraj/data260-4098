@@ -1,0 +1,197 @@
+{
+  "duplicate": {
+    "before": {
+      "correlation_id": "ef920dc3-5148-4cd7-a9e1-9cfab12eb2e8",
+      "responses": 2,
+      "incident_ids_returned": [
+        "418ef4a7-b93b-4433-ab62-e7e50032d2ed",
+        "fb2be043-7660-4bd3-8934-e3d9ef2c777c"
+      ],
+      "incidents_existing": [
+        "418ef4a7-b93b-4433-ab62-e7e50032d2ed",
+        "fb2be043-7660-4bd3-8934-e3d9ef2c777c"
+      ],
+      "extra_side_effect": true,
+      "summary": "2 incident(s) created by 2 deliveries of one correlation_id -> extra side effect",
+      "run_id": "205006",
+      "finished_at": "2026-10-30T03:50:26.978Z"
+    },
+    "after": {
+      "correlation_id": "d6dc1b0b-10a5-411f-96f4-3df3c98313cc",
+      "responses": 2,
+      "incident_ids_returned": [
+        "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec"
+      ],
+      "incidents_existing": [
+        "a8621ea2-a8dc-4ffe-a78b-bd209eb6b9ec"
+      ],
+      "extra_side_effect": false,
+      "summary": "1 incident(s) created by 2 deliveries of one correlation_id -> no extra side effect",
+      "run_id": "205211",
+      "finished_at": "2026-10-30T03:52:27.951Z"
+    }
+  },
+  "duplicate-agent": {
+    "before": {
+      "correlation_id": "f5b33b8e-8a3a-40ff-872b-e7e86f8fc1d7",
+      "drafts_produced": 2,
+      "duplicate_skipped_logged": false,
+      "extra_side_effect": true,
+      "summary": "2 draft(s) produced for 2 deliveries of one correlation_id",
+      "run_id": "205308",
+      "finished_at": "2026-10-30T03:53:15.081Z"
+    },
+    "after": {
+      "correlation_id": "44dc9a03-4d85-4a55-ab45-9dc273f8da0b",
+      "drafts_produced": 1,
+      "duplicate_skipped_logged": true,
+      "extra_side_effect": false,
+      "summary": "1 draft(s) produced for 2 deliveries of one correlation_id",
+      "run_id": "205344",
+      "finished_at": "2026-10-30T03:53:51.439Z"
+    }
+  },
+  "consumer-death": {
+    "before": {
+      "correlation_id": "dffd50a7-00af-4d83-b398-3319885dee3b",
+      "message_offset": 5,
+      "partition": 0,
+      "commit_mode": "auto",
+      "committed_after_kill": 6,
+      "committed_at_end": 6,
+      "redelivered": false,
+      "drafts_produced": 0,
+      "message_lost": true,
+      "summary": "redelivered after restart: False; drafts produced: 0; committed offset after kill=6, at the end=6",
+      "run_id": "205419",
+      "finished_at": "2026-10-30T03:56:00.020Z"
+    },
+    "after": {
+      "correlation_id": "bb7d2285-a906-4543-90cc-90b3c0080135",
+      "message_offset": 0,
+      "partition": 1,
+      "commit_mode": "after-success",
+      "committed_after_kill": 0,
+      "committed_at_end": 1,
+      "redelivered": true,
+      "drafts_produced": 1,
+      "message_lost": false,
+      "summary": "redelivered after restart: True; drafts produced: 1; committed offset after kill=0, at the end=1",
+      "run_id": "205809",
+      "finished_at": "2026-10-30T03:59:48.771Z"
+    }
+  },
+  "poison": {
+    "before": {
+      "poison_correlation_id": "fcd4ae4a-35a0-449c-b8d7-f998ce82451d",
+      "good_correlation_id": "d4008263-6747-4fa3-877f-2e958e7dcee8",
+      "partition": 1,
+      "poison_offset": 1,
+      "good_offset": 2,
+      "policy": "block",
+      "poison_attempts": 17,
+      "dead_lettered": false,
+      "dead_letter_entry": null,
+      "good_message_processed": false,
+      "summary": "poison attempts in 15s window: 17; dead-lettered: False; later good message processed: False",
+      "run_id": "210133",
+      "finished_at": "2026-10-30T04:02:01.172Z"
+    },
+    "after": {
+      "poison_correlation_id": "bf8a9700-16ad-4d71-ab53-2a78abdc6452",
+      "good_correlation_id": "de2470f0-0a05-4063-9ff2-d7e265de44bc",
+      "partition": 1,
+      "poison_offset": 3,
+      "good_offset": 4,
+      "policy": "dlq",
+      "poison_attempts": 3,
+      "dead_lettered": true,
+      "dead_letter_entry": {
+        "partition": 0,
+        "offset": 0,
+        "correlation_id": "bf8a9700-16ad-4d71-ab53-2a78abdc6452",
+        "experiment": "poison-after-210335",
+        "source_topic": "s4098_tasks",
+        "source_partition": 1,
+        "source_offset": 3,
+        "failed_by": "WRITER:writer-1",
+        "attempts": 3,
+        "error": "PoisonMessage: task has no valid 'plan' object",
+        "original": "{\"correlation_id\": \"bf8a9700-16ad-4d71-ab53-2a78abdc6452\", \"experiment\": \"poison-after-210335\", \"question\": \"?\", \"plan\": \"<<corrupted plan>>\"}",
+        "failed_at": "2026-10-30T04:03:37.790Z"
+      },
+      "good_message_processed": true,
+      "summary": "poison attempts in 15s window: 3; dead-lettered: True; later good message processed: True",
+      "run_id": "210335",
+      "finished_at": "2026-10-30T04:03:52.862Z"
+    }
+  },
+  "ordering": {
+    "before": {
+      "verify_seed": 264098,
+      "keyed": false,
+      "processed": 20,
+      "incidents_split_across_partitions": 4,
+      "inversions_total": 3,
+      "inversions_per_incident": {
+        "INC-213214": 1,
+        "INC-281869": 0,
+        "INC-744662": 1,
+        "INC-837981": 1
+      },
+      "partitions_per_incident": {
+        "INC-213214": [
+          0,
+          1
+        ],
+        "INC-281869": [
+          0,
+          1
+        ],
+        "INC-744662": [
+          0,
+          1
+        ],
+        "INC-837981": [
+          0,
+          1
+        ]
+      },
+      "csv": "reports/hw08/raw/ordering_before_nokey.csv",
+      "summary": "20/20 processed; 4/4 incidents spread over both partitions; 3 ordering inversions",
+      "run_id": "210504",
+      "finished_at": "2026-10-30T04:05:12.720Z"
+    },
+    "after": {
+      "verify_seed": 264098,
+      "keyed": true,
+      "processed": 20,
+      "incidents_split_across_partitions": 0,
+      "inversions_total": 0,
+      "inversions_per_incident": {
+        "INC-213214": 0,
+        "INC-281869": 0,
+        "INC-744662": 0,
+        "INC-837981": 0
+      },
+      "partitions_per_incident": {
+        "INC-213214": [
+          1
+        ],
+        "INC-281869": [
+          0
+        ],
+        "INC-744662": [
+          1
+        ],
+        "INC-837981": [
+          0
+        ]
+      },
+      "csv": "reports/hw08/raw/ordering_after_keyed.csv",
+      "summary": "20/20 processed; 0/4 incidents spread over both partitions; 0 ordering inversions",
+      "run_id": "210752",
+      "finished_at": "2026-10-30T04:07:59.782Z"
+    }
+  }
+}

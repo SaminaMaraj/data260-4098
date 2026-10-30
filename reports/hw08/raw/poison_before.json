@@ -1,0 +1,15 @@
+{
+  "poison_correlation_id": "fcd4ae4a-35a0-449c-b8d7-f998ce82451d",
+  "good_correlation_id": "d4008263-6747-4fa3-877f-2e958e7dcee8",
+  "partition": 1,
+  "poison_offset": 1,
+  "good_offset": 2,
+  "policy": "block",
+  "poison_attempts": 17,
+  "dead_lettered": false,
+  "dead_letter_entry": null,
+  "good_message_processed": false,
+  "summary": "poison attempts in 15s window: 17; dead-lettered: False; later good message processed: False",
+  "run_id": "210133",
+  "finished_at": "2026-10-30T04:02:01.172Z"
+}
