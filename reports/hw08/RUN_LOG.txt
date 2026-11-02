@@ -715,3 +715,25 @@ Kazi Samina Maraj Mumu | run_failure_tests.py ordering --mode after | run 210752
 2026-10-30T04:07:59.781Z [TEST]   #19 writer-2 p1 o26 INC-744662 seq=4 (service_restored) finished=2026-10-30T04:07:58.449Z
 2026-10-30T04:07:59.781Z [TEST]   #20 writer-2 p1 o27 INC-744662 seq=5 (closed) finished=2026-10-30T04:07:58.557Z
 2026-10-30T04:07:59.782Z [TEST] 20/20 processed; 0/4 incidents spread over both partitions; 0 ordering inversions; saved reports/hw08/raw/ordering_after_keyed.csv
+Kazi Samina Maraj Mumu
+Kazi Samina Maraj Mumu | make verify-hw08 | PREFIX=s4098 PORT_BASE=8498
+PASS FastAPI /health on port 8498 -> 200
+PASS API CREATE_INCIDENT -> success, UUID incident_id, same correlation_id
+PASS API GET_INCIDENT round-trips every field
+PASS GET_INCIDENT unknown id -> success false + error + same correlation_id
+PASS unknown operation -> success false + error + same correlation_id
+PASS CREATE_INCIDENT with an empty required field -> success false
+PASS all 7 PREFIX topics exist with the planned partition counts {"s4098_entity_requests": 1, "s4098_tasks": 2, "s4098_drafts": 1, "s4098_entity_responses": 1, "s4098_inbox": 1, "s4098_dead_letter": 1, "s4098_final": 1}
+PASS s4098_tasks has 2 partitions
+PASS direct Kafka CREATE_INCIDENT -> reply on reply_to with same correlation_id
+PASS direct Kafka GET_INCIDENT returns the created incident
+PASS replayed CREATE_INCIDENT (same correlation_id) creates no second incident requires the worker to run with HW8_IDEMPOTENCY=on
+PASS planner, writer and reviewer start and join their groups
+PASS question -> planner -> writer -> reviewer -> final keeps correlation_id [["PLANNER", "s4098_inbox"], ["WRITER", "s4098_tasks"], ["REVIEWER", "s4098_drafts"]]
+PASS final message is JSON with status and answer
+PASS poison task is retried 3 times, then moved to the dead-letter topic
+PASS message after the poison message is still processed
+PASS keyed messages: one partition per incident key (20 VERIFY_SEED messages) {"INC-213214": [1], "INC-744662": [1], "INC-281869": [0], "INC-837981": [0]}
+PASS offline tests (tests/test_hw08.py) 7/7 passed
+
+18/18 checks passed -> reports/hw08/verification.json
