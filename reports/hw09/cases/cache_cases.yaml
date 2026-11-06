@@ -1,0 +1,79 @@
+# HW9 Part 3.1 - labeled semantic-cache test set (Kazi Samina Maraj Mumu, PREFIX s4098)
+#
+# Frozen before the threshold sweep. Do NOT relabel after seeing results;
+# labeling mistakes are documented in reports/hw09/LABELING_NOTES.md instead.
+#
+# Procedure (code/hw9/part3_threshold_sweep.py):
+#   1. empty the cache, store the 10 seed queries (answers from the HW8 agent path)
+#   2. send the 40 cases in this order, read-only (misses are answered by the agent
+#      but not stored), so every case is compared with the same 10 seed entries
+#   3. repeat for each threshold
+#
+# expected: hit  -> the cache should return the answer of `target`
+#           miss -> the cache should NOT return any cached answer
+# A "false hit" = a case served from the cache when it is labeled miss, or a hit
+# that returned the answer of a different seed than `target`.
+#
+# Ground truth comes from the HW4 seed of s4098_rel (SEED 4098): routes RT-001..RT-005 =
+# VTA Route 22, VTA Green Line, VTA Route 522, VTA Orange Line, VTA Route 55.
+
+seeds:
+  - {id: S01, query: "How many delay incidents were recorded on VTA Route 22?"}
+  - {id: S02, query: "What is the route code for the VTA Green Line?"}
+  - {id: S03, query: "Who operates VTA Route 522?"}
+  - {id: S04, query: "What category is incident INC-000042?"}
+  - {id: S05, query: "How many collision incidents have been reported across all routes?"}
+  - {id: S06, query: "How many infrastructure issues were recorded on the VTA Orange Line?"}
+  - {id: S07, query: "Which route line was incident INC-000122 reported on?"}
+  - {id: S08, query: "How many incidents in total were recorded on VTA Route 55?"}
+  - {id: S09, query: "What is the title of incident INC-000250?"}
+  - {id: S10, query: "Which route has the route code RT-001?"}
+
+cases:
+  # ---------------- 10 exact duplicates (should hit) ----------------
+  - {id: C01, group: exact, expected: hit, target: S01, query: "How many delay incidents were recorded on VTA Route 22?"}
+  - {id: C02, group: exact, expected: hit, target: S02, query: "What is the route code for the VTA Green Line?"}
+  - {id: C03, group: exact, expected: hit, target: S03, query: "Who operates VTA Route 522?"}
+  - {id: C04, group: exact, expected: hit, target: S04, query: "What category is incident INC-000042?"}
+  - {id: C05, group: exact, expected: hit, target: S05, query: "How many collision incidents have been reported across all routes?"}
+  - {id: C06, group: exact, expected: hit, target: S06, query: "How many infrastructure issues were recorded on the VTA Orange Line?"}
+  - {id: C07, group: exact, expected: hit, target: S07, query: "Which route line was incident INC-000122 reported on?"}
+  - {id: C08, group: exact, expected: hit, target: S08, query: "How many incidents in total were recorded on VTA Route 55?"}
+  - {id: C09, group: exact, expected: hit, target: S09, query: "What is the title of incident INC-000250?"}
+  - {id: C10, group: exact, expected: hit, target: S10, query: "Which route has the route code RT-001?"}
+
+  # ---------------- 10 paraphrases (should hit) ----------------
+  - {id: C11, group: paraphrase, expected: hit, target: S01, query: "What is the number of delay incidents logged for VTA Route 22?"}
+  - {id: C12, group: paraphrase, expected: hit, target: S02, query: "Which route code is assigned to the VTA Green Line?"}
+  - {id: C13, group: paraphrase, expected: hit, target: S03, query: "Which operator runs VTA Route 522?"}
+  - {id: C14, group: paraphrase, expected: hit, target: S04, query: "Which incident category does INC-000042 belong to?"}
+  - {id: C15, group: paraphrase, expected: hit, target: S05, query: "What is the total number of collisions reported on all routes?"}
+  - {id: C16, group: paraphrase, expected: hit, target: S06, query: "How many infrastructure-issue incidents has the VTA Orange Line had?"}
+  - {id: C17, group: paraphrase, expected: hit, target: S07, query: "On which route did incident INC-000122 happen?"}
+  - {id: C18, group: paraphrase, expected: hit, target: S08, query: "What is the total incident count for VTA Route 55?"}
+  - {id: C19, group: paraphrase, expected: hit, target: S09, query: "What title does incident INC-000250 have?"}
+  - {id: C20, group: paraphrase, expected: hit, target: S10, query: "What route is identified by the code RT-001?"}
+
+  # ------- 10 superficially similar, different correct answer (should miss) -------
+  - {id: C21, group: similar_different, expected: miss, target: S01, query: "How many collision incidents were recorded on VTA Route 22?", note: "other category, different count"}
+  - {id: C22, group: similar_different, expected: miss, target: S02, query: "What is the route code for the VTA Orange Line?", note: "RT-004 instead of RT-002"}
+  - {id: C23, group: similar_different, expected: miss, target: S03, query: "How many service suspensions has VTA Route 522 had?", note: "a count, not the operator"}
+  - {id: C24, group: similar_different, expected: miss, target: S04, query: "What category is incident INC-000043?", note: "delay instead of infrastructure-issue"}
+  - {id: C25, group: similar_different, expected: miss, target: S05, query: "How many delay incidents have been reported across all routes?", note: "other category, different total"}
+  - {id: C26, group: similar_different, expected: miss, target: S06, query: "How many infrastructure issues were recorded on the VTA Green Line?", note: "other route, different count"}
+  - {id: C27, group: similar_different, expected: miss, target: S07, query: "Which route line was incident INC-000123 reported on?", note: "VTA Orange Line instead of VTA Route 522"}
+  - {id: C28, group: similar_different, expected: miss, target: S08, query: "How many incidents in total were recorded on VTA Route 22?", note: "other route, different total"}
+  - {id: C29, group: similar_different, expected: miss, target: S09, query: "What is the title of incident INC-000251?", note: "different incident number in the title"}
+  - {id: C30, group: similar_different, expected: miss, target: S10, query: "Which route has the route code RT-002?", note: "VTA Green Line instead of VTA Route 22"}
+
+  # ---------------- 10 unrelated questions (should miss) ----------------
+  - {id: C31, group: unrelated, expected: miss, target: null, query: "What is the capital of Australia?"}
+  - {id: C32, group: unrelated, expected: miss, target: null, query: "How do I bake sourdough bread at home?"}
+  - {id: C33, group: unrelated, expected: miss, target: null, query: "What is the weather forecast for San Jose tomorrow?"}
+  - {id: C34, group: unrelated, expected: miss, target: null, query: "Explain how a Kafka consumer group rebalances."}
+  - {id: C35, group: unrelated, expected: miss, target: null, query: "How much does a monthly VTA transit pass cost?"}
+  - {id: C36, group: unrelated, expected: miss, target: null, query: "Who won the 2022 FIFA World Cup?"}
+  - {id: C37, group: unrelated, expected: miss, target: null, query: "What is the time complexity of binary search?"}
+  - {id: C38, group: unrelated, expected: miss, target: null, query: "Recommend a good book about Roman history."}
+  - {id: C39, group: unrelated, expected: miss, target: null, query: "How do I reset my Clipper card password?"}
+  - {id: C40, group: unrelated, expected: miss, target: null, query: "What are the opening hours of the San Jose public library?"}
