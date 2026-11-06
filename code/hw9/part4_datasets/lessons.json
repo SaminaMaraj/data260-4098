@@ -4,7 +4,7 @@
     "failure_pattern": "Answers provide incorrect or incomplete information without aligning with the specific requirements or thresholds outlined in the ground truth.",
     "correction": "Ensure answers strictly adhere to the exact criteria or timeframes provided in the ground truth, avoiding assumptions or generalizations.",
     "created_at": "2026-11-05",
-    "use_count": 11,
+    "use_count": 14,
     "failure_type": "missing_value",
     "action": "lookup_reference",
     "trigger": {
@@ -82,7 +82,7 @@
       "tr09"
     ],
     "drafted_by": "evaluator (qwen3:8b)",
-    "status": "kept",
+    "status": "rejected",
     "validation": {
       "first_attempt_failures_before": 8,
       "first_attempt_failures_after": 8,
@@ -113,6 +113,24 @@
         "avg_latency_ms": 7351.5,
         "out_of_scope_unsupported": 0
       }
+    },
+    "extra_check": {
+      "questions": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+      ],
+      "checks": {
+        "failures_improve_or_same": true,
+        "no_regression_on_correct": false,
+        "no_new_unsupported_answers": true
+      },
+      "regressions": [
+        "x4"
+      ],
+      "decision": "rejected: a correct answer became wrong with the lesson"
     }
   }
 ]

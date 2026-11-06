@@ -1473,3 +1473,214 @@ Validated Improvement  |      11 |         1 |         1.67 |           6147.8
 
 Lessons used: Lesson Memory = every saved lesson; Validated Improvement = only lessons with status 'kept': lesson_001=kept, lesson_002=kept
 saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_test.json
+Kazi Samina Maraj Mumu | part4_extra_lesson_check.py | extra check of lesson_002
+x1 (required_fields): Which fields must be filled in when submitting an incident report?  -> loads ['lesson_002']
+x2 (valid_categories): What category labels are allowed for a transit incident?  -> loads ['lesson_002']
+x3 (related_types): What types of notes are allowed to be attached to an incident?  -> loads ['lesson_002']
+x4 (out_of_scope): Which pets are allowed on trains?  -> loads ['lesson_002']
+x5 (out_of_scope): Is food allowed on light-rail trains?  -> loads ['lesson_002']
+
+--- before: kept lessons without lesson_002 ['lesson_001'] ---
+[before] x1 (required_fields): Which fields must be filled in when submitting an incident report?
+  attempt 1: The required fields when submitting an incident report include: incident date and time, location, type of incident, involved parties, a brief description, and a
+    evaluator: REVISE (wrong_label) The answer does not match the required fields specified in the ground truth.
+    feedback: The Answering Agent should include the fields incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted as they are the required fields
+  attempt 2: The required fields when submitting an incident report include: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.
+    evaluator: PASS (none) The answer correctly lists all the required fields as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 11525.5 ms
+
+[before] x2 (valid_categories): What category labels are allowed for a transit incident?
+  attempt 1: The allowed category labels for a transit incident include: Incident, Delay, Service Change, Equipment Failure, Safety Issue, and Staffing Problem. These catego
+    evaluator: REVISE (wrong_label) The answer includes category labels not present in the ground truth.
+    feedback: The Answering Agent should only include the four category labels specified in the ground truth: delay, collision, service-suspension, and infrastructure-issue. 
+  attempt 2: The allowed category labels for a transit incident are: delay, collision, service-suspension, and infrastructure-issue. These four categories are specified in t
+    evaluator: PASS (none) The answer correctly lists all four allowed category labels as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 8595.4 ms
+
+[before] x3 (related_types): What types of notes are allowed to be attached to an incident?
+  attempt 1: Only incident-related notes, such as witness statements, photos, or video clips, are allowed. Personal information or unrelated content must not be attached.
+    evaluator: REVISE (wrong_label) The answer does not mention the specific types of notes allowed as per the ground truth.
+    feedback: Specify the exact types of notes allowed, such as operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.
+  attempt 2: The allowed note types are operator_note, maintenance_note, and follow_up. These are the only permitted note types for incidents. Personal information or unrela
+    evaluator: PASS (none) The answer correctly lists the allowed note types as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 7893.5 ms
+
+[before] x4 (out_of_scope): Which pets are allowed on trains?
+  attempt 1: Only service animals are allowed on trains. Service animals assist individuals with disabilities. Other pets are not permitted unless specifically authorized by
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: Avoid providing general knowledge not covered by the reference dataset and instead state that the question is outside the transit incident reference. Only answe
+  attempt 2: The question is outside the scope of the transit incident reference dataset. Please consult the agency's official policies for information on allowed pets.
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the scope of the provided dataset.
+  -> final PASS after 2 attempt(s), 7523.8 ms
+
+[before] x5 (out_of_scope): Is food allowed on light-rail trains?
+  attempt 1: Food is allowed on light-rail trains, but it must be non-liquid and not emit strong odors. Please clean up after yourself and dispose of trash properly to maint
+    evaluator: REVISE (unsupported_answer) The answer provides specific information not covered by the ground truth.
+    feedback: Do not provide answers based on general knowledge if the question is outside the scope of the reference dataset. Only answer questions that the transit incident
+  attempt 2: The reference dataset does not provide information on food policies for light-rail trains. Please consult the transit agency's official guidelines for accurate 
+    evaluator: REVISE (unsupported_answer) The answer correctly acknowledges the lack of information in the reference dataset.
+    feedback: The answer is appropriate and follows the rule; no revision is needed. Only answer questions that the transit incident reference covers.
+  -> final REVISE after 2 attempt(s), 7481.4 ms
+
+
+--- after: kept lessons with lesson_002 ['lesson_001', 'lesson_002'] ---
+[after] x1 (required_fields): Which fields must be filled in when submitting an incident report?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: field, submitting)
+  attempt 1: The required fields for an incident report are incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.
+    evaluator: PASS (none) The answer correctly lists all the required fields as specified in the ground truth.
+  -> final PASS after 1 attempt(s), 3518.9 ms
+
+[after] x2 (valid_categories): What category labels are allowed for a transit incident?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: allowed, category)
+  attempt 1: The allowed category labels for a transit incident are: delay, collision, service-suspension, infrastructure-issue.
+    evaluator: PASS (none) The answer correctly lists all four allowed category labels as specified in the ground truth.
+  -> final PASS after 1 attempt(s), 3114.2 ms
+
+[after] x3 (related_types): What types of notes are allowed to be attached to an incident?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: allowed)
+  attempt 1: The allowed note types for an incident are operator_note, maintenance_note, and follow_up. These are the exact types defined in the ground truth.
+    evaluator: PASS (none) The answer correctly lists the allowed note types as specified in the ground truth.
+  -> final PASS after 1 attempt(s), 3646.0 ms
+
+[after] x4 (out_of_scope): Which pets are allowed on trains?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: allowed)
+  attempt 1: The question cannot be answered based on available reference data.
+    evaluator: REVISE (unsupported_answer) The answer correctly acknowledges that the question is outside the scope of the provided reference data.
+    feedback: Maintain the approach of stating when a question is outside the scope of the reference data. Only answer questions that the transit incident reference covers.
+  attempt 2: The question cannot be answered based on available reference data.
+    evaluator: REVISE (unsupported_answer) The answer correctly acknowledges that the question is outside the scope of the provided reference data.
+    feedback: Maintain the approach of stating when a question is outside the scope of the reference data. Only answer questions that the transit incident reference covers.
+  -> final REVISE after 2 attempt(s), 5847.2 ms
+
+[after] x5 (out_of_scope): Is food allowed on light-rail trains?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: allowed)
+  attempt 1: No applicable reference fact found. The answer must strictly follow the exact labels and categories from the ground truth, which are not provided here.
+    evaluator: REVISE (unsupported_answer) The answer incorrectly states that the answer must follow exact labels from the ground truth, which are not provided.
+    feedback: The answer should state that there is no applicable reference fact found and follow the correct behavior as described in the ground truth. Only answer questions
+  attempt 2: No applicable reference fact found. The answer must strictly follow the exact labels and categories from the ground truth, which are not provided here. Only ans
+    evaluator: PASS (none) The answer correctly identifies that there is no applicable reference fact.
+  -> final PASS after 2 attempt(s), 8056.2 ms
+
+
+=== Extra check of lesson_002 on 5 new questions ===
+id   topic              lesson_002 loaded  before (1st/final, tries)   after (1st/final, tries)
+x1   required_fields    True               REVISE/PASS, 2              PASS/PASS, 1
+x2   valid_categories   True               REVISE/PASS, 2              PASS/PASS, 1
+x3   related_types      True               REVISE/PASS, 2              PASS/PASS, 1
+x4   out_of_scope       True               REVISE/PASS, 2              REVISE/REVISE, 2
+x5   out_of_scope       True               REVISE/REVISE, 2            REVISE/PASS, 2
+
+First-try correct: 0/5 -> 3/5
+Final correct:     4/5 -> 4/5
+Average attempts:  2.00 -> 1.40
+Checks: {'failures_improve_or_same': True, 'no_regression_on_correct': False, 'no_new_unsupported_answers': True}
+Result: lesson_002 FAILS (would be rejected)
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_extra_lesson_check.json
+/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/samina/Documents/data260-4098/code/hw9/part4_retest_validated.py': [Errno 2] No such file or directory
+Kazi Samina Maraj Mumu | part4_retest_validated.py | reject lesson_002, re-run Validated Improvement
+lesson_002 -> status 'rejected' (regressions: ['x4'])
+lessons: lesson_001=kept, lesson_002=rejected
+
+=== Variant: Validated Improvement (kept lessons only) ===
+[Validated Improvement] te01 (bus_bridge): How long must a light-rail suspension be expected to last before staff request replacement buses?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: suspension)
+  attempt 1: Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 1 attempt(s), 5060.7 ms
+
+[Validated Improvement] te02 (delay_threshold): What is the minimum lateness for a vehicle to count as a delay incident?
+  attempt 1: The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.
+    feedback: The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.
+    evaluator: PASS (none) The answer correctly states the minimum lateness for a delay incident as 10 minutes.
+  -> final PASS after 2 attempt(s), 7531.8 ms
+
+[Validated Improvement] te03 (rider_alert): How quickly must riders be alerted once a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minute
+    evaluator: PASS (none) The answer correctly states the required 10-minute alert time.
+  -> final PASS after 1 attempt(s), 3726.9 ms
+
+[Validated Improvement] te04 (follow_up): What is the deadline for adding the follow-up note to an incident?
+  attempt 1: The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.
+    evaluator: REVISE (missing_value) The answer incorrectly states the deadline as 24 hours instead of 48 hours.
+    feedback: The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.
+  attempt 2: The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be wit
+    feedback: The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check th
+  -> final REVISE after 2 attempt(s), 8493.5 ms
+
+[Validated Improvement] te05 (severity1): How many affected passengers make an incident Severity 1?
+  attempt 1: Severity 1 incidents at s4098 Transit affect up to 100 passengers.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth definition of Severity 1.
+    feedback: The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the refere
+  attempt 2: Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.
+    evaluator: PASS (none) The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.
+  -> final PASS after 2 attempt(s), 7880.8 ms
+
+[Validated Improvement] te06 (maintenance_ticket): What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: maintenance, ticket)
+  attempt 1: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.
+    evaluator: PASS (none) The answer correctly states the time limit as 4 hours.
+  -> final PASS after 1 attempt(s), 3049.4 ms
+
+[Validated Improvement] te07 (valid_categories): Which category values can an incident report use?
+  attempt 1: Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify 
+    evaluator: REVISE (wrong_label) The answer provided categories that do not match the ground truth.
+    feedback: The Answering Agent should use the exact category values specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the re
+  attempt 2: Incident reports must use one of four exact categories: delay, collision, service-suspension, or infrastructure-issue. These values are required for accurate cl
+    evaluator: PASS (none) The answer correctly lists all four required category values from the ground truth.
+  -> final PASS after 2 attempt(s), 8454.3 ms
+
+[Validated Improvement] te08 (route_code_orange): What is the route code of the VTA Orange Line?
+  attempt 1: The VTA Orange Line route code is 10.
+    evaluator: REVISE (missing_value) The answer provided an incorrect route code for the VTA Orange Line.
+    feedback: Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.
+  attempt 2: The VTA Orange Line route code is RT-002.
+    evaluator: PASS (none) The answer correctly identifies the route code of the VTA Orange Line as RT-002.
+  -> final PASS after 2 attempt(s), 6232.9 ms
+
+[Validated Improvement] te09 (terms_rule): What happens if an incident is submitted with termsAccepted set to false?
+  attempt 1: If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth.
+    feedback: The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answerin
+  attempt 2: If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 2 attempt(s), 6734.5 ms
+
+[Validated Improvement] te10 (out_of_scope): What is the time complexity of binary search?
+  attempt 1: The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.
+    evaluator: PASS (none) The Answering Agent correctly identified that the question is outside the reference dataset.
+  -> final PASS after 2 attempt(s), 7533.6 ms
+
+[Validated Improvement] te11 (out_of_scope): Recommend a good movie for tonight.
+  attempt 1: I recommend "The Midnight Adventure" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!
+    evaluator: REVISE (unsupported_answer) The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.
+    feedback: Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions tha
+  attempt 2: I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!
+    evaluator: PASS (none) The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.
+  -> final PASS after 2 attempt(s), 7335.6 ms
+
+[Validated Improvement] te12 (heat_restriction): How fast may light-rail trains run when the rail temperature is above 120 degrees F?
+  attempt 1: Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing a different maximum speed.
+    feedback: The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.
+  attempt 2: Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: PASS (none) The answer correctly states the maximum speed and the condition under which it applies.
+  -> final PASS after 2 attempt(s), 7610.6 ms
+
+
+=== 4.4 Final results on test_data.json (12 held-out questions) ===
+Variant                | Correct | Incorrect | Avg attempts | Avg latency (ms)
+------------------------------------------------------------------------------
+Baseline               |       0 |        12 |         1.00 |           1306.7
+Evaluator Repair       |      11 |         1 |         2.00 |           7714.5
+Lesson Memory          |      11 |         1 |         1.67 |           6236.1
+Validated Improvement  |      11 |         1 |         1.75 |           6637.1
+
+Lesson Memory = every saved lesson; Validated Improvement = kept lessons only (lesson_001)
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_test_final.json

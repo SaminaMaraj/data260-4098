@@ -1,0 +1,604 @@
+{
+  "lesson": "lesson_002",
+  "items": [
+    {
+      "id": "x1",
+      "topic": "required_fields",
+      "question": "Which fields must be filled in when submitting an incident report?"
+    },
+    {
+      "id": "x2",
+      "topic": "valid_categories",
+      "question": "What category labels are allowed for a transit incident?"
+    },
+    {
+      "id": "x3",
+      "topic": "related_types",
+      "question": "What types of notes are allowed to be attached to an incident?"
+    },
+    {
+      "id": "x4",
+      "topic": "out_of_scope",
+      "question": "Which pets are allowed on trains?"
+    },
+    {
+      "id": "x5",
+      "topic": "out_of_scope",
+      "question": "Is food allowed on light-rail trains?"
+    }
+  ],
+  "verdict": {
+    "first_attempt_failures_before": 5,
+    "first_attempt_failures_after": 2,
+    "regressions": [
+      "x4"
+    ],
+    "out_of_scope_unsupported_before": 1,
+    "out_of_scope_unsupported_after": 1,
+    "checks": {
+      "failures_improve_or_same": true,
+      "no_regression_on_correct": false,
+      "no_new_unsupported_answers": true
+    },
+    "keep": false
+  },
+  "summary_before": {
+    "questions": 5,
+    "correct": 4,
+    "incorrect": 1,
+    "first_attempt_correct": 0,
+    "avg_attempts": 2.0,
+    "avg_latency_ms": 8603.9,
+    "out_of_scope_unsupported": 1
+  },
+  "summary_after": {
+    "questions": 5,
+    "correct": 4,
+    "incorrect": 1,
+    "first_attempt_correct": 3,
+    "avg_attempts": 1.4,
+    "avg_latency_ms": 4836.5,
+    "out_of_scope_unsupported": 1
+  },
+  "before": [
+    {
+      "id": "x1",
+      "question": "Which fields must be filled in when submitting an incident report?",
+      "topic": "required_fields",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The required fields when submitting an incident report include: incident date and time, location, type of incident, involved parties, a brief description, and any injuries or property damage.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 4557.5,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer does not match the required fields specified in the ground truth.",
+            "feedback": "The Answering Agent should include the fields incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted as they are the required fields for submitting an incident report. Check the reference dataset before answering.",
+            "failure_type": "wrong_label",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "incidentTitle",
+                "incident title"
+              ],
+              [
+                "routeLine",
+                "route line"
+              ],
+              [
+                "submitterEmail",
+                "submitter email"
+              ],
+              [
+                "category"
+              ],
+              [
+                "termsAccepted",
+                "terms accepted"
+              ]
+            ],
+            "ms": 3321.9
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The required fields when submitting an incident report include: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+          "lookup": [
+            "required_fields"
+          ],
+          "lessons": [],
+          "ms": 1568.8,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all the required fields as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2077.3
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The required fields when submitting an incident report include: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+      "latency_ms": 11525.5,
+      "wall_ms": 11528.1
+    },
+    {
+      "id": "x2",
+      "question": "What category labels are allowed for a transit incident?",
+      "topic": "valid_categories",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The allowed category labels for a transit incident include: Incident, Delay, Service Change, Equipment Failure, Safety Issue, and Staffing Problem. These categories help classify and prioritize incident responses effectively.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1821.7,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer includes category labels not present in the ground truth.",
+            "feedback": "The Answering Agent should only include the four category labels specified in the ground truth: delay, collision, service-suspension, and infrastructure-issue. Check the reference dataset before answering.",
+            "failure_type": "wrong_label",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "collision"
+              ],
+              [
+                "service-suspension",
+                "service suspension"
+              ],
+              [
+                "infrastructure-issue",
+                "infrastructure issue"
+              ]
+            ],
+            "ms": 2696.1
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The allowed category labels for a transit incident are: delay, collision, service-suspension, and infrastructure-issue. These four categories are specified in the reference dataset.",
+          "lookup": [
+            "valid_categories"
+          ],
+          "lessons": [],
+          "ms": 1792.9,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all four allowed category labels as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2284.7
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The allowed category labels for a transit incident are: delay, collision, service-suspension, and infrastructure-issue. These four categories are specified in the reference dataset.",
+      "latency_ms": 8595.4,
+      "wall_ms": 8595.5
+    },
+    {
+      "id": "x3",
+      "question": "What types of notes are allowed to be attached to an incident?",
+      "topic": "related_types",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "Only incident-related notes, such as witness statements, photos, or video clips, are allowed. Personal information or unrelated content must not be attached.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1431.4,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer does not mention the specific types of notes allowed as per the ground truth.",
+            "feedback": "Specify the exact types of notes allowed, such as operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.",
+            "failure_type": "wrong_label",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "operator_note",
+                "operator note"
+              ],
+              [
+                "maintenance_note",
+                "maintenance note"
+              ],
+              [
+                "follow_up",
+                "follow-up",
+                "follow up"
+              ]
+            ],
+            "ms": 2468.8
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The allowed note types are operator_note, maintenance_note, and follow_up. These are the only permitted note types for incidents. Personal information or unrelated content must not be attached.",
+          "lookup": [
+            "related_types",
+            "valid_categories"
+          ],
+          "lessons": [],
+          "ms": 1804.2,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists the allowed note types as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2189.1
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The allowed note types are operator_note, maintenance_note, and follow_up. These are the only permitted note types for incidents. Personal information or unrelated content must not be attached.",
+      "latency_ms": 7893.5,
+      "wall_ms": 7893.8
+    },
+    {
+      "id": "x4",
+      "question": "Which pets are allowed on trains?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "Only service animals are allowed on trains. Service animals assist individuals with disabilities. Other pets are not permitted unless specifically authorized by the agency. Always check with the agency for current policies.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1654.5,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer provides general knowledge not covered by the reference dataset.",
+            "feedback": "Avoid providing general knowledge not covered by the reference dataset and instead state that the question is outside the transit incident reference. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2360.9
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The question is outside the scope of the transit incident reference dataset. Please consult the agency's official policies for information on allowed pets.",
+          "lookup": [],
+          "lessons": [],
+          "ms": 1282.6,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly identifies that the question is outside the scope of the provided dataset.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2225.8
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The question is outside the scope of the transit incident reference dataset. Please consult the agency's official policies for information on allowed pets.",
+      "latency_ms": 7523.8,
+      "wall_ms": 7523.8
+    },
+    {
+      "id": "x5",
+      "question": "Is food allowed on light-rail trains?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "Food is allowed on light-rail trains, but it must be non-liquid and not emit strong odors. Please clean up after yourself and dispose of trash properly to maintain cleanliness for all passengers.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1847.6,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer provides specific information not covered by the ground truth.",
+            "feedback": "Do not provide answers based on general knowledge if the question is outside the scope of the reference dataset. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2280.8
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The reference dataset does not provide information on food policies for light-rail trains. Please consult the transit agency's official guidelines for accurate details.",
+          "lookup": [],
+          "lessons": [],
+          "ms": 1367.1,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer correctly acknowledges the lack of information in the reference dataset.",
+            "feedback": "The answer is appropriate and follows the rule; no revision is needed. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "PASS",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 1985.9
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "REVISE",
+      "final_answer": "The reference dataset does not provide information on food policies for light-rail trains. Please consult the transit agency's official guidelines for accurate details.",
+      "latency_ms": 7481.4,
+      "wall_ms": 7481.6
+    }
+  ],
+  "after": [
+    {
+      "id": "x1",
+      "question": "Which fields must be filled in when submitting an incident report?",
+      "topic": "required_fields",
+      "lessons_loaded": [
+        "lesson_002"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The required fields for an incident report are incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+          "lookup": [
+            "required_fields"
+          ],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 1464.0,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all the required fields as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2054.9
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "The required fields for an incident report are incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+      "latency_ms": 3518.9,
+      "wall_ms": 3522.4
+    },
+    {
+      "id": "x2",
+      "question": "What category labels are allowed for a transit incident?",
+      "topic": "valid_categories",
+      "lessons_loaded": [
+        "lesson_002"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The allowed category labels for a transit incident are: delay, collision, service-suspension, infrastructure-issue.",
+          "lookup": [
+            "valid_categories"
+          ],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 1102.9,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all four allowed category labels as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2011.3
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "The allowed category labels for a transit incident are: delay, collision, service-suspension, infrastructure-issue.",
+      "latency_ms": 3114.2,
+      "wall_ms": 3114.6
+    },
+    {
+      "id": "x3",
+      "question": "What types of notes are allowed to be attached to an incident?",
+      "topic": "related_types",
+      "lessons_loaded": [
+        "lesson_002"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The allowed note types for an incident are operator_note, maintenance_note, and follow_up. These are the exact types defined in the ground truth.",
+          "lookup": [
+            "related_types",
+            "valid_categories"
+          ],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 1403.7,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists the allowed note types as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2242.3
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "The allowed note types for an incident are operator_note, maintenance_note, and follow_up. These are the exact types defined in the ground truth.",
+      "latency_ms": 3646.0,
+      "wall_ms": 3646.8
+    },
+    {
+      "id": "x4",
+      "question": "Which pets are allowed on trains?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [
+        "lesson_002"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The question cannot be answered based on available reference data.",
+          "lookup": [],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 662.0,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer correctly acknowledges that the question is outside the scope of the provided reference data.",
+            "feedback": "Maintain the approach of stating when a question is outside the scope of the reference data. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "PASS",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2331.7
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The question cannot be answered based on available reference data.",
+          "lookup": [],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 663.0,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer correctly acknowledges that the question is outside the scope of the provided reference data.",
+            "feedback": "Maintain the approach of stating when a question is outside the scope of the reference data. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "PASS",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2190.5
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "REVISE",
+      "final_answer": "The question cannot be answered based on available reference data.",
+      "latency_ms": 5847.2,
+      "wall_ms": 5847.7
+    },
+    {
+      "id": "x5",
+      "question": "Is food allowed on light-rail trains?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [
+        "lesson_002"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "No applicable reference fact found. The answer must strictly follow the exact labels and categories from the ground truth, which are not provided here.",
+          "lookup": [],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 1301.1,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer incorrectly states that the answer must follow exact labels from the ground truth, which are not provided.",
+            "feedback": "The answer should state that there is no applicable reference fact found and follow the correct behavior as described in the ground truth. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2775.2
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "No applicable reference fact found. The answer must strictly follow the exact labels and categories from the ground truth, which are not provided here. Only answer questions that the transit incident reference covers.",
+          "lookup": [],
+          "lessons": [
+            "lesson_002"
+          ],
+          "ms": 1738.8,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly identifies that there is no applicable reference fact.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2241.1
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "No applicable reference fact found. The answer must strictly follow the exact labels and categories from the ground truth, which are not provided here. Only answer questions that the transit incident reference covers.",
+      "latency_ms": 8056.2,
+      "wall_ms": 8057.0
+    }
+  ]
+}
