@@ -18,3 +18,7 @@ indent-style = "space"
 # Scripts/tests must put the repo root on sys.path before importing src.*
 "tests/*" = ["E402"]
 "code/*" = ["E402"]
+# HW9: long prompt / log strings (code is formatted by ruff format)
+"code/hw9/*" = ["E402", "E501"]
+"src/hw9_cache/*" = ["E501"]
+"src/hw9_agents/*" = ["E501"]

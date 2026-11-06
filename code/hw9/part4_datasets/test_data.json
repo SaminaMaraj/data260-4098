@@ -1,0 +1,65 @@
+{
+  "description": "Held-out input questions, used once for the final four-variant evaluation. Only questions: no expected answers. 'topic' tells the Evaluator which reference fact to check (out_of_scope = no fact covers it); the Answering Agent never sees it.",
+  "items": [
+    {
+      "id": "te01",
+      "question": "How long must a light-rail suspension be expected to last before staff request replacement buses?",
+      "topic": "bus_bridge"
+    },
+    {
+      "id": "te02",
+      "question": "What is the minimum lateness for a vehicle to count as a delay incident?",
+      "topic": "delay_threshold"
+    },
+    {
+      "id": "te03",
+      "question": "How quickly must riders be alerted once a service suspension is confirmed?",
+      "topic": "rider_alert"
+    },
+    {
+      "id": "te04",
+      "question": "What is the deadline for adding the follow-up note to an incident?",
+      "topic": "follow_up"
+    },
+    {
+      "id": "te05",
+      "question": "How many affected passengers make an incident Severity 1?",
+      "topic": "severity1"
+    },
+    {
+      "id": "te06",
+      "question": "What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?",
+      "topic": "maintenance_ticket"
+    },
+    {
+      "id": "te07",
+      "question": "Which category values can an incident report use?",
+      "topic": "valid_categories"
+    },
+    {
+      "id": "te08",
+      "question": "What is the route code of the VTA Orange Line?",
+      "topic": "route_code_orange"
+    },
+    {
+      "id": "te09",
+      "question": "What happens if an incident is submitted with termsAccepted set to false?",
+      "topic": "terms_rule"
+    },
+    {
+      "id": "te10",
+      "question": "What is the time complexity of binary search?",
+      "topic": "out_of_scope"
+    },
+    {
+      "id": "te11",
+      "question": "Recommend a good movie for tonight.",
+      "topic": "out_of_scope"
+    },
+    {
+      "id": "te12",
+      "question": "How fast may light-rail trains run when the rail temperature is above 120 degrees F?",
+      "topic": "heat_restriction"
+    }
+  ]
+}

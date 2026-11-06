@@ -1,6 +1,6 @@
 {
   "create": {
-    "correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc",
+    "correlation_id": "edc42bd9-82e9-4cb2-b0f1-81c99dce5029",
     "request": {
       "incidentTitle": "Bus collision at Diridon Station",
       "routeLine": "VTA Route 22",
@@ -11,21 +11,21 @@
       "passengersAffected": 18
     },
     "response": {
-      "correlation_id": "18afa51f-be37-4fe7-bfb6-7cf0c78b39dc",
+      "correlation_id": "edc42bd9-82e9-4cb2-b0f1-81c99dce5029",
       "success": true,
       "operation": "CREATE_INCIDENT",
-      "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc",
+      "incident_id": "4e8a0b1e-d6e5-4d6d-8f03-a7e8e8c71d5c",
       "message": "Incident created"
     }
   },
   "get": {
-    "correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1",
+    "correlation_id": "815562a5-83a1-4fdf-97c7-27a35dc71e0a",
     "response": {
-      "correlation_id": "a0ce6fd3-cde6-4c58-9f24-ceefad788bc1",
+      "correlation_id": "815562a5-83a1-4fdf-97c7-27a35dc71e0a",
       "success": true,
       "operation": "GET_INCIDENT",
       "incident": {
-        "incident_id": "2ebed720-7589-4b04-a1d1-977edbf1eafc",
+        "incident_id": "4e8a0b1e-d6e5-4d6d-8f03-a7e8e8c71d5c",
         "incidentTitle": "Bus collision at Diridon Station",
         "routeLine": "VTA Route 22",
         "submitterEmail": "kazisaminamaraj.mumu@sjsu.edu",
@@ -33,7 +33,7 @@
         "category": "collision",
         "termsAccepted": true,
         "passengersAffected": 18,
-        "submissionDate": "2026-10-30T03:30:17+00:00"
+        "submissionDate": "2026-11-03T01:14:42+00:00"
       }
     }
   },

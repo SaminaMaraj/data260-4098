@@ -1,28 +1,28 @@
 {
-  "poison_correlation_id": "bf8a9700-16ad-4d71-ab53-2a78abdc6452",
-  "good_correlation_id": "de2470f0-0a05-4063-9ff2-d7e265de44bc",
-  "partition": 1,
-  "poison_offset": 3,
-  "good_offset": 4,
+  "poison_correlation_id": "58187f57-7534-4776-b072-1c7fb93944a8",
+  "good_correlation_id": "018f22b3-2b05-4838-b877-9029d249538f",
+  "partition": 0,
+  "poison_offset": 94,
+  "good_offset": 95,
   "policy": "dlq",
   "poison_attempts": 3,
   "dead_lettered": true,
   "dead_letter_entry": {
     "partition": 0,
-    "offset": 0,
-    "correlation_id": "bf8a9700-16ad-4d71-ab53-2a78abdc6452",
-    "experiment": "poison-after-210335",
+    "offset": 7,
+    "correlation_id": "58187f57-7534-4776-b072-1c7fb93944a8",
+    "experiment": "poison-after-171540",
     "source_topic": "s4098_tasks",
-    "source_partition": 1,
-    "source_offset": 3,
+    "source_partition": 0,
+    "source_offset": 94,
     "failed_by": "WRITER:writer-1",
     "attempts": 3,
     "error": "PoisonMessage: task has no valid 'plan' object",
-    "original": "{\"correlation_id\": \"bf8a9700-16ad-4d71-ab53-2a78abdc6452\", \"experiment\": \"poison-after-210335\", \"question\": \"?\", \"plan\": \"<<corrupted plan>>\"}",
-    "failed_at": "2026-10-30T04:03:37.790Z"
+    "original": "{\"correlation_id\": \"58187f57-7534-4776-b072-1c7fb93944a8\", \"experiment\": \"poison-after-171540\", \"question\": \"?\", \"plan\": \"<<corrupted plan>>\"}",
+    "failed_at": "2026-11-03T01:15:43.652Z"
   },
   "good_message_processed": true,
   "summary": "poison attempts in 15s window: 3; dead-lettered: True; later good message processed: True",
-  "run_id": "210335",
-  "finished_at": "2026-10-30T04:03:52.862Z"
+  "run_id": "171540",
+  "finished_at": "2026-11-03T01:15:58.741Z"
 }

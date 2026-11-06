@@ -1,0 +1,16 @@
+# HW9: Redis Stack = Redis + the query engine (FT.CREATE / KNN vector search).
+#   docker compose -f docker-compose.hw9.yml up -d
+# Host port 6380 so it does not clash with a plain Redis on 6379 (class demo).
+# RedisInsight UI: http://localhost:8001 (optional, browse the s4098:* keys).
+services:
+  redis:
+    image: redis/redis-stack:7.4.0-v3
+    container_name: s4098-redis
+    ports:
+      - "6380:6379"
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20

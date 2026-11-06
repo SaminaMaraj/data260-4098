@@ -1,0 +1,55 @@
+{
+  "description": "Input questions used while developing the two agents (lessons are mined here). Only questions: no expected answers. 'topic' tells the Evaluator which reference fact to check (out_of_scope = no fact covers it); the Answering Agent never sees it.",
+  "items": [
+    {
+      "id": "tr01",
+      "question": "When should a bus bridge be requested during a light-rail service suspension?",
+      "topic": "bus_bridge"
+    },
+    {
+      "id": "tr02",
+      "question": "How late must a bus be before it is logged as a delay incident?",
+      "topic": "delay_threshold"
+    },
+    {
+      "id": "tr03",
+      "question": "How soon must a maintenance ticket be opened for an infrastructure-issue incident?",
+      "topic": "maintenance_ticket"
+    },
+    {
+      "id": "tr04",
+      "question": "What are the allowed incident categories?",
+      "topic": "valid_categories"
+    },
+    {
+      "id": "tr05",
+      "question": "When is an incident classified as Severity 1?",
+      "topic": "severity1"
+    },
+    {
+      "id": "tr06",
+      "question": "How long are incident records kept?",
+      "topic": "retention"
+    },
+    {
+      "id": "tr07",
+      "question": "What is the best pizza place in San Jose?",
+      "topic": "out_of_scope"
+    },
+    {
+      "id": "tr08",
+      "question": "What speed limit applies to light-rail trains during extreme heat?",
+      "topic": "heat_restriction"
+    },
+    {
+      "id": "tr09",
+      "question": "Which fields are required when submitting a new incident report?",
+      "topic": "required_fields"
+    },
+    {
+      "id": "tr10",
+      "question": "Who won the 2022 FIFA World Cup?",
+      "topic": "out_of_scope"
+    }
+  ]
+}

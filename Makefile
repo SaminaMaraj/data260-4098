@@ -26,3 +26,13 @@ verify-hw08:
 
 test-hw08:
 	@$(PYTHON) tests/test_hw08.py
+
+.PHONY: test-hw09 metrics-hw09
+
+test-hw09:
+	@echo "Kazi Samina Maraj Mumu"
+	@$(PYTHON) tests/test_hw09.py
+
+metrics-hw09:
+	@echo "Kazi Samina Maraj Mumu"
+	@$(PYTHON) code/hw9/build_metrics.py

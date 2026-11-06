@@ -1,0 +1,55 @@
+{
+  "description": "Input questions used only to decide whether a new lesson is kept. Only questions: no expected answers. 'topic' tells the Evaluator which reference fact to check (out_of_scope = no fact covers it); the Answering Agent never sees it.",
+  "items": [
+    {
+      "id": "va01",
+      "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+      "topic": "rider_alert"
+    },
+    {
+      "id": "va02",
+      "question": "How long does staff have to add a follow-up note before an incident can be closed?",
+      "topic": "follow_up"
+    },
+    {
+      "id": "va03",
+      "question": "At what delay length is an incident escalated to Severity 2?",
+      "topic": "delay_escalation"
+    },
+    {
+      "id": "va04",
+      "question": "What format do incident codes use?",
+      "topic": "incident_code_format"
+    },
+    {
+      "id": "va05",
+      "question": "What types of related notes can be attached to an incident?",
+      "topic": "related_types"
+    },
+    {
+      "id": "va06",
+      "question": "What must an operator do right after a collision?",
+      "topic": "collision_procedure"
+    },
+    {
+      "id": "va07",
+      "question": "What is the capital of Australia?",
+      "topic": "out_of_scope"
+    },
+    {
+      "id": "va08",
+      "question": "When must a service suspension be reported to the city transportation department?",
+      "topic": "city_notification"
+    },
+    {
+      "id": "va09",
+      "question": "What value should passengersAffected have when the number of affected passengers is unknown?",
+      "topic": "passengers_rule"
+    },
+    {
+      "id": "va10",
+      "question": "How do I bake sourdough bread?",
+      "topic": "out_of_scope"
+    }
+  ]
+}
