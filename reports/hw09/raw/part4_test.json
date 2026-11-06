@@ -1,0 +1,2327 @@
+{
+  "Baseline": {
+    "summary": {
+      "questions": 12,
+      "correct": 0,
+      "incorrect": 12,
+      "first_attempt_correct": 0,
+      "avg_attempts": 1.0,
+      "avg_latency_ms": 1306.7,
+      "out_of_scope_unsupported": 2
+    },
+    "rows": [
+      {
+        "id": "te01",
+        "question": "How long must a light-rail suspension be expected to last before staff request replacement buses?",
+        "topic": "bus_bridge",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Staff request replacement buses for light-rail suspensions after 24 hours if the issue persists.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1035.3,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth.",
+              "feedback": "The answer should state that replacement buses are requested when the suspension is expected to last more than [value] minutes, not after 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "20",
+                  "twenty"
+                ],
+                [
+                  "minute"
+                ]
+              ],
+              "ms": 2530.7
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "Staff request replacement buses for light-rail suspensions after 24 hours if the issue persists.",
+        "latency_ms": 1035.3,
+        "wall_ms": 3566.1
+      },
+      {
+        "id": "te02",
+        "question": "What is the minimum lateness for a vehicle to count as a delay incident?",
+        "topic": "delay_threshold",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1366.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.",
+              "feedback": "The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2632.8
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.",
+        "latency_ms": 1366.4,
+        "wall_ms": 3999.2
+      },
+      {
+        "id": "te03",
+        "question": "How quickly must riders be alerted once a service suspension is confirmed?",
+        "topic": "rider_alert",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Riders must be alerted within 15 minutes of a service suspension confirmation to ensure timely awareness and minimize disruption.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1165.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth regarding the required time frame for alerting riders.",
+              "feedback": "The answer should specify that riders must be alerted within [value] minutes, not 15 minutes. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2643.9
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "Riders must be alerted within 15 minutes of a service suspension confirmation to ensure timely awareness and minimize disruption.",
+        "latency_ms": 1165.5,
+        "wall_ms": 3809.5
+      },
+      {
+        "id": "te04",
+        "question": "What is the deadline for adding the follow-up note to an incident?",
+        "topic": "follow_up",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1244.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as 24 hours instead of 48 hours.",
+              "feedback": "The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "48",
+                  "forty-eight"
+                ]
+              ],
+              "ms": 2586.4
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.",
+        "latency_ms": 1244.5,
+        "wall_ms": 3831.0
+      },
+      {
+        "id": "te05",
+        "question": "How many affected passengers make an incident Severity 1?",
+        "topic": "severity1",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Severity 1 incidents at s4098 Transit affect up to 100 passengers.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1031.7,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth definition of Severity 1.",
+              "feedback": "The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "200"
+                ]
+              ],
+              "ms": 2916.4
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "Severity 1 incidents at s4098 Transit affect up to 100 passengers.",
+        "latency_ms": 1031.7,
+        "wall_ms": 3948.1
+      },
+      {
+        "id": "te06",
+        "question": "What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?",
+        "topic": "maintenance_ticket",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 24 hours from the time the issue is documented by the reporting party.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1482.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides an incorrect time limit compared to the ground truth.",
+              "feedback": "The Answering Agent should state the correct time limit as [value] hours, not 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "4",
+                  "four"
+                ]
+              ],
+              "ms": 2444.6
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 24 hours from the time the issue is documented by the reporting party.",
+        "latency_ms": 1482.8,
+        "wall_ms": 3927.5
+      },
+      {
+        "id": "te07",
+        "question": "Which category values can an incident report use?",
+        "topic": "valid_categories",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify the nature and impact of the incident.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1693.6,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided categories that do not match the ground truth.",
+              "feedback": "The Answering Agent should use the exact category values specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "delay"
+                ],
+                [
+                  "collision"
+                ],
+                [
+                  "service-suspension",
+                  "service suspension"
+                ],
+                [
+                  "infrastructure-issue",
+                  "infrastructure issue"
+                ]
+              ],
+              "ms": 2659.5
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify the nature and impact of the incident.",
+        "latency_ms": 1693.6,
+        "wall_ms": 4353.2
+      },
+      {
+        "id": "te08",
+        "question": "What is the route code of the VTA Orange Line?",
+        "topic": "route_code_orange",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The VTA Orange Line route code is 10.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 721.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided an incorrect route code for the VTA Orange Line.",
+              "feedback": "Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "RT-002"
+                ]
+              ],
+              "ms": 2192.7
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The VTA Orange Line route code is 10.",
+        "latency_ms": 721.8,
+        "wall_ms": 2914.5
+      },
+      {
+        "id": "te09",
+        "question": "What happens if an incident is submitted with termsAccepted set to false?",
+        "topic": "terms_rule",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1434.9,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth.",
+              "feedback": "The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "reject"
+                ]
+              ],
+              "ms": 2379.0
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.",
+        "latency_ms": 1434.9,
+        "wall_ms": 3813.9
+      },
+      {
+        "id": "te10",
+        "question": "What is the time complexity of binary search?",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1608.1,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides general knowledge not covered by the reference dataset.",
+              "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2353.8
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.",
+        "latency_ms": 1608.1,
+        "wall_ms": 3962.0
+      },
+      {
+        "id": "te11",
+        "question": "Recommend a good movie for tonight.",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "I recommend \"The Midnight Adventure\" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1361.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.",
+              "feedback": "Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2640.9
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "I recommend \"The Midnight Adventure\" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!",
+        "latency_ms": 1361.4,
+        "wall_ms": 4002.3
+      },
+      {
+        "id": "te12",
+        "question": "How fast may light-rail trains run when the rail temperature is above 120 degrees F?",
+        "topic": "heat_restriction",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1534.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing a different maximum speed.",
+              "feedback": "The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "35"
+                ]
+              ],
+              "ms": 2471.3
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+        "latency_ms": 1534.5,
+        "wall_ms": 4005.8
+      }
+    ]
+  },
+  "Evaluator Repair": {
+    "summary": {
+      "questions": 12,
+      "correct": 11,
+      "incorrect": 1,
+      "first_attempt_correct": 0,
+      "avg_attempts": 2.0,
+      "avg_latency_ms": 7714.5,
+      "out_of_scope_unsupported": 0
+    },
+    "rows": [
+      {
+        "id": "te01",
+        "question": "How long must a light-rail suspension be expected to last before staff request replacement buses?",
+        "topic": "bus_bridge",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Staff request replacement buses for light-rail suspensions after 24 hours if the issue persists.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1020.7,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth.",
+              "feedback": "The answer should state that replacement buses are requested when the suspension is expected to last more than [value] minutes, not after 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "20",
+                  "twenty"
+                ],
+                [
+                  "minute"
+                ]
+              ],
+              "ms": 2605.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Replacement buses are requested when a light-rail suspension is expected to last more than 20 minutes.",
+            "lookup": [
+              "bus_bridge",
+              "city_notification"
+            ],
+            "lessons": [],
+            "ms": 1278.9,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the condition under which replacement buses are requested.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2173.6
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Replacement buses are requested when a light-rail suspension is expected to last more than 20 minutes.",
+        "latency_ms": 7078.3,
+        "wall_ms": 7078.4
+      },
+      {
+        "id": "te02",
+        "question": "What is the minimum lateness for a vehicle to count as a delay incident?",
+        "topic": "delay_threshold",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1372.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.",
+              "feedback": "The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2695.8
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+            "lookup": [
+              "delay_threshold"
+            ],
+            "lessons": [],
+            "ms": 1336.2,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the minimum lateness for a delay incident as 10 minutes.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2493.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+        "latency_ms": 7898.7,
+        "wall_ms": 7898.8
+      },
+      {
+        "id": "te03",
+        "question": "How quickly must riders be alerted once a service suspension is confirmed?",
+        "topic": "rider_alert",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Riders must be alerted within 15 minutes of a service suspension confirmation to ensure timely awareness and minimize disruption.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1176.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth regarding the required time frame for alerting riders.",
+              "feedback": "The answer should specify that riders must be alerted within [value] minutes, not 15 minutes. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2619.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Riders must be alerted within 10 minutes of a service suspension confirmation.",
+            "lookup": [
+              "rider_alert",
+              "bus_bridge"
+            ],
+            "lessons": [],
+            "ms": 1107.3,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the required time frame for alerting riders.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2350.7
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Riders must be alerted within 10 minutes of a service suspension confirmation.",
+        "latency_ms": 7253.6,
+        "wall_ms": 7253.7
+      },
+      {
+        "id": "te04",
+        "question": "What is the deadline for adding the follow-up note to an incident?",
+        "topic": "follow_up",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1190.3,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as 24 hours instead of 48 hours.",
+              "feedback": "The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "48",
+                  "forty-eight"
+                ]
+              ],
+              "ms": 2564.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+            "lookup": [
+              "follow_up",
+              "related_types"
+            ],
+            "lessons": [],
+            "ms": 1229.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be within 48 hours of the incident, not after it is closed.",
+              "feedback": "The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check the reference dataset before answering.",
+              "failure_type": "evaluator_flagged",
+              "rule_pass": true,
+              "llm_verdict": "REVISE",
+              "missing_terms": [],
+              "ms": 3932.6
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+        "latency_ms": 8916.8,
+        "wall_ms": 8917.0
+      },
+      {
+        "id": "te05",
+        "question": "How many affected passengers make an incident Severity 1?",
+        "topic": "severity1",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Severity 1 incidents at s4098 Transit affect up to 100 passengers.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1053.3,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth definition of Severity 1.",
+              "feedback": "The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "200"
+                ]
+              ],
+              "ms": 2931.8
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+            "lookup": [
+              "severity1",
+              "passengers_rule"
+            ],
+            "lessons": [],
+            "ms": 1513.8,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2601.4
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+        "latency_ms": 8100.3,
+        "wall_ms": 8100.4
+      },
+      {
+        "id": "te06",
+        "question": "What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?",
+        "topic": "maintenance_ticket",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 24 hours from the time the issue is documented by the reporting party.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1513.3,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides an incorrect time limit compared to the ground truth.",
+              "feedback": "The Answering Agent should state the correct time limit as [value] hours, not 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "4",
+                  "four"
+                ]
+              ],
+              "ms": 2393.5
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours from the time the issue is documented by the reporting party.",
+            "lookup": [
+              "maintenance_ticket"
+            ],
+            "lessons": [],
+            "ms": 1474.6,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the time limit as 4 hours.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2440.4
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours from the time the issue is documented by the reporting party.",
+        "latency_ms": 7821.8,
+        "wall_ms": 7822.0
+      },
+      {
+        "id": "te07",
+        "question": "Which category values can an incident report use?",
+        "topic": "valid_categories",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify the nature and impact of the incident.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1691.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided categories that do not match the ground truth.",
+              "feedback": "The Answering Agent should use the exact category values specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "delay"
+                ],
+                [
+                  "collision"
+                ],
+                [
+                  "service-suspension",
+                  "service suspension"
+                ],
+                [
+                  "infrastructure-issue",
+                  "infrastructure issue"
+                ]
+              ],
+              "ms": 2660.9
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Incident reports must use one of four exact categories: delay, collision, service-suspension, or infrastructure-issue. These values are required for accurate classification and reporting.",
+            "lookup": [
+              "valid_categories",
+              "required_fields"
+            ],
+            "lessons": [],
+            "ms": 1821.7,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly lists all four required category values from the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2480.6
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Incident reports must use one of four exact categories: delay, collision, service-suspension, or infrastructure-issue. These values are required for accurate classification and reporting.",
+        "latency_ms": 8654.6,
+        "wall_ms": 8654.7
+      },
+      {
+        "id": "te08",
+        "question": "What is the route code of the VTA Orange Line?",
+        "topic": "route_code_orange",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The VTA Orange Line route code is 10.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 719.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided an incorrect route code for the VTA Orange Line.",
+              "feedback": "Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "RT-002"
+                ]
+              ],
+              "ms": 2186.7
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The VTA Orange Line route code is RT-002.",
+            "lookup": [
+              "route_code_orange"
+            ],
+            "lessons": [],
+            "ms": 986.6,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the route code of the VTA Orange Line as RT-002.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2729.0
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The VTA Orange Line route code is RT-002.",
+        "latency_ms": 6621.7,
+        "wall_ms": 6621.9
+      },
+      {
+        "id": "te09",
+        "question": "What happens if an incident is submitted with termsAccepted set to false?",
+        "topic": "terms_rule",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1489.2,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth.",
+              "feedback": "The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "reject"
+                ]
+              ],
+              "ms": 2357.0
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+            "lookup": [
+              "terms_rule"
+            ],
+            "lessons": [],
+            "ms": 1119.4,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly reflects the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 1949.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+        "latency_ms": 6915.5,
+        "wall_ms": 6915.7
+      },
+      {
+        "id": "te10",
+        "question": "What is the time complexity of binary search?",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1625.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides general knowledge not covered by the reference dataset.",
+              "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2380.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1239.5,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The Answering Agent correctly identified that the question is outside the reference dataset.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2531.0
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+        "latency_ms": 7775.6,
+        "wall_ms": 7775.7
+      },
+      {
+        "id": "te11",
+        "question": "Recommend a good movie for tonight.",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "I recommend \"The Midnight Adventure\" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1385.9,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.",
+              "feedback": "Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2680.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1220.9,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2345.2
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+        "latency_ms": 7632.6,
+        "wall_ms": 7632.6
+      },
+      {
+        "id": "te12",
+        "question": "How fast may light-rail trains run when the rail temperature is above 120 degrees F?",
+        "topic": "heat_restriction",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1534.1,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing a different maximum speed.",
+              "feedback": "The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "35"
+                ]
+              ],
+              "ms": 2470.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": [
+              "heat_restriction"
+            ],
+            "lessons": [],
+            "ms": 1604.7,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the maximum speed and the condition under which it applies.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2295.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+        "latency_ms": 7904.8,
+        "wall_ms": 7904.9
+      }
+    ]
+  },
+  "Lesson Memory": {
+    "summary": {
+      "questions": 12,
+      "correct": 11,
+      "incorrect": 1,
+      "first_attempt_correct": 4,
+      "avg_attempts": 1.67,
+      "avg_latency_ms": 6236.1,
+      "out_of_scope_unsupported": 0
+    },
+    "rows": [
+      {
+        "id": "te01",
+        "question": "How long must a light-rail suspension be expected to last before staff request replacement buses?",
+        "topic": "bus_bridge",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.",
+            "lookup": [
+              "bus_bridge",
+              "city_notification"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 1146.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly reflects the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 1912.3
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.",
+        "latency_ms": 3058.3,
+        "wall_ms": 3062.8
+      },
+      {
+        "id": "te02",
+        "question": "What is the minimum lateness for a vehicle to count as a delay incident?",
+        "topic": "delay_threshold",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1366.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.",
+              "feedback": "The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2663.7
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+            "lookup": [
+              "delay_threshold"
+            ],
+            "lessons": [],
+            "ms": 1364.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the minimum lateness for a delay incident as 10 minutes.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2375.3
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+        "latency_ms": 7769.0,
+        "wall_ms": 7769.0
+      },
+      {
+        "id": "te03",
+        "question": "How quickly must riders be alerted once a service suspension is confirmed?",
+        "topic": "rider_alert",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minutes.",
+            "lookup": [
+              "rider_alert",
+              "bus_bridge"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 1656.6,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the required 10-minute alert time.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2145.2
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minutes.",
+        "latency_ms": 3801.8,
+        "wall_ms": 3802.2
+      },
+      {
+        "id": "te04",
+        "question": "What is the deadline for adding the follow-up note to an incident?",
+        "topic": "follow_up",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1113.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as 24 hours instead of 48 hours.",
+              "feedback": "The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "48",
+                  "forty-eight"
+                ]
+              ],
+              "ms": 2588.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+            "lookup": [
+              "follow_up",
+              "related_types"
+            ],
+            "lessons": [],
+            "ms": 1214.2,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be within 48 hours of the incident, not after it is closed.",
+              "feedback": "The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check the reference dataset before answering.",
+              "failure_type": "evaluator_flagged",
+              "rule_pass": true,
+              "llm_verdict": "REVISE",
+              "missing_terms": [],
+              "ms": 3782.2
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+        "latency_ms": 8698.0,
+        "wall_ms": 8698.2
+      },
+      {
+        "id": "te05",
+        "question": "How many affected passengers make an incident Severity 1?",
+        "topic": "severity1",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Severity 1 incidents at s4098 Transit affect up to 100 passengers.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 927.2,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth definition of Severity 1.",
+              "feedback": "The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "200"
+                ]
+              ],
+              "ms": 2912.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+            "lookup": [
+              "severity1",
+              "passengers_rule"
+            ],
+            "lessons": [],
+            "ms": 1545.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2609.1
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+        "latency_ms": 7993.4,
+        "wall_ms": 7993.6
+      },
+      {
+        "id": "te06",
+        "question": "What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?",
+        "topic": "maintenance_ticket",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.",
+            "lookup": [
+              "maintenance_ticket"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 1001.8,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the time limit as 4 hours.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2112.3
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.",
+        "latency_ms": 3114.1,
+        "wall_ms": 3115.0
+      },
+      {
+        "id": "te07",
+        "question": "Which category values can an incident report use?",
+        "topic": "valid_categories",
+        "lessons_loaded": [
+          "lesson_002"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined in the ground truth.",
+            "lookup": [
+              "valid_categories",
+              "required_fields"
+            ],
+            "lessons": [
+              "lesson_002"
+            ],
+            "ms": 1866.3,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly lists the four allowed category values as specified in the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2651.3
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined in the ground truth.",
+        "latency_ms": 4517.6,
+        "wall_ms": 4518.5
+      },
+      {
+        "id": "te08",
+        "question": "What is the route code of the VTA Orange Line?",
+        "topic": "route_code_orange",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The VTA Orange Line route code is 10.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 710.1,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided an incorrect route code for the VTA Orange Line.",
+              "feedback": "Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "RT-002"
+                ]
+              ],
+              "ms": 2194.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The VTA Orange Line route code is RT-002.",
+            "lookup": [
+              "route_code_orange"
+            ],
+            "lessons": [],
+            "ms": 974.2,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the route code of the VTA Orange Line as RT-002.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2511.3
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The VTA Orange Line route code is RT-002.",
+        "latency_ms": 6390.2,
+        "wall_ms": 6390.3
+      },
+      {
+        "id": "te09",
+        "question": "What happens if an incident is submitted with termsAccepted set to false?",
+        "topic": "terms_rule",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1393.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth.",
+              "feedback": "The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "reject"
+                ]
+              ],
+              "ms": 2360.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+            "lookup": [
+              "terms_rule"
+            ],
+            "lessons": [],
+            "ms": 1141.1,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly reflects the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 1934.7
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+        "latency_ms": 6829.8,
+        "wall_ms": 6830.0
+      },
+      {
+        "id": "te10",
+        "question": "What is the time complexity of binary search?",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1589.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides general knowledge not covered by the reference dataset.",
+              "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2337.4
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1209.2,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The Answering Agent correctly identified that the question is outside the reference dataset.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2502.8
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+        "latency_ms": 7638.9,
+        "wall_ms": 7639.2
+      },
+      {
+        "id": "te11",
+        "question": "Recommend a good movie for tonight.",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "I recommend \"The Midnight Adventure\" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1336.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.",
+              "feedback": "Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2594.7
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1179.9,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2318.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+        "latency_ms": 7429.5,
+        "wall_ms": 7429.7
+      },
+      {
+        "id": "te12",
+        "question": "How fast may light-rail trains run when the rail temperature is above 120 degrees F?",
+        "topic": "heat_restriction",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1429.5,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing a different maximum speed.",
+              "feedback": "The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "35"
+                ]
+              ],
+              "ms": 2407.2
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": [
+              "heat_restriction"
+            ],
+            "lessons": [],
+            "ms": 1540.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the maximum speed and the condition under which it applies.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2216.3
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+        "latency_ms": 7593.0,
+        "wall_ms": 7593.1
+      }
+    ]
+  },
+  "Validated Improvement": {
+    "summary": {
+      "questions": 12,
+      "correct": 11,
+      "incorrect": 1,
+      "first_attempt_correct": 4,
+      "avg_attempts": 1.67,
+      "avg_latency_ms": 6147.8,
+      "out_of_scope_unsupported": 0
+    },
+    "rows": [
+      {
+        "id": "te01",
+        "question": "How long must a light-rail suspension be expected to last before staff request replacement buses?",
+        "topic": "bus_bridge",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.",
+            "lookup": [
+              "bus_bridge",
+              "city_notification"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 1333.1,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly reflects the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 1863.0
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.",
+        "latency_ms": 3196.1,
+        "wall_ms": 3197.0
+      },
+      {
+        "id": "te02",
+        "question": "What is the minimum lateness for a vehicle to count as a delay incident?",
+        "topic": "delay_threshold",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1337.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.",
+              "feedback": "The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "10",
+                  "ten"
+                ]
+              ],
+              "ms": 2648.2
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+            "lookup": [
+              "delay_threshold"
+            ],
+            "lessons": [],
+            "ms": 1305.2,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the minimum lateness for a delay incident as 10 minutes.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2360.4
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.",
+        "latency_ms": 7650.8,
+        "wall_ms": 7650.9
+      },
+      {
+        "id": "te03",
+        "question": "How quickly must riders be alerted once a service suspension is confirmed?",
+        "topic": "rider_alert",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minutes.",
+            "lookup": [
+              "rider_alert",
+              "bus_bridge"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 1666.4,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the required 10-minute alert time.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2146.5
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minutes.",
+        "latency_ms": 3812.9,
+        "wall_ms": 3814.0
+      },
+      {
+        "id": "te04",
+        "question": "What is the deadline for adding the follow-up note to an incident?",
+        "topic": "follow_up",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1097.6,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as 24 hours instead of 48 hours.",
+              "feedback": "The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "48",
+                  "forty-eight"
+                ]
+              ],
+              "ms": 2480.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+            "lookup": [
+              "follow_up",
+              "related_types"
+            ],
+            "lessons": [],
+            "ms": 1199.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be within 48 hours of the incident, not after it is closed.",
+              "feedback": "The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check the reference dataset before answering.",
+              "failure_type": "evaluator_flagged",
+              "rule_pass": true,
+              "llm_verdict": "REVISE",
+              "missing_terms": [],
+              "ms": 3753.4
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "REVISE",
+        "final_answer": "The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.",
+        "latency_ms": 8530.5,
+        "wall_ms": 8530.7
+      },
+      {
+        "id": "te05",
+        "question": "How many affected passengers make an incident Severity 1?",
+        "topic": "severity1",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Severity 1 incidents at s4098 Transit affect up to 100 passengers.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 924.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth definition of Severity 1.",
+              "feedback": "The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "200"
+                ]
+              ],
+              "ms": 2871.3
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+            "lookup": [
+              "severity1",
+              "passengers_rule"
+            ],
+            "lessons": [],
+            "ms": 1493.5,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2570.1
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.",
+        "latency_ms": 7859.7,
+        "wall_ms": 7859.9
+      },
+      {
+        "id": "te06",
+        "question": "What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?",
+        "topic": "maintenance_ticket",
+        "lessons_loaded": [
+          "lesson_001"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.",
+            "lookup": [
+              "maintenance_ticket"
+            ],
+            "lessons": [
+              "lesson_001"
+            ],
+            "ms": 987.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the time limit as 4 hours.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2094.3
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.",
+        "latency_ms": 3081.3,
+        "wall_ms": 3082.3
+      },
+      {
+        "id": "te07",
+        "question": "Which category values can an incident report use?",
+        "topic": "valid_categories",
+        "lessons_loaded": [
+          "lesson_002"
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined in the ground truth.",
+            "lookup": [
+              "valid_categories",
+              "required_fields"
+            ],
+            "lessons": [
+              "lesson_002"
+            ],
+            "ms": 1509.9,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly lists the four allowed category values as specified in the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2674.6
+            }
+          }
+        ],
+        "n_attempts": 1,
+        "first_result": "PASS",
+        "final_result": "PASS",
+        "final_answer": "The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined in the ground truth.",
+        "latency_ms": 4184.5,
+        "wall_ms": 4185.0
+      },
+      {
+        "id": "te08",
+        "question": "What is the route code of the VTA Orange Line?",
+        "topic": "route_code_orange",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The VTA Orange Line route code is 10.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 694.2,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provided an incorrect route code for the VTA Orange Line.",
+              "feedback": "Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "RT-002"
+                ]
+              ],
+              "ms": 2141.1
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The VTA Orange Line route code is RT-002.",
+            "lookup": [
+              "route_code_orange"
+            ],
+            "lessons": [],
+            "ms": 975.5,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly identifies the route code of the VTA Orange Line as RT-002.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2472.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The VTA Orange Line route code is RT-002.",
+        "latency_ms": 6283.7,
+        "wall_ms": 6283.8
+      },
+      {
+        "id": "te09",
+        "question": "What happens if an incident is submitted with termsAccepted set to false?",
+        "topic": "terms_rule",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1338.0,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer does not align with the ground truth.",
+              "feedback": "The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answering.",
+              "failure_type": "wrong_label",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "reject"
+                ]
+              ],
+              "ms": 2297.9
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+            "lookup": [
+              "terms_rule"
+            ],
+            "lessons": [],
+            "ms": 1094.4,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly reflects the ground truth.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 1898.9
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.",
+        "latency_ms": 6629.2,
+        "wall_ms": 6629.4
+      },
+      {
+        "id": "te10",
+        "question": "What is the time complexity of binary search?",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1589.3,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides general knowledge not covered by the reference dataset.",
+              "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2317.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1214.2,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The Answering Agent correctly identified that the question is outside the reference dataset.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2449.2
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.",
+        "latency_ms": 7570.3,
+        "wall_ms": 7570.5
+      },
+      {
+        "id": "te11",
+        "question": "Recommend a good movie for tonight.",
+        "topic": "out_of_scope",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "I recommend \"The Midnight Adventure\" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1351.4,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.",
+              "feedback": "Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions that the transit incident reference covers.",
+              "failure_type": "unsupported_answer",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "<decline>"
+                ]
+              ],
+              "ms": 2593.6
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+            "lookup": [],
+            "lessons": [],
+            "ms": 1165.8,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2307.6
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!",
+        "latency_ms": 7418.4,
+        "wall_ms": 7418.6
+      },
+      {
+        "id": "te12",
+        "question": "How fast may light-rail trains run when the rail temperature is above 120 degrees F?",
+        "topic": "heat_restriction",
+        "lessons_loaded": [],
+        "attempts": [
+          {
+            "attempt": 1,
+            "answer": "Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": null,
+            "lessons": [],
+            "ms": 1408.8,
+            "evaluation": {
+              "result": "REVISE",
+              "explanation": "The answer contradicts the ground truth by providing a different maximum speed.",
+              "feedback": "The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.",
+              "failure_type": "missing_value",
+              "rule_pass": false,
+              "llm_verdict": "REVISE",
+              "missing_terms": [
+                [
+                  "35"
+                ]
+              ],
+              "ms": 2390.0
+            }
+          },
+          {
+            "attempt": 2,
+            "answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+            "lookup": [
+              "heat_restriction"
+            ],
+            "lessons": [],
+            "ms": 1548.0,
+            "evaluation": {
+              "result": "PASS",
+              "explanation": "The answer correctly states the maximum speed and the condition under which it applies.",
+              "feedback": "",
+              "failure_type": "none",
+              "rule_pass": true,
+              "llm_verdict": "PASS",
+              "missing_terms": [],
+              "ms": 2209.6
+            }
+          }
+        ],
+        "n_attempts": 2,
+        "first_result": "REVISE",
+        "final_result": "PASS",
+        "final_answer": "Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120\u00b0F to ensure safety and prevent track deformation.",
+        "latency_ms": 7556.4,
+        "wall_ms": 7556.7
+      }
+    ]
+  }
+}

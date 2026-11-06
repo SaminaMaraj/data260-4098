@@ -1,0 +1,38 @@
+{
+  "id": "va01",
+  "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+  "topic": "rider_alert",
+  "lessons_loaded": [
+    "lesson_001"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+      "lookup": [
+        "rider_alert",
+        "bus_bridge"
+      ],
+      "lessons": [
+        "lesson_001"
+      ],
+      "ms": 934.0,
+      "evaluation": {
+        "result": "PASS",
+        "explanation": "The answer correctly states the required time frame.",
+        "feedback": "",
+        "failure_type": "none",
+        "rule_pass": true,
+        "llm_verdict": "PASS",
+        "missing_terms": [],
+        "ms": 1973.3
+      }
+    }
+  ],
+  "n_attempts": 1,
+  "first_result": "PASS",
+  "final_result": "PASS",
+  "final_answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+  "latency_ms": 2907.3,
+  "wall_ms": 2908.1
+}

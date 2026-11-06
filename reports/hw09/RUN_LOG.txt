@@ -1,0 +1,1475 @@
+Kazi Samina Maraj Mumu | part1_view_counter.py (Part 1) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+Added column incidents.view_count (INT NOT NULL DEFAULT 0)
+Incident INC-000042 (id=42): Transit Infrastructure Issue Incident 41
+Redis key: s4098:views:incident:42
+
+=== Testing Counter ===
+
+Access #1: Total = 1
+Access #2: Total = 2
+Access #3: Total = 3
+Access #4: Total = 4
+Access #5: Total = 5
+Access #6: Total = 6
+Access #7: Total = 7
+Access #8: Total = 8
+Access #9: Total = 9
+Access #10: Total = 10
+✓ Synced views to database   (UPDATE incidents SET view_count=10 WHERE id=42)
+Access #11: Total = 11
+Access #12: Total = 12
+Access #13: Total = 13
+Access #14: Total = 14
+Access #15: Total = 15
+Access #16: Total = 16
+Access #17: Total = 17
+Access #18: Total = 18
+Access #19: Total = 19
+Access #20: Total = 20
+✓ Synced views to database   (UPDATE incidents SET view_count=20 WHERE id=42)
+Access #21: Total = 21
+Access #22: Total = 22
+Access #23: Total = 23
+Access #24: Total = 24
+Access #25: Total = 25
+
+=== After the run ===
+Redis s4098:views:incident:42 = 25
+s4098_rel incidents.view_count (id=42) = 20
+DB writes: 2 for 25 views
+
+=== Timing: 200 views, Redis path vs DB on every view ===
+Redis INCR (+ DB write every 10th): mean 0.242 ms, p50 0.128 ms
+DB UPDATE + SELECT every view:      mean 1.141 ms, p50 1.112 ms
+
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part1_counter.json
+Kazi Samina Maraj Mumu | part2_semantic_cache.py (Part 2) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+threshold=0.85  embedder=sentence-transformers/all-MiniLM-L6-v2  agent path=inproc  (flushed 0 old cache entries)
+
+--- #01 [new] How many delay incidents were recorded on VTA Route 22?
+2026-11-06T03:51:14.211Z [QA] CACHE MISS best_similarity=0.0000 < 0.85
+2026-11-06T03:51:27.373Z [QA] agent answered in 13124.91 ms; stored s4098:semcache:33a57fe2b033 data_version=276681c63abb; latency=13271.23 ms
+    is_cached=False  similarity=0.0000  latency=13271.2 ms
+    answer: The route code for VTA Route 22 is RT-003, which has 266 recorded delay incidents according to the s4098_rel transit incident database. This matche...
+
+--- #02 [new] Who operates VTA Route 522?
+2026-11-06T03:51:27.590Z [QA] CACHE MISS best_similarity=0.5362 < 0.85
+2026-11-06T03:51:35.786Z [QA] agent answered in 8182.62 ms; stored s4098:semcache:6cfbce391810 data_version=40ea672fa3da; latency=8411.45 ms
+    is_cached=False  similarity=0.5362  latency=8411.5 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated...
+
+--- #03 [exact duplicate of #1] How many delay incidents were recorded on VTA Route 22?
+2026-11-06T03:51:35.907Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="How many delay incidents were recorded on VTA Route 22?" latency=120.9 ms
+    is_cached=True  similarity=1.0000  latency=120.9 ms  matched="How many delay incidents were recorded on VTA Route 22?"
+    answer: The route code for VTA Route 22 is RT-003, which has 266 recorded delay incidents according to the s4098_rel transit incident database. This matche...
+
+--- #04 [paraphrase of #1] What is the number of delay incidents logged for VTA Route 22?
+2026-11-06T03:51:35.982Z [QA] CACHE HIT  similarity=0.9375 >= 0.85 matched="How many delay incidents were recorded on VTA Route 22?" latency=75.22 ms
+    is_cached=True  similarity=0.9375  latency=75.2 ms  matched="How many delay incidents were recorded on VTA Route 22?"
+    answer: The route code for VTA Route 22 is RT-003, which has 266 recorded delay incidents according to the s4098_rel transit incident database. This matche...
+
+--- #05 [new] What category is incident INC-000042?
+2026-11-06T03:51:35.990Z [QA] CACHE MISS best_similarity=0.3087 < 0.85
+2026-11-06T03:51:44.967Z [QA] agent answered in 8970.69 ms; stored s4098:semcache:82d8f17f868f data_version=84d5c63191bb; latency=8984.46 ms
+    is_cached=False  similarity=0.3087  latency=8984.5 ms
+    answer: The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled ...
+
+--- #06 [paraphrase of #2] Which operator runs VTA Route 522?
+2026-11-06T03:51:45.132Z [QA] CACHE HIT  similarity=0.8854 >= 0.85 matched="Who operates VTA Route 522?" latency=165.02 ms
+    is_cached=True  similarity=0.8854  latency=165.0 ms  matched="Who operates VTA Route 522?"
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated...
+
+--- #07 [exact duplicate of #5] What category is incident INC-000042?
+2026-11-06T03:51:45.144Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="What category is incident INC-000042?" latency=12.34 ms
+    is_cached=True  similarity=1.0000  latency=12.3 ms  matched="What category is incident INC-000042?"
+    answer: The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled ...
+
+--- #08 [new] How many incidents in total were recorded on VTA Route 55?
+2026-11-06T03:51:45.281Z [QA] CACHE MISS best_similarity=0.8203 < 0.85
+2026-11-06T03:51:55.525Z [QA] agent answered in 10234.62 ms; stored s4098:semcache:b3d1359a9c20 data_version=d553a0c95c65; latency=10380.25 ms
+    is_cached=False  similarity=0.8203  latency=10380.2 ms
+    answer: The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, ...
+
+--- #09 [paraphrase of #8] What is the total incident count for VTA Route 55?
+2026-11-06T03:51:55.654Z [QA] CACHE HIT  similarity=0.9118 >= 0.85 matched="How many incidents in total were recorded on VTA Route 55?" latency=129.12 ms
+    is_cached=True  similarity=0.9118  latency=129.1 ms  matched="How many incidents in total were recorded on VTA Route 55?"
+    answer: The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, ...
+
+--- #10 [new (unrelated)] What is the capital of Australia?
+2026-11-06T03:51:55.785Z [QA] CACHE MISS best_similarity=0.1320 < 0.85
+2026-11-06T03:52:01.790Z [QA] agent answered in 6000.82 ms; stored s4098:semcache:da36863872e2 data_version=44136fa355b3; latency=6136.12 ms
+    is_cached=False  similarity=0.1320  latency=6136.1 ms
+    answer: The question about the capital of Australia is unrelated to municipal transit incidents. The s4098_rel transit incident database has no record for ...
+
+--- #11 [exact duplicate of #2] Who operates VTA Route 522?
+2026-11-06T03:52:01.952Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=161.76 ms
+    is_cached=True  similarity=1.0000  latency=161.8 ms  matched="Who operates VTA Route 522?"
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated...
+
+--- #12 [paraphrase of #5] Which incident category does INC-000042 belong to?
+2026-11-06T03:52:01.963Z [QA] CACHE HIT  similarity=0.9522 >= 0.85 matched="What category is incident INC-000042?" latency=11.57 ms
+    is_cached=True  similarity=0.9522  latency=11.6 ms  matched="What category is incident INC-000042?"
+    answer: The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled ...
+
+=== Summary table ===
+  # kind                     is_cached similarity  latency ms
+  1 new                      False         0.0000     13271.2
+  2 new                      False         0.5362      8411.5
+  3 exact duplicate of #1    True          1.0000       120.9
+  4 paraphrase of #1         True          0.9375        75.2
+  5 new                      False         0.3087      8984.5
+  6 paraphrase of #2         True          0.8854       165.0
+  7 exact duplicate of #5    True          1.0000        12.3
+  8 new                      False         0.8203     10380.2
+  9 paraphrase of #8         True          0.9118       129.1
+ 10 new (unrelated)          False         0.1320      6136.1
+ 11 exact duplicate of #2    True          1.0000       161.8
+ 12 paraphrase of #5         True          0.9522        11.6
+
+Cache hit rate: 7/12 = 58.3%
+Average latency cached:     96.56 ms (7 queries)
+Average latency non-cached: 9436.7 ms (5 queries)
+Observed ratio non-cached / cached: 97.7x
+
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part2_results.json
+Kazi Samina Maraj Mumu | part3_threshold_sweep.py (Part 3.2) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+2026-11-06T03:56:37.606Z [SWEEP] producing the 10 seed answers with the HW8 agent path (one time)
+2026-11-06T03:56:47.138Z [SWEEP] seed S01 answered in 9509.55 ms
+2026-11-06T03:56:55.817Z [SWEEP] seed S02 answered in 8673.53 ms
+2026-11-06T03:57:03.838Z [SWEEP] seed S03 answered in 8017.68 ms
+2026-11-06T03:57:12.306Z [SWEEP] seed S04 answered in 8464.93 ms
+2026-11-06T03:57:22.688Z [SWEEP] seed S05 answered in 10375.82 ms
+2026-11-06T03:57:32.119Z [SWEEP] seed S06 answered in 9423.35 ms
+2026-11-06T03:57:43.358Z [SWEEP] seed S07 answered in 11235.97 ms
+2026-11-06T03:57:52.670Z [SWEEP] seed S08 answered in 9302.48 ms
+2026-11-06T03:57:58.979Z [SWEEP] seed S09 answered in 6305.74 ms
+2026-11-06T03:58:06.414Z [SWEEP] seed S10 answered in 7433.72 ms
+2026-11-06T03:58:06.769Z [SWEEP] threshold=0.75: cache emptied and 10 seeds stored
+2026-11-06T03:58:06.788Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="How many delay incidents were recorded on VTA Route 22?" latency=18.47 ms
+2026-11-06T03:58:06.791Z [SWEEP] C01 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S01 -> correct_hit (18 ms)
+2026-11-06T03:58:06.801Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="What is the route code for the VTA Green Line?" latency=9.8 ms
+2026-11-06T03:58:06.801Z [SWEEP] C02 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S02 -> correct_hit (10 ms)
+2026-11-06T03:58:06.815Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="Who operates VTA Route 522?" latency=14.07 ms
+2026-11-06T03:58:06.816Z [SWEEP] C03 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S03 -> correct_hit (14 ms)
+2026-11-06T03:58:06.823Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="What category is incident INC-000042?" latency=7.14 ms
+2026-11-06T03:58:06.824Z [SWEEP] C04 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S04 -> correct_hit (7 ms)
+2026-11-06T03:58:06.833Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="How many collision incidents have been reported across all routes?" latency=8.95 ms
+2026-11-06T03:58:06.836Z [SWEEP] C05 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S05 -> correct_hit (9 ms)
+2026-11-06T03:58:06.844Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=8.58 ms
+2026-11-06T03:58:06.846Z [SWEEP] C06 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S06 -> correct_hit (9 ms)
+2026-11-06T03:58:06.854Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="Which route line was incident INC-000122 reported on?" latency=7.69 ms
+2026-11-06T03:58:06.855Z [SWEEP] C07 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S07 -> correct_hit (8 ms)
+2026-11-06T03:58:06.863Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="How many incidents in total were recorded on VTA Route 55?" latency=8.43 ms
+2026-11-06T03:58:06.865Z [SWEEP] C08 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S08 -> correct_hit (8 ms)
+2026-11-06T03:58:06.873Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="What is the title of incident INC-000250?" latency=8.13 ms
+2026-11-06T03:58:06.874Z [SWEEP] C09 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S09 -> correct_hit (8 ms)
+2026-11-06T03:58:06.882Z [QA] CACHE HIT  similarity=1.0000 >= 0.75 matched="Which route has the route code RT-001?" latency=8.15 ms
+2026-11-06T03:58:06.883Z [SWEEP] C10 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S10 -> correct_hit (8 ms)
+2026-11-06T03:58:06.897Z [QA] CACHE HIT  similarity=0.9375 >= 0.75 matched="How many delay incidents were recorded on VTA Route 22?" latency=13.82 ms
+2026-11-06T03:58:06.899Z [SWEEP] C11 paraphrase        expected=hit  is_cached=True  sim=0.9375 nearest=S01 -> correct_hit (14 ms)
+2026-11-06T03:58:06.907Z [QA] CACHE HIT  similarity=0.9606 >= 0.75 matched="What is the route code for the VTA Green Line?" latency=8.53 ms
+2026-11-06T03:58:06.908Z [SWEEP] C12 paraphrase        expected=hit  is_cached=True  sim=0.9606 nearest=S02 -> correct_hit (9 ms)
+2026-11-06T03:58:06.917Z [QA] CACHE HIT  similarity=0.8854 >= 0.75 matched="Who operates VTA Route 522?" latency=9.14 ms
+2026-11-06T03:58:06.918Z [SWEEP] C13 paraphrase        expected=hit  is_cached=True  sim=0.8854 nearest=S03 -> correct_hit (9 ms)
+2026-11-06T03:58:06.928Z [QA] CACHE HIT  similarity=0.9522 >= 0.75 matched="What category is incident INC-000042?" latency=9.37 ms
+2026-11-06T03:58:06.929Z [SWEEP] C14 paraphrase        expected=hit  is_cached=True  sim=0.9522 nearest=S04 -> correct_hit (9 ms)
+2026-11-06T03:58:06.941Z [QA] CACHE HIT  similarity=0.8779 >= 0.75 matched="How many collision incidents have been reported across all routes?" latency=12.29 ms
+2026-11-06T03:58:06.944Z [SWEEP] C15 paraphrase        expected=hit  is_cached=True  sim=0.8779 nearest=S05 -> correct_hit (12 ms)
+2026-11-06T03:58:06.955Z [QA] CACHE HIT  similarity=0.9314 >= 0.75 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=11.68 ms
+2026-11-06T03:58:06.957Z [SWEEP] C16 paraphrase        expected=hit  is_cached=True  sim=0.9314 nearest=S06 -> correct_hit (12 ms)
+2026-11-06T03:58:06.973Z [QA] CACHE HIT  similarity=0.8751 >= 0.75 matched="Which route line was incident INC-000122 reported on?" latency=15.49 ms
+2026-11-06T03:58:06.974Z [SWEEP] C17 paraphrase        expected=hit  is_cached=True  sim=0.8751 nearest=S07 -> correct_hit (15 ms)
+2026-11-06T03:58:06.986Z [QA] CACHE HIT  similarity=0.9118 >= 0.75 matched="How many incidents in total were recorded on VTA Route 55?" latency=11.58 ms
+2026-11-06T03:58:06.988Z [SWEEP] C18 paraphrase        expected=hit  is_cached=True  sim=0.9118 nearest=S08 -> correct_hit (12 ms)
+2026-11-06T03:58:06.997Z [QA] CACHE HIT  similarity=0.9683 >= 0.75 matched="What is the title of incident INC-000250?" latency=9.3 ms
+2026-11-06T03:58:06.998Z [SWEEP] C19 paraphrase        expected=hit  is_cached=True  sim=0.9683 nearest=S09 -> correct_hit (9 ms)
+2026-11-06T03:58:07.009Z [QA] CACHE HIT  similarity=0.9343 >= 0.75 matched="Which route has the route code RT-001?" latency=10.51 ms
+2026-11-06T03:58:07.010Z [SWEEP] C20 paraphrase        expected=hit  is_cached=True  sim=0.9343 nearest=S10 -> correct_hit (11 ms)
+2026-11-06T03:58:07.028Z [QA] CACHE HIT  similarity=0.8533 >= 0.75 matched="How many incidents in total were recorded on VTA Route 55?" latency=17.46 ms
+2026-11-06T03:58:07.031Z [SWEEP] C21 similar_different expected=miss is_cached=True  sim=0.8533 nearest=S08 -> false_hit (17 ms)
+2026-11-06T03:58:07.042Z [QA] CACHE HIT  similarity=0.9162 >= 0.75 matched="What is the route code for the VTA Green Line?" latency=11.53 ms
+2026-11-06T03:58:07.043Z [SWEEP] C22 similar_different expected=miss is_cached=True  sim=0.9162 nearest=S02 -> false_hit (12 ms)
+2026-11-06T03:58:07.056Z [QA] CACHE HIT  similarity=0.7546 >= 0.75 matched="Who operates VTA Route 522?" latency=12.58 ms
+2026-11-06T03:58:07.059Z [SWEEP] C23 similar_different expected=miss is_cached=True  sim=0.7546 nearest=S03 -> false_hit (13 ms)
+2026-11-06T03:58:07.072Z [QA] CACHE HIT  similarity=0.9811 >= 0.75 matched="What category is incident INC-000042?" latency=13.4 ms
+2026-11-06T03:58:07.074Z [SWEEP] C24 similar_different expected=miss is_cached=True  sim=0.9811 nearest=S04 -> false_hit (13 ms)
+2026-11-06T03:58:07.091Z [QA] CACHE HIT  similarity=0.7512 >= 0.75 matched="How many collision incidents have been reported across all routes?" latency=17.54 ms
+2026-11-06T03:58:07.095Z [SWEEP] C25 similar_different expected=miss is_cached=True  sim=0.7512 nearest=S05 -> false_hit (18 ms)
+2026-11-06T03:58:07.111Z [QA] CACHE HIT  similarity=0.9058 >= 0.75 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=16.58 ms
+2026-11-06T03:58:07.115Z [SWEEP] C26 similar_different expected=miss is_cached=True  sim=0.9058 nearest=S06 -> false_hit (17 ms)
+2026-11-06T03:58:07.131Z [QA] CACHE HIT  similarity=0.9878 >= 0.75 matched="Which route line was incident INC-000122 reported on?" latency=16.21 ms
+2026-11-06T03:58:07.132Z [SWEEP] C27 similar_different expected=miss is_cached=True  sim=0.9878 nearest=S07 -> false_hit (16 ms)
+2026-11-06T03:58:07.150Z [QA] CACHE HIT  similarity=0.9130 >= 0.75 matched="How many incidents in total were recorded on VTA Route 55?" latency=17.81 ms
+2026-11-06T03:58:07.154Z [SWEEP] C28 similar_different expected=miss is_cached=True  sim=0.9130 nearest=S08 -> false_hit (18 ms)
+2026-11-06T03:58:07.169Z [QA] CACHE HIT  similarity=0.9898 >= 0.75 matched="What is the title of incident INC-000250?" latency=15.5 ms
+2026-11-06T03:58:07.171Z [SWEEP] C29 similar_different expected=miss is_cached=True  sim=0.9898 nearest=S09 -> false_hit (16 ms)
+2026-11-06T03:58:07.186Z [QA] CACHE HIT  similarity=0.9384 >= 0.75 matched="Which route has the route code RT-001?" latency=15.26 ms
+2026-11-06T03:58:07.187Z [SWEEP] C30 similar_different expected=miss is_cached=True  sim=0.9384 nearest=S10 -> false_hit (15 ms)
+2026-11-06T03:58:07.209Z [QA] CACHE MISS best_similarity=0.1503 < 0.75
+2026-11-06T03:58:13.222Z [QA] agent answered in 6011.08 ms; not stored (read-only run); latency=6034.53 ms
+2026-11-06T03:58:13.223Z [SWEEP] C31 unrelated         expected=miss is_cached=False sim=0.1503 nearest=S02 -> correct_miss (6035 ms)
+2026-11-06T03:58:13.285Z [QA] CACHE MISS best_similarity=0.1057 < 0.75
+2026-11-06T03:58:24.106Z [QA] agent answered in 10819.88 ms; not stored (read-only run); latency=10882.4 ms
+2026-11-06T03:58:24.108Z [SWEEP] C32 unrelated         expected=miss is_cached=False sim=0.1057 nearest=S10 -> correct_miss (10882 ms)
+2026-11-06T03:58:24.247Z [QA] CACHE MISS best_similarity=0.2496 < 0.75
+2026-11-06T03:58:33.683Z [QA] agent answered in 9434.55 ms; not stored (read-only run); latency=9574.57 ms
+2026-11-06T03:58:33.686Z [SWEEP] C33 unrelated         expected=miss is_cached=False sim=0.2496 nearest=S02 -> correct_miss (9575 ms)
+2026-11-06T03:58:33.775Z [QA] CACHE MISS best_similarity=0.1996 < 0.75
+2026-11-06T03:58:43.249Z [QA] agent answered in 9471.89 ms; not stored (read-only run); latency=9563.13 ms
+2026-11-06T03:58:43.251Z [SWEEP] C34 unrelated         expected=miss is_cached=False sim=0.1996 nearest=S04 -> correct_miss (9563 ms)
+2026-11-06T03:58:43.339Z [QA] CACHE MISS best_similarity=0.4977 < 0.75
+2026-11-06T03:58:49.838Z [QA] agent answered in 6498.07 ms; not stored (read-only run); latency=6586.74 ms
+2026-11-06T03:58:49.841Z [SWEEP] C35 unrelated         expected=miss is_cached=False sim=0.4977 nearest=S03 -> correct_miss (6587 ms)
+2026-11-06T03:58:49.896Z [QA] CACHE MISS best_similarity=0.1677 < 0.75
+2026-11-06T03:58:58.531Z [QA] agent answered in 8634.66 ms; not stored (read-only run); latency=8690.53 ms
+2026-11-06T03:58:58.532Z [SWEEP] C36 unrelated         expected=miss is_cached=False sim=0.1677 nearest=S09 -> correct_miss (8691 ms)
+2026-11-06T03:58:58.575Z [QA] CACHE MISS best_similarity=0.1610 < 0.75
+2026-11-06T03:59:07.413Z [QA] agent answered in 8837.37 ms; not stored (read-only run); latency=8881.23 ms
+2026-11-06T03:59:07.415Z [SWEEP] C37 unrelated         expected=miss is_cached=False sim=0.1610 nearest=S10 -> correct_miss (8881 ms)
+2026-11-06T03:59:07.517Z [QA] CACHE MISS best_similarity=0.0293 < 0.75
+2026-11-06T03:59:16.616Z [QA] agent answered in 9097.84 ms; not stored (read-only run); latency=9200.77 ms
+2026-11-06T03:59:16.618Z [SWEEP] C38 unrelated         expected=miss is_cached=False sim=0.0293 nearest=S08 -> correct_miss (9201 ms)
+2026-11-06T03:59:16.727Z [QA] CACHE MISS best_similarity=0.1037 < 0.75
+2026-11-06T03:59:23.623Z [QA] agent answered in 6894.95 ms; not stored (read-only run); latency=7004.29 ms
+2026-11-06T03:59:23.626Z [SWEEP] C39 unrelated         expected=miss is_cached=False sim=0.1037 nearest=S02 -> correct_miss (7004 ms)
+2026-11-06T03:59:23.685Z [QA] CACHE MISS best_similarity=0.2355 < 0.75
+2026-11-06T03:59:29.555Z [QA] agent answered in 5869.03 ms; not stored (read-only run); latency=5929.56 ms
+2026-11-06T03:59:29.557Z [SWEEP] C40 unrelated         expected=miss is_cached=False sim=0.2355 nearest=S02 -> correct_miss (5930 ms)
+2026-11-06T03:59:29.560Z [SWEEP] saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_sweep_0.75.json
+2026-11-06T03:59:29.693Z [SWEEP] threshold=0.8: cache emptied and 10 seeds stored
+2026-11-06T03:59:29.709Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="How many delay incidents were recorded on VTA Route 22?" latency=15.54 ms
+2026-11-06T03:59:29.711Z [SWEEP] C01 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S01 -> correct_hit (16 ms)
+2026-11-06T03:59:29.718Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="What is the route code for the VTA Green Line?" latency=6.83 ms
+2026-11-06T03:59:29.719Z [SWEEP] C02 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S02 -> correct_hit (7 ms)
+2026-11-06T03:59:29.726Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="Who operates VTA Route 522?" latency=6.8 ms
+2026-11-06T03:59:29.727Z [SWEEP] C03 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S03 -> correct_hit (7 ms)
+2026-11-06T03:59:29.735Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="What category is incident INC-000042?" latency=8.15 ms
+2026-11-06T03:59:29.736Z [SWEEP] C04 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S04 -> correct_hit (8 ms)
+2026-11-06T03:59:29.753Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="How many collision incidents have been reported across all routes?" latency=16.63 ms
+2026-11-06T03:59:29.757Z [SWEEP] C05 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S05 -> correct_hit (17 ms)
+2026-11-06T03:59:29.766Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=9.36 ms
+2026-11-06T03:59:29.769Z [SWEEP] C06 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S06 -> correct_hit (9 ms)
+2026-11-06T03:59:29.777Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="Which route line was incident INC-000122 reported on?" latency=7.89 ms
+2026-11-06T03:59:29.778Z [SWEEP] C07 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S07 -> correct_hit (8 ms)
+2026-11-06T03:59:29.788Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="How many incidents in total were recorded on VTA Route 55?" latency=9.86 ms
+2026-11-06T03:59:29.791Z [SWEEP] C08 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S08 -> correct_hit (10 ms)
+2026-11-06T03:59:29.799Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="What is the title of incident INC-000250?" latency=8.23 ms
+2026-11-06T03:59:29.800Z [SWEEP] C09 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S09 -> correct_hit (8 ms)
+2026-11-06T03:59:29.808Z [QA] CACHE HIT  similarity=1.0000 >= 0.8 matched="Which route has the route code RT-001?" latency=7.98 ms
+2026-11-06T03:59:29.809Z [SWEEP] C10 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S10 -> correct_hit (8 ms)
+2026-11-06T03:59:29.818Z [QA] CACHE HIT  similarity=0.9375 >= 0.8 matched="How many delay incidents were recorded on VTA Route 22?" latency=9.25 ms
+2026-11-06T03:59:29.821Z [SWEEP] C11 paraphrase        expected=hit  is_cached=True  sim=0.9375 nearest=S01 -> correct_hit (9 ms)
+2026-11-06T03:59:29.829Z [QA] CACHE HIT  similarity=0.9606 >= 0.8 matched="What is the route code for the VTA Green Line?" latency=7.5 ms
+2026-11-06T03:59:29.829Z [SWEEP] C12 paraphrase        expected=hit  is_cached=True  sim=0.9606 nearest=S02 -> correct_hit (8 ms)
+2026-11-06T03:59:29.837Z [QA] CACHE HIT  similarity=0.8854 >= 0.8 matched="Who operates VTA Route 522?" latency=7.42 ms
+2026-11-06T03:59:29.838Z [SWEEP] C13 paraphrase        expected=hit  is_cached=True  sim=0.8854 nearest=S03 -> correct_hit (7 ms)
+2026-11-06T03:59:29.845Z [QA] CACHE HIT  similarity=0.9522 >= 0.8 matched="What category is incident INC-000042?" latency=7.47 ms
+2026-11-06T03:59:29.847Z [SWEEP] C14 paraphrase        expected=hit  is_cached=True  sim=0.9522 nearest=S04 -> correct_hit (7 ms)
+2026-11-06T03:59:29.858Z [QA] CACHE HIT  similarity=0.8779 >= 0.8 matched="How many collision incidents have been reported across all routes?" latency=10.83 ms
+2026-11-06T03:59:29.861Z [SWEEP] C15 paraphrase        expected=hit  is_cached=True  sim=0.8779 nearest=S05 -> correct_hit (11 ms)
+2026-11-06T03:59:29.869Z [QA] CACHE HIT  similarity=0.9314 >= 0.8 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=8.94 ms
+2026-11-06T03:59:29.872Z [SWEEP] C16 paraphrase        expected=hit  is_cached=True  sim=0.9314 nearest=S06 -> correct_hit (9 ms)
+2026-11-06T03:59:29.883Z [QA] CACHE HIT  similarity=0.8751 >= 0.8 matched="Which route line was incident INC-000122 reported on?" latency=10.71 ms
+2026-11-06T03:59:29.884Z [SWEEP] C17 paraphrase        expected=hit  is_cached=True  sim=0.8751 nearest=S07 -> correct_hit (11 ms)
+2026-11-06T03:59:29.893Z [QA] CACHE HIT  similarity=0.9118 >= 0.8 matched="How many incidents in total were recorded on VTA Route 55?" latency=9.41 ms
+2026-11-06T03:59:29.896Z [SWEEP] C18 paraphrase        expected=hit  is_cached=True  sim=0.9118 nearest=S08 -> correct_hit (9 ms)
+2026-11-06T03:59:29.903Z [QA] CACHE HIT  similarity=0.9683 >= 0.8 matched="What is the title of incident INC-000250?" latency=7.48 ms
+2026-11-06T03:59:29.904Z [SWEEP] C19 paraphrase        expected=hit  is_cached=True  sim=0.9683 nearest=S09 -> correct_hit (7 ms)
+2026-11-06T03:59:29.911Z [QA] CACHE HIT  similarity=0.9343 >= 0.8 matched="Which route has the route code RT-001?" latency=7.2 ms
+2026-11-06T03:59:29.912Z [SWEEP] C20 paraphrase        expected=hit  is_cached=True  sim=0.9343 nearest=S10 -> correct_hit (7 ms)
+2026-11-06T03:59:29.922Z [QA] CACHE HIT  similarity=0.8533 >= 0.8 matched="How many incidents in total were recorded on VTA Route 55?" latency=9.71 ms
+2026-11-06T03:59:29.925Z [SWEEP] C21 similar_different expected=miss is_cached=True  sim=0.8533 nearest=S08 -> false_hit (10 ms)
+2026-11-06T03:59:29.933Z [QA] CACHE HIT  similarity=0.9162 >= 0.8 matched="What is the route code for the VTA Green Line?" latency=8.39 ms
+2026-11-06T03:59:29.934Z [SWEEP] C22 similar_different expected=miss is_cached=True  sim=0.9162 nearest=S02 -> false_hit (8 ms)
+2026-11-06T03:59:29.941Z [QA] CACHE MISS best_similarity=0.7546 < 0.8
+2026-11-06T03:59:39.092Z [QA] agent answered in 9148.25 ms; not stored (read-only run); latency=9158.03 ms
+2026-11-06T03:59:39.097Z [SWEEP] C23 similar_different expected=miss is_cached=False sim=0.7546 nearest=S03 -> correct_miss (9158 ms)
+2026-11-06T03:59:39.178Z [QA] CACHE HIT  similarity=0.9811 >= 0.8 matched="What category is incident INC-000042?" latency=81.39 ms
+2026-11-06T03:59:39.179Z [SWEEP] C24 similar_different expected=miss is_cached=True  sim=0.9811 nearest=S04 -> false_hit (81 ms)
+2026-11-06T03:59:39.187Z [QA] CACHE MISS best_similarity=0.7512 < 0.8
+2026-11-06T03:59:49.921Z [QA] agent answered in 10730.88 ms; not stored (read-only run); latency=10741.56 ms
+2026-11-06T03:59:49.926Z [SWEEP] C25 similar_different expected=miss is_cached=False sim=0.7512 nearest=S05 -> correct_miss (10742 ms)
+2026-11-06T03:59:50.031Z [QA] CACHE HIT  similarity=0.9058 >= 0.8 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=104.08 ms
+2026-11-06T03:59:50.033Z [SWEEP] C26 similar_different expected=miss is_cached=True  sim=0.9058 nearest=S06 -> false_hit (104 ms)
+2026-11-06T03:59:50.042Z [QA] CACHE HIT  similarity=0.9878 >= 0.8 matched="Which route line was incident INC-000122 reported on?" latency=8.44 ms
+2026-11-06T03:59:50.043Z [SWEEP] C27 similar_different expected=miss is_cached=True  sim=0.9878 nearest=S07 -> false_hit (8 ms)
+2026-11-06T03:59:50.053Z [QA] CACHE HIT  similarity=0.9130 >= 0.8 matched="How many incidents in total were recorded on VTA Route 55?" latency=10.3 ms
+2026-11-06T03:59:50.056Z [SWEEP] C28 similar_different expected=miss is_cached=True  sim=0.9130 nearest=S08 -> false_hit (10 ms)
+2026-11-06T03:59:50.065Z [QA] CACHE HIT  similarity=0.9898 >= 0.8 matched="What is the title of incident INC-000250?" latency=8.43 ms
+2026-11-06T03:59:50.066Z [SWEEP] C29 similar_different expected=miss is_cached=True  sim=0.9898 nearest=S09 -> false_hit (8 ms)
+2026-11-06T03:59:50.074Z [QA] CACHE HIT  similarity=0.9384 >= 0.8 matched="Which route has the route code RT-001?" latency=8.66 ms
+2026-11-06T03:59:50.076Z [SWEEP] C30 similar_different expected=miss is_cached=True  sim=0.9384 nearest=S10 -> false_hit (9 ms)
+2026-11-06T03:59:50.085Z [QA] CACHE MISS best_similarity=0.1503 < 0.8
+2026-11-06T03:59:56.537Z [QA] agent answered in 6451.1 ms; not stored (read-only run); latency=6461.77 ms
+2026-11-06T03:59:56.539Z [SWEEP] C31 unrelated         expected=miss is_cached=False sim=0.1503 nearest=S02 -> correct_miss (6462 ms)
+2026-11-06T03:59:56.602Z [QA] CACHE MISS best_similarity=0.1057 < 0.8
+2026-11-06T04:00:06.566Z [QA] agent answered in 9962.77 ms; not stored (read-only run); latency=10026.81 ms
+2026-11-06T04:00:06.570Z [SWEEP] C32 unrelated         expected=miss is_cached=False sim=0.1057 nearest=S10 -> correct_miss (10027 ms)
+2026-11-06T04:00:06.803Z [QA] CACHE MISS best_similarity=0.2496 < 0.8
+2026-11-06T04:00:15.119Z [QA] agent answered in 8314.51 ms; not stored (read-only run); latency=8549.26 ms
+2026-11-06T04:00:15.120Z [SWEEP] C33 unrelated         expected=miss is_cached=False sim=0.2496 nearest=S02 -> correct_miss (8549 ms)
+2026-11-06T04:00:15.218Z [QA] CACHE MISS best_similarity=0.1996 < 0.8
+2026-11-06T04:00:24.442Z [QA] agent answered in 9222.96 ms; not stored (read-only run); latency=9321.22 ms
+2026-11-06T04:00:24.443Z [SWEEP] C34 unrelated         expected=miss is_cached=False sim=0.1996 nearest=S04 -> correct_miss (9321 ms)
+2026-11-06T04:00:24.559Z [QA] CACHE MISS best_similarity=0.4977 < 0.8
+2026-11-06T04:00:31.068Z [QA] agent answered in 6506.62 ms; not stored (read-only run); latency=6624.71 ms
+2026-11-06T04:00:31.070Z [SWEEP] C35 unrelated         expected=miss is_cached=False sim=0.4977 nearest=S03 -> correct_miss (6625 ms)
+2026-11-06T04:00:31.180Z [QA] CACHE MISS best_similarity=0.1677 < 0.8
+2026-11-06T04:00:39.675Z [QA] agent answered in 8494.23 ms; not stored (read-only run); latency=8605.19 ms
+2026-11-06T04:00:39.677Z [SWEEP] C36 unrelated         expected=miss is_cached=False sim=0.1677 nearest=S09 -> correct_miss (8605 ms)
+2026-11-06T04:00:39.766Z [QA] CACHE MISS best_similarity=0.1610 < 0.8
+2026-11-06T04:00:48.639Z [QA] agent answered in 8869.74 ms; not stored (read-only run); latency=8961.5 ms
+2026-11-06T04:00:48.641Z [SWEEP] C37 unrelated         expected=miss is_cached=False sim=0.1610 nearest=S10 -> correct_miss (8962 ms)
+2026-11-06T04:00:48.870Z [QA] CACHE MISS best_similarity=0.0293 < 0.8
+2026-11-06T04:00:57.556Z [QA] agent answered in 8679.18 ms; not stored (read-only run); latency=8914.48 ms
+2026-11-06T04:00:57.557Z [SWEEP] C38 unrelated         expected=miss is_cached=False sim=0.0293 nearest=S08 -> correct_miss (8914 ms)
+2026-11-06T04:00:57.602Z [QA] CACHE MISS best_similarity=0.1037 < 0.8
+2026-11-06T04:01:04.961Z [QA] agent answered in 7354.92 ms; not stored (read-only run); latency=7403.67 ms
+2026-11-06T04:01:04.963Z [SWEEP] C39 unrelated         expected=miss is_cached=False sim=0.1037 nearest=S02 -> correct_miss (7404 ms)
+2026-11-06T04:01:05.129Z [QA] CACHE MISS best_similarity=0.2355 < 0.8
+2026-11-06T04:01:10.999Z [QA] agent answered in 5867.43 ms; not stored (read-only run); latency=6035.25 ms
+2026-11-06T04:01:11.001Z [SWEEP] C40 unrelated         expected=miss is_cached=False sim=0.2355 nearest=S02 -> correct_miss (6035 ms)
+2026-11-06T04:01:11.005Z [SWEEP] saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_sweep_0.80.json
+2026-11-06T04:01:11.220Z [SWEEP] threshold=0.85: cache emptied and 10 seeds stored
+2026-11-06T04:01:11.243Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="How many delay incidents were recorded on VTA Route 22?" latency=22.76 ms
+2026-11-06T04:01:11.246Z [SWEEP] C01 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S01 -> correct_hit (23 ms)
+2026-11-06T04:01:11.262Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="What is the route code for the VTA Green Line?" latency=15.82 ms
+2026-11-06T04:01:11.264Z [SWEEP] C02 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S02 -> correct_hit (16 ms)
+2026-11-06T04:01:11.283Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=19.01 ms
+2026-11-06T04:01:11.284Z [SWEEP] C03 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S03 -> correct_hit (19 ms)
+2026-11-06T04:01:11.301Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="What category is incident INC-000042?" latency=16.93 ms
+2026-11-06T04:01:11.304Z [SWEEP] C04 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S04 -> correct_hit (17 ms)
+2026-11-06T04:01:11.326Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="How many collision incidents have been reported across all routes?" latency=22.83 ms
+2026-11-06T04:01:11.332Z [SWEEP] C05 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S05 -> correct_hit (23 ms)
+2026-11-06T04:01:11.354Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=22.75 ms
+2026-11-06T04:01:11.359Z [SWEEP] C06 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S06 -> correct_hit (23 ms)
+2026-11-06T04:01:11.371Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Which route line was incident INC-000122 reported on?" latency=11.7 ms
+2026-11-06T04:01:11.372Z [SWEEP] C07 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S07 -> correct_hit (12 ms)
+2026-11-06T04:01:11.389Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="How many incidents in total were recorded on VTA Route 55?" latency=16.72 ms
+2026-11-06T04:01:11.393Z [SWEEP] C08 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S08 -> correct_hit (17 ms)
+2026-11-06T04:01:11.404Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="What is the title of incident INC-000250?" latency=11.49 ms
+2026-11-06T04:01:11.405Z [SWEEP] C09 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S09 -> correct_hit (11 ms)
+2026-11-06T04:01:11.418Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Which route has the route code RT-001?" latency=12.03 ms
+2026-11-06T04:01:11.419Z [SWEEP] C10 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S10 -> correct_hit (12 ms)
+2026-11-06T04:01:11.435Z [QA] CACHE HIT  similarity=0.9375 >= 0.85 matched="How many delay incidents were recorded on VTA Route 22?" latency=15.91 ms
+2026-11-06T04:01:11.438Z [SWEEP] C11 paraphrase        expected=hit  is_cached=True  sim=0.9375 nearest=S01 -> correct_hit (16 ms)
+2026-11-06T04:01:11.455Z [QA] CACHE HIT  similarity=0.9606 >= 0.85 matched="What is the route code for the VTA Green Line?" latency=17.34 ms
+2026-11-06T04:01:11.457Z [SWEEP] C12 paraphrase        expected=hit  is_cached=True  sim=0.9606 nearest=S02 -> correct_hit (17 ms)
+2026-11-06T04:01:11.469Z [QA] CACHE HIT  similarity=0.8854 >= 0.85 matched="Who operates VTA Route 522?" latency=12.58 ms
+2026-11-06T04:01:11.471Z [SWEEP] C13 paraphrase        expected=hit  is_cached=True  sim=0.8854 nearest=S03 -> correct_hit (13 ms)
+2026-11-06T04:01:11.482Z [QA] CACHE HIT  similarity=0.9522 >= 0.85 matched="What category is incident INC-000042?" latency=11.8 ms
+2026-11-06T04:01:11.484Z [SWEEP] C14 paraphrase        expected=hit  is_cached=True  sim=0.9522 nearest=S04 -> correct_hit (12 ms)
+2026-11-06T04:01:11.498Z [QA] CACHE HIT  similarity=0.8779 >= 0.85 matched="How many collision incidents have been reported across all routes?" latency=14.15 ms
+2026-11-06T04:01:11.501Z [SWEEP] C15 paraphrase        expected=hit  is_cached=True  sim=0.8779 nearest=S05 -> correct_hit (14 ms)
+2026-11-06T04:01:11.516Z [QA] CACHE HIT  similarity=0.9314 >= 0.85 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=15.17 ms
+2026-11-06T04:01:11.520Z [SWEEP] C16 paraphrase        expected=hit  is_cached=True  sim=0.9314 nearest=S06 -> correct_hit (15 ms)
+2026-11-06T04:01:11.534Z [QA] CACHE HIT  similarity=0.8751 >= 0.85 matched="Which route line was incident INC-000122 reported on?" latency=13.65 ms
+2026-11-06T04:01:11.535Z [SWEEP] C17 paraphrase        expected=hit  is_cached=True  sim=0.8751 nearest=S07 -> correct_hit (14 ms)
+2026-11-06T04:01:11.553Z [QA] CACHE HIT  similarity=0.9118 >= 0.85 matched="How many incidents in total were recorded on VTA Route 55?" latency=17.44 ms
+2026-11-06T04:01:11.556Z [SWEEP] C18 paraphrase        expected=hit  is_cached=True  sim=0.9118 nearest=S08 -> correct_hit (17 ms)
+2026-11-06T04:01:11.574Z [QA] CACHE HIT  similarity=0.9683 >= 0.85 matched="What is the title of incident INC-000250?" latency=18.4 ms
+2026-11-06T04:01:11.576Z [SWEEP] C19 paraphrase        expected=hit  is_cached=True  sim=0.9683 nearest=S09 -> correct_hit (18 ms)
+2026-11-06T04:01:11.591Z [QA] CACHE HIT  similarity=0.9343 >= 0.85 matched="Which route has the route code RT-001?" latency=14.52 ms
+2026-11-06T04:01:11.592Z [SWEEP] C20 paraphrase        expected=hit  is_cached=True  sim=0.9343 nearest=S10 -> correct_hit (15 ms)
+2026-11-06T04:01:11.612Z [QA] CACHE HIT  similarity=0.8533 >= 0.85 matched="How many incidents in total were recorded on VTA Route 55?" latency=20.24 ms
+2026-11-06T04:01:11.617Z [SWEEP] C21 similar_different expected=miss is_cached=True  sim=0.8533 nearest=S08 -> false_hit (20 ms)
+2026-11-06T04:01:11.634Z [QA] CACHE HIT  similarity=0.9162 >= 0.85 matched="What is the route code for the VTA Green Line?" latency=17.0 ms
+2026-11-06T04:01:11.635Z [SWEEP] C22 similar_different expected=miss is_cached=True  sim=0.9162 nearest=S02 -> false_hit (17 ms)
+2026-11-06T04:01:11.648Z [QA] CACHE MISS best_similarity=0.7546 < 0.85
+2026-11-06T04:01:20.309Z [QA] agent answered in 8655.61 ms; not stored (read-only run); latency=8674.1 ms
+2026-11-06T04:01:20.317Z [SWEEP] C23 similar_different expected=miss is_cached=False sim=0.7546 nearest=S03 -> correct_miss (8674 ms)
+2026-11-06T04:01:20.399Z [QA] CACHE HIT  similarity=0.9811 >= 0.85 matched="What category is incident INC-000042?" latency=81.31 ms
+2026-11-06T04:01:20.400Z [SWEEP] C24 similar_different expected=miss is_cached=True  sim=0.9811 nearest=S04 -> false_hit (81 ms)
+2026-11-06T04:01:20.406Z [QA] CACHE MISS best_similarity=0.7512 < 0.85
+2026-11-06T04:01:30.042Z [QA] agent answered in 9633.66 ms; not stored (read-only run); latency=9642.01 ms
+2026-11-06T04:01:30.045Z [SWEEP] C25 similar_different expected=miss is_cached=False sim=0.7512 nearest=S05 -> correct_miss (9642 ms)
+2026-11-06T04:01:30.095Z [QA] CACHE HIT  similarity=0.9058 >= 0.85 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=50.7 ms
+2026-11-06T04:01:30.097Z [SWEEP] C26 similar_different expected=miss is_cached=True  sim=0.9058 nearest=S06 -> false_hit (51 ms)
+2026-11-06T04:01:30.104Z [QA] CACHE HIT  similarity=0.9878 >= 0.85 matched="Which route line was incident INC-000122 reported on?" latency=6.84 ms
+2026-11-06T04:01:30.105Z [SWEEP] C27 similar_different expected=miss is_cached=True  sim=0.9878 nearest=S07 -> false_hit (7 ms)
+2026-11-06T04:01:30.112Z [QA] CACHE HIT  similarity=0.9130 >= 0.85 matched="How many incidents in total were recorded on VTA Route 55?" latency=7.5 ms
+2026-11-06T04:01:30.114Z [SWEEP] C28 similar_different expected=miss is_cached=True  sim=0.9130 nearest=S08 -> false_hit (8 ms)
+2026-11-06T04:01:30.120Z [QA] CACHE HIT  similarity=0.9898 >= 0.85 matched="What is the title of incident INC-000250?" latency=6.24 ms
+2026-11-06T04:01:30.121Z [SWEEP] C29 similar_different expected=miss is_cached=True  sim=0.9898 nearest=S09 -> false_hit (6 ms)
+2026-11-06T04:01:30.127Z [QA] CACHE HIT  similarity=0.9384 >= 0.85 matched="Which route has the route code RT-001?" latency=5.83 ms
+2026-11-06T04:01:30.128Z [SWEEP] C30 similar_different expected=miss is_cached=True  sim=0.9384 nearest=S10 -> false_hit (6 ms)
+2026-11-06T04:01:30.133Z [QA] CACHE MISS best_similarity=0.1503 < 0.85
+2026-11-06T04:01:36.298Z [QA] agent answered in 6165.25 ms; not stored (read-only run); latency=6170.8 ms
+2026-11-06T04:01:36.302Z [SWEEP] C31 unrelated         expected=miss is_cached=False sim=0.1503 nearest=S02 -> correct_miss (6171 ms)
+2026-11-06T04:01:36.370Z [QA] CACHE MISS best_similarity=0.1057 < 0.85
+2026-11-06T04:01:46.163Z [QA] agent answered in 9791.15 ms; not stored (read-only run); latency=9861.04 ms
+2026-11-06T04:01:46.165Z [SWEEP] C32 unrelated         expected=miss is_cached=False sim=0.1057 nearest=S10 -> correct_miss (9861 ms)
+2026-11-06T04:01:46.212Z [QA] CACHE MISS best_similarity=0.2496 < 0.85
+2026-11-06T04:01:54.678Z [QA] agent answered in 8464.18 ms; not stored (read-only run); latency=8512.83 ms
+2026-11-06T04:01:54.681Z [SWEEP] C33 unrelated         expected=miss is_cached=False sim=0.2496 nearest=S02 -> correct_miss (8513 ms)
+2026-11-06T04:01:54.736Z [QA] CACHE MISS best_similarity=0.1996 < 0.85
+2026-11-06T04:02:03.799Z [QA] agent answered in 9062.57 ms; not stored (read-only run); latency=9118.12 ms
+2026-11-06T04:02:03.802Z [SWEEP] C34 unrelated         expected=miss is_cached=False sim=0.1996 nearest=S04 -> correct_miss (9118 ms)
+2026-11-06T04:02:03.870Z [QA] CACHE MISS best_similarity=0.4977 < 0.85
+2026-11-06T04:02:10.244Z [QA] agent answered in 6372.73 ms; not stored (read-only run); latency=6442.45 ms
+2026-11-06T04:02:10.247Z [SWEEP] C35 unrelated         expected=miss is_cached=False sim=0.4977 nearest=S03 -> correct_miss (6442 ms)
+2026-11-06T04:02:10.371Z [QA] CACHE MISS best_similarity=0.1677 < 0.85
+2026-11-06T04:02:18.957Z [QA] agent answered in 8584.1 ms; not stored (read-only run); latency=8709.95 ms
+2026-11-06T04:02:18.959Z [SWEEP] C36 unrelated         expected=miss is_cached=False sim=0.1677 nearest=S09 -> correct_miss (8710 ms)
+2026-11-06T04:02:19.009Z [QA] CACHE MISS best_similarity=0.1610 < 0.85
+2026-11-06T04:02:27.367Z [QA] agent answered in 8357.01 ms; not stored (read-only run); latency=8407.24 ms
+2026-11-06T04:02:27.369Z [SWEEP] C37 unrelated         expected=miss is_cached=False sim=0.1610 nearest=S10 -> correct_miss (8407 ms)
+2026-11-06T04:02:27.438Z [QA] CACHE MISS best_similarity=0.0293 < 0.85
+2026-11-06T04:02:35.800Z [QA] agent answered in 8359.66 ms; not stored (read-only run); latency=8429.99 ms
+2026-11-06T04:02:35.802Z [SWEEP] C38 unrelated         expected=miss is_cached=False sim=0.0293 nearest=S08 -> correct_miss (8430 ms)
+2026-11-06T04:02:35.861Z [QA] CACHE MISS best_similarity=0.1037 < 0.85
+2026-11-06T04:02:42.851Z [QA] agent answered in 6988.05 ms; not stored (read-only run); latency=7048.52 ms
+2026-11-06T04:02:42.854Z [SWEEP] C39 unrelated         expected=miss is_cached=False sim=0.1037 nearest=S02 -> correct_miss (7049 ms)
+2026-11-06T04:02:42.910Z [QA] CACHE MISS best_similarity=0.2355 < 0.85
+2026-11-06T04:02:48.736Z [QA] agent answered in 5824.47 ms; not stored (read-only run); latency=5881.7 ms
+2026-11-06T04:02:48.738Z [SWEEP] C40 unrelated         expected=miss is_cached=False sim=0.2355 nearest=S02 -> correct_miss (5882 ms)
+2026-11-06T04:02:48.743Z [SWEEP] saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_sweep_0.85.json
+2026-11-06T04:02:48.955Z [SWEEP] threshold=0.9: cache emptied and 10 seeds stored
+2026-11-06T04:02:48.977Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="How many delay incidents were recorded on VTA Route 22?" latency=22.11 ms
+2026-11-06T04:02:48.981Z [SWEEP] C01 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S01 -> correct_hit (22 ms)
+2026-11-06T04:02:48.997Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="What is the route code for the VTA Green Line?" latency=15.99 ms
+2026-11-06T04:02:48.999Z [SWEEP] C02 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S02 -> correct_hit (16 ms)
+2026-11-06T04:02:49.017Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="Who operates VTA Route 522?" latency=17.45 ms
+2026-11-06T04:02:49.019Z [SWEEP] C03 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S03 -> correct_hit (17 ms)
+2026-11-06T04:02:49.035Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="What category is incident INC-000042?" latency=15.74 ms
+2026-11-06T04:02:49.036Z [SWEEP] C04 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S04 -> correct_hit (16 ms)
+2026-11-06T04:02:49.057Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="How many collision incidents have been reported across all routes?" latency=21.13 ms
+2026-11-06T04:02:49.062Z [SWEEP] C05 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S05 -> correct_hit (21 ms)
+2026-11-06T04:02:49.083Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=21.2 ms
+2026-11-06T04:02:49.086Z [SWEEP] C06 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S06 -> correct_hit (21 ms)
+2026-11-06T04:02:49.104Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="Which route line was incident INC-000122 reported on?" latency=18.08 ms
+2026-11-06T04:02:49.106Z [SWEEP] C07 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S07 -> correct_hit (18 ms)
+2026-11-06T04:02:49.127Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="How many incidents in total were recorded on VTA Route 55?" latency=21.08 ms
+2026-11-06T04:02:49.131Z [SWEEP] C08 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S08 -> correct_hit (21 ms)
+2026-11-06T04:02:49.150Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="What is the title of incident INC-000250?" latency=19.33 ms
+2026-11-06T04:02:49.152Z [SWEEP] C09 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S09 -> correct_hit (19 ms)
+2026-11-06T04:02:49.174Z [QA] CACHE HIT  similarity=1.0000 >= 0.9 matched="Which route has the route code RT-001?" latency=21.57 ms
+2026-11-06T04:02:49.176Z [SWEEP] C10 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S10 -> correct_hit (22 ms)
+2026-11-06T04:02:49.198Z [QA] CACHE HIT  similarity=0.9375 >= 0.9 matched="How many delay incidents were recorded on VTA Route 22?" latency=22.09 ms
+2026-11-06T04:02:49.202Z [SWEEP] C11 paraphrase        expected=hit  is_cached=True  sim=0.9375 nearest=S01 -> correct_hit (22 ms)
+2026-11-06T04:02:49.223Z [QA] CACHE HIT  similarity=0.9606 >= 0.9 matched="What is the route code for the VTA Green Line?" latency=20.9 ms
+2026-11-06T04:02:49.224Z [SWEEP] C12 paraphrase        expected=hit  is_cached=True  sim=0.9606 nearest=S02 -> correct_hit (21 ms)
+2026-11-06T04:02:49.240Z [QA] CACHE MISS best_similarity=0.8854 < 0.9
+2026-11-06T04:02:57.098Z [QA] agent answered in 7854.75 ms; not stored (read-only run); latency=7873.03 ms
+2026-11-06T04:02:57.100Z [SWEEP] C13 paraphrase        expected=hit  is_cached=False sim=0.8854 nearest=S03 -> missed_hit (7873 ms)
+2026-11-06T04:02:57.149Z [QA] CACHE HIT  similarity=0.9522 >= 0.9 matched="What category is incident INC-000042?" latency=48.42 ms
+2026-11-06T04:02:57.150Z [SWEEP] C14 paraphrase        expected=hit  is_cached=True  sim=0.9522 nearest=S04 -> correct_hit (48 ms)
+2026-11-06T04:02:57.155Z [QA] CACHE MISS best_similarity=0.8779 < 0.9
+2026-11-06T04:03:09.518Z [QA] agent answered in 12358.38 ms; not stored (read-only run); latency=12367.67 ms
+2026-11-06T04:03:09.520Z [SWEEP] C15 paraphrase        expected=hit  is_cached=False sim=0.8779 nearest=S05 -> missed_hit (12368 ms)
+2026-11-06T04:03:09.662Z [QA] CACHE HIT  similarity=0.9314 >= 0.9 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=141.48 ms
+2026-11-06T04:03:09.664Z [SWEEP] C16 paraphrase        expected=hit  is_cached=True  sim=0.9314 nearest=S06 -> correct_hit (141 ms)
+2026-11-06T04:03:09.672Z [QA] CACHE MISS best_similarity=0.8751 < 0.9
+2026-11-06T04:03:17.762Z [QA] agent answered in 8087.16 ms; not stored (read-only run); latency=8097.54 ms
+2026-11-06T04:03:17.766Z [SWEEP] C17 paraphrase        expected=hit  is_cached=False sim=0.8751 nearest=S07 -> missed_hit (8098 ms)
+2026-11-06T04:03:17.882Z [QA] CACHE HIT  similarity=0.9118 >= 0.9 matched="How many incidents in total were recorded on VTA Route 55?" latency=115.31 ms
+2026-11-06T04:03:17.885Z [SWEEP] C18 paraphrase        expected=hit  is_cached=True  sim=0.9118 nearest=S08 -> correct_hit (115 ms)
+2026-11-06T04:03:17.894Z [QA] CACHE HIT  similarity=0.9683 >= 0.9 matched="What is the title of incident INC-000250?" latency=8.64 ms
+2026-11-06T04:03:17.895Z [SWEEP] C19 paraphrase        expected=hit  is_cached=True  sim=0.9683 nearest=S09 -> correct_hit (9 ms)
+2026-11-06T04:03:17.903Z [QA] CACHE HIT  similarity=0.9343 >= 0.9 matched="Which route has the route code RT-001?" latency=7.5 ms
+2026-11-06T04:03:17.904Z [SWEEP] C20 paraphrase        expected=hit  is_cached=True  sim=0.9343 nearest=S10 -> correct_hit (8 ms)
+2026-11-06T04:03:17.909Z [QA] CACHE MISS best_similarity=0.8533 < 0.9
+2026-11-06T04:03:27.467Z [QA] agent answered in 9555.18 ms; not stored (read-only run); latency=9563.77 ms
+2026-11-06T04:03:27.475Z [SWEEP] C21 similar_different expected=miss is_cached=False sim=0.8533 nearest=S08 -> correct_miss (9564 ms)
+2026-11-06T04:03:27.535Z [QA] CACHE HIT  similarity=0.9162 >= 0.9 matched="What is the route code for the VTA Green Line?" latency=60.11 ms
+2026-11-06T04:03:27.537Z [SWEEP] C22 similar_different expected=miss is_cached=True  sim=0.9162 nearest=S02 -> false_hit (60 ms)
+2026-11-06T04:03:27.545Z [QA] CACHE MISS best_similarity=0.7546 < 0.9
+2026-11-06T04:03:36.057Z [QA] agent answered in 8507.1 ms; not stored (read-only run); latency=8520.22 ms
+2026-11-06T04:03:36.063Z [SWEEP] C23 similar_different expected=miss is_cached=False sim=0.7546 nearest=S03 -> correct_miss (8520 ms)
+2026-11-06T04:03:36.114Z [QA] CACHE HIT  similarity=0.9811 >= 0.9 matched="What category is incident INC-000042?" latency=50.66 ms
+2026-11-06T04:03:36.115Z [SWEEP] C24 similar_different expected=miss is_cached=True  sim=0.9811 nearest=S04 -> false_hit (51 ms)
+2026-11-06T04:03:36.122Z [QA] CACHE MISS best_similarity=0.7512 < 0.9
+2026-11-06T04:03:45.874Z [QA] agent answered in 9748.11 ms; not stored (read-only run); latency=9758.81 ms
+2026-11-06T04:03:45.881Z [SWEEP] C25 similar_different expected=miss is_cached=False sim=0.7512 nearest=S05 -> correct_miss (9759 ms)
+2026-11-06T04:03:46.040Z [QA] CACHE HIT  similarity=0.9058 >= 0.9 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=158.88 ms
+2026-11-06T04:03:46.042Z [SWEEP] C26 similar_different expected=miss is_cached=True  sim=0.9058 nearest=S06 -> false_hit (159 ms)
+2026-11-06T04:03:46.050Z [QA] CACHE HIT  similarity=0.9878 >= 0.9 matched="Which route line was incident INC-000122 reported on?" latency=7.72 ms
+2026-11-06T04:03:46.051Z [SWEEP] C27 similar_different expected=miss is_cached=True  sim=0.9878 nearest=S07 -> false_hit (8 ms)
+2026-11-06T04:03:46.057Z [QA] CACHE HIT  similarity=0.9130 >= 0.9 matched="How many incidents in total were recorded on VTA Route 55?" latency=6.67 ms
+2026-11-06T04:03:46.059Z [SWEEP] C28 similar_different expected=miss is_cached=True  sim=0.9130 nearest=S08 -> false_hit (7 ms)
+2026-11-06T04:03:46.064Z [QA] CACHE HIT  similarity=0.9898 >= 0.9 matched="What is the title of incident INC-000250?" latency=5.59 ms
+2026-11-06T04:03:46.065Z [SWEEP] C29 similar_different expected=miss is_cached=True  sim=0.9898 nearest=S09 -> false_hit (6 ms)
+2026-11-06T04:03:46.071Z [QA] CACHE HIT  similarity=0.9384 >= 0.9 matched="Which route has the route code RT-001?" latency=5.75 ms
+2026-11-06T04:03:46.072Z [SWEEP] C30 similar_different expected=miss is_cached=True  sim=0.9384 nearest=S10 -> false_hit (6 ms)
+2026-11-06T04:03:46.077Z [QA] CACHE MISS best_similarity=0.1503 < 0.9
+2026-11-06T04:03:52.030Z [QA] agent answered in 5952.91 ms; not stored (read-only run); latency=5958.63 ms
+2026-11-06T04:03:52.032Z [SWEEP] C31 unrelated         expected=miss is_cached=False sim=0.1503 nearest=S02 -> correct_miss (5959 ms)
+2026-11-06T04:03:52.081Z [QA] CACHE MISS best_similarity=0.1057 < 0.9
+2026-11-06T04:04:02.040Z [QA] agent answered in 9957.44 ms; not stored (read-only run); latency=10007.94 ms
+2026-11-06T04:04:02.041Z [SWEEP] C32 unrelated         expected=miss is_cached=False sim=0.1057 nearest=S10 -> correct_miss (10008 ms)
+2026-11-06T04:04:02.158Z [QA] CACHE MISS best_similarity=0.2496 < 0.9
+2026-11-06T04:04:10.666Z [QA] agent answered in 8506.86 ms; not stored (read-only run); latency=8624.88 ms
+2026-11-06T04:04:10.669Z [SWEEP] C33 unrelated         expected=miss is_cached=False sim=0.2496 nearest=S02 -> correct_miss (8625 ms)
+2026-11-06T04:04:10.901Z [QA] CACHE MISS best_similarity=0.1996 < 0.9
+2026-11-06T04:04:20.121Z [QA] agent answered in 9218.97 ms; not stored (read-only run); latency=9452.59 ms
+2026-11-06T04:04:20.124Z [SWEEP] C34 unrelated         expected=miss is_cached=False sim=0.1996 nearest=S04 -> correct_miss (9453 ms)
+2026-11-06T04:04:20.433Z [QA] CACHE MISS best_similarity=0.4977 < 0.9
+2026-11-06T04:04:26.735Z [QA] agent answered in 6297.67 ms; not stored (read-only run); latency=6611.54 ms
+2026-11-06T04:04:26.736Z [SWEEP] C35 unrelated         expected=miss is_cached=False sim=0.4977 nearest=S03 -> correct_miss (6612 ms)
+2026-11-06T04:04:26.794Z [QA] CACHE MISS best_similarity=0.1677 < 0.9
+2026-11-06T04:04:35.524Z [QA] agent answered in 8728.79 ms; not stored (read-only run); latency=8787.67 ms
+2026-11-06T04:04:35.526Z [SWEEP] C36 unrelated         expected=miss is_cached=False sim=0.1677 nearest=S09 -> correct_miss (8788 ms)
+2026-11-06T04:04:35.732Z [QA] CACHE MISS best_similarity=0.1610 < 0.9
+2026-11-06T04:04:43.874Z [QA] agent answered in 8141.29 ms; not stored (read-only run); latency=8348.44 ms
+2026-11-06T04:04:43.875Z [SWEEP] C37 unrelated         expected=miss is_cached=False sim=0.1610 nearest=S10 -> correct_miss (8348 ms)
+2026-11-06T04:04:43.918Z [QA] CACHE MISS best_similarity=0.0293 < 0.9
+2026-11-06T04:04:52.202Z [QA] agent answered in 8282.57 ms; not stored (read-only run); latency=8327.02 ms
+2026-11-06T04:04:52.205Z [SWEEP] C38 unrelated         expected=miss is_cached=False sim=0.0293 nearest=S08 -> correct_miss (8327 ms)
+2026-11-06T04:04:52.262Z [QA] CACHE MISS best_similarity=0.1037 < 0.9
+2026-11-06T04:04:58.998Z [QA] agent answered in 6734.99 ms; not stored (read-only run); latency=6793.0 ms
+2026-11-06T04:04:58.999Z [SWEEP] C39 unrelated         expected=miss is_cached=False sim=0.1037 nearest=S02 -> correct_miss (6793 ms)
+2026-11-06T04:04:59.040Z [QA] CACHE MISS best_similarity=0.2355 < 0.9
+2026-11-06T04:05:04.743Z [QA] agent answered in 5702.8 ms; not stored (read-only run); latency=5744.35 ms
+2026-11-06T04:05:04.745Z [SWEEP] C40 unrelated         expected=miss is_cached=False sim=0.2355 nearest=S02 -> correct_miss (5744 ms)
+2026-11-06T04:05:04.751Z [SWEEP] saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_sweep_0.90.json
+2026-11-06T04:05:04.898Z [SWEEP] threshold=0.95: cache emptied and 10 seeds stored
+2026-11-06T04:05:04.910Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="How many delay incidents were recorded on VTA Route 22?" latency=12.31 ms
+2026-11-06T04:05:04.911Z [SWEEP] C01 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S01 -> correct_hit (12 ms)
+2026-11-06T04:05:04.919Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="What is the route code for the VTA Green Line?" latency=7.19 ms
+2026-11-06T04:05:04.919Z [SWEEP] C02 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S02 -> correct_hit (7 ms)
+2026-11-06T04:05:04.926Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="Who operates VTA Route 522?" latency=6.59 ms
+2026-11-06T04:05:04.927Z [SWEEP] C03 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S03 -> correct_hit (7 ms)
+2026-11-06T04:05:04.935Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="What category is incident INC-000042?" latency=8.69 ms
+2026-11-06T04:05:04.937Z [SWEEP] C04 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S04 -> correct_hit (9 ms)
+2026-11-06T04:05:04.950Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="How many collision incidents have been reported across all routes?" latency=13.35 ms
+2026-11-06T04:05:04.952Z [SWEEP] C05 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S05 -> correct_hit (13 ms)
+2026-11-06T04:05:04.962Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="How many infrastructure issues were recorded on the VTA Orange Line?" latency=10.06 ms
+2026-11-06T04:05:04.963Z [SWEEP] C06 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S06 -> correct_hit (10 ms)
+2026-11-06T04:05:04.970Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="Which route line was incident INC-000122 reported on?" latency=7.12 ms
+2026-11-06T04:05:04.971Z [SWEEP] C07 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S07 -> correct_hit (7 ms)
+2026-11-06T04:05:04.979Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="How many incidents in total were recorded on VTA Route 55?" latency=7.43 ms
+2026-11-06T04:05:04.980Z [SWEEP] C08 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S08 -> correct_hit (7 ms)
+2026-11-06T04:05:04.990Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="What is the title of incident INC-000250?" latency=9.36 ms
+2026-11-06T04:05:04.990Z [SWEEP] C09 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S09 -> correct_hit (9 ms)
+2026-11-06T04:05:04.999Z [QA] CACHE HIT  similarity=1.0000 >= 0.95 matched="Which route has the route code RT-001?" latency=8.95 ms
+2026-11-06T04:05:05.000Z [SWEEP] C10 exact             expected=hit  is_cached=True  sim=1.0000 nearest=S10 -> correct_hit (9 ms)
+2026-11-06T04:05:05.009Z [QA] CACHE MISS best_similarity=0.9375 < 0.95
+2026-11-06T04:05:14.356Z [QA] agent answered in 9345.59 ms; not stored (read-only run); latency=9356.01 ms
+2026-11-06T04:05:14.364Z [SWEEP] C11 paraphrase        expected=hit  is_cached=False sim=0.9375 nearest=S01 -> missed_hit (9356 ms)
+2026-11-06T04:05:14.439Z [QA] CACHE HIT  similarity=0.9606 >= 0.95 matched="What is the route code for the VTA Green Line?" latency=75.15 ms
+2026-11-06T04:05:14.440Z [SWEEP] C12 paraphrase        expected=hit  is_cached=True  sim=0.9606 nearest=S02 -> correct_hit (75 ms)
+2026-11-06T04:05:14.449Z [QA] CACHE MISS best_similarity=0.8854 < 0.95
+2026-11-06T04:05:21.411Z [QA] agent answered in 6959.65 ms; not stored (read-only run); latency=6970.8 ms
+2026-11-06T04:05:21.415Z [SWEEP] C13 paraphrase        expected=hit  is_cached=False sim=0.8854 nearest=S03 -> missed_hit (6971 ms)
+2026-11-06T04:05:21.526Z [QA] CACHE HIT  similarity=0.9522 >= 0.95 matched="What category is incident INC-000042?" latency=110.72 ms
+2026-11-06T04:05:21.527Z [SWEEP] C14 paraphrase        expected=hit  is_cached=True  sim=0.9522 nearest=S04 -> correct_hit (111 ms)
+2026-11-06T04:05:21.537Z [QA] CACHE MISS best_similarity=0.8779 < 0.95
+2026-11-06T04:05:31.233Z [QA] agent answered in 9693.81 ms; not stored (read-only run); latency=9705.62 ms
+2026-11-06T04:05:31.241Z [SWEEP] C15 paraphrase        expected=hit  is_cached=False sim=0.8779 nearest=S05 -> missed_hit (9706 ms)
+2026-11-06T04:05:31.295Z [QA] CACHE MISS best_similarity=0.9314 < 0.95
+2026-11-06T04:05:38.476Z [QA] agent answered in 7176.09 ms; not stored (read-only run); latency=7234.85 ms
+2026-11-06T04:05:38.484Z [SWEEP] C16 paraphrase        expected=hit  is_cached=False sim=0.9314 nearest=S06 -> missed_hit (7235 ms)
+2026-11-06T04:05:38.542Z [QA] CACHE MISS best_similarity=0.8751 < 0.95
+2026-11-06T04:05:44.873Z [QA] agent answered in 6327.02 ms; not stored (read-only run); latency=6388.26 ms
+2026-11-06T04:05:44.877Z [SWEEP] C17 paraphrase        expected=hit  is_cached=False sim=0.8751 nearest=S07 -> missed_hit (6388 ms)
+2026-11-06T04:05:45.022Z [QA] CACHE MISS best_similarity=0.9118 < 0.95
+2026-11-06T04:05:54.536Z [QA] agent answered in 9506.75 ms; not stored (read-only run); latency=9658.96 ms
+2026-11-06T04:05:54.544Z [SWEEP] C18 paraphrase        expected=hit  is_cached=False sim=0.9118 nearest=S08 -> missed_hit (9659 ms)
+2026-11-06T04:05:54.595Z [QA] CACHE HIT  similarity=0.9683 >= 0.95 matched="What is the title of incident INC-000250?" latency=50.97 ms
+2026-11-06T04:05:54.596Z [SWEEP] C19 paraphrase        expected=hit  is_cached=True  sim=0.9683 nearest=S09 -> correct_hit (51 ms)
+2026-11-06T04:05:54.603Z [QA] CACHE MISS best_similarity=0.9343 < 0.95
+2026-11-06T04:06:01.969Z [QA] agent answered in 7364.28 ms; not stored (read-only run); latency=7372.17 ms
+2026-11-06T04:06:01.989Z [SWEEP] C20 paraphrase        expected=hit  is_cached=False sim=0.9343 nearest=S10 -> missed_hit (7372 ms)
+2026-11-06T04:06:02.107Z [QA] CACHE MISS best_similarity=0.8533 < 0.95
+2026-11-06T04:06:10.624Z [QA] agent answered in 8509.38 ms; not stored (read-only run); latency=8635.17 ms
+2026-11-06T04:06:10.632Z [SWEEP] C21 similar_different expected=miss is_cached=False sim=0.8533 nearest=S08 -> correct_miss (8635 ms)
+2026-11-06T04:06:10.733Z [QA] CACHE MISS best_similarity=0.9162 < 0.95
+2026-11-06T04:06:19.359Z [QA] agent answered in 8623.57 ms; not stored (read-only run); latency=8726.35 ms
+2026-11-06T04:06:19.363Z [SWEEP] C22 similar_different expected=miss is_cached=False sim=0.9162 nearest=S02 -> correct_miss (8726 ms)
+2026-11-06T04:06:19.438Z [QA] CACHE MISS best_similarity=0.7546 < 0.95
+2026-11-06T04:06:27.803Z [QA] agent answered in 8358.85 ms; not stored (read-only run); latency=8439.66 ms
+2026-11-06T04:06:27.810Z [SWEEP] C23 similar_different expected=miss is_cached=False sim=0.7546 nearest=S03 -> correct_miss (8440 ms)
+2026-11-06T04:06:27.933Z [QA] CACHE HIT  similarity=0.9811 >= 0.95 matched="What category is incident INC-000042?" latency=123.6 ms
+2026-11-06T04:06:27.935Z [SWEEP] C24 similar_different expected=miss is_cached=True  sim=0.9811 nearest=S04 -> false_hit (124 ms)
+2026-11-06T04:06:27.945Z [QA] CACHE MISS best_similarity=0.7512 < 0.95
+2026-11-06T04:06:37.443Z [QA] agent answered in 9492.2 ms; not stored (read-only run); latency=9507.65 ms
+2026-11-06T04:06:37.446Z [SWEEP] C25 similar_different expected=miss is_cached=False sim=0.7512 nearest=S05 -> correct_miss (9508 ms)
+2026-11-06T04:06:37.500Z [QA] CACHE MISS best_similarity=0.9058 < 0.95
+2026-11-06T04:06:46.031Z [QA] agent answered in 8523.5 ms; not stored (read-only run); latency=8585.25 ms
+2026-11-06T04:06:46.037Z [SWEEP] C26 similar_different expected=miss is_cached=False sim=0.9058 nearest=S06 -> correct_miss (8585 ms)
+2026-11-06T04:06:46.083Z [QA] CACHE HIT  similarity=0.9878 >= 0.95 matched="Which route line was incident INC-000122 reported on?" latency=46.03 ms
+2026-11-06T04:06:46.084Z [SWEEP] C27 similar_different expected=miss is_cached=True  sim=0.9878 nearest=S07 -> false_hit (46 ms)
+2026-11-06T04:06:46.091Z [QA] CACHE MISS best_similarity=0.9130 < 0.95
+2026-11-06T04:06:55.881Z [QA] agent answered in 9786.33 ms; not stored (read-only run); latency=9796.91 ms
+2026-11-06T04:06:55.889Z [SWEEP] C28 similar_different expected=miss is_cached=False sim=0.9130 nearest=S08 -> correct_miss (9797 ms)
+2026-11-06T04:06:56.138Z [QA] CACHE HIT  similarity=0.9898 >= 0.95 matched="What is the title of incident INC-000250?" latency=249.45 ms
+2026-11-06T04:06:56.139Z [SWEEP] C29 similar_different expected=miss is_cached=True  sim=0.9898 nearest=S09 -> false_hit (249 ms)
+2026-11-06T04:06:56.145Z [QA] CACHE MISS best_similarity=0.9384 < 0.95
+2026-11-06T04:07:03.593Z [QA] agent answered in 7446.91 ms; not stored (read-only run); latency=7453.82 ms
+2026-11-06T04:07:03.599Z [SWEEP] C30 similar_different expected=miss is_cached=False sim=0.9384 nearest=S10 -> correct_miss (7454 ms)
+2026-11-06T04:07:03.679Z [QA] CACHE MISS best_similarity=0.1503 < 0.95
+2026-11-06T04:07:09.431Z [QA] agent answered in 5749.65 ms; not stored (read-only run); latency=5831.68 ms
+2026-11-06T04:07:09.434Z [SWEEP] C31 unrelated         expected=miss is_cached=False sim=0.1503 nearest=S02 -> correct_miss (5832 ms)
+2026-11-06T04:07:09.513Z [QA] CACHE MISS best_similarity=0.1057 < 0.95
+2026-11-06T04:07:18.988Z [QA] agent answered in 9473.93 ms; not stored (read-only run); latency=9554.17 ms
+2026-11-06T04:07:18.991Z [SWEEP] C32 unrelated         expected=miss is_cached=False sim=0.1057 nearest=S10 -> correct_miss (9554 ms)
+2026-11-06T04:07:19.049Z [QA] CACHE MISS best_similarity=0.2496 < 0.95
+2026-11-06T04:07:26.998Z [QA] agent answered in 7948.03 ms; not stored (read-only run); latency=8006.85 ms
+2026-11-06T04:07:27.002Z [SWEEP] C33 unrelated         expected=miss is_cached=False sim=0.2496 nearest=S02 -> correct_miss (8007 ms)
+2026-11-06T04:07:27.067Z [QA] CACHE MISS best_similarity=0.1996 < 0.95
+2026-11-06T04:07:35.791Z [QA] agent answered in 8723.06 ms; not stored (read-only run); latency=8789.72 ms
+2026-11-06T04:07:35.794Z [SWEEP] C34 unrelated         expected=miss is_cached=False sim=0.1996 nearest=S04 -> correct_miss (8790 ms)
+2026-11-06T04:07:35.856Z [QA] CACHE MISS best_similarity=0.4977 < 0.95
+2026-11-06T04:07:41.872Z [QA] agent answered in 6015.14 ms; not stored (read-only run); latency=6077.91 ms
+2026-11-06T04:07:41.874Z [SWEEP] C35 unrelated         expected=miss is_cached=False sim=0.4977 nearest=S03 -> correct_miss (6078 ms)
+2026-11-06T04:07:41.947Z [QA] CACHE MISS best_similarity=0.1677 < 0.95
+2026-11-06T04:07:50.392Z [QA] agent answered in 8442.99 ms; not stored (read-only run); latency=8517.97 ms
+2026-11-06T04:07:50.394Z [SWEEP] C36 unrelated         expected=miss is_cached=False sim=0.1677 nearest=S09 -> correct_miss (8518 ms)
+2026-11-06T04:07:50.529Z [QA] CACHE MISS best_similarity=0.1610 < 0.95
+2026-11-06T04:07:58.956Z [QA] agent answered in 8424.98 ms; not stored (read-only run); latency=8562.38 ms
+2026-11-06T04:07:58.957Z [SWEEP] C37 unrelated         expected=miss is_cached=False sim=0.1610 nearest=S10 -> correct_miss (8562 ms)
+2026-11-06T04:07:59.141Z [QA] CACHE MISS best_similarity=0.0293 < 0.95
+2026-11-06T04:08:07.568Z [QA] agent answered in 8426.53 ms; not stored (read-only run); latency=8611.17 ms
+2026-11-06T04:08:07.573Z [SWEEP] C38 unrelated         expected=miss is_cached=False sim=0.0293 nearest=S08 -> correct_miss (8611 ms)
+2026-11-06T04:08:07.746Z [QA] CACHE MISS best_similarity=0.1037 < 0.95
+2026-11-06T04:08:14.695Z [QA] agent answered in 6946.42 ms; not stored (read-only run); latency=7122.57 ms
+2026-11-06T04:08:14.697Z [SWEEP] C39 unrelated         expected=miss is_cached=False sim=0.1037 nearest=S02 -> correct_miss (7123 ms)
+2026-11-06T04:08:14.763Z [QA] CACHE MISS best_similarity=0.2355 < 0.95
+2026-11-06T04:08:20.560Z [QA] agent answered in 5795.74 ms; not stored (read-only run); latency=5863.59 ms
+2026-11-06T04:08:20.563Z [SWEEP] C40 unrelated         expected=miss is_cached=False sim=0.2355 nearest=S02 -> correct_miss (5864 ms)
+2026-11-06T04:08:20.569Z [SWEEP] saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_sweep_0.95.json
+
+=== Threshold sweep (40 cases) ===
+cost model: miss = 1.0, false hit = 20.0 (see METRICS.md 3.4)
+Threshold | Hit rate | False-hit rate | Mean latency (ms) | Total cost | hits/false/missed
+------------------------------------------------------------------------------------------
+     0.75 |    75.0% |          33.3% |            2067.8 |      210.0 | 30/10/0
+     0.80 |    70.0% |          28.6% |            2530.7 |      172.0 | 28/8/0
+     0.85 |    70.0% |          28.6% |            2435.4 |      172.0 | 28/8/0
+     0.90 |    60.0% |          29.2% |            3392.3 |      156.0 | 24/7/3
+     0.95 |    40.0% |          18.8% |            4887.9 |       84.0 | 16/3/7
+Kazi Samina Maraj Mumu | part3_stale_demo.py (Part 3.5) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+
+[1] s4098_rel record before: {'id': 3, 'route_code': 'RT-003', 'route_name': 'VTA Route 22', 'operator': 'VTA'}
+[1] ask (cache empty): Who operates VTA Route 522?
+2026-11-06T04:48:53.951Z [QA] CACHE MISS best_similarity=0.0000 < 0.85
+2026-11-06T04:49:05.183Z [QA] agent answered in 11224.51 ms; stored s4098:semcache:b93e743d702a data_version=40ea672fa3da; latency=11241.2 ms
+    is_cached=False  similarity=0.0000  invalidated=False  data_version=40ea672fa3da  latency=11241.2 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+[2] UPDATE routes SET operator='MV Transportation (VTA contract)' WHERE route_code='RT-003'
+[2] s4098_rel record after:  {'id': 3, 'route_code': 'RT-003', 'route_name': 'VTA Route 22', 'operator': 'MV Transportation (VTA contract)'}
+
+[3] invalidation=none  ask: Who operates VTA Route 522?
+2026-11-06T04:49:05.395Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=194.42 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=194.4 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+    -> STALE: cached answer was produced when operator='VTA', database now says 'MV Transportation (VTA contract)'
+
+[4] invalidation=version  ask: Who operates VTA Route 522?
+2026-11-06T04:49:05.403Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=8.6 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=8.6 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+[5] invalidation=version  ask again: Who operates VTA Route 522?
+2026-11-06T04:49:05.410Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=6.83 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=6.8 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+restored operator='VTA' for RT-003
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_stale_demo.json
+Kazi Samina Maraj Mumu | part3_stale_demo.py (Part 3.5) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+
+[1] s4098_rel record before: {'id': 3, 'route_code': 'RT-003', 'route_name': 'VTA Route 22', 'operator': 'VTA'}
+[1] ask (cache empty): Who operates VTA Route 522?
+2026-11-06T05:20:03.873Z [QA] CACHE MISS best_similarity=0.0000 < 0.85
+2026-11-06T05:20:14.652Z [QA] agent answered in 10772.12 ms; stored s4098:semcache:1ed89617d92e data_version=40ea672fa3da; latency=10786.17 ms
+    is_cached=False  similarity=0.0000  invalidated=False  data_version=40ea672fa3da  latency=10786.2 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+[2] UPDATE routes SET operator='MV Transportation (VTA contract)' WHERE route_code='RT-003'
+[2] s4098_rel record after:  {'id': 3, 'route_code': 'RT-003', 'route_name': 'VTA Route 22', 'operator': 'MV Transportation (VTA contract)'}
+
+[3] invalidation=none  ask: Who operates VTA Route 522?
+2026-11-06T05:20:14.887Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=218.61 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=218.6 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+    -> STALE: cached answer was produced when operator='VTA', database now says 'MV Transportation (VTA contract)'
+
+[4] invalidation=version  ask: Who operates VTA Route 522?
+2026-11-06T05:20:14.895Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=8.71 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=8.7 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+[5] invalidation=version  ask again: Who operates VTA Route 522?
+2026-11-06T05:20:14.903Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=7.86 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=7.9 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+restored operator='VTA' for RT-003
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_stale_demo.json
+Kazi Samina Maraj Mumu | part3_stale_demo.py (Part 3.5) | PREFIX=s4098 REDIS=redis://localhost:6380/0
+
+[1] s4098_rel record before: {'id': 4, 'route_code': 'RT-004', 'route_name': 'VTA Route 522', 'operator': 'VTA'}
+[1] ask (cache empty): Who operates VTA Route 522?
+2026-11-06T05:22:41.162Z [QA] CACHE MISS best_similarity=0.0000 < 0.85
+2026-11-06T05:22:48.541Z [QA] agent answered in 7375.5 ms; stored s4098:semcache:9b58e999dc37 data_version=40ea672fa3da; latency=7387.87 ms
+    is_cached=False  similarity=0.0000  invalidated=False  data_version=40ea672fa3da  latency=7387.9 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+[2] UPDATE routes SET operator='MV Transportation (VTA contract)' WHERE route_name='VTA Route 522'   (route_code RT-004)
+[2] s4098_rel record after:  {'id': 4, 'route_code': 'RT-004', 'route_name': 'VTA Route 522', 'operator': 'MV Transportation (VTA contract)'}
+
+[3] invalidation=none  ask: Who operates VTA Route 522?
+2026-11-06T05:22:48.606Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=58.09 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=40ea672fa3da  latency=58.1 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.
+
+    -> STALE: cached answer was produced when operator='VTA', database now says 'MV Transportation (VTA contract)'
+
+[4] invalidation=version  ask: Who operates VTA Route 522?
+2026-11-06T05:22:48.612Z [QA] STALE entry s4098:semcache:9b58e999dc37: stored data_version=40ea672fa3da current=9929abc1046c -> invalidate and recompute
+2026-11-06T05:22:48.612Z [QA] CACHE MISS (stale entry invalidated)
+2026-11-06T05:22:57.264Z [QA] agent answered in 8649.84 ms; stored s4098:semcache:b57df0c087f4 data_version=9929abc1046c; latency=8658.09 ms
+    is_cached=False  similarity=1.0000  invalidated=True  data_version=9929abc1046c  latency=8658.1 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004, which is 'VTA Route 522', is operated by MV Transportation (VTA contract). No other operators are listed for VTA Route 522 in the provided facts. Therefore, MV Transportation operates VTA Route 522.
+
+[5] invalidation=version  ask again: Who operates VTA Route 522?
+2026-11-06T05:22:57.303Z [QA] CACHE HIT  similarity=1.0000 >= 0.85 matched="Who operates VTA Route 522?" latency=38.64 ms
+    is_cached=True  similarity=1.0000  invalidated=False  data_version=9929abc1046c  latency=38.6 ms
+    answer: The s4098_rel transit incident database indicates that Route RT-004, which is 'VTA Route 522', is operated by MV Transportation (VTA contract). No other operators are listed for VTA Route 522 in the provided facts. Therefore, MV Transportation operates VTA Route 522.
+
+restored operator='VTA' for RT-004
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part3_stale_demo.json
+Kazi Samina Maraj Mumu | part4_self_improving.py demo-revision | model=qwen3:8b via model_client
+
+=== 4.1 Controlled revision case ===
+Question: When should a bus bridge be requested during a light-rail service suspension?
+Controlled initial answer (intentionally incomplete, no time limit): A bus bridge can be requested when a light-rail suspension is long.
+
+  attempt 1: A bus bridge can be requested when a light-rail suspension is long.
+    evaluator: REVISE (missing_value) The answer is too vague and does not specify the required duration for requesting a bus bridge.
+    feedback: Specify that a bus bridge should be requested when the light-rail suspension is expected to last more than [value] minutes. Check the reference dataset before a
+  attempt 2: A bus bridge should be requested when a light-rail suspension is expected to last more than 20 minutes.
+    evaluator: PASS (none) The answer correctly states the condition under which a bus bridge should be requested.
+
+--- Revision sequence ---
+Attempt 1 answer: A bus bridge can be requested when a light-rail suspension is long.
+  Evaluator result: REVISE  failure_type=missing_value  rule_pass=False  llm_verdict=REVISE
+  Explanation: The answer is too vague and does not specify the required duration for requesting a bus bridge.
+  Feedback: Specify that a bus bridge should be requested when the light-rail suspension is expected to last more than [value] minutes. Check the reference dataset before answering.
+Attempt 2 answer: A bus bridge should be requested when a light-rail suspension is expected to last more than 20 minutes.
+  reference lookup used: ['bus_bridge', 'city_notification']
+  Evaluator result: PASS  failure_type=none  rule_pass=True  llm_verdict=PASS
+  Explanation: The answer correctly states the condition under which a bus bridge should be requested.
+
+Number of attempts: 2 (max 2)
+Final evaluation:   PASS
+Final response:     A bus bridge should be requested when a light-rail suspension is expected to last more than 20 minutes.
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_revision_demo.json
+Kazi Samina Maraj Mumu | part4_self_improving.py all | model=qwen3:8b via model_client
+
+=== 4.2 Training run: Evaluator Repair + lesson memory (a lesson is created after 2 first-attempt failures of the same type) ===
+
+[train] tr01 (bus_bridge): When should a bus bridge be requested during a light-rail service suspension?
+  attempt 1: A bus bridge should be requested immediately when light-rail service is suspended to ensure continuous transit options for passengers. It provides an alternativ
+    evaluator: REVISE (missing_value) The answer incorrectly states that a bus bridge should be requested immediately, while the ground truth specifies it should be requested if 
+    feedback: The Answering Agent should specify that a bus bridge is requested only when the light-rail suspension is expected to last more than [value] minutes. Check the r
+  attempt 2: A bus bridge should be requested when a light-rail service suspension is expected to last more than 20 minutes. This ensures alternative transit options are ava
+    evaluator: PASS (none) The answer correctly states the condition under which a bus bridge should be requested.
+  -> final PASS after 2 attempt(s)
+
+[train] tr02 (delay_threshold): How late must a bus be before it is logged as a delay incident?
+  attempt 1: A bus must be 10 minutes or more late before it is logged as a delay incident.
+    evaluator: PASS (none) The answer correctly states the condition for logging a delay incident.
+  -> final PASS after 1 attempt(s)
+
+[train] tr03 (maintenance_ticket): How soon must a maintenance ticket be opened for an infrastructure-issue incident?
+  attempt 1: A maintenance ticket for an infrastructure-issue incident must be opened within 15 minutes of the incident report.
+    evaluator: REVISE (missing_value) The answer provides an incorrect time frame for opening a maintenance ticket.
+    feedback: The Answering Agent should state that a maintenance ticket must be opened within [value] hours, not 15 minutes. Check the reference dataset before answering.
+  attempt 2: A maintenance ticket for an infrastructure-issue incident must be opened within 4 hours of the report.
+    evaluator: PASS (none) The answer correctly states the required timeframe for opening a maintenance ticket.
+  ** LESSON CREATED lesson_001 for repeated failure 'missing_value' (seen in ['tr01', 'tr03'])
+     failure_pattern: Answers provide incorrect or incomplete information without aligning with the specific requirements or thresholds outlined in the ground truth.
+     correction:      Ensure answers strictly adhere to the exact criteria or timeframes provided in the ground truth, avoiding assumptions or generalizations.
+     trigger:         {'type': 'keywords', 'keywords': ['bridge', 'infrastructure-issue', 'maintenance', 'opened', 'requested', 'service', 'soon', 'suspension', 'ticket']}
+  -> final PASS after 2 attempt(s)
+
+[train] tr04 (valid_categories): What are the allowed incident categories?
+  attempt 1: The allowed incident categories are: 1) Vehicle Breakdown, 2) Accident, 3) Medical Emergency, 4) Security Threat, 5) System Failure, and 6) Other.
+    evaluator: REVISE (wrong_label) The answer does not match the allowed incident categories specified in the ground truth.
+    feedback: The Answering Agent should only list the four categories specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the re
+  attempt 2: The allowed incident categories are: delay, collision, service-suspension, infrastructure-issue.
+    evaluator: PASS (none) The answer correctly lists all four allowed incident categories as specified in the ground truth.
+  -> final PASS after 2 attempt(s)
+
+[train] tr05 (severity1): When is an incident classified as Severity 1?
+  attempt 1: Severity 1 incidents are those that result in fatalities, serious injuries, or significant property damage, requiring immediate emergency response and disruptio
+    evaluator: REVISE (missing_value) The answer incorrectly defines Severity 1 incidents.
+    feedback: The answer should specify that Severity 1 incidents involve injuries or affecting more than [value] passengers, not fatalities or property damage. Check the ref
+  attempt 2: Severity 1 incidents are those involving injuries or affecting more than 200 passengers, according to the reference dataset.
+    evaluator: PASS (none) The answer correctly identifies the criteria for Severity 1 as per the ground truth.
+  -> final PASS after 2 attempt(s)
+
+[train] tr06 (retention): How long are incident records kept?
+  attempt 1: Incident records are retained for 7 years per agency policy to ensure compliance and support future investigations.
+    evaluator: PASS (none) The answer correctly states the duration for which incident records are kept.
+  -> final PASS after 1 attempt(s)
+
+[train] tr07 (out_of_scope): What is the best pizza place in San Jose?
+  attempt 1: I cannot provide recommendations or opinions on pizza places. For the best pizza in San Jose, consider checking local reviews or asking residents for their favo
+    evaluator: PASS (none) The answer correctly acknowledges the inability to provide a recommendation and suggests alternative methods for finding information.
+  -> final PASS after 1 attempt(s)
+
+[train] tr08 (heat_restriction): What speed limit applies to light-rail trains during extreme heat?
+  attempt 1: The speed limit for light-rail trains during extreme heat is typically 35 mph, as per safety guidelines to prevent overheating of equipment and ensure passenger
+    evaluator: PASS (none) The answer correctly identifies the speed limit and the condition under which it applies.
+  -> final PASS after 1 attempt(s)
+
+[train] tr09 (required_fields): Which fields are required when submitting a new incident report?
+  attempt 1: The required fields when submitting a new incident report are: Incident Type, Location, Time, Summary, and Reporter Contact Information.
+    evaluator: REVISE (wrong_label) The answer does not match the required fields specified in the ground truth.
+    feedback: Ensure the answer includes the correct required fields: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted. Check the reference 
+  attempt 2: The required fields when submitting a new incident report are: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.
+    evaluator: PASS (none) The answer correctly lists all the required fields as specified in the ground truth.
+  ** LESSON CREATED lesson_002 for repeated failure 'wrong_label' (seen in ['tr04', 'tr09'])
+     failure_pattern: The answer does not align with the specific labels or categories defined in the ground truth.
+     correction:      Ensure that the answer strictly follows the exact labels and categories provided in the ground truth without adding, removing, or modifying any elements.
+     trigger:         {'type': 'keywords', 'keywords': ['allowed', 'category', 'field', 'required', 'submitting']}
+  -> final PASS after 2 attempt(s)
+
+[train] tr10 (out_of_scope): Who won the 2022 FIFA World Cup?
+  attempt 1: The 2022 FIFA World Cup was won by Argentina. They defeated France in the final match held in Qatar.
+    evaluator: REVISE (unsupported_answer) The answer provided is based on general knowledge, which is not allowed as per the ground truth.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset and cannot be answered based on the provided information.
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the reference dataset.
+  -> final PASS after 2 attempt(s)
+
+=== Lessons reused later in the training run ===
+
+lessons.json now has 2 lesson(s)
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_training.json
+
+=== 4.3 Validation gate (validation_data.json) ===
+
+--- before: system with no lessons ---
+[val-before] va01 (rider_alert): Within how many minutes must a rider alert be posted after a service suspension is confirmed?
+  attempt 1: A rider alert must be posted within 15 minutes after a service suspension is confirmed.
+    evaluator: REVISE (missing_value) The answer provides an incorrect time frame compared to the ground truth.
+    feedback: The answer should specify that the rider alert must be posted within [value] minutes, not 15 minutes. Check the reference dataset before answering.
+  attempt 2: A rider alert must be posted within 10 minutes after a service suspension is confirmed.
+    evaluator: PASS (none) The answer correctly states the required time frame.
+  -> final PASS after 2 attempt(s), 6491.5 ms
+
+[val-before] va02 (follow_up): How long does staff have to add a follow-up note before an incident can be closed?
+  attempt 1: Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the not
+    evaluator: REVISE (missing_value) The answer incorrectly states the time frame for adding a follow-up note.
+    feedback: The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset 
+  attempt 2: Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.
+    evaluator: PASS (none) The answer correctly states the 48-hour requirement for adding a follow-up note.
+  -> final PASS after 2 attempt(s), 8765.9 ms
+
+[val-before] va03 (delay_escalation): At what delay length is an incident escalated to Severity 2?
+  attempt 1: An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.
+    feedback: The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering
+  attempt 2: An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.
+    evaluator: PASS (none) The answer correctly identifies the delay length for escalation to Severity 2.
+  -> final PASS after 2 attempt(s), 7894.1 ms
+
+[val-before] va04 (incident_code_format): What format do incident codes use?
+  attempt 1: Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.
+    evaluator: REVISE (missing_value) The answer does not match the format described in the ground truth.
+    feedback: The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: Incident codes use the format INC- followed by six digits, such as INC-000042.
+    evaluator: PASS (none) The answer correctly matches the format described in the ground truth.
+  -> final PASS after 2 attempt(s), 7231.1 ms
+
+[val-before] va05 (related_types): What types of related notes can be attached to an incident?
+  attempt 1: Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide de
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up
+    feedback: The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the referen
+  attempt 2: Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such 
+    evaluator: PASS (none) The answer correctly lists all three types of related notes as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 9297.4 ms
+
+[val-before] va06 (collision_procedure): What must an operator do right after a collision?
+  attempt 1: The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless 
+    evaluator: REVISE (wrong_label) The answer does not fully align with the ground truth.
+    feedback: The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until
+  attempt 2: The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it
+    evaluator: PASS (none) The answer correctly includes all required terms and actions from the ground truth.
+  -> final PASS after 2 attempt(s), 8120.8 ms
+
+[val-before] va07 (out_of_scope): What is the capital of Australia?
+  attempt 1: The capital of Australia is Canberra.
+    evaluator: REVISE (unsupported_answer) The answer provided is based on general knowledge, which is not allowed according to the ground truth.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents 
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge
+  -> final PASS after 2 attempt(s), 7122.2 ms
+
+[val-before] va08 (city_notification): When must a service suspension be reported to the city transportation department?
+  attempt 1: A service suspension must be reported to the city transportation department immediately upon occurrence to ensure timely response and minimize impact on passeng
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth regarding the specific time frame for reporting service suspensions.
+    feedback: The answer should specify that service suspensions longer than [value] minutes must be reported, rather than immediately upon occurrence. Check the reference da
+  attempt 2: A service suspension longer than 60 minutes must be reported to the city transportation department.
+    evaluator: PASS (none) The answer correctly identifies the condition for reporting a service suspension.
+  -> final PASS after 2 attempt(s), 7323.6 ms
+
+[val-before] va09 (passengers_rule): What value should passengersAffected have when the number of affected passengers is unknown?
+  attempt 1: PassengersAffected should be set to "Unknown" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact 
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  attempt 2: PassengersAffected should be set to "Unknown" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference d
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  -> final REVISE after 2 attempt(s), 8515.7 ms
+
+[val-before] va10 (out_of_scope): How do I bake sourdough bread?
+  attempt 1: Bake sourdough bread by preheating your oven to 475°F (245°C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover wi
+    evaluator: REVISE (unsupported_answer) The question is about baking sourdough bread, which is not covered by the provided reference dataset.
+    feedback: You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions
+  attempt 2: The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or relat
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the scope of the reference dataset.
+  -> final PASS after 2 attempt(s), 11106.6 ms
+
+
+--- after: kept lessons [] + candidate lesson_001 ---
+[val+lesson_001] va01 (rider_alert): Within how many minutes must a rider alert be posted after a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: The rider alert must be posted within 10 minutes after confirming a service suspension.
+    evaluator: PASS (none) The answer correctly states the required time frame.
+  -> final PASS after 1 attempt(s), 3190.3 ms
+
+[val+lesson_001] va02 (follow_up): How long does staff have to add a follow-up note before an incident can be closed?
+  attempt 1: Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the not
+    evaluator: REVISE (missing_value) The answer incorrectly states the time frame for adding a follow-up note.
+    feedback: The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset 
+  attempt 2: Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.
+    evaluator: PASS (none) The answer correctly states the 48-hour requirement for adding a follow-up note.
+  -> final PASS after 2 attempt(s), 9111.2 ms
+
+[val+lesson_001] va03 (delay_escalation): At what delay length is an incident escalated to Severity 2?
+  attempt 1: An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.
+    feedback: The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering
+  attempt 2: An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.
+    evaluator: PASS (none) The answer correctly identifies the delay length for escalation to Severity 2.
+  -> final PASS after 2 attempt(s), 8102.6 ms
+
+[val+lesson_001] va04 (incident_code_format): What format do incident codes use?
+  attempt 1: Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.
+    evaluator: REVISE (missing_value) The answer does not match the format described in the ground truth.
+    feedback: The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: Incident codes use the format INC- followed by six digits, such as INC-000042.
+    evaluator: PASS (none) The answer correctly matches the format described in the ground truth.
+  -> final PASS after 2 attempt(s), 7430.9 ms
+
+[val+lesson_001] va05 (related_types): What types of related notes can be attached to an incident?
+  attempt 1: Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide de
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up
+    feedback: The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the referen
+  attempt 2: Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such 
+    evaluator: PASS (none) The answer correctly lists all three types of related notes as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 9240.4 ms
+
+[val+lesson_001] va06 (collision_procedure): What must an operator do right after a collision?
+  attempt 1: The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless 
+    evaluator: REVISE (wrong_label) The answer does not fully align with the ground truth.
+    feedback: The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until
+  attempt 2: The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it
+    evaluator: PASS (none) The answer correctly includes all required terms and actions from the ground truth.
+  -> final PASS after 2 attempt(s), 8007.9 ms
+
+[val+lesson_001] va07 (out_of_scope): What is the capital of Australia?
+  attempt 1: The capital of Australia is Canberra.
+    evaluator: REVISE (unsupported_answer) The answer provided is based on general knowledge, which is not allowed according to the ground truth.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents 
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge
+  -> final PASS after 2 attempt(s), 7133.5 ms
+
+[val+lesson_001] va08 (city_notification): When must a service suspension be reported to the city transportation department?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.
+    evaluator: PASS (none) The answer correctly identifies the condition for reporting a service suspension.
+  -> final PASS after 1 attempt(s), 3118.3 ms
+
+[val+lesson_001] va09 (passengers_rule): What value should passengersAffected have when the number of affected passengers is unknown?
+  attempt 1: PassengersAffected should be set to "Unknown" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact 
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  attempt 2: PassengersAffected should be set to "Unknown" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference d
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  -> final REVISE after 2 attempt(s), 8186.3 ms
+
+[val+lesson_001] va10 (out_of_scope): How do I bake sourdough bread?
+  attempt 1: Bake sourdough bread by preheating your oven to 475°F (245°C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover wi
+    evaluator: REVISE (unsupported_answer) The question is about baking sourdough bread, which is not covered by the provided reference dataset.
+    feedback: You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions
+  attempt 2: The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or relat
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the scope of the reference dataset.
+  -> final PASS after 2 attempt(s), 10609.8 ms
+
+  GATE lesson_001: first-attempt failures 10 -> 8, regressions=[], unsupported out-of-scope 0 -> 0  => KEEP
+
+--- after: kept lessons ['lesson_001'] + candidate lesson_002 ---
+[val+lesson_002] va01 (rider_alert): Within how many minutes must a rider alert be posted after a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: The rider alert must be posted within 10 minutes after confirming a service suspension.
+    evaluator: PASS (none) The answer correctly states the required time frame.
+  -> final PASS after 1 attempt(s), 2975.4 ms
+
+[val+lesson_002] va02 (follow_up): How long does staff have to add a follow-up note before an incident can be closed?
+  attempt 1: Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the not
+    evaluator: REVISE (missing_value) The answer incorrectly states the time frame for adding a follow-up note.
+    feedback: The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset 
+  attempt 2: Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.
+    evaluator: PASS (none) The answer correctly states the 48-hour requirement for adding a follow-up note.
+  -> final PASS after 2 attempt(s), 8927.5 ms
+
+[val+lesson_002] va03 (delay_escalation): At what delay length is an incident escalated to Severity 2?
+  attempt 1: An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.
+    feedback: The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering
+  attempt 2: An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.
+    evaluator: PASS (none) The answer correctly identifies the delay length for escalation to Severity 2.
+  -> final PASS after 2 attempt(s), 7894.0 ms
+
+[val+lesson_002] va04 (incident_code_format): What format do incident codes use?
+  attempt 1: Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.
+    evaluator: REVISE (missing_value) The answer does not match the format described in the ground truth.
+    feedback: The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: Incident codes use the format INC- followed by six digits, such as INC-000042.
+    evaluator: PASS (none) The answer correctly matches the format described in the ground truth.
+  -> final PASS after 2 attempt(s), 7334.4 ms
+
+[val+lesson_002] va05 (related_types): What types of related notes can be attached to an incident?
+  attempt 1: Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide de
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up
+    feedback: The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the referen
+  attempt 2: Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such 
+    evaluator: PASS (none) The answer correctly lists all three types of related notes as specified in the ground truth.
+  -> final PASS after 2 attempt(s), 9215.9 ms
+
+[val+lesson_002] va06 (collision_procedure): What must an operator do right after a collision?
+  attempt 1: The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless 
+    evaluator: REVISE (wrong_label) The answer does not fully align with the ground truth.
+    feedback: The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until
+  attempt 2: The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it
+    evaluator: PASS (none) The answer correctly includes all required terms and actions from the ground truth.
+  -> final PASS after 2 attempt(s), 7949.9 ms
+
+[val+lesson_002] va07 (out_of_scope): What is the capital of Australia?
+  attempt 1: The capital of Australia is Canberra.
+    evaluator: REVISE (unsupported_answer) The answer provided is based on general knowledge, which is not allowed according to the ground truth.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents 
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge
+  -> final PASS after 2 attempt(s), 7141.9 ms
+
+[val+lesson_002] va08 (city_notification): When must a service suspension be reported to the city transportation department?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.
+    evaluator: PASS (none) The answer correctly identifies the condition for reporting a service suspension.
+  -> final PASS after 1 attempt(s), 3085.6 ms
+
+[val+lesson_002] va09 (passengers_rule): What value should passengersAffected have when the number of affected passengers is unknown?
+  attempt 1: PassengersAffected should be set to "Unknown" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact 
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  attempt 2: PassengersAffected should be set to "Unknown" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference d
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.
+    feedback: Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.
+  -> final REVISE after 2 attempt(s), 8445.8 ms
+
+[val+lesson_002] va10 (out_of_scope): How do I bake sourdough bread?
+  attempt 1: Bake sourdough bread by preheating your oven to 475°F (245°C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover wi
+    evaluator: REVISE (unsupported_answer) The question is about baking sourdough bread, which is not covered by the provided reference dataset.
+    feedback: You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions
+  attempt 2: The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or relat
+    evaluator: PASS (none) The answer correctly identifies that the question is outside the scope of the reference dataset.
+  -> final PASS after 2 attempt(s), 10544.2 ms
+
+  GATE lesson_002: first-attempt failures 8 -> 8, regressions=[], unsupported out-of-scope 0 -> 0  => KEEP
+
+Kept lessons: ['lesson_001', 'lesson_002']
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_validation.json
+
+=== 4.2 Lesson reuse on a later related question ===
+saved lesson_001 (kept, created 2026-11-05 from ['tr01', 'tr03'], use_count=4): Ensure answers strictly adhere to the exact criteria or timeframes provided in the ground truth, avoiding assumptions or generalizations.
+saved lesson_002 (kept, created 2026-11-05 from ['tr04', 'tr09'], use_count=0): Ensure that the answer strictly follows the exact labels and categories provided in the ground truth without adding, removing, or modifying any elements.
+
+New question va01: Within how many minutes must a rider alert be posted after a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: The rider alert must be posted within 10 minutes after confirming a service suspension.
+    evaluator: PASS (none) The answer correctly states the required time frame.
+
+Lessons loaded before answering: ['lesson_001']
+Reference lookup on attempt 1: ['rider_alert', 'bus_bridge']
+Result: PASS on attempt 1, final PASS after 1 attempt(s)
+Answer: The rider alert must be posted within 10 minutes after confirming a service suspension.
+use_count now: lesson_001=5, lesson_002=0
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_reuse_demo.json
+
+=== Variant: Baseline ===
+[Baseline] te01 (bus_bridge): How long must a light-rail suspension be expected to last before staff request replacement buses?
+  attempt 1: Staff request replacement buses for light-rail suspensions after 24 hours if the issue persists.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth.
+    feedback: The answer should state that replacement buses are requested when the suspension is expected to last more than [value] minutes, not after 24 hours. Check the re
+  -> final REVISE after 1 attempt(s), 1035.3 ms
+
+[Baseline] te02 (delay_threshold): What is the minimum lateness for a vehicle to count as a delay incident?
+  attempt 1: The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.
+    feedback: The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 1366.4 ms
+
+[Baseline] te03 (rider_alert): How quickly must riders be alerted once a service suspension is confirmed?
+  attempt 1: Riders must be alerted within 15 minutes of a service suspension confirmation to ensure timely awareness and minimize disruption.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth regarding the required time frame for alerting riders.
+    feedback: The answer should specify that riders must be alerted within [value] minutes, not 15 minutes. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 1165.5 ms
+
+[Baseline] te04 (follow_up): What is the deadline for adding the follow-up note to an incident?
+  attempt 1: The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.
+    evaluator: REVISE (missing_value) The answer incorrectly states the deadline as 24 hours instead of 48 hours.
+    feedback: The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 1244.5 ms
+
+[Baseline] te05 (severity1): How many affected passengers make an incident Severity 1?
+  attempt 1: Severity 1 incidents at s4098 Transit affect up to 100 passengers.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth definition of Severity 1.
+    feedback: The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the refere
+  -> final REVISE after 1 attempt(s), 1031.7 ms
+
+[Baseline] te06 (maintenance_ticket): What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?
+  attempt 1: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 24 hours from the time the issue is documented by the reporting par
+    evaluator: REVISE (missing_value) The answer provides an incorrect time limit compared to the ground truth.
+    feedback: The Answering Agent should state the correct time limit as [value] hours, not 24 hours. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 1482.8 ms
+
+[Baseline] te07 (valid_categories): Which category values can an incident report use?
+  attempt 1: Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify 
+    evaluator: REVISE (wrong_label) The answer provided categories that do not match the ground truth.
+    feedback: The Answering Agent should use the exact category values specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the re
+  -> final REVISE after 1 attempt(s), 1693.6 ms
+
+[Baseline] te08 (route_code_orange): What is the route code of the VTA Orange Line?
+  attempt 1: The VTA Orange Line route code is 10.
+    evaluator: REVISE (missing_value) The answer provided an incorrect route code for the VTA Orange Line.
+    feedback: Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 721.8 ms
+
+[Baseline] te09 (terms_rule): What happens if an incident is submitted with termsAccepted set to false?
+  attempt 1: If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth.
+    feedback: The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answerin
+  -> final REVISE after 1 attempt(s), 1434.9 ms
+
+[Baseline] te10 (out_of_scope): What is the time complexity of binary search?
+  attempt 1: The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  -> final REVISE after 1 attempt(s), 1608.1 ms
+
+[Baseline] te11 (out_of_scope): Recommend a good movie for tonight.
+  attempt 1: I recommend "The Midnight Adventure" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!
+    evaluator: REVISE (unsupported_answer) The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.
+    feedback: Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions tha
+  -> final REVISE after 1 attempt(s), 1361.4 ms
+
+[Baseline] te12 (heat_restriction): How fast may light-rail trains run when the rail temperature is above 120 degrees F?
+  attempt 1: Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing a different maximum speed.
+    feedback: The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.
+  -> final REVISE after 1 attempt(s), 1534.5 ms
+
+
+=== Variant: Evaluator Repair ===
+[Evaluator Repair] te01 (bus_bridge): How long must a light-rail suspension be expected to last before staff request replacement buses?
+  attempt 1: Staff request replacement buses for light-rail suspensions after 24 hours if the issue persists.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth.
+    feedback: The answer should state that replacement buses are requested when the suspension is expected to last more than [value] minutes, not after 24 hours. Check the re
+  attempt 2: Replacement buses are requested when a light-rail suspension is expected to last more than 20 minutes.
+    evaluator: PASS (none) The answer correctly states the condition under which replacement buses are requested.
+  -> final PASS after 2 attempt(s), 7078.3 ms
+
+[Evaluator Repair] te02 (delay_threshold): What is the minimum lateness for a vehicle to count as a delay incident?
+  attempt 1: The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.
+    feedback: The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.
+    evaluator: PASS (none) The answer correctly states the minimum lateness for a delay incident as 10 minutes.
+  -> final PASS after 2 attempt(s), 7898.7 ms
+
+[Evaluator Repair] te03 (rider_alert): How quickly must riders be alerted once a service suspension is confirmed?
+  attempt 1: Riders must be alerted within 15 minutes of a service suspension confirmation to ensure timely awareness and minimize disruption.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth regarding the required time frame for alerting riders.
+    feedback: The answer should specify that riders must be alerted within [value] minutes, not 15 minutes. Check the reference dataset before answering.
+  attempt 2: Riders must be alerted within 10 minutes of a service suspension confirmation.
+    evaluator: PASS (none) The answer correctly states the required time frame for alerting riders.
+  -> final PASS after 2 attempt(s), 7253.6 ms
+
+[Evaluator Repair] te04 (follow_up): What is the deadline for adding the follow-up note to an incident?
+  attempt 1: The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.
+    evaluator: REVISE (missing_value) The answer incorrectly states the deadline as 24 hours instead of 48 hours.
+    feedback: The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.
+  attempt 2: The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be wit
+    feedback: The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check th
+  -> final REVISE after 2 attempt(s), 8916.8 ms
+
+[Evaluator Repair] te05 (severity1): How many affected passengers make an incident Severity 1?
+  attempt 1: Severity 1 incidents at s4098 Transit affect up to 100 passengers.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth definition of Severity 1.
+    feedback: The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the refere
+  attempt 2: Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.
+    evaluator: PASS (none) The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.
+  -> final PASS after 2 attempt(s), 8100.3 ms
+
+[Evaluator Repair] te06 (maintenance_ticket): What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?
+  attempt 1: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 24 hours from the time the issue is documented by the reporting par
+    evaluator: REVISE (missing_value) The answer provides an incorrect time limit compared to the ground truth.
+    feedback: The Answering Agent should state the correct time limit as [value] hours, not 24 hours. Check the reference dataset before answering.
+  attempt 2: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours from the time the issue is documented by the reporting part
+    evaluator: PASS (none) The answer correctly states the time limit as 4 hours.
+  -> final PASS after 2 attempt(s), 7821.8 ms
+
+[Evaluator Repair] te07 (valid_categories): Which category values can an incident report use?
+  attempt 1: Incident reports can use categories such as Accident, Breakdown, Service Disruption, Security Incident, and Unauthorized Access. These categories help classify 
+    evaluator: REVISE (wrong_label) The answer provided categories that do not match the ground truth.
+    feedback: The Answering Agent should use the exact category values specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the re
+  attempt 2: Incident reports must use one of four exact categories: delay, collision, service-suspension, or infrastructure-issue. These values are required for accurate cl
+    evaluator: PASS (none) The answer correctly lists all four required category values from the ground truth.
+  -> final PASS after 2 attempt(s), 8654.6 ms
+
+[Evaluator Repair] te08 (route_code_orange): What is the route code of the VTA Orange Line?
+  attempt 1: The VTA Orange Line route code is 10.
+    evaluator: REVISE (missing_value) The answer provided an incorrect route code for the VTA Orange Line.
+    feedback: Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.
+  attempt 2: The VTA Orange Line route code is RT-002.
+    evaluator: PASS (none) The answer correctly identifies the route code of the VTA Orange Line as RT-002.
+  -> final PASS after 2 attempt(s), 6621.7 ms
+
+[Evaluator Repair] te09 (terms_rule): What happens if an incident is submitted with termsAccepted set to false?
+  attempt 1: If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth.
+    feedback: The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answerin
+  attempt 2: If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 2 attempt(s), 6915.5 ms
+
+[Evaluator Repair] te10 (out_of_scope): What is the time complexity of binary search?
+  attempt 1: The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.
+    evaluator: PASS (none) The Answering Agent correctly identified that the question is outside the reference dataset.
+  -> final PASS after 2 attempt(s), 7775.6 ms
+
+[Evaluator Repair] te11 (out_of_scope): Recommend a good movie for tonight.
+  attempt 1: I recommend "The Midnight Adventure" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!
+    evaluator: REVISE (unsupported_answer) The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.
+    feedback: Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions tha
+  attempt 2: I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!
+    evaluator: PASS (none) The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.
+  -> final PASS after 2 attempt(s), 7632.6 ms
+
+[Evaluator Repair] te12 (heat_restriction): How fast may light-rail trains run when the rail temperature is above 120 degrees F?
+  attempt 1: Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing a different maximum speed.
+    feedback: The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.
+  attempt 2: Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: PASS (none) The answer correctly states the maximum speed and the condition under which it applies.
+  -> final PASS after 2 attempt(s), 7904.8 ms
+
+
+=== Variant: Lesson Memory ===
+[Lesson Memory] te01 (bus_bridge): How long must a light-rail suspension be expected to last before staff request replacement buses?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: suspension)
+  attempt 1: Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 1 attempt(s), 3058.3 ms
+
+[Lesson Memory] te02 (delay_threshold): What is the minimum lateness for a vehicle to count as a delay incident?
+  attempt 1: The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.
+    feedback: The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.
+    evaluator: PASS (none) The answer correctly states the minimum lateness for a delay incident as 10 minutes.
+  -> final PASS after 2 attempt(s), 7769.0 ms
+
+[Lesson Memory] te03 (rider_alert): How quickly must riders be alerted once a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minute
+    evaluator: PASS (none) The answer correctly states the required 10-minute alert time.
+  -> final PASS after 1 attempt(s), 3801.8 ms
+
+[Lesson Memory] te04 (follow_up): What is the deadline for adding the follow-up note to an incident?
+  attempt 1: The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.
+    evaluator: REVISE (missing_value) The answer incorrectly states the deadline as 24 hours instead of 48 hours.
+    feedback: The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.
+  attempt 2: The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be wit
+    feedback: The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check th
+  -> final REVISE after 2 attempt(s), 8698.0 ms
+
+[Lesson Memory] te05 (severity1): How many affected passengers make an incident Severity 1?
+  attempt 1: Severity 1 incidents at s4098 Transit affect up to 100 passengers.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth definition of Severity 1.
+    feedback: The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the refere
+  attempt 2: Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.
+    evaluator: PASS (none) The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.
+  -> final PASS after 2 attempt(s), 7993.4 ms
+
+[Lesson Memory] te06 (maintenance_ticket): What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: maintenance, ticket)
+  attempt 1: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.
+    evaluator: PASS (none) The answer correctly states the time limit as 4 hours.
+  -> final PASS after 1 attempt(s), 3114.1 ms
+
+[Lesson Memory] te07 (valid_categories): Which category values can an incident report use?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: category)
+  attempt 1: The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined 
+    evaluator: PASS (none) The answer correctly lists the four allowed category values as specified in the ground truth.
+  -> final PASS after 1 attempt(s), 4517.6 ms
+
+[Lesson Memory] te08 (route_code_orange): What is the route code of the VTA Orange Line?
+  attempt 1: The VTA Orange Line route code is 10.
+    evaluator: REVISE (missing_value) The answer provided an incorrect route code for the VTA Orange Line.
+    feedback: Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.
+  attempt 2: The VTA Orange Line route code is RT-002.
+    evaluator: PASS (none) The answer correctly identifies the route code of the VTA Orange Line as RT-002.
+  -> final PASS after 2 attempt(s), 6390.2 ms
+
+[Lesson Memory] te09 (terms_rule): What happens if an incident is submitted with termsAccepted set to false?
+  attempt 1: If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth.
+    feedback: The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answerin
+  attempt 2: If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 2 attempt(s), 6829.8 ms
+
+[Lesson Memory] te10 (out_of_scope): What is the time complexity of binary search?
+  attempt 1: The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.
+    evaluator: PASS (none) The Answering Agent correctly identified that the question is outside the reference dataset.
+  -> final PASS after 2 attempt(s), 7638.9 ms
+
+[Lesson Memory] te11 (out_of_scope): Recommend a good movie for tonight.
+  attempt 1: I recommend "The Midnight Adventure" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!
+    evaluator: REVISE (unsupported_answer) The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.
+    feedback: Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions tha
+  attempt 2: I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!
+    evaluator: PASS (none) The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.
+  -> final PASS after 2 attempt(s), 7429.5 ms
+
+[Lesson Memory] te12 (heat_restriction): How fast may light-rail trains run when the rail temperature is above 120 degrees F?
+  attempt 1: Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing a different maximum speed.
+    feedback: The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.
+  attempt 2: Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: PASS (none) The answer correctly states the maximum speed and the condition under which it applies.
+  -> final PASS after 2 attempt(s), 7593.0 ms
+
+
+=== Variant: Validated Improvement ===
+[Validated Improvement] te01 (bus_bridge): How long must a light-rail suspension be expected to last before staff request replacement buses?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: suspension)
+  attempt 1: Staff must request replacement buses if the light-rail suspension is expected to last more than 20 minutes.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 1 attempt(s), 3196.1 ms
+
+[Validated Improvement] te02 (delay_threshold): What is the minimum lateness for a vehicle to count as a delay incident?
+  attempt 1: The minimum lateness for a vehicle to count as a delay incident is 5 minutes. This threshold helps identify significant disruptions to the schedule.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing an incorrect minimum lateness threshold.
+    feedback: The Answering Agent should state that the minimum lateness is [value] minutes, as specified in the ground truth. Check the reference dataset before answering.
+  attempt 2: The minimum lateness for a vehicle to count as a delay incident is 10 minutes, as specified in the reference dataset.
+    evaluator: PASS (none) The answer correctly states the minimum lateness for a delay incident as 10 minutes.
+  -> final PASS after 2 attempt(s), 7650.8 ms
+
+[Validated Improvement] te03 (rider_alert): How quickly must riders be alerted once a service suspension is confirmed?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: service, suspension)
+  attempt 1: Riders must be alerted within 10 minutes of confirming a service suspension. A bus bridge is requested if the suspension is expected to last more than 20 minute
+    evaluator: PASS (none) The answer correctly states the required 10-minute alert time.
+  -> final PASS after 1 attempt(s), 3812.9 ms
+
+[Validated Improvement] te04 (follow_up): What is the deadline for adding the follow-up note to an incident?
+  attempt 1: The deadline for adding a follow-up note to an incident is within 24 hours of the incident report being closed.
+    evaluator: REVISE (missing_value) The answer incorrectly states the deadline as 24 hours instead of 48 hours.
+    feedback: The Answering Agent should state the deadline as [value] hours instead of 24 hours. Check the reference dataset before answering.
+  attempt 2: The deadline for adding a follow-up note to an incident is within 48 hours of the incident report being closed.
+    evaluator: REVISE (evaluator_flagged) The answer incorrectly states the deadline as being after the incident report is closed, whereas the ground truth specifies it should be wit
+    feedback: The Answering Agent should clarify that the follow-up note must be added within [value] hours of the incident, not after the incident report is closed. Check th
+  -> final REVISE after 2 attempt(s), 8530.5 ms
+
+[Validated Improvement] te05 (severity1): How many affected passengers make an incident Severity 1?
+  attempt 1: Severity 1 incidents at s4098 Transit affect up to 100 passengers.
+    evaluator: REVISE (missing_value) The answer does not align with the ground truth definition of Severity 1.
+    feedback: The answer should state that Severity 1 applies to incidents with injuries or affecting more than [value] passengers, not up to 100 passengers. Check the refere
+  attempt 2: Severity 1 incidents at s4098 Transit involve any incident with an injury or affecting more than 200 passengers.
+    evaluator: PASS (none) The answer correctly identifies the criteria for Severity 1 incidents as per the ground truth.
+  -> final PASS after 2 attempt(s), 7859.7 ms
+
+[Validated Improvement] te06 (maintenance_ticket): What is the time limit for opening a maintenance ticket after an infrastructure issue is reported?
+  LESSON LOADED lesson_001 (missing_value; matched keywords: maintenance, ticket)
+  attempt 1: The time limit for opening a maintenance ticket after an infrastructure issue is reported is 4 hours.
+    evaluator: PASS (none) The answer correctly states the time limit as 4 hours.
+  -> final PASS after 1 attempt(s), 3081.3 ms
+
+[Validated Improvement] te07 (valid_categories): Which category values can an incident report use?
+  LESSON LOADED lesson_002 (wrong_label; matched keywords: category)
+  attempt 1: The incident report can use the category values: delay, collision, service-suspension, infrastructure-issue. These are the exact four allowed values as defined 
+    evaluator: PASS (none) The answer correctly lists the four allowed category values as specified in the ground truth.
+  -> final PASS after 1 attempt(s), 4184.5 ms
+
+[Validated Improvement] te08 (route_code_orange): What is the route code of the VTA Orange Line?
+  attempt 1: The VTA Orange Line route code is 10.
+    evaluator: REVISE (missing_value) The answer provided an incorrect route code for the VTA Orange Line.
+    feedback: Check the correct route code from the reference dataset and provide the accurate information. Check the reference dataset before answering.
+  attempt 2: The VTA Orange Line route code is RT-002.
+    evaluator: PASS (none) The answer correctly identifies the route code of the VTA Orange Line as RT-002.
+  -> final PASS after 2 attempt(s), 6283.7 ms
+
+[Validated Improvement] te09 (terms_rule): What happens if an incident is submitted with termsAccepted set to false?
+  attempt 1: If an incident is submitted with termsAccepted set to false, it is not processed and remains in a pending state until termsAccepted is set to true.
+    evaluator: REVISE (wrong_label) The answer does not align with the ground truth.
+    feedback: The answer should state that the report is rejected with a validation error, not that it remains in a pending state. Check the reference dataset before answerin
+  attempt 2: If an incident is submitted with termsAccepted set to false, the report is rejected with a validation error.
+    evaluator: PASS (none) The answer correctly reflects the ground truth.
+  -> final PASS after 2 attempt(s), 6629.2 ms
+
+[Validated Improvement] te10 (out_of_scope): What is the time complexity of binary search?
+  attempt 1: The time complexity of binary search is O(log n) in the average and best cases, and O(log n) in the worst case, assuming the input is sorted.
+    evaluator: REVISE (unsupported_answer) The answer provides general knowledge not covered by the reference dataset.
+    feedback: You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit
+  attempt 2: The question is outside the reference dataset and cannot be answered based on the provided information. Please ask about municipal transit incidents.
+    evaluator: PASS (none) The Answering Agent correctly identified that the question is outside the reference dataset.
+  -> final PASS after 2 attempt(s), 7570.3 ms
+
+[Validated Improvement] te11 (out_of_scope): Recommend a good movie for tonight.
+  attempt 1: I recommend "The Midnight Adventure" for its thrilling plot and stunning visuals. It's a great choice for an engaging movie night. Enjoy!
+    evaluator: REVISE (unsupported_answer) The answer provides a recommendation based on general knowledge, which is not allowed as per the ground truth.
+    feedback: Avoid making recommendations based on general knowledge and instead inform the user that you cannot provide a specific recommendation. Only answer questions tha
+  attempt 2: I cannot provide specific movie recommendations. Please check streaming platforms or ask a friend for suggestions. Enjoy your movie night!
+    evaluator: PASS (none) The answer correctly acknowledges the limitation and provides a helpful response without using general knowledge.
+  -> final PASS after 2 attempt(s), 7418.4 ms
+
+[Validated Improvement] te12 (heat_restriction): How fast may light-rail trains run when the rail temperature is above 120 degrees F?
+  attempt 1: Light-rail trains may run at a maximum speed of 30 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: REVISE (missing_value) The answer contradicts the ground truth by providing a different maximum speed.
+    feedback: The Answering Agent should state the maximum speed as [value] mph instead of 30 mph. Check the reference dataset before answering.
+  attempt 2: Light-rail trains may run at a maximum speed of 35 mph when rail temperatures exceed 120°F to ensure safety and prevent track deformation.
+    evaluator: PASS (none) The answer correctly states the maximum speed and the condition under which it applies.
+  -> final PASS after 2 attempt(s), 7556.4 ms
+
+
+=== 4.4 Results on test_data.json (12 held-out questions) ===
+Variant                | Correct | Incorrect | Avg attempts | Avg latency (ms)
+------------------------------------------------------------------------------
+Baseline               |       0 |        12 |         1.00 |           1306.7
+Evaluator Repair       |      11 |         1 |         2.00 |           7714.5
+Lesson Memory          |      11 |         1 |         1.67 |           6236.1
+Validated Improvement  |      11 |         1 |         1.67 |           6147.8
+
+Lessons used: Lesson Memory = every saved lesson; Validated Improvement = only lessons with status 'kept': lesson_001=kept, lesson_002=kept
+saved /Users/samina/Documents/data260-4098/reports/hw09/raw/part4_test.json

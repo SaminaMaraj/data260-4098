@@ -1,0 +1,2219 @@
+{
+  "baseline_before": {
+    "questions": 10,
+    "correct": 9,
+    "incorrect": 1,
+    "first_attempt_correct": 0,
+    "avg_attempts": 2.0,
+    "avg_latency_ms": 8186.9,
+    "out_of_scope_unsupported": 0
+  },
+  "lessons": [
+    {
+      "lesson_id": "lesson_001",
+      "verdict": {
+        "first_attempt_failures_before": 10,
+        "first_attempt_failures_after": 8,
+        "regressions": [],
+        "out_of_scope_unsupported_before": 0,
+        "out_of_scope_unsupported_after": 0,
+        "checks": {
+          "failures_improve_or_same": true,
+          "no_regression_on_correct": true,
+          "no_new_unsupported_answers": true
+        },
+        "keep": true
+      },
+      "before": [
+        {
+          "id": "va01",
+          "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+          "topic": "rider_alert",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "A rider alert must be posted within 15 minutes after a service suspension is confirmed.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 933.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer provides an incorrect time frame compared to the ground truth.",
+                "feedback": "The answer should specify that the rider alert must be posted within [value] minutes, not 15 minutes. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "10",
+                    "ten"
+                  ]
+                ],
+                "ms": 2411.4
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "A rider alert must be posted within 10 minutes after a service suspension is confirmed.",
+              "lookup": [
+                "rider_alert",
+                "bus_bridge"
+              ],
+              "lessons": [],
+              "ms": 1141.7,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the required time frame.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2005.2
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "A rider alert must be posted within 10 minutes after a service suspension is confirmed.",
+          "latency_ms": 6491.5,
+          "wall_ms": 6491.8
+        },
+        {
+          "id": "va02",
+          "question": "How long does staff have to add a follow-up note before an incident can be closed?",
+          "topic": "follow_up",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the note is submitted.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1673.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly states the time frame for adding a follow-up note.",
+                "feedback": "The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "48",
+                    "forty-eight"
+                  ]
+                ],
+                "ms": 2799.4
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+              "lookup": [
+                "follow_up",
+                "related_types"
+              ],
+              "lessons": [],
+              "ms": 1777.8,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the 48-hour requirement for adding a follow-up note.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2515.5
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+          "latency_ms": 8765.9,
+          "wall_ms": 8766.0
+        },
+        {
+          "id": "va03",
+          "question": "At what delay length is an incident escalated to Severity 2?",
+          "topic": "delay_escalation",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1276.0,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.",
+                "feedback": "The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering.",
+                "failure_type": "evaluator_flagged",
+                "rule_pass": true,
+                "llm_verdict": "REVISE",
+                "missing_terms": [],
+                "ms": 2917.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+              "lookup": [
+                "delay_escalation",
+                "delay_threshold"
+              ],
+              "lessons": [],
+              "ms": 1539.3,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the delay length for escalation to Severity 2.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2161.3
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+          "latency_ms": 7894.1,
+          "wall_ms": 7894.2
+        },
+        {
+          "id": "va04",
+          "question": "What format do incident codes use?",
+          "topic": "incident_code_format",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1544.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not match the format described in the ground truth.",
+                "feedback": "The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "INC-"
+                  ],
+                  [
+                    "six digits",
+                    "6 digits",
+                    "six-digit",
+                    "6-digit",
+                    "000042"
+                  ]
+                ],
+                "ms": 2387.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+              "lookup": [
+                "incident_code_format"
+              ],
+              "lessons": [],
+              "ms": 1217.6,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly matches the format described in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2081.3
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+          "latency_ms": 7231.1,
+          "wall_ms": 7231.3
+        },
+        {
+          "id": "va05",
+          "question": "What types of related notes can be attached to an incident?",
+          "topic": "related_types",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide detailed context and evidence for incident analysis and resolution.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1799.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up.",
+                "feedback": "The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operator_note",
+                    "operator note"
+                  ],
+                  [
+                    "maintenance_note",
+                    "maintenance note"
+                  ],
+                  [
+                    "follow_up",
+                    "follow-up",
+                    "follow up"
+                  ]
+                ],
+                "ms": 3224.2
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+              "lookup": [
+                "related_types",
+                "valid_categories"
+              ],
+              "lessons": [],
+              "ms": 2179.4,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly lists all three types of related notes as specified in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2094.1
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+          "latency_ms": 9297.4,
+          "wall_ms": 9297.7
+        },
+        {
+          "id": "va06",
+          "question": "What must an operator do right after a collision?",
+          "topic": "collision_procedure",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless necessary for safety.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1518.9,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not fully align with the ground truth.",
+                "feedback": "The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until a supervisor inspects it. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operations control center",
+                    "occ"
+                  ],
+                  [
+                    "supervisor"
+                  ]
+                ],
+                "ms": 2893.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+              "lookup": [
+                "collision_procedure"
+              ],
+              "lessons": [],
+              "ms": 1741.7,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly includes all required terms and actions from the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 1966.7
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+          "latency_ms": 8120.8,
+          "wall_ms": 8121.0
+        },
+        {
+          "id": "va07",
+          "question": "What is the capital of Australia?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The capital of Australia is Canberra.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 508.5,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer provided is based on general knowledge, which is not allowed according to the ground truth.",
+                "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2654.6
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1419.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2539.2
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+          "latency_ms": 7122.2,
+          "wall_ms": 7122.4
+        },
+        {
+          "id": "va08",
+          "question": "When must a service suspension be reported to the city transportation department?",
+          "topic": "city_notification",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "A service suspension must be reported to the city transportation department immediately upon occurrence to ensure timely response and minimize impact on passengers.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1258.3,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not align with the ground truth regarding the specific time frame for reporting service suspensions.",
+                "feedback": "The answer should specify that service suspensions longer than [value] minutes must be reported, rather than immediately upon occurrence. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "60",
+                    "sixty",
+                    "one hour",
+                    "1 hour"
+                  ]
+                ],
+                "ms": 2818.6
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "A service suspension longer than 60 minutes must be reported to the city transportation department.",
+              "lookup": [
+                "city_notification",
+                "bus_bridge"
+              ],
+              "lessons": [],
+              "ms": 1134.1,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the condition for reporting a service suspension.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2112.6
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "A service suspension longer than 60 minutes must be reported to the city transportation department.",
+          "latency_ms": 7323.6,
+          "wall_ms": 7323.8
+        },
+        {
+          "id": "va09",
+          "question": "What value should passengersAffected have when the number of affected passengers is unknown?",
+          "topic": "passengers_rule",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact of the incident.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1605.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2493.7
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+              "lookup": [
+                "passengers_rule",
+                "severity1"
+              ],
+              "lessons": [],
+              "ms": 1804.6,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2611.7
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "REVISE",
+          "final_answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+          "latency_ms": 8515.7,
+          "wall_ms": 8515.8
+        },
+        {
+          "id": "va10",
+          "question": "How do I bake sourdough bread?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Bake sourdough bread by preheating your oven to 475\u00b0F (245\u00b0C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover with a lid, and bake covered for the first 20 minutes. Let it rest for 10-15 minutes before removing.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 3602.9,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The question is about baking sourdough bread, which is not covered by the provided reference dataset.",
+                "feedback": "You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2988.6
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1835.6,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the scope of the reference dataset.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2679.5
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+          "latency_ms": 11106.6,
+          "wall_ms": 11106.7
+        }
+      ],
+      "after": [
+        {
+          "id": "va01",
+          "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+          "topic": "rider_alert",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+              "lookup": [
+                "rider_alert",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 1139.0,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the required time frame.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2051.3
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+          "latency_ms": 3190.3,
+          "wall_ms": 3190.9
+        },
+        {
+          "id": "va02",
+          "question": "How long does staff have to add a follow-up note before an incident can be closed?",
+          "topic": "follow_up",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the note is submitted.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1636.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly states the time frame for adding a follow-up note.",
+                "feedback": "The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "48",
+                    "forty-eight"
+                  ]
+                ],
+                "ms": 2948.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+              "lookup": [
+                "follow_up",
+                "related_types"
+              ],
+              "lessons": [],
+              "ms": 1851.4,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the 48-hour requirement for adding a follow-up note.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2675.1
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+          "latency_ms": 9111.2,
+          "wall_ms": 9111.3
+        },
+        {
+          "id": "va03",
+          "question": "At what delay length is an incident escalated to Severity 2?",
+          "topic": "delay_escalation",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1214.9,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.",
+                "feedback": "The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering.",
+                "failure_type": "evaluator_flagged",
+                "rule_pass": true,
+                "llm_verdict": "REVISE",
+                "missing_terms": [],
+                "ms": 3052.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+              "lookup": [
+                "delay_escalation",
+                "delay_threshold"
+              ],
+              "lessons": [],
+              "ms": 1568.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the delay length for escalation to Severity 2.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2266.3
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+          "latency_ms": 8102.6,
+          "wall_ms": 8102.7
+        },
+        {
+          "id": "va04",
+          "question": "What format do incident codes use?",
+          "topic": "incident_code_format",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1525.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not match the format described in the ground truth.",
+                "feedback": "The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "INC-"
+                  ],
+                  [
+                    "six digits",
+                    "6 digits",
+                    "six-digit",
+                    "6-digit",
+                    "000042"
+                  ]
+                ],
+                "ms": 2509.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+              "lookup": [
+                "incident_code_format"
+              ],
+              "lessons": [],
+              "ms": 1247.1,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly matches the format described in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2149.0
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+          "latency_ms": 7430.9,
+          "wall_ms": 7431.1
+        },
+        {
+          "id": "va05",
+          "question": "What types of related notes can be attached to an incident?",
+          "topic": "related_types",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide detailed context and evidence for incident analysis and resolution.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1860.8,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up.",
+                "feedback": "The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operator_note",
+                    "operator note"
+                  ],
+                  [
+                    "maintenance_note",
+                    "maintenance note"
+                  ],
+                  [
+                    "follow_up",
+                    "follow-up",
+                    "follow up"
+                  ]
+                ],
+                "ms": 3307.8
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+              "lookup": [
+                "related_types",
+                "valid_categories"
+              ],
+              "lessons": [],
+              "ms": 1925.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly lists all three types of related notes as specified in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2145.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+          "latency_ms": 9240.4,
+          "wall_ms": 9240.5
+        },
+        {
+          "id": "va06",
+          "question": "What must an operator do right after a collision?",
+          "topic": "collision_procedure",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless necessary for safety.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1528.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not fully align with the ground truth.",
+                "feedback": "The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until a supervisor inspects it. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operations control center",
+                    "occ"
+                  ],
+                  [
+                    "supervisor"
+                  ]
+                ],
+                "ms": 2961.4
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+              "lookup": [
+                "collision_procedure"
+              ],
+              "lessons": [],
+              "ms": 1468.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly includes all required terms and actions from the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2048.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+          "latency_ms": 8007.9,
+          "wall_ms": 8007.9
+        },
+        {
+          "id": "va07",
+          "question": "What is the capital of Australia?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The capital of Australia is Canberra.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 506.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer provided is based on general knowledge, which is not allowed according to the ground truth.",
+                "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2641.2
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1464.3,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2521.8
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+          "latency_ms": 7133.5,
+          "wall_ms": 7133.6
+        },
+        {
+          "id": "va08",
+          "question": "When must a service suspension be reported to the city transportation department?",
+          "topic": "city_notification",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+              "lookup": [
+                "city_notification",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 1115.6,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the condition for reporting a service suspension.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2002.7
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+          "latency_ms": 3118.3,
+          "wall_ms": 3119.2
+        },
+        {
+          "id": "va09",
+          "question": "What value should passengersAffected have when the number of affected passengers is unknown?",
+          "topic": "passengers_rule",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact of the incident.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1489.6,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2489.7
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+              "lookup": [
+                "passengers_rule",
+                "severity1"
+              ],
+              "lessons": [],
+              "ms": 1765.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2441.8
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "REVISE",
+          "final_answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+          "latency_ms": 8186.3,
+          "wall_ms": 8186.5
+        },
+        {
+          "id": "va10",
+          "question": "How do I bake sourdough bread?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Bake sourdough bread by preheating your oven to 475\u00b0F (245\u00b0C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover with a lid, and bake covered for the first 20 minutes. Let it rest for 10-15 minutes before removing.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 3550.5,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The question is about baking sourdough bread, which is not covered by the provided reference dataset.",
+                "feedback": "You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2980.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1460.5,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the scope of the reference dataset.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2618.7
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+          "latency_ms": 10609.8,
+          "wall_ms": 10609.9
+        }
+      ]
+    },
+    {
+      "lesson_id": "lesson_002",
+      "verdict": {
+        "first_attempt_failures_before": 8,
+        "first_attempt_failures_after": 8,
+        "regressions": [],
+        "out_of_scope_unsupported_before": 0,
+        "out_of_scope_unsupported_after": 0,
+        "checks": {
+          "failures_improve_or_same": true,
+          "no_regression_on_correct": true,
+          "no_new_unsupported_answers": true
+        },
+        "keep": true
+      },
+      "before": [
+        {
+          "id": "va01",
+          "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+          "topic": "rider_alert",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+              "lookup": [
+                "rider_alert",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 1139.0,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the required time frame.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2051.3
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+          "latency_ms": 3190.3,
+          "wall_ms": 3190.9
+        },
+        {
+          "id": "va02",
+          "question": "How long does staff have to add a follow-up note before an incident can be closed?",
+          "topic": "follow_up",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the note is submitted.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1636.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly states the time frame for adding a follow-up note.",
+                "feedback": "The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "48",
+                    "forty-eight"
+                  ]
+                ],
+                "ms": 2948.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+              "lookup": [
+                "follow_up",
+                "related_types"
+              ],
+              "lessons": [],
+              "ms": 1851.4,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the 48-hour requirement for adding a follow-up note.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2675.1
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+          "latency_ms": 9111.2,
+          "wall_ms": 9111.3
+        },
+        {
+          "id": "va03",
+          "question": "At what delay length is an incident escalated to Severity 2?",
+          "topic": "delay_escalation",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1214.9,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.",
+                "feedback": "The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering.",
+                "failure_type": "evaluator_flagged",
+                "rule_pass": true,
+                "llm_verdict": "REVISE",
+                "missing_terms": [],
+                "ms": 3052.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+              "lookup": [
+                "delay_escalation",
+                "delay_threshold"
+              ],
+              "lessons": [],
+              "ms": 1568.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the delay length for escalation to Severity 2.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2266.3
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+          "latency_ms": 8102.6,
+          "wall_ms": 8102.7
+        },
+        {
+          "id": "va04",
+          "question": "What format do incident codes use?",
+          "topic": "incident_code_format",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1525.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not match the format described in the ground truth.",
+                "feedback": "The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "INC-"
+                  ],
+                  [
+                    "six digits",
+                    "6 digits",
+                    "six-digit",
+                    "6-digit",
+                    "000042"
+                  ]
+                ],
+                "ms": 2509.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+              "lookup": [
+                "incident_code_format"
+              ],
+              "lessons": [],
+              "ms": 1247.1,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly matches the format described in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2149.0
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+          "latency_ms": 7430.9,
+          "wall_ms": 7431.1
+        },
+        {
+          "id": "va05",
+          "question": "What types of related notes can be attached to an incident?",
+          "topic": "related_types",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide detailed context and evidence for incident analysis and resolution.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1860.8,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up.",
+                "feedback": "The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operator_note",
+                    "operator note"
+                  ],
+                  [
+                    "maintenance_note",
+                    "maintenance note"
+                  ],
+                  [
+                    "follow_up",
+                    "follow-up",
+                    "follow up"
+                  ]
+                ],
+                "ms": 3307.8
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+              "lookup": [
+                "related_types",
+                "valid_categories"
+              ],
+              "lessons": [],
+              "ms": 1925.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly lists all three types of related notes as specified in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2145.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+          "latency_ms": 9240.4,
+          "wall_ms": 9240.5
+        },
+        {
+          "id": "va06",
+          "question": "What must an operator do right after a collision?",
+          "topic": "collision_procedure",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless necessary for safety.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1528.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not fully align with the ground truth.",
+                "feedback": "The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until a supervisor inspects it. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operations control center",
+                    "occ"
+                  ],
+                  [
+                    "supervisor"
+                  ]
+                ],
+                "ms": 2961.4
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+              "lookup": [
+                "collision_procedure"
+              ],
+              "lessons": [],
+              "ms": 1468.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly includes all required terms and actions from the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2048.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+          "latency_ms": 8007.9,
+          "wall_ms": 8007.9
+        },
+        {
+          "id": "va07",
+          "question": "What is the capital of Australia?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The capital of Australia is Canberra.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 506.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer provided is based on general knowledge, which is not allowed according to the ground truth.",
+                "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2641.2
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1464.3,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2521.8
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+          "latency_ms": 7133.5,
+          "wall_ms": 7133.6
+        },
+        {
+          "id": "va08",
+          "question": "When must a service suspension be reported to the city transportation department?",
+          "topic": "city_notification",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+              "lookup": [
+                "city_notification",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 1115.6,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the condition for reporting a service suspension.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2002.7
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+          "latency_ms": 3118.3,
+          "wall_ms": 3119.2
+        },
+        {
+          "id": "va09",
+          "question": "What value should passengersAffected have when the number of affected passengers is unknown?",
+          "topic": "passengers_rule",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact of the incident.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1489.6,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2489.7
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+              "lookup": [
+                "passengers_rule",
+                "severity1"
+              ],
+              "lessons": [],
+              "ms": 1765.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2441.8
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "REVISE",
+          "final_answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+          "latency_ms": 8186.3,
+          "wall_ms": 8186.5
+        },
+        {
+          "id": "va10",
+          "question": "How do I bake sourdough bread?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Bake sourdough bread by preheating your oven to 475\u00b0F (245\u00b0C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover with a lid, and bake covered for the first 20 minutes. Let it rest for 10-15 minutes before removing.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 3550.5,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The question is about baking sourdough bread, which is not covered by the provided reference dataset.",
+                "feedback": "You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2980.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1460.5,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the scope of the reference dataset.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2618.7
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+          "latency_ms": 10609.8,
+          "wall_ms": 10609.9
+        }
+      ],
+      "after": [
+        {
+          "id": "va01",
+          "question": "Within how many minutes must a rider alert be posted after a service suspension is confirmed?",
+          "topic": "rider_alert",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+              "lookup": [
+                "rider_alert",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 962.6,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the required time frame.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2012.8
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "The rider alert must be posted within 10 minutes after confirming a service suspension.",
+          "latency_ms": 2975.4,
+          "wall_ms": 2975.6
+        },
+        {
+          "id": "va02",
+          "question": "How long does staff have to add a follow-up note before an incident can be closed?",
+          "topic": "follow_up",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Staff must add a follow-up note within 24 hours of incident closure to ensure proper documentation. If no note is added, the incident remains open until the note is submitted.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1627.3,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly states the time frame for adding a follow-up note.",
+                "feedback": "The answer should specify that a follow-up note must be added within [value] hours, not 24 hours, before an incident can be closed. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "48",
+                    "forty-eight"
+                  ]
+                ],
+                "ms": 2852.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+              "lookup": [
+                "follow_up",
+                "related_types"
+              ],
+              "lessons": [],
+              "ms": 1862.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly states the 48-hour requirement for adding a follow-up note.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2585.2
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Staff must add a follow-up note within 48 hours before an incident can be closed. The note must be of type follow_up to ensure proper documentation and closure.",
+          "latency_ms": 8927.5,
+          "wall_ms": 8927.7
+        },
+        {
+          "id": "va03",
+          "question": "At what delay length is an incident escalated to Severity 2?",
+          "topic": "delay_escalation",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "An incident is escalated to Severity 2 if it causes a delay of 30 minutes or more for two or more routes.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1200.3,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer incorrectly specifies 'two or more routes' as a condition for escalation, which is not present in the ground truth.",
+                "feedback": "The answer should specify that the delay length, not the number of routes, determines the escalation to Severity 2. Check the reference dataset before answering.",
+                "failure_type": "evaluator_flagged",
+                "rule_pass": true,
+                "llm_verdict": "REVISE",
+                "missing_terms": [],
+                "ms": 2994.7
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+              "lookup": [
+                "delay_escalation",
+                "delay_threshold"
+              ],
+              "lessons": [],
+              "ms": 1507.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the delay length for escalation to Severity 2.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2191.1
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "An incident is escalated to Severity 2 if the delay is 30 minutes or more, regardless of the number of routes affected.",
+          "latency_ms": 7894.0,
+          "wall_ms": 7894.0
+        },
+        {
+          "id": "va04",
+          "question": "What format do incident codes use?",
+          "topic": "incident_code_format",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Incident codes use a 5-digit numeric format, starting with a 1 or 2 to indicate the incident type, followed by four digits for specific details.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1478.7,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not match the format described in the ground truth.",
+                "feedback": "The Answering Agent should use the format INC- followed by six digits, as specified in the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "INC-"
+                  ],
+                  [
+                    "six digits",
+                    "6 digits",
+                    "six-digit",
+                    "6-digit",
+                    "000042"
+                  ]
+                ],
+                "ms": 2454.8
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+              "lookup": [
+                "incident_code_format"
+              ],
+              "lessons": [],
+              "ms": 1267.0,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly matches the format described in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2133.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Incident codes use the format INC- followed by six digits, such as INC-000042.",
+          "latency_ms": 7334.4,
+          "wall_ms": 7334.6
+        },
+        {
+          "id": "va05",
+          "question": "What types of related notes can be attached to an incident?",
+          "topic": "related_types",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Related notes to an incident can include photos, videos, audio recordings, maps, incident reports, witness statements, and equipment logs. These help provide detailed context and evidence for incident analysis and resolution.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1853.0,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not align with the ground truth which specifies the types of related notes as operator_note, maintenance_note, and follow_up.",
+                "feedback": "The Answering Agent should provide the specific types of notes as defined in the ground truth: operator_note, maintenance_note, and follow_up. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operator_note",
+                    "operator note"
+                  ],
+                  [
+                    "maintenance_note",
+                    "maintenance note"
+                  ],
+                  [
+                    "follow_up",
+                    "follow-up",
+                    "follow up"
+                  ]
+                ],
+                "ms": 3295.7
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+              "lookup": [
+                "related_types",
+                "valid_categories"
+              ],
+              "lessons": [],
+              "ms": 1927.2,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly lists all three types of related notes as specified in the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2140.0
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "Related notes to an incident can be of three types: operator_note, maintenance_note, or follow_up. These notes document different aspects of the incident, such as operator actions, maintenance requirements, and follow-up tasks.",
+          "latency_ms": 9215.9,
+          "wall_ms": 9216.0
+        },
+        {
+          "id": "va06",
+          "question": "What must an operator do right after a collision?",
+          "topic": "collision_procedure",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The operator must stop safely, ensure passenger and public safety, report the incident to dispatch, and follow emergency protocols. Do not move vehicles unless necessary for safety.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1515.3,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer does not fully align with the ground truth.",
+                "feedback": "The answer should specify that the operator must stop the vehicle and call the Operations Control Center (OCC), and the vehicle should stay out of service until a supervisor inspects it. Check the reference dataset before answering.",
+                "failure_type": "wrong_label",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "operations control center",
+                    "occ"
+                  ],
+                  [
+                    "supervisor"
+                  ]
+                ],
+                "ms": 2949.2
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+              "lookup": [
+                "collision_procedure"
+              ],
+              "lessons": [],
+              "ms": 1456.9,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly includes all required terms and actions from the ground truth.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2028.5
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The operator must stop the vehicle, call the Operations Control Center (OCC), and ensure safety. The vehicle stays out of service until a supervisor inspects it.",
+          "latency_ms": 7949.9,
+          "wall_ms": 7950.1
+        },
+        {
+          "id": "va07",
+          "question": "What is the capital of Australia?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "The capital of Australia is Canberra.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 525.2,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer provided is based on general knowledge, which is not allowed according to the ground truth.",
+                "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2659.1
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1448.2,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the reference dataset and does not attempt to answer it using general knowledge.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2509.4
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the reference dataset, and I cannot provide an answer based on general knowledge. Only questions related to municipal transit incidents are addressed.",
+          "latency_ms": 7141.9,
+          "wall_ms": 7142.1
+        },
+        {
+          "id": "va08",
+          "question": "When must a service suspension be reported to the city transportation department?",
+          "topic": "city_notification",
+          "lessons_loaded": [
+            "lesson_001"
+          ],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+              "lookup": [
+                "city_notification",
+                "bus_bridge"
+              ],
+              "lessons": [
+                "lesson_001"
+              ],
+              "ms": 1102.7,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies the condition for reporting a service suspension.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 1982.9
+              }
+            }
+          ],
+          "n_attempts": 1,
+          "first_result": "PASS",
+          "final_result": "PASS",
+          "final_answer": "A service suspension must be reported to the city transportation department if it lasts longer than 60 minutes.",
+          "latency_ms": 3085.6,
+          "wall_ms": 3086.3
+        },
+        {
+          "id": "va09",
+          "question": "What value should passengersAffected have when the number of affected passengers is unknown?",
+          "topic": "passengers_rule",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number of affected passengers is not determined. This indicates the agency is still assessing the impact of the incident.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 1604.6,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2580.5
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+              "lookup": [
+                "passengers_rule",
+                "severity1"
+              ],
+              "lessons": [],
+              "ms": 1772.1,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The answer contradicts the ground truth by suggesting 'Unknown' instead of 0.",
+                "feedback": "Use [value] to indicate the number of affected passengers is unknown, as per the ground truth. Check the reference dataset before answering.",
+                "failure_type": "missing_value",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "0",
+                    "zero"
+                  ]
+                ],
+                "ms": 2488.6
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "REVISE",
+          "final_answer": "PassengersAffected should be set to \"Unknown\" when the number is not determined. This indicates the agency is still assessing the impact, as per the reference dataset.",
+          "latency_ms": 8445.8,
+          "wall_ms": 8446.0
+        },
+        {
+          "id": "va10",
+          "question": "How do I bake sourdough bread?",
+          "topic": "out_of_scope",
+          "lessons_loaded": [],
+          "attempts": [
+            {
+              "attempt": 1,
+              "answer": "Bake sourdough bread by preheating your oven to 475\u00b0F (245\u00b0C), placing the loaf in a preheated Dutch oven, and baking for 30-35 minutes. Score the top, cover with a lid, and bake covered for the first 20 minutes. Let it rest for 10-15 minutes before removing.",
+              "lookup": null,
+              "lessons": [],
+              "ms": 3523.6,
+              "evaluation": {
+                "result": "REVISE",
+                "explanation": "The question is about baking sourdough bread, which is not covered by the provided reference dataset.",
+                "feedback": "You should state that the question is outside the scope of the reference dataset and avoid providing an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+                "failure_type": "unsupported_answer",
+                "rule_pass": false,
+                "llm_verdict": "REVISE",
+                "missing_terms": [
+                  [
+                    "<decline>"
+                  ]
+                ],
+                "ms": 2967.3
+              }
+            },
+            {
+              "attempt": 2,
+              "answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+              "lookup": [],
+              "lessons": [],
+              "ms": 1443.4,
+              "evaluation": {
+                "result": "PASS",
+                "explanation": "The answer correctly identifies that the question is outside the scope of the reference dataset.",
+                "feedback": "",
+                "failure_type": "none",
+                "rule_pass": true,
+                "llm_verdict": "PASS",
+                "missing_terms": [],
+                "ms": 2609.9
+              }
+            }
+          ],
+          "n_attempts": 2,
+          "first_result": "REVISE",
+          "final_result": "PASS",
+          "final_answer": "The question is outside the scope of the s4098 Transit agency's reference dataset and cannot be addressed. Please ask about municipal transit incidents or related operations.",
+          "latency_ms": 10544.2,
+          "wall_ms": 10544.3
+        }
+      ]
+    }
+  ]
+}

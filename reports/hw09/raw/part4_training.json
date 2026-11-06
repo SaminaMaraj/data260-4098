@@ -1,0 +1,562 @@
+{
+  "rows": [
+    {
+      "id": "tr01",
+      "question": "When should a bus bridge be requested during a light-rail service suspension?",
+      "topic": "bus_bridge",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "A bus bridge should be requested immediately when light-rail service is suspended to ensure continuous transit options for passengers. It provides an alternative route using buses, minimizing disruption.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1787.3,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer incorrectly states that a bus bridge should be requested immediately, while the ground truth specifies it should be requested if the suspension is expected to last more than 20 minutes.",
+            "feedback": "The Answering Agent should specify that a bus bridge is requested only when the light-rail suspension is expected to last more than [value] minutes. Check the reference dataset before answering.",
+            "failure_type": "missing_value",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "20",
+                "twenty"
+              ],
+              [
+                "minute"
+              ]
+            ],
+            "ms": 3682.2
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "A bus bridge should be requested when a light-rail service suspension is expected to last more than 20 minutes. This ensures alternative transit options are available, minimizing disruption to passengers.",
+          "lookup": [
+            "bus_bridge",
+            "city_notification"
+          ],
+          "lessons": [],
+          "ms": 1927.2,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly states the condition under which a bus bridge should be requested.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2269.7
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "A bus bridge should be requested when a light-rail service suspension is expected to last more than 20 minutes. This ensures alternative transit options are available, minimizing disruption to passengers.",
+      "latency_ms": 9666.4,
+      "wall_ms": 9666.5
+    },
+    {
+      "id": "tr02",
+      "question": "How late must a bus be before it is logged as a delay incident?",
+      "topic": "delay_threshold",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "A bus must be 10 minutes or more late before it is logged as a delay incident.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1026.7,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly states the condition for logging a delay incident.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2135.1
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "A bus must be 10 minutes or more late before it is logged as a delay incident.",
+      "latency_ms": 3161.8,
+      "wall_ms": 3161.9
+    },
+    {
+      "id": "tr03",
+      "question": "How soon must a maintenance ticket be opened for an infrastructure-issue incident?",
+      "topic": "maintenance_ticket",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "A maintenance ticket for an infrastructure-issue incident must be opened within 15 minutes of the incident report.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1052.4,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer provides an incorrect time frame for opening a maintenance ticket.",
+            "feedback": "The Answering Agent should state that a maintenance ticket must be opened within [value] hours, not 15 minutes. Check the reference dataset before answering.",
+            "failure_type": "missing_value",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "4",
+                "four"
+              ],
+              [
+                "hour"
+              ]
+            ],
+            "ms": 2489.1
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "A maintenance ticket for an infrastructure-issue incident must be opened within 4 hours of the report.",
+          "lookup": [
+            "maintenance_ticket"
+          ],
+          "lessons": [],
+          "ms": 1035.3,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly states the required timeframe for opening a maintenance ticket.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 1941.0
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "A maintenance ticket for an infrastructure-issue incident must be opened within 4 hours of the report.",
+      "latency_ms": 6517.8,
+      "wall_ms": 6518.1
+    },
+    {
+      "id": "tr04",
+      "question": "What are the allowed incident categories?",
+      "topic": "valid_categories",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The allowed incident categories are: 1) Vehicle Breakdown, 2) Accident, 3) Medical Emergency, 4) Security Threat, 5) System Failure, and 6) Other.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1934.2,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer does not match the allowed incident categories specified in the ground truth.",
+            "feedback": "The Answering Agent should only list the four categories specified in the ground truth: delay, collision, service-suspension, infrastructure-issue. Check the reference dataset before answering.",
+            "failure_type": "wrong_label",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "delay"
+              ],
+              [
+                "collision"
+              ],
+              [
+                "service-suspension",
+                "service suspension"
+              ],
+              [
+                "infrastructure-issue",
+                "infrastructure issue"
+              ]
+            ],
+            "ms": 2712.2
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The allowed incident categories are: delay, collision, service-suspension, infrastructure-issue.",
+          "lookup": [
+            "valid_categories"
+          ],
+          "lessons": [],
+          "ms": 1123.5,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all four allowed incident categories as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 1945.7
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The allowed incident categories are: delay, collision, service-suspension, infrastructure-issue.",
+      "latency_ms": 7715.6,
+      "wall_ms": 7715.8
+    },
+    {
+      "id": "tr05",
+      "question": "When is an incident classified as Severity 1?",
+      "topic": "severity1",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "Severity 1 incidents are those that result in fatalities, serious injuries, or significant property damage, requiring immediate emergency response and disruption of service.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1343.9,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer incorrectly defines Severity 1 incidents.",
+            "feedback": "The answer should specify that Severity 1 incidents involve injuries or affecting more than [value] passengers, not fatalities or property damage. Check the reference dataset before answering.",
+            "failure_type": "missing_value",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "200"
+              ]
+            ],
+            "ms": 2443.8
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "Severity 1 incidents are those involving injuries or affecting more than 200 passengers, according to the reference dataset.",
+          "lookup": [
+            "severity1"
+          ],
+          "lessons": [],
+          "ms": 1210.7,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly identifies the criteria for Severity 1 as per the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2433.0
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "Severity 1 incidents are those involving injuries or affecting more than 200 passengers, according to the reference dataset.",
+      "latency_ms": 7431.4,
+      "wall_ms": 7431.6
+    },
+    {
+      "id": "tr06",
+      "question": "How long are incident records kept?",
+      "topic": "retention",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "Incident records are retained for 7 years per agency policy to ensure compliance and support future investigations.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1018.6,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly states the duration for which incident records are kept.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 1964.9
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "Incident records are retained for 7 years per agency policy to ensure compliance and support future investigations.",
+      "latency_ms": 2983.5,
+      "wall_ms": 2983.6
+    },
+    {
+      "id": "tr07",
+      "question": "What is the best pizza place in San Jose?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "I cannot provide recommendations or opinions on pizza places. For the best pizza in San Jose, consider checking local reviews or asking residents for their favorites.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1366.2,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly acknowledges the inability to provide a recommendation and suggests alternative methods for finding information.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2376.1
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "I cannot provide recommendations or opinions on pizza places. For the best pizza in San Jose, consider checking local reviews or asking residents for their favorites.",
+      "latency_ms": 3742.3,
+      "wall_ms": 3742.4
+    },
+    {
+      "id": "tr08",
+      "question": "What speed limit applies to light-rail trains during extreme heat?",
+      "topic": "heat_restriction",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The speed limit for light-rail trains during extreme heat is typically 35 mph, as per safety guidelines to prevent overheating of equipment and ensure passenger safety.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1533.7,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly identifies the speed limit and the condition under which it applies.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2099.4
+          }
+        }
+      ],
+      "n_attempts": 1,
+      "first_result": "PASS",
+      "final_result": "PASS",
+      "final_answer": "The speed limit for light-rail trains during extreme heat is typically 35 mph, as per safety guidelines to prevent overheating of equipment and ensure passenger safety.",
+      "latency_ms": 3633.1,
+      "wall_ms": 3633.3
+    },
+    {
+      "id": "tr09",
+      "question": "Which fields are required when submitting a new incident report?",
+      "topic": "required_fields",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The required fields when submitting a new incident report are: Incident Type, Location, Time, Summary, and Reporter Contact Information.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1205.7,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer does not match the required fields specified in the ground truth.",
+            "feedback": "Ensure the answer includes the correct required fields: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted. Check the reference dataset before answering.",
+            "failure_type": "wrong_label",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "incidentTitle",
+                "incident title"
+              ],
+              [
+                "routeLine",
+                "route line"
+              ],
+              [
+                "submitterEmail",
+                "submitter email"
+              ],
+              [
+                "description"
+              ],
+              [
+                "category"
+              ],
+              [
+                "termsAccepted",
+                "terms accepted"
+              ]
+            ],
+            "ms": 2607.9
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The required fields when submitting a new incident report are: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+          "lookup": [
+            "required_fields"
+          ],
+          "lessons": [],
+          "ms": 1443.5,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly lists all the required fields as specified in the ground truth.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 1899.6
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The required fields when submitting a new incident report are: incidentTitle, routeLine, submitterEmail, description, category, and termsAccepted.",
+      "latency_ms": 7156.7,
+      "wall_ms": 7156.7
+    },
+    {
+      "id": "tr10",
+      "question": "Who won the 2022 FIFA World Cup?",
+      "topic": "out_of_scope",
+      "lessons_loaded": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "answer": "The 2022 FIFA World Cup was won by Argentina. They defeated France in the final match held in Qatar.",
+          "lookup": null,
+          "lessons": [],
+          "ms": 1236.8,
+          "evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer provided is based on general knowledge, which is not allowed as per the ground truth.",
+            "feedback": "You should state that the question is outside the reference dataset and not provide an answer based on general knowledge. Only answer questions that the transit incident reference covers.",
+            "failure_type": "unsupported_answer",
+            "rule_pass": false,
+            "llm_verdict": "REVISE",
+            "missing_terms": [
+              [
+                "<decline>"
+              ]
+            ],
+            "ms": 2574.9
+          }
+        },
+        {
+          "attempt": 2,
+          "answer": "The question is outside the reference dataset and cannot be answered based on the provided information.",
+          "lookup": [],
+          "lessons": [],
+          "ms": 919.6,
+          "evaluation": {
+            "result": "PASS",
+            "explanation": "The answer correctly identifies that the question is outside the reference dataset.",
+            "feedback": "",
+            "failure_type": "none",
+            "rule_pass": true,
+            "llm_verdict": "PASS",
+            "missing_terms": [],
+            "ms": 2067.6
+          }
+        }
+      ],
+      "n_attempts": 2,
+      "first_result": "REVISE",
+      "final_result": "PASS",
+      "final_answer": "The question is outside the reference dataset and cannot be answered based on the provided information.",
+      "latency_ms": 6798.9,
+      "wall_ms": 6799.0
+    }
+  ],
+  "lesson_events": [
+    {
+      "after": "tr03",
+      "lesson": {
+        "lesson_id": "lesson_001",
+        "failure_pattern": "Answers provide incorrect or incomplete information without aligning with the specific requirements or thresholds outlined in the ground truth.",
+        "correction": "Ensure answers strictly adhere to the exact criteria or timeframes provided in the ground truth, avoiding assumptions or generalizations.",
+        "created_at": "2026-11-05",
+        "use_count": 0,
+        "failure_type": "missing_value",
+        "action": "lookup_reference",
+        "trigger": {
+          "type": "keywords",
+          "keywords": [
+            "bridge",
+            "infrastructure-issue",
+            "maintenance",
+            "opened",
+            "requested",
+            "service",
+            "soon",
+            "suspension",
+            "ticket"
+          ]
+        },
+        "source_questions": [
+          "tr01",
+          "tr03"
+        ],
+        "drafted_by": "evaluator (qwen3:8b)",
+        "status": "candidate",
+        "validation": null
+      }
+    },
+    {
+      "after": "tr09",
+      "lesson": {
+        "lesson_id": "lesson_002",
+        "failure_pattern": "The answer does not align with the specific labels or categories defined in the ground truth.",
+        "correction": "Ensure that the answer strictly follows the exact labels and categories provided in the ground truth without adding, removing, or modifying any elements.",
+        "created_at": "2026-11-05",
+        "use_count": 0,
+        "failure_type": "wrong_label",
+        "action": "lookup_reference",
+        "trigger": {
+          "type": "keywords",
+          "keywords": [
+            "allowed",
+            "category",
+            "field",
+            "required",
+            "submitting"
+          ]
+        },
+        "source_questions": [
+          "tr04",
+          "tr09"
+        ],
+        "drafted_by": "evaluator (qwen3:8b)",
+        "status": "candidate",
+        "validation": null
+      }
+    }
+  ],
+  "summary": {
+    "questions": 10,
+    "correct": 10,
+    "incorrect": 0,
+    "first_attempt_correct": 4,
+    "avg_attempts": 1.6,
+    "avg_latency_ms": 5880.8,
+    "out_of_scope_unsupported": 0
+  }
+}

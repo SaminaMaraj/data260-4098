@@ -1,0 +1,96 @@
+{
+  "route_before": {
+    "id": 4,
+    "route_code": "RT-004",
+    "route_name": "VTA Route 522",
+    "operator": "VTA"
+  },
+  "route_after": {
+    "id": 4,
+    "route_code": "RT-004",
+    "route_name": "VTA Route 522",
+    "operator": "MV Transportation (VTA contract)"
+  },
+  "steps": [
+    {
+      "step": "1 first ask, miss -> stored",
+      "question": "Who operates VTA Route 522?",
+      "is_cached": false,
+      "similarity": 0.0,
+      "invalidated": false,
+      "stale_data_version": null,
+      "data_version": "40ea672fa3da",
+      "deps": {
+        "routes": [
+          "RT-004"
+        ],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.",
+      "latency_ms": 7387.87,
+      "matched_query": null
+    },
+    {
+      "step": "3 stale hit (no invalidation)",
+      "question": "Who operates VTA Route 522?",
+      "is_cached": true,
+      "similarity": 1.0,
+      "invalidated": false,
+      "stale_data_version": null,
+      "data_version": "40ea672fa3da",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-004"
+        ]
+      },
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.",
+      "latency_ms": 58.09,
+      "matched_query": "Who operates VTA Route 522?"
+    },
+    {
+      "step": "4 version check -> invalidated -> recomputed",
+      "question": "Who operates VTA Route 522?",
+      "is_cached": false,
+      "similarity": 1.0,
+      "invalidated": true,
+      "stale_data_version": "40ea672fa3da",
+      "data_version": "9929abc1046c",
+      "deps": {
+        "routes": [
+          "RT-004"
+        ],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004, which is 'VTA Route 522', is operated by MV Transportation (VTA contract). No other operators are listed for VTA Route 522 in the provided facts. Therefore, MV Transportation operates VTA Route 522.",
+      "latency_ms": 8658.09,
+      "matched_query": null
+    },
+    {
+      "step": "5 hit with the fresh answer",
+      "question": "Who operates VTA Route 522?",
+      "is_cached": true,
+      "similarity": 1.0,
+      "invalidated": false,
+      "stale_data_version": null,
+      "data_version": "9929abc1046c",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-004"
+        ]
+      },
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004, which is 'VTA Route 522', is operated by MV Transportation (VTA contract). No other operators are listed for VTA Route 522 in the provided facts. Therefore, MV Transportation operates VTA Route 522.",
+      "latency_ms": 38.64,
+      "matched_query": "Who operates VTA Route 522?"
+    }
+  ]
+}

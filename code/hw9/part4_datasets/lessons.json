@@ -1,1 +1,118 @@
-[]
+[
+  {
+    "lesson_id": "lesson_001",
+    "failure_pattern": "Answers provide incorrect or incomplete information without aligning with the specific requirements or thresholds outlined in the ground truth.",
+    "correction": "Ensure answers strictly adhere to the exact criteria or timeframes provided in the ground truth, avoiding assumptions or generalizations.",
+    "created_at": "2026-11-05",
+    "use_count": 11,
+    "failure_type": "missing_value",
+    "action": "lookup_reference",
+    "trigger": {
+      "type": "keywords",
+      "keywords": [
+        "bridge",
+        "infrastructure-issue",
+        "maintenance",
+        "opened",
+        "requested",
+        "service",
+        "soon",
+        "suspension",
+        "ticket"
+      ]
+    },
+    "source_questions": [
+      "tr01",
+      "tr03"
+    ],
+    "drafted_by": "evaluator (qwen3:8b)",
+    "status": "kept",
+    "validation": {
+      "first_attempt_failures_before": 10,
+      "first_attempt_failures_after": 8,
+      "regressions": [],
+      "out_of_scope_unsupported_before": 0,
+      "out_of_scope_unsupported_after": 0,
+      "checks": {
+        "failures_improve_or_same": true,
+        "no_regression_on_correct": true,
+        "no_new_unsupported_answers": true
+      },
+      "keep": true,
+      "summary_before": {
+        "questions": 10,
+        "correct": 9,
+        "incorrect": 1,
+        "first_attempt_correct": 0,
+        "avg_attempts": 2.0,
+        "avg_latency_ms": 8186.9,
+        "out_of_scope_unsupported": 0
+      },
+      "summary_after": {
+        "questions": 10,
+        "correct": 9,
+        "incorrect": 1,
+        "first_attempt_correct": 2,
+        "avg_attempts": 1.8,
+        "avg_latency_ms": 7413.1,
+        "out_of_scope_unsupported": 0
+      }
+    }
+  },
+  {
+    "lesson_id": "lesson_002",
+    "failure_pattern": "The answer does not align with the specific labels or categories defined in the ground truth.",
+    "correction": "Ensure that the answer strictly follows the exact labels and categories provided in the ground truth without adding, removing, or modifying any elements.",
+    "created_at": "2026-11-05",
+    "use_count": 2,
+    "failure_type": "wrong_label",
+    "action": "lookup_reference",
+    "trigger": {
+      "type": "keywords",
+      "keywords": [
+        "allowed",
+        "category",
+        "field",
+        "required",
+        "submitting"
+      ]
+    },
+    "source_questions": [
+      "tr04",
+      "tr09"
+    ],
+    "drafted_by": "evaluator (qwen3:8b)",
+    "status": "kept",
+    "validation": {
+      "first_attempt_failures_before": 8,
+      "first_attempt_failures_after": 8,
+      "regressions": [],
+      "out_of_scope_unsupported_before": 0,
+      "out_of_scope_unsupported_after": 0,
+      "checks": {
+        "failures_improve_or_same": true,
+        "no_regression_on_correct": true,
+        "no_new_unsupported_answers": true
+      },
+      "keep": true,
+      "summary_before": {
+        "questions": 10,
+        "correct": 9,
+        "incorrect": 1,
+        "first_attempt_correct": 2,
+        "avg_attempts": 1.8,
+        "avg_latency_ms": 7413.1,
+        "out_of_scope_unsupported": 0
+      },
+      "summary_after": {
+        "questions": 10,
+        "correct": 9,
+        "incorrect": 1,
+        "first_attempt_correct": 2,
+        "avg_attempts": 1.8,
+        "avg_latency_ms": 7351.5,
+        "out_of_scope_unsupported": 0
+      }
+    }
+  }
+]

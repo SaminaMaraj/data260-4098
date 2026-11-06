@@ -1,0 +1,61 @@
+{
+  "forced_initial_answer": "A bus bridge can be requested when a light-rail suspension is long.",
+  "id": "tr01",
+  "question": "When should a bus bridge be requested during a light-rail service suspension?",
+  "topic": "bus_bridge",
+  "lessons_loaded": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "answer": "A bus bridge can be requested when a light-rail suspension is long.",
+      "lookup": null,
+      "lessons": [],
+      "ms": 0.0,
+      "forced": true,
+      "evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer is too vague and does not specify the required duration for requesting a bus bridge.",
+        "feedback": "Specify that a bus bridge should be requested when the light-rail suspension is expected to last more than [value] minutes. Check the reference dataset before answering.",
+        "failure_type": "missing_value",
+        "rule_pass": false,
+        "llm_verdict": "REVISE",
+        "missing_terms": [
+          [
+            "20",
+            "twenty"
+          ],
+          [
+            "minute"
+          ]
+        ],
+        "ms": 3109.0
+      }
+    },
+    {
+      "attempt": 2,
+      "answer": "A bus bridge should be requested when a light-rail suspension is expected to last more than 20 minutes.",
+      "lookup": [
+        "bus_bridge",
+        "city_notification"
+      ],
+      "lessons": [],
+      "ms": 1387.3,
+      "evaluation": {
+        "result": "PASS",
+        "explanation": "The answer correctly states the condition under which a bus bridge should be requested.",
+        "feedback": "",
+        "failure_type": "none",
+        "rule_pass": true,
+        "llm_verdict": "PASS",
+        "missing_terms": [],
+        "ms": 2234.9
+      }
+    }
+  ],
+  "n_attempts": 2,
+  "first_result": "REVISE",
+  "final_result": "PASS",
+  "final_answer": "A bus bridge should be requested when a light-rail suspension is expected to last more than 20 minutes.",
+  "latency_ms": 6731.2,
+  "wall_ms": 6731.4
+}

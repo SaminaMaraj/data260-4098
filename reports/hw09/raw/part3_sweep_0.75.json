@@ -1,0 +1,1513 @@
+{
+  "summary": {
+    "threshold": 0.75,
+    "cases": 40,
+    "hits": 30,
+    "misses": 10,
+    "false_hits": 10,
+    "missed_hits": 0,
+    "hit_rate_pct": 75.0,
+    "false_hit_rate_pct": 33.3,
+    "mean_latency_ms": 2067.8,
+    "mean_latency_hit_ms": 12.2,
+    "mean_latency_miss_ms": 8234.8
+  },
+  "rows": [
+    {
+      "question": "How many delay incidents were recorded on VTA Route 22?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "How many delay incidents were recorded on VTA Route 22?",
+      "invalidated": false,
+      "answer": "The route code for VTA Route 22 is RT-003, which has 266 recorded delay incidents according to the s4098_rel transit incident database. This matches the criteria in the question, as it specifically refers to delay incidents on VTA Route 22. Therefore, 266 delay incidents were recorded on VTA Route 22.",
+      "is_cached": true,
+      "matched_query": "How many delay incidents were recorded on VTA Route 22?",
+      "matched_key": "s4098:semcache:98a3c7eec5c9",
+      "data_version": "276681c63abb",
+      "deps": {
+        "category": "delay",
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-003"
+        ]
+      },
+      "latency_ms": 18.47,
+      "timings": {
+        "embed_ms": 8.43,
+        "search_ms": 3.9,
+        "version_check_ms": 6.09,
+        "total_ms": 18.47
+      },
+      "matched_seed": "S01",
+      "nearest_seed": "S01",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-003 is 'VTA Route 22', operated by VTA. It has 266 recorded delay incidents."
+      ],
+      "id": "C01",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S01"
+    },
+    {
+      "question": "What is the route code for the VTA Green Line?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The VTA Green Line is identified as Route RT-001 in the s4098_rel transit incident database. The route code for the VTA Green Line is RT-001. This code is directly linked to the VTA Green Line in the database, confirming its accuracy. Therefore, the route code is RT-001.",
+      "is_cached": true,
+      "matched_query": "What is the route code for the VTA Green Line?",
+      "matched_key": "s4098:semcache:6ddc5e168340",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 9.8,
+      "timings": {
+        "embed_ms": 7.57,
+        "search_ms": 0.83,
+        "version_check_ms": 1.4,
+        "total_ms": 9.8
+      },
+      "matched_seed": "S02",
+      "nearest_seed": "S02",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-001 is 'VTA Green Line', operated by VTA."
+      ],
+      "id": "C02",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S02"
+    },
+    {
+      "question": "Who operates VTA Route 522?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "Who operates VTA Route 522?",
+      "invalidated": false,
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.",
+      "is_cached": true,
+      "matched_query": "Who operates VTA Route 522?",
+      "matched_key": "s4098:semcache:aa7e6fa7abf3",
+      "data_version": "40ea672fa3da",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-004"
+        ]
+      },
+      "latency_ms": 14.07,
+      "timings": {
+        "embed_ms": 5.72,
+        "search_ms": 7.17,
+        "version_check_ms": 1.18,
+        "total_ms": 14.07
+      },
+      "matched_seed": "S03",
+      "nearest_seed": "S03",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-004 is 'VTA Route 522', operated by VTA."
+      ],
+      "id": "C03",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S03"
+    },
+    {
+      "question": "What category is incident INC-000042?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "What category is incident INC-000042?",
+      "invalidated": false,
+      "answer": "The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled 'Transit Infrastructure Issue Incident 41', occurred on the VTA Green Line and affected 0 passengers. The category is correctly listed as 'infrastructure-issue'.",
+      "is_cached": true,
+      "matched_query": "What category is incident INC-000042?",
+      "matched_key": "s4098:semcache:57ac535324fb",
+      "data_version": "84d5c63191bb",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000042",
+        "routes": []
+      },
+      "latency_ms": 7.14,
+      "timings": {
+        "embed_ms": 5.59,
+        "search_ms": 0.54,
+        "version_check_ms": 1.0,
+        "total_ms": 7.14
+      },
+      "matched_seed": "S04",
+      "nearest_seed": "S04",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000042: 'Transit Infrastructure Issue Incident 41' on VTA Green Line, category infrastructure-issue, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C04",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S04"
+    },
+    {
+      "question": "How many collision incidents have been reported across all routes?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "How many collision incidents have been reported across all routes?",
+      "invalidated": false,
+      "answer": "The collision incidents reported across all listed routes are as follows: VTA Green Line: 242, VTA Orange Line: 259, VTA Route 22: 244, VTA Route 522: 253, and VTA Route 55: 264. Adding these together gives a total of 1262 collision incidents. All routes listed in the facts are included, and no additional routes or data are considered. The s4098_rel database records 1262 collision incidents in total.",
+      "is_cached": true,
+      "matched_query": "How many collision incidents have been reported across all routes?",
+      "matched_key": "s4098:semcache:e8e2999f9b2e",
+      "data_version": "d21e172eeb2d",
+      "deps": {
+        "category": "collision",
+        "counts": true,
+        "incident": null,
+        "routes": []
+      },
+      "latency_ms": 8.95,
+      "timings": {
+        "embed_ms": 5.99,
+        "search_ms": 0.38,
+        "version_check_ms": 2.57,
+        "total_ms": 8.95
+      },
+      "matched_seed": "S05",
+      "nearest_seed": "S05",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "collision incidents per route: VTA Green Line: 242, VTA Orange Line: 259, VTA Route 22: 244, VTA Route 522: 253, VTA Route 55: 264 (total 1262)."
+      ],
+      "id": "C05",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S05"
+    },
+    {
+      "question": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "invalidated": false,
+      "answer": "The VTA Orange Line is identified by route code RT-002. According to the s4098_rel transit incident database, route RT-002 has 255 recorded infrastructure-issue incidents. These incidents are specifically categorized as infrastructure issues. Therefore, the total number of infrastructure issues recorded on the VTA Orange Line is 255.",
+      "is_cached": true,
+      "matched_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "matched_key": "s4098:semcache:f8116f9a6e62",
+      "data_version": "992062df2ffb",
+      "deps": {
+        "category": "infrastructure-issue",
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-002"
+        ]
+      },
+      "latency_ms": 8.58,
+      "timings": {
+        "embed_ms": 6.27,
+        "search_ms": 0.4,
+        "version_check_ms": 1.91,
+        "total_ms": 8.58
+      },
+      "matched_seed": "S06",
+      "nearest_seed": "S06",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-002 is 'VTA Orange Line', operated by VTA. It has 255 recorded infrastructure-issue incidents."
+      ],
+      "id": "C06",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S06"
+    },
+    {
+      "question": "Which route line was incident INC-000122 reported on?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "Which route line was incident INC-000122 reported on?",
+      "invalidated": false,
+      "answer": "The incident code INC-000122 is associated with the VTA Green Line. The facts confirm that the incident, labeled 'Transit Delay Incident 121', occurred on the VTA Green Line. No passengers were affected, and the incident was submitted on 2025-09-26. The route line name is clearly stated in the facts. Therefore, the route line for incident INC-000122 is the VTA Green Line.",
+      "is_cached": true,
+      "matched_query": "Which route line was incident INC-000122 reported on?",
+      "matched_key": "s4098:semcache:dc0c50c61771",
+      "data_version": "acd7d6937be5",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000122",
+        "routes": []
+      },
+      "latency_ms": 7.69,
+      "timings": {
+        "embed_ms": 6.49,
+        "search_ms": 0.38,
+        "version_check_ms": 0.81,
+        "total_ms": 7.69
+      },
+      "matched_seed": "S07",
+      "nearest_seed": "S07",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000122: 'Transit Delay Incident 121' on VTA Green Line, category delay, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C07",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S07"
+    },
+    {
+      "question": "How many incidents in total were recorded on VTA Route 55?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "How many incidents in total were recorded on VTA Route 55?",
+      "invalidated": false,
+      "answer": "The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, and 254 service suspensions. Adding these categories together (264 + 223 + 252 + 254) results in 993, confirming the total number of incidents as provided in the s4098_rel database.",
+      "is_cached": true,
+      "matched_query": "How many incidents in total were recorded on VTA Route 55?",
+      "matched_key": "s4098:semcache:9ab7e8211325",
+      "data_version": "d553a0c95c65",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-005"
+        ]
+      },
+      "latency_ms": 8.43,
+      "timings": {
+        "embed_ms": 5.97,
+        "search_ms": 0.45,
+        "version_check_ms": 2.01,
+        "total_ms": 8.43
+      },
+      "matched_seed": "S08",
+      "nearest_seed": "S08",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-005 is 'VTA Route 55', operated by VTA. It has 993 recorded incidents (collision: 264, delay: 223, infrastructure-issue: 252, service-suspension: 254)."
+      ],
+      "id": "C08",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S08"
+    },
+    {
+      "question": "What is the title of incident INC-000250?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "What is the title of incident INC-000250?",
+      "invalidated": false,
+      "answer": "The title of incident INC-000250 is \"Transit Service Suspension Incident 249\".",
+      "is_cached": true,
+      "matched_query": "What is the title of incident INC-000250?",
+      "matched_key": "s4098:semcache:48c0f640f7b8",
+      "data_version": "71b528ddeff1",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000250",
+        "routes": []
+      },
+      "latency_ms": 8.13,
+      "timings": {
+        "embed_ms": 6.89,
+        "search_ms": 0.43,
+        "version_check_ms": 0.8,
+        "total_ms": 8.13
+      },
+      "matched_seed": "S09",
+      "nearest_seed": "S09",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000250: 'Transit Service Suspension Incident 249' on VTA Orange Line, category service-suspension, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C09",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S09"
+    },
+    {
+      "question": "Which route has the route code RT-001?",
+      "threshold": 0.75,
+      "similarity": 1.0,
+      "nearest_query": "Which route has the route code RT-001?",
+      "invalidated": false,
+      "answer": "The route code RT-001 corresponds to the 'VTA Green Line', which is operated by VTA. The s4098_rel transit incident database confirms this information.",
+      "is_cached": true,
+      "matched_query": "Which route has the route code RT-001?",
+      "matched_key": "s4098:semcache:f50dce2f133a",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 8.15,
+      "timings": {
+        "embed_ms": 6.94,
+        "search_ms": 0.43,
+        "version_check_ms": 0.78,
+        "total_ms": 8.15
+      },
+      "matched_seed": "S10",
+      "nearest_seed": "S10",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-001 is 'VTA Green Line', operated by VTA."
+      ],
+      "id": "C10",
+      "group": "exact",
+      "expected": "hit",
+      "target": "S10"
+    },
+    {
+      "question": "What is the number of delay incidents logged for VTA Route 22?",
+      "threshold": 0.75,
+      "similarity": 0.9375,
+      "nearest_query": "How many delay incidents were recorded on VTA Route 22?",
+      "invalidated": false,
+      "answer": "The route code for VTA Route 22 is RT-003, which has 266 recorded delay incidents according to the s4098_rel transit incident database. This matches the criteria in the question, as it specifically refers to delay incidents on VTA Route 22. Therefore, 266 delay incidents were recorded on VTA Route 22.",
+      "is_cached": true,
+      "matched_query": "How many delay incidents were recorded on VTA Route 22?",
+      "matched_key": "s4098:semcache:98a3c7eec5c9",
+      "data_version": "276681c63abb",
+      "deps": {
+        "category": "delay",
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-003"
+        ]
+      },
+      "latency_ms": 13.82,
+      "timings": {
+        "embed_ms": 11.46,
+        "search_ms": 0.38,
+        "version_check_ms": 1.98,
+        "total_ms": 13.82
+      },
+      "matched_seed": "S01",
+      "nearest_seed": "S01",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-003 is 'VTA Route 22', operated by VTA. It has 266 recorded delay incidents."
+      ],
+      "id": "C11",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S01"
+    },
+    {
+      "question": "Which route code is assigned to the VTA Green Line?",
+      "threshold": 0.75,
+      "similarity": 0.9606,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The VTA Green Line is identified as Route RT-001 in the s4098_rel transit incident database. The route code for the VTA Green Line is RT-001. This code is directly linked to the VTA Green Line in the database, confirming its accuracy. Therefore, the route code is RT-001.",
+      "is_cached": true,
+      "matched_query": "What is the route code for the VTA Green Line?",
+      "matched_key": "s4098:semcache:6ddc5e168340",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 8.53,
+      "timings": {
+        "embed_ms": 7.32,
+        "search_ms": 0.42,
+        "version_check_ms": 0.79,
+        "total_ms": 8.53
+      },
+      "matched_seed": "S02",
+      "nearest_seed": "S02",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-001 is 'VTA Green Line', operated by VTA."
+      ],
+      "id": "C12",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S02"
+    },
+    {
+      "question": "Which operator runs VTA Route 522?",
+      "threshold": 0.75,
+      "similarity": 0.8854,
+      "nearest_query": "Who operates VTA Route 522?",
+      "invalidated": false,
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.",
+      "is_cached": true,
+      "matched_query": "Who operates VTA Route 522?",
+      "matched_key": "s4098:semcache:aa7e6fa7abf3",
+      "data_version": "40ea672fa3da",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-004"
+        ]
+      },
+      "latency_ms": 9.14,
+      "timings": {
+        "embed_ms": 7.9,
+        "search_ms": 0.4,
+        "version_check_ms": 0.83,
+        "total_ms": 9.14
+      },
+      "matched_seed": "S03",
+      "nearest_seed": "S03",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-004 is 'VTA Route 522', operated by VTA."
+      ],
+      "id": "C13",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S03"
+    },
+    {
+      "question": "Which incident category does INC-000042 belong to?",
+      "threshold": 0.75,
+      "similarity": 0.9522,
+      "nearest_query": "What category is incident INC-000042?",
+      "invalidated": false,
+      "answer": "The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled 'Transit Infrastructure Issue Incident 41', occurred on the VTA Green Line and affected 0 passengers. The category is correctly listed as 'infrastructure-issue'.",
+      "is_cached": true,
+      "matched_query": "What category is incident INC-000042?",
+      "matched_key": "s4098:semcache:57ac535324fb",
+      "data_version": "84d5c63191bb",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000042",
+        "routes": []
+      },
+      "latency_ms": 9.37,
+      "timings": {
+        "embed_ms": 7.44,
+        "search_ms": 0.77,
+        "version_check_ms": 1.15,
+        "total_ms": 9.37
+      },
+      "matched_seed": "S04",
+      "nearest_seed": "S04",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000042: 'Transit Infrastructure Issue Incident 41' on VTA Green Line, category infrastructure-issue, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C14",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S04"
+    },
+    {
+      "question": "What is the total number of collisions reported on all routes?",
+      "threshold": 0.75,
+      "similarity": 0.8779,
+      "nearest_query": "How many collision incidents have been reported across all routes?",
+      "invalidated": false,
+      "answer": "The collision incidents reported across all listed routes are as follows: VTA Green Line: 242, VTA Orange Line: 259, VTA Route 22: 244, VTA Route 522: 253, and VTA Route 55: 264. Adding these together gives a total of 1262 collision incidents. All routes listed in the facts are included, and no additional routes or data are considered. The s4098_rel database records 1262 collision incidents in total.",
+      "is_cached": true,
+      "matched_query": "How many collision incidents have been reported across all routes?",
+      "matched_key": "s4098:semcache:e8e2999f9b2e",
+      "data_version": "d21e172eeb2d",
+      "deps": {
+        "category": "collision",
+        "counts": true,
+        "incident": null,
+        "routes": []
+      },
+      "latency_ms": 12.29,
+      "timings": {
+        "embed_ms": 7.75,
+        "search_ms": 0.9,
+        "version_check_ms": 3.63,
+        "total_ms": 12.29
+      },
+      "matched_seed": "S05",
+      "nearest_seed": "S05",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "collision incidents per route: VTA Green Line: 242, VTA Orange Line: 259, VTA Route 22: 244, VTA Route 522: 253, VTA Route 55: 264 (total 1262)."
+      ],
+      "id": "C15",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S05"
+    },
+    {
+      "question": "How many infrastructure-issue incidents has the VTA Orange Line had?",
+      "threshold": 0.75,
+      "similarity": 0.9314,
+      "nearest_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "invalidated": false,
+      "answer": "The VTA Orange Line is identified by route code RT-002. According to the s4098_rel transit incident database, route RT-002 has 255 recorded infrastructure-issue incidents. These incidents are specifically categorized as infrastructure issues. Therefore, the total number of infrastructure issues recorded on the VTA Orange Line is 255.",
+      "is_cached": true,
+      "matched_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "matched_key": "s4098:semcache:f8116f9a6e62",
+      "data_version": "992062df2ffb",
+      "deps": {
+        "category": "infrastructure-issue",
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-002"
+        ]
+      },
+      "latency_ms": 11.68,
+      "timings": {
+        "embed_ms": 8.75,
+        "search_ms": 0.46,
+        "version_check_ms": 2.47,
+        "total_ms": 11.68
+      },
+      "matched_seed": "S06",
+      "nearest_seed": "S06",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-002 is 'VTA Orange Line', operated by VTA. It has 255 recorded infrastructure-issue incidents."
+      ],
+      "id": "C16",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S06"
+    },
+    {
+      "question": "On which route did incident INC-000122 happen?",
+      "threshold": 0.75,
+      "similarity": 0.8751,
+      "nearest_query": "Which route line was incident INC-000122 reported on?",
+      "invalidated": false,
+      "answer": "The incident code INC-000122 is associated with the VTA Green Line. The facts confirm that the incident, labeled 'Transit Delay Incident 121', occurred on the VTA Green Line. No passengers were affected, and the incident was submitted on 2025-09-26. The route line name is clearly stated in the facts. Therefore, the route line for incident INC-000122 is the VTA Green Line.",
+      "is_cached": true,
+      "matched_query": "Which route line was incident INC-000122 reported on?",
+      "matched_key": "s4098:semcache:dc0c50c61771",
+      "data_version": "acd7d6937be5",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000122",
+        "routes": []
+      },
+      "latency_ms": 15.49,
+      "timings": {
+        "embed_ms": 13.5,
+        "search_ms": 0.81,
+        "version_check_ms": 1.17,
+        "total_ms": 15.49
+      },
+      "matched_seed": "S07",
+      "nearest_seed": "S07",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000122: 'Transit Delay Incident 121' on VTA Green Line, category delay, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C17",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S07"
+    },
+    {
+      "question": "What is the total incident count for VTA Route 55?",
+      "threshold": 0.75,
+      "similarity": 0.9118,
+      "nearest_query": "How many incidents in total were recorded on VTA Route 55?",
+      "invalidated": false,
+      "answer": "The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, and 254 service suspensions. Adding these categories together (264 + 223 + 252 + 254) results in 993, confirming the total number of incidents as provided in the s4098_rel database.",
+      "is_cached": true,
+      "matched_query": "How many incidents in total were recorded on VTA Route 55?",
+      "matched_key": "s4098:semcache:9ab7e8211325",
+      "data_version": "d553a0c95c65",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-005"
+        ]
+      },
+      "latency_ms": 11.58,
+      "timings": {
+        "embed_ms": 7.7,
+        "search_ms": 0.85,
+        "version_check_ms": 3.02,
+        "total_ms": 11.58
+      },
+      "matched_seed": "S08",
+      "nearest_seed": "S08",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-005 is 'VTA Route 55', operated by VTA. It has 993 recorded incidents (collision: 264, delay: 223, infrastructure-issue: 252, service-suspension: 254)."
+      ],
+      "id": "C18",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S08"
+    },
+    {
+      "question": "What title does incident INC-000250 have?",
+      "threshold": 0.75,
+      "similarity": 0.9683,
+      "nearest_query": "What is the title of incident INC-000250?",
+      "invalidated": false,
+      "answer": "The title of incident INC-000250 is \"Transit Service Suspension Incident 249\".",
+      "is_cached": true,
+      "matched_query": "What is the title of incident INC-000250?",
+      "matched_key": "s4098:semcache:48c0f640f7b8",
+      "data_version": "71b528ddeff1",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000250",
+        "routes": []
+      },
+      "latency_ms": 9.3,
+      "timings": {
+        "embed_ms": 7.79,
+        "search_ms": 0.53,
+        "version_check_ms": 0.98,
+        "total_ms": 9.3
+      },
+      "matched_seed": "S09",
+      "nearest_seed": "S09",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Incident INC-000250: 'Transit Service Suspension Incident 249' on VTA Orange Line, category service-suspension, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C19",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S09"
+    },
+    {
+      "question": "What route is identified by the code RT-001?",
+      "threshold": 0.75,
+      "similarity": 0.9343,
+      "nearest_query": "Which route has the route code RT-001?",
+      "invalidated": false,
+      "answer": "The route code RT-001 corresponds to the 'VTA Green Line', which is operated by VTA. The s4098_rel transit incident database confirms this information.",
+      "is_cached": true,
+      "matched_query": "Which route has the route code RT-001?",
+      "matched_key": "s4098:semcache:f50dce2f133a",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 10.51,
+      "timings": {
+        "embed_ms": 8.41,
+        "search_ms": 0.81,
+        "version_check_ms": 1.29,
+        "total_ms": 10.51
+      },
+      "matched_seed": "S10",
+      "nearest_seed": "S10",
+      "outcome": "correct_hit",
+      "ground_truth_facts": [
+        "Route RT-001 is 'VTA Green Line', operated by VTA."
+      ],
+      "id": "C20",
+      "group": "paraphrase",
+      "expected": "hit",
+      "target": "S10"
+    },
+    {
+      "question": "How many collision incidents were recorded on VTA Route 22?",
+      "threshold": 0.75,
+      "similarity": 0.8533,
+      "nearest_query": "How many incidents in total were recorded on VTA Route 55?",
+      "invalidated": false,
+      "answer": "The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, and 254 service suspensions. Adding these categories together (264 + 223 + 252 + 254) results in 993, confirming the total number of incidents as provided in the s4098_rel database.",
+      "is_cached": true,
+      "matched_query": "How many incidents in total were recorded on VTA Route 55?",
+      "matched_key": "s4098:semcache:9ab7e8211325",
+      "data_version": "d553a0c95c65",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-005"
+        ]
+      },
+      "latency_ms": 17.46,
+      "timings": {
+        "embed_ms": 10.01,
+        "search_ms": 1.92,
+        "version_check_ms": 5.52,
+        "total_ms": 17.46
+      },
+      "matched_seed": "S08",
+      "nearest_seed": "S08",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-003 is 'VTA Route 22', operated by VTA. It has 244 recorded collision incidents."
+      ],
+      "id": "C21",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S01"
+    },
+    {
+      "question": "What is the route code for the VTA Orange Line?",
+      "threshold": 0.75,
+      "similarity": 0.9162,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The VTA Green Line is identified as Route RT-001 in the s4098_rel transit incident database. The route code for the VTA Green Line is RT-001. This code is directly linked to the VTA Green Line in the database, confirming its accuracy. Therefore, the route code is RT-001.",
+      "is_cached": true,
+      "matched_query": "What is the route code for the VTA Green Line?",
+      "matched_key": "s4098:semcache:6ddc5e168340",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 11.53,
+      "timings": {
+        "embed_ms": 9.38,
+        "search_ms": 0.85,
+        "version_check_ms": 1.29,
+        "total_ms": 11.53
+      },
+      "matched_seed": "S02",
+      "nearest_seed": "S02",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-002 is 'VTA Orange Line', operated by VTA."
+      ],
+      "id": "C22",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S02"
+    },
+    {
+      "question": "How many service suspensions has VTA Route 522 had?",
+      "threshold": 0.75,
+      "similarity": 0.7546,
+      "nearest_query": "Who operates VTA Route 522?",
+      "invalidated": false,
+      "answer": "The s4098_rel transit incident database indicates that Route RT-004 is 'VTA Route 522' and is operated by VTA. Therefore, VTA Route 522 is operated by VTA.",
+      "is_cached": true,
+      "matched_query": "Who operates VTA Route 522?",
+      "matched_key": "s4098:semcache:aa7e6fa7abf3",
+      "data_version": "40ea672fa3da",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-004"
+        ]
+      },
+      "latency_ms": 12.58,
+      "timings": {
+        "embed_ms": 10.43,
+        "search_ms": 0.81,
+        "version_check_ms": 1.34,
+        "total_ms": 12.58
+      },
+      "matched_seed": "S03",
+      "nearest_seed": "S03",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-004 is 'VTA Route 522', operated by VTA. It has 262 recorded service-suspension incidents."
+      ],
+      "id": "C23",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S03"
+    },
+    {
+      "question": "What category is incident INC-000043?",
+      "threshold": 0.75,
+      "similarity": 0.9811,
+      "nearest_query": "What category is incident INC-000042?",
+      "invalidated": false,
+      "answer": "The incident code INC-000042 is categorized as 'infrastructure-issue' according to the s4098_rel transit incident database. This incident, labeled 'Transit Infrastructure Issue Incident 41', occurred on the VTA Green Line and affected 0 passengers. The category is correctly listed as 'infrastructure-issue'.",
+      "is_cached": true,
+      "matched_query": "What category is incident INC-000042?",
+      "matched_key": "s4098:semcache:57ac535324fb",
+      "data_version": "84d5c63191bb",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000042",
+        "routes": []
+      },
+      "latency_ms": 13.4,
+      "timings": {
+        "embed_ms": 10.92,
+        "search_ms": 0.76,
+        "version_check_ms": 1.71,
+        "total_ms": 13.4
+      },
+      "matched_seed": "S04",
+      "nearest_seed": "S04",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Incident INC-000043: 'Transit Infrastructure Issue Incident 42' on VTA Route 22, category infrastructure-issue, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C24",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S04"
+    },
+    {
+      "question": "How many delay incidents have been reported across all routes?",
+      "threshold": 0.75,
+      "similarity": 0.7512,
+      "nearest_query": "How many collision incidents have been reported across all routes?",
+      "invalidated": false,
+      "answer": "The collision incidents reported across all listed routes are as follows: VTA Green Line: 242, VTA Orange Line: 259, VTA Route 22: 244, VTA Route 522: 253, and VTA Route 55: 264. Adding these together gives a total of 1262 collision incidents. All routes listed in the facts are included, and no additional routes or data are considered. The s4098_rel database records 1262 collision incidents in total.",
+      "is_cached": true,
+      "matched_query": "How many collision incidents have been reported across all routes?",
+      "matched_key": "s4098:semcache:e8e2999f9b2e",
+      "data_version": "d21e172eeb2d",
+      "deps": {
+        "category": "collision",
+        "counts": true,
+        "incident": null,
+        "routes": []
+      },
+      "latency_ms": 17.54,
+      "timings": {
+        "embed_ms": 12.24,
+        "search_ms": 1.01,
+        "version_check_ms": 4.28,
+        "total_ms": 17.54
+      },
+      "matched_seed": "S05",
+      "nearest_seed": "S05",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "delay incidents per route: VTA Green Line: 251, VTA Orange Line: 246, VTA Route 22: 266, VTA Route 522: 270, VTA Route 55: 223 (total 1256)."
+      ],
+      "id": "C25",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S05"
+    },
+    {
+      "question": "How many infrastructure issues were recorded on the VTA Green Line?",
+      "threshold": 0.75,
+      "similarity": 0.9058,
+      "nearest_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "invalidated": false,
+      "answer": "The VTA Orange Line is identified by route code RT-002. According to the s4098_rel transit incident database, route RT-002 has 255 recorded infrastructure-issue incidents. These incidents are specifically categorized as infrastructure issues. Therefore, the total number of infrastructure issues recorded on the VTA Orange Line is 255.",
+      "is_cached": true,
+      "matched_query": "How many infrastructure issues were recorded on the VTA Orange Line?",
+      "matched_key": "s4098:semcache:f8116f9a6e62",
+      "data_version": "992062df2ffb",
+      "deps": {
+        "category": "infrastructure-issue",
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-002"
+        ]
+      },
+      "latency_ms": 16.58,
+      "timings": {
+        "embed_ms": 11.61,
+        "search_ms": 1.01,
+        "version_check_ms": 3.95,
+        "total_ms": 16.58
+      },
+      "matched_seed": "S06",
+      "nearest_seed": "S06",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-001 is 'VTA Green Line', operated by VTA. It has 232 recorded infrastructure-issue incidents."
+      ],
+      "id": "C26",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S06"
+    },
+    {
+      "question": "Which route line was incident INC-000123 reported on?",
+      "threshold": 0.75,
+      "similarity": 0.9878,
+      "nearest_query": "Which route line was incident INC-000122 reported on?",
+      "invalidated": false,
+      "answer": "The incident code INC-000122 is associated with the VTA Green Line. The facts confirm that the incident, labeled 'Transit Delay Incident 121', occurred on the VTA Green Line. No passengers were affected, and the incident was submitted on 2025-09-26. The route line name is clearly stated in the facts. Therefore, the route line for incident INC-000122 is the VTA Green Line.",
+      "is_cached": true,
+      "matched_query": "Which route line was incident INC-000122 reported on?",
+      "matched_key": "s4098:semcache:dc0c50c61771",
+      "data_version": "acd7d6937be5",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000122",
+        "routes": []
+      },
+      "latency_ms": 16.21,
+      "timings": {
+        "embed_ms": 13.27,
+        "search_ms": 1.25,
+        "version_check_ms": 1.67,
+        "total_ms": 16.21
+      },
+      "matched_seed": "S07",
+      "nearest_seed": "S07",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Incident INC-000123: 'Transit Collision Incident 122' on VTA Route 522, category collision, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C27",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S07"
+    },
+    {
+      "question": "How many incidents in total were recorded on VTA Route 22?",
+      "threshold": 0.75,
+      "similarity": 0.913,
+      "nearest_query": "How many incidents in total were recorded on VTA Route 55?",
+      "invalidated": false,
+      "answer": "The total number of incidents recorded on VTA Route 55 (Route RT-005) is 993. This includes 264 collisions, 223 delays, 252 infrastructure issues, and 254 service suspensions. Adding these categories together (264 + 223 + 252 + 254) results in 993, confirming the total number of incidents as provided in the s4098_rel database.",
+      "is_cached": true,
+      "matched_query": "How many incidents in total were recorded on VTA Route 55?",
+      "matched_key": "s4098:semcache:9ab7e8211325",
+      "data_version": "d553a0c95c65",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": null,
+        "routes": [
+          "RT-005"
+        ]
+      },
+      "latency_ms": 17.81,
+      "timings": {
+        "embed_ms": 11.91,
+        "search_ms": 1.21,
+        "version_check_ms": 4.68,
+        "total_ms": 17.81
+      },
+      "matched_seed": "S08",
+      "nearest_seed": "S08",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-003 is 'VTA Route 22', operated by VTA. It has 1012 recorded incidents (collision: 244, delay: 266, infrastructure-issue: 257, service-suspension: 245)."
+      ],
+      "id": "C28",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S08"
+    },
+    {
+      "question": "What is the title of incident INC-000251?",
+      "threshold": 0.75,
+      "similarity": 0.9898,
+      "nearest_query": "What is the title of incident INC-000250?",
+      "invalidated": false,
+      "answer": "The title of incident INC-000250 is \"Transit Service Suspension Incident 249\".",
+      "is_cached": true,
+      "matched_query": "What is the title of incident INC-000250?",
+      "matched_key": "s4098:semcache:48c0f640f7b8",
+      "data_version": "71b528ddeff1",
+      "deps": {
+        "category": null,
+        "counts": true,
+        "incident": "INC-000250",
+        "routes": []
+      },
+      "latency_ms": 15.5,
+      "timings": {
+        "embed_ms": 12.15,
+        "search_ms": 1.43,
+        "version_check_ms": 1.9,
+        "total_ms": 15.5
+      },
+      "matched_seed": "S09",
+      "nearest_seed": "S09",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Incident INC-000251: 'Transit Infrastructure Issue Incident 250' on VTA Route 22, category infrastructure-issue, 0 passengers affected, submitted 2025-09-26."
+      ],
+      "id": "C29",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S09"
+    },
+    {
+      "question": "Which route has the route code RT-002?",
+      "threshold": 0.75,
+      "similarity": 0.9384,
+      "nearest_query": "Which route has the route code RT-001?",
+      "invalidated": false,
+      "answer": "The route code RT-001 corresponds to the 'VTA Green Line', which is operated by VTA. The s4098_rel transit incident database confirms this information.",
+      "is_cached": true,
+      "matched_query": "Which route has the route code RT-001?",
+      "matched_key": "s4098:semcache:f50dce2f133a",
+      "data_version": "d9d65b64e6ba",
+      "deps": {
+        "category": null,
+        "counts": false,
+        "incident": null,
+        "routes": [
+          "RT-001"
+        ]
+      },
+      "latency_ms": 15.26,
+      "timings": {
+        "embed_ms": 12.12,
+        "search_ms": 1.37,
+        "version_check_ms": 1.75,
+        "total_ms": 15.26
+      },
+      "matched_seed": "S10",
+      "nearest_seed": "S10",
+      "outcome": "false_hit",
+      "ground_truth_facts": [
+        "Route RT-002 is 'VTA Orange Line', operated by VTA."
+      ],
+      "id": "C30",
+      "group": "similar_different",
+      "expected": "miss",
+      "target": "S10"
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "threshold": 0.75,
+      "similarity": 0.1503,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The question about the capital of Australia is unrelated to municipal transit incidents. The s4098_rel transit incident database has no record for this question.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 2922.13,
+        "WRITER": 1734.81,
+        "REVIEWER": 1353.1
+      },
+      "latency_ms": 6034.53,
+      "timings": {
+        "embed_ms": 20.92,
+        "search_ms": 1.21,
+        "grounding_ms": 1.22,
+        "agent_ms": 6011.08,
+        "total_ms": 6034.53
+      },
+      "matched_seed": null,
+      "nearest_seed": "S02",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C31",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "How do I bake sourdough bread at home?",
+      "threshold": 0.75,
+      "similarity": 0.1057,
+      "nearest_query": "Which route has the route code RT-001?",
+      "invalidated": false,
+      "answer": "The s4098_rel database has no record for this question. To bake sourdough bread at home, start by cultivating a sourdough starter through feeding wild yeast and bacteria with flour and water. Once active, mix flour, water, and salt to form a dough, then let it ferment for several hours or overnight. Shape the dough, let it proof until it doubles in size, and bake in a preheated oven (around 450\u00b0F) with steam for a crisp crust. Monitor the bread as it bakes and let it cool completely before slicing.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 3389.13,
+        "WRITER": 5565.58,
+        "REVIEWER": 1863.76
+      },
+      "latency_ms": 10882.4,
+      "timings": {
+        "embed_ms": 60.13,
+        "search_ms": 1.26,
+        "grounding_ms": 1.04,
+        "agent_ms": 10819.88,
+        "total_ms": 10882.4
+      },
+      "matched_seed": null,
+      "nearest_seed": "S10",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C32",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "What is the weather forecast for San Jose tomorrow?",
+      "threshold": 0.75,
+      "similarity": 0.2496,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The question asks for the weather forecast in San Jose tomorrow. The s4098_rel transit incident database does not contain any records related to weather forecasts. Therefore, the database has no information to answer this query. The s4098_rel database is focused on municipal transit incidents and does not cover weather data.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 4272.49,
+        "WRITER": 3362.73,
+        "REVIEWER": 1798.25
+      },
+      "latency_ms": 9574.57,
+      "timings": {
+        "embed_ms": 137.1,
+        "search_ms": 1.64,
+        "grounding_ms": 1.22,
+        "agent_ms": 9434.55,
+        "total_ms": 9574.57
+      },
+      "matched_seed": null,
+      "nearest_seed": "S02",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C33",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "Explain how a Kafka consumer group rebalances.",
+      "threshold": 0.75,
+      "similarity": 0.1996,
+      "nearest_query": "What category is incident INC-000042?",
+      "invalidated": false,
+      "answer": "a kafka consumer group is a set of consumers that collectively consume messages from a set of topics. during rebalancing, if a consumer leaves the group or a new consumer joins, the group redistributes the topic partitions among its members to ensure even message consumption. this process is triggered when a change in the group membership occurs. consumers communicate via kafka's group coordinator, using internal topics like __consumer_offsets to coordinate and synchronize their state. during rebalancing, consumers temporarily stop consuming messages while the partitions are reassigned, ensuring that each partition is consumed by exactly one consumer in the group.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 2453.4,
+        "WRITER": 5493.9,
+        "REVIEWER": 1523.6
+      },
+      "latency_ms": 9563.13,
+      "timings": {
+        "embed_ms": 87.57,
+        "search_ms": 1.97,
+        "grounding_ms": 1.66,
+        "agent_ms": 9471.89,
+        "total_ms": 9563.13
+      },
+      "matched_seed": null,
+      "nearest_seed": "S04",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C34",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "How much does a monthly VTA transit pass cost?",
+      "threshold": 0.75,
+      "similarity": 0.4977,
+      "nearest_query": "Who operates VTA Route 522?",
+      "invalidated": false,
+      "answer": "The s4098_rel database has no record for this question.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 3508.08,
+        "WRITER": 1126.36,
+        "REVIEWER": 1862.58
+      },
+      "latency_ms": 6586.74,
+      "timings": {
+        "embed_ms": 86.5,
+        "search_ms": 1.1,
+        "grounding_ms": 0.99,
+        "agent_ms": 6498.07,
+        "total_ms": 6586.74
+      },
+      "matched_seed": null,
+      "nearest_seed": "S03",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C35",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "Who won the 2022 FIFA World Cup?",
+      "threshold": 0.75,
+      "similarity": 0.1677,
+      "nearest_query": "What is the title of incident INC-000250?",
+      "invalidated": false,
+      "answer": "The subject of the question is the 2022 FIFA World Cup winner. The provided facts from the s4098_rel transit incident database do not include any information related to the 2022 FIFA World Cup or its outcome. Therefore, the s4098_rel database has no record for this question.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 3323.16,
+        "WRITER": 3278.68,
+        "REVIEWER": 2032.2
+      },
+      "latency_ms": 8690.53,
+      "timings": {
+        "embed_ms": 53.72,
+        "search_ms": 1.31,
+        "grounding_ms": 0.78,
+        "agent_ms": 8634.66,
+        "total_ms": 8690.53
+      },
+      "matched_seed": null,
+      "nearest_seed": "S09",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C36",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "What is the time complexity of binary search?",
+      "threshold": 0.75,
+      "similarity": 0.161,
+      "nearest_query": "Which route has the route code RT-001?",
+      "invalidated": false,
+      "answer": "The question asks about the time complexity of binary search, which is a computer science concept related to algorithm efficiency. The provided facts from the s4098_rel transit incident database do not cover this topic, as they pertain to municipal transit incidents, not computational theory. Therefore, the s4098_rel database has no record for this question.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 3352.36,
+        "WRITER": 3554.58,
+        "REVIEWER": 1929.52
+      },
+      "latency_ms": 8881.23,
+      "timings": {
+        "embed_ms": 41.0,
+        "search_ms": 1.73,
+        "grounding_ms": 1.06,
+        "agent_ms": 8837.37,
+        "total_ms": 8881.23
+      },
+      "matched_seed": null,
+      "nearest_seed": "S10",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C37",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "Recommend a good book about Roman history.",
+      "threshold": 0.75,
+      "similarity": 0.0293,
+      "nearest_query": "How many incidents in total were recorded on VTA Route 55?",
+      "invalidated": false,
+      "answer": "The s4098_rel database has no record for this question. Roman history is a broad subject, but for a general audience, \"The Rise and Fall of the Roman Empire\" by Edward L. Lipson is a well-regarded overview that covers key events and figures. For a more detailed and scholarly approach, \"The Civilization of the Roman Empire\" by Michael Grant provides in-depth analysis of Roman society, politics, and culture. Both books are credible sources and suitable for readers interested in understanding the complexities of Roman history.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 2573.11,
+        "WRITER": 5070.83,
+        "REVIEWER": 1452.95
+      },
+      "latency_ms": 9200.77,
+      "timings": {
+        "embed_ms": 100.36,
+        "search_ms": 1.73,
+        "grounding_ms": 0.78,
+        "agent_ms": 9097.84,
+        "total_ms": 9200.77
+      },
+      "matched_seed": null,
+      "nearest_seed": "S08",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C38",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "How do I reset my Clipper card password?",
+      "threshold": 0.75,
+      "similarity": 0.1037,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The s4098_rel database has no record for resetting a Clipper card password. This question is not related to municipal transit incidents and is outside the scope of the database. For assistance with Clipper card issues, contact Clipper Customer Service directly.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 2689.45,
+        "WRITER": 2602.12,
+        "REVIEWER": 1602.19
+      },
+      "latency_ms": 7004.29,
+      "timings": {
+        "embed_ms": 105.6,
+        "search_ms": 2.85,
+        "grounding_ms": 0.82,
+        "agent_ms": 6894.95,
+        "total_ms": 7004.29
+      },
+      "matched_seed": null,
+      "nearest_seed": "S02",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C39",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    },
+    {
+      "question": "What are the opening hours of the San Jose public library?",
+      "threshold": 0.75,
+      "similarity": 0.2355,
+      "nearest_query": "What is the route code for the VTA Green Line?",
+      "invalidated": false,
+      "answer": "The question is not about municipal transit incidents. The s4098_rel transit incident database has no record for this question.",
+      "is_cached": false,
+      "matched_query": null,
+      "stored_key": null,
+      "data_version": "44136fa355b3",
+      "deps": {
+        "routes": [],
+        "category": null,
+        "incident": null,
+        "counts": false
+      },
+      "facts": [],
+      "agent_status": "approved",
+      "agent_stage_ms": {
+        "PLANNER": 2731.89,
+        "WRITER": 1497.45,
+        "REVIEWER": 1638.98
+      },
+      "latency_ms": 5929.56,
+      "timings": {
+        "embed_ms": 57.72,
+        "search_ms": 1.5,
+        "grounding_ms": 1.25,
+        "agent_ms": 5869.03,
+        "total_ms": 5929.56
+      },
+      "matched_seed": null,
+      "nearest_seed": "S02",
+      "outcome": "correct_miss",
+      "ground_truth_facts": [],
+      "id": "C40",
+      "group": "unrelated",
+      "expected": "miss",
+      "target": null
+    }
+  ]
+}

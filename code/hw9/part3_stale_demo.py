@@ -6,7 +6,7 @@
 Steps
   1. empty the cache, ask "Who operates VTA Route 522?" -> miss, agent answer is
      stored with deps={routes:[RT-003]} and data_version = hash of that route row
-  2. UPDATE routes SET operator=... WHERE route_code='RT-003'   (s4098_rel)
+  2. UPDATE routes SET operator=... WHERE route_name='VTA Route 522'   (s4098_rel)
   3. invalidation=none:    same question -> HIT, returns the OLD operator (stale hit)
   4. invalidation=version: same question -> data_version mismatch -> entry deleted,
      agent re-runs with the new record, new answer + new data_version stored
@@ -29,7 +29,7 @@ from src.hw9_cache.config import DEFAULT_THRESHOLD, banner  # noqa: E402
 from src.hw9_cache.qa import build_qa  # noqa: E402
 
 RAW = ROOT / "reports" / "hw09" / "raw"
-ROUTE_CODE = "RT-003"
+ROUTE_NAME = "VTA Route 522"  # looked up by name: route codes differ per database
 FIRST_Q = "Who operates VTA Route 522?"
 NEW_OPERATOR = "MV Transportation (VTA contract)"
 
@@ -40,9 +40,9 @@ def route_row(engine) -> dict:
             conn.execute(
                 text(
                     "SELECT id, route_code, route_name, operator FROM routes "
-                    "WHERE route_code = :c"
+                    "WHERE route_name = :n"
                 ),
-                {"c": ROUTE_CODE},
+                {"n": ROUTE_NAME},
             )
             .mappings()
             .one()
@@ -52,8 +52,8 @@ def route_row(engine) -> dict:
 def set_operator(engine, operator: str) -> None:
     with engine.begin() as conn:
         conn.execute(
-            text("UPDATE routes SET operator = :o WHERE route_code = :c"),
-            {"o": operator, "c": ROUTE_CODE},
+            text("UPDATE routes SET operator = :o WHERE route_name = :n"),
+            {"o": operator, "n": ROUTE_NAME},
         )
 
 
@@ -111,7 +111,7 @@ def main(args) -> int:
 
     print(
         f"[2] UPDATE routes SET operator='{NEW_OPERATOR}' "
-        f"WHERE route_code='{ROUTE_CODE}'"
+        f"WHERE route_name='{ROUTE_NAME}'   (route_code {original['route_code']})"
     )
     set_operator(engine, NEW_OPERATOR)
     updated = route_row(engine)
@@ -136,7 +136,9 @@ def main(args) -> int:
 
     if not args.keep:
         set_operator(engine, original["operator"])
-        print(f"restored operator='{original['operator']}' for {ROUTE_CODE}")
+        print(
+            f"restored operator='{original['operator']}' for {original['route_code']}"
+        )
 
     RAW.mkdir(parents=True, exist_ok=True)
     out = {"route_before": original, "route_after": updated, "steps": log}
